@@ -24,9 +24,20 @@ export interface INotesModel {
 }
 
 export class NotesModel implements INotesModel {
+  private static instance: NotesModel;
+  private API = window.api.note;
+
+  private constructor() {}
+  public static get Instance(): NotesModel {
+    if (!NotesModel.instance) {
+      NotesModel.instance = new NotesModel();
+    }
+    return NotesModel.instance;
+  }
+
   async create(title: string, parent?: string): Promise<Result<Note, Error>> {
     try {
-      const res = await API.create(title, parent);
+      const res = await this.API.create(title, parent);
       if (res == null) {
         return { error: new Error("Failed to create note") };
       }
@@ -39,7 +50,7 @@ export class NotesModel implements INotesModel {
 
   async updateContents(id: string, content: string) {
     try {
-      await API.setContents(id, content);
+      await this.API.setContents(id, content);
       return {};
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -49,7 +60,7 @@ export class NotesModel implements INotesModel {
 
   async getContents(id: string) {
     try {
-      const res = await API.getContents(id);
+      const res = await this.API.getContents(id);
       return { value: res };
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -59,7 +70,7 @@ export class NotesModel implements INotesModel {
 
   async delete(id: string) {
     try {
-      await API.delete(id);
+      await this.API.delete(id);
       return {};
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -69,7 +80,7 @@ export class NotesModel implements INotesModel {
 
   async move(sourceId: string, destinationId: string) {
     try {
-      await API.move(sourceId, destinationId);
+      await this.API.move(sourceId, destinationId);
       return {};
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -78,12 +89,12 @@ export class NotesModel implements INotesModel {
   }
 
   async update(data: Partial<Note>) {
-    await API.update(data);
+    await this.API.update(data);
   }
 
   async getNotes() {
     try {
-      const res = await API.getAll();
+      const res = await this.API.getAll();
       return { value: res };
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -92,16 +103,16 @@ export class NotesModel implements INotesModel {
   }
 
   async trash(id: string) {
-    await API.setTrashStatus(id, true);
+    await this.API.setTrashStatus(id, true);
   }
 
   async restore(id: string) {
-    await API.setTrashStatus(id, false);
+    await this.API.setTrashStatus(id, false);
   }
 
   async getNote(id: string) {
     try {
-      const res = await API.getNote(id);
+      const res = await this.API.getNote(id);
       if (res == null) throw new Error("Failed to get note");
       return { value: res };
     } catch (error) {
@@ -111,12 +122,12 @@ export class NotesModel implements INotesModel {
   }
 
   async saveAll(notes: Note[]) {
-    await API.saveAll(notes);
+    await this.API.saveAll(notes);
   }
 
   async exportHTML(note: Note, content: string) {
     try {
-      await API.export(note.title, content, "html");
+      await this.API.export(note.title, content, "html");
       return {};
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -126,7 +137,7 @@ export class NotesModel implements INotesModel {
 
   async importHTML() {
     try {
-      const res = await API.importHTML();
+      const res = await this.API.importHTML();
       return { value: res };
     } catch (error) {
       if (error instanceof Error) return { error };

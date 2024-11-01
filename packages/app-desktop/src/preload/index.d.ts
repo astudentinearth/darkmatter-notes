@@ -8,6 +8,10 @@ declare global {
     api: DarkwriteElectronAPI;
   }
 
+  type Result<T, E> =
+    | { value: T; error?: undefined }
+    | { value?: undefined; error: E };
+
   interface DarkwriteElectronAPI {
     /**
      * Displays the app menu

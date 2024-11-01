@@ -1,5 +1,5 @@
 import { ipcMain, Menu, MenuItemConstructorOptions } from "electron";
-import { ChannelNames } from "./ipc";
+import { ChannelNames } from "./channels";
 
 const template: Array<MenuItemConstructorOptions> = [
   {

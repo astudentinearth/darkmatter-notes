@@ -16,6 +16,6 @@ interface WindowControlsOverlay extends EventTarget {
 
 declare global {
   type Result<T, E> =
-    | { value: T; error: undefined }
-    | { value: undefined; error: E };
+    | { value: T; error?: undefined }
+    | { value?: undefined; error: E };
 }

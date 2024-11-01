@@ -2,31 +2,35 @@
 import { Note, NoteExportType } from "@darkwrite/common";
 import { UserSettings } from "@darkwrite/common";
 import { contextBridge, ipcRenderer } from "electron";
+import { ChannelNames } from "../main/ipc";
 
 contextBridge.exposeInMainWorld("api", {
   showAppMenu: () => ipcRenderer.invoke("show-app-menu"),
   note: {
     create: (title: string, parent?: string) =>
-      ipcRenderer.invoke("create-note", title, parent),
+      ipcRenderer.invoke(ChannelNames.CREATE_NOTE, title, parent),
     setContents: (id: string, content: string) =>
-      ipcRenderer.invoke("set-note-contents", id, content),
-    getContents: (id: string) => ipcRenderer.invoke("get-note-contents", id),
-    delete: (id: string) => ipcRenderer.invoke("delete-note", id),
+      ipcRenderer.invoke(ChannelNames.SET_JSON_CONTENT, id, content),
+    getContents: (id: string) =>
+      ipcRenderer.invoke(ChannelNames.GET_JSON_CONTENT, id),
+    delete: (id: string) => ipcRenderer.invoke(ChannelNames.DELETE_NOTE, id),
     move: (sourceID: string, destID: string | undefined) =>
-      ipcRenderer.invoke("move-note", sourceID, destID),
-    update: (note: Partial<Note>) => ipcRenderer.invoke("update-note", note),
-    getAll: () => ipcRenderer.invoke("get-all-notes"),
+      ipcRenderer.invoke(ChannelNames.MOVE_NOTE, sourceID, destID),
+    update: (note: Partial<Note>) =>
+      ipcRenderer.invoke(ChannelNames.UPDATE_NOTE, note),
+    getAll: () => ipcRenderer.invoke(ChannelNames.GET_ALL_NOTES),
     setTrashStatus: (id: string, state: boolean) =>
-      ipcRenderer.invoke("set-trash-status", id, state),
-    getNote: (id: string) => ipcRenderer.invoke("get-note", id),
-    saveAll: (notes: Note[]) => ipcRenderer.invoke("save-notes", notes),
+      ipcRenderer.invoke(ChannelNames.SET_TRASH_STATUS, id, state),
+    getNote: (id: string) => ipcRenderer.invoke(ChannelNames.GET_NOTE, id),
+    saveAll: (notes: Note[]) =>
+      ipcRenderer.invoke(ChannelNames.SAVE_NOTES, notes),
     export: (title: string, content: string, exportType: NoteExportType) =>
-      ipcRenderer.invoke("export-note", title, content, exportType),
-    importHTML: () => ipcRenderer.invoke("import-html"),
+      ipcRenderer.invoke(ChannelNames.EXPORT_NOTE, title, content, exportType),
+    importHTML: () => ipcRenderer.invoke(ChannelNames.IMPORT_HTML),
   },
   settings: {
-    load: () => ipcRenderer.invoke("load-user-settings"),
+    load: () => ipcRenderer.invoke(ChannelNames.LOAD_USER_PREFS),
     save: (data: UserSettings) =>
-      ipcRenderer.invoke("save-user-settings", data),
+      ipcRenderer.invoke(ChannelNames.SAVE_USER_PREFS, data),
   },
 });

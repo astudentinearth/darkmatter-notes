@@ -13,3 +13,9 @@ interface WindowControlsOverlay extends EventTarget {
   getTitlebarAreaRect(): DOMRect;
   ongeometrychange: ((this: WindowControlsOverlay, e: Event) => unknown) | null;
 }
+
+declare global {
+  type Result<T, E> =
+    | { value: T; error: undefined }
+    | { value: undefined; error: E };
+}

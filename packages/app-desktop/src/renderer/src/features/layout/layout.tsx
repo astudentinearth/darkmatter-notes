@@ -108,7 +108,7 @@ export function Layout() {
                     }}
                     isSidebarCollapsed={isSidebarCollapsed}
                 ></Titlebar>
-                <div className="bg-view-1 rounded-tl-[12px] h-full overflow-hidden">
+                <div className="bg-view-1 rounded-tl-[12px] h-full overflow-hidden border border-border/25">
                     <Outlet />
                 </div>
             </div>

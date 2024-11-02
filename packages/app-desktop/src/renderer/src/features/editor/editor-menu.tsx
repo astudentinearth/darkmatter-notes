@@ -9,7 +9,7 @@ import { HeaderbarButton } from "@renderer/components/ui/headerbar-button";
 import { Switch } from "@renderer/components/ui/switch";
 import { useEditorState } from "@renderer/context/editor-state";
 import { useLocalStore } from "@renderer/context/local-state";
-import { duplicateNote } from "@renderer/context/notes-context";
+import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
 import { exportHTML, importHTML } from "@renderer/lib/api/note";
 import { Brush, Copy, Download, Menu, Upload } from "lucide-react";
 import { useState } from "react";
@@ -18,9 +18,10 @@ import { CustimzationSheet } from "./customizations/customization-sheet";
 export function EditorMenu() {
     const [customizationsOpen, setCustomizationsOpen] = useState(false);
     const editor = useEditorState((state) => state.editorInstance);
-    const activeNote = useEditorState((s) => s.id);
+    const activeNoteId = useEditorState((s) => s.id);
     const checker = useLocalStore((s) => s.useSpellcheck);
     const setCheck = useLocalStore((s) => s.setSpellcheck);
+    const duplicate = useDuplicateNoteMutation().mutate;
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>
@@ -60,7 +61,7 @@ export function EditorMenu() {
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onSelect={() => {
-                        exportHTML(activeNote);
+                        exportHTML(activeNoteId);
                     }}
                     className="gap-2 rounded-lg"
                 >
@@ -78,9 +79,7 @@ export function EditorMenu() {
                     Import
                 </DropdownMenuItem>
                 <DropdownMenuItem
-                    onClick={() => {
-                        duplicateNote(activeNote);
-                    }}
+                    onClick={() => duplicate(activeNoteId)}
                     className="gap-2 rounded-lg"
                 >
                     <Copy size={18} />

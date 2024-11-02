@@ -164,52 +164,53 @@ export class NotesModel implements INotesModel {
         return { value: duplicate.value };
     }
 }
-
+/** @deprecated */
 export async function createNote(title: string, parent?: string) {
     return await API.create(title, parent);
 }
-
+/** @deprecated */
 export async function updateContents(id: string, content: string) {
     API.setContents(id, content);
 }
-
+/** @deprecated */
 export async function getContents(id: string) {
     return await API.getContents(id);
 }
-
+/** @deprecated */
 export async function deleteNote(id: string) {
     await API.delete(id);
 }
-
+/** @deprecated */
 export async function moveNote(sourceID: string, destinationID: string) {
     await API.move(sourceID, destinationID);
 }
-
+/** @deprecated */
 export async function updateNote(data: Partial<Note>) {
     if (!data.id) return;
     await API.update(data);
 }
-
+/** @deprecated */
 export async function getNotes() {
     return await API.getAll();
 }
 
+/** @deprecated */
 export async function moveToTrash(id: string) {
     await API.setTrashStatus(id, true);
 }
-
+/** @deprecated */
 export async function restoreFromTrash(id: string) {
     await API.setTrashStatus(id, false);
 }
-
+/** @deprecated */
 export async function getNote(id: string) {
     return await API.getNote(id);
 }
-
+/** @deprecated */
 export async function saveAll(notes: Note[]) {
     await API.saveAll(notes);
 }
-
+/** @deprecated */
 export async function exportHTML(id: string) {
     const contentStr = await getContents(id);
     const parsed = attempt(() => JSON.parse(contentStr));
@@ -221,7 +222,7 @@ export async function exportHTML(id: string) {
         await API.export(note.title, output, "html");
     }
 }
-
+/** @deprecated */
 export async function importHTML() {
     const html = await API.importHTML();
     if (html === "") return "";

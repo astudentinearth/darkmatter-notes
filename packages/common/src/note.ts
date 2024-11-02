@@ -68,3 +68,8 @@ export const FontStyleClassNames = {
     mono: "darkwrite-mono",
     custom: "darkwrite-custom-font"
 };
+
+export function findSubnotes(parentId: string, notes: Note[]) {
+    const subnotes = notes.filter((n) => n.parentID === parentId);
+    return subnotes;
+}

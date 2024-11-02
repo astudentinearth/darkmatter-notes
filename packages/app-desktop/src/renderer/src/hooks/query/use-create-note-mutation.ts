@@ -12,8 +12,8 @@ export const useCreateNoteMutation = (navigateAfter: boolean = false) => {
             return note;
         },
         {
-            onSuccess: (note) => {
-                queryClient.invalidateQueries("notes");
+            onSuccess: async (note) => {
+                await queryClient.refetchQueries("notes");
                 if (navigateAfter) nav(note.value.id);
             },
         },

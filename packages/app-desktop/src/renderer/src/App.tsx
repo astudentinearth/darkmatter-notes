@@ -1,6 +1,6 @@
 import { Layout } from "@renderer/features/layout";
 import { useSettingsStore } from "./context/settings-store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./features/home";
 import { EditorRoot } from "./features/editor";
@@ -9,7 +9,7 @@ import { QueryClientProvider, QueryClient } from "react-query";
 
 function App() {
     const store = useSettingsStore();
-    const queryClient = new QueryClient();
+    const [queryClient] = useState(() => new QueryClient());
     useEffect(() => {
         window.api.settings.load().then((prefs) => {
             if (prefs == null) throw new Error("Could not load user settings");

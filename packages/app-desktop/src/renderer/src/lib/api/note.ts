@@ -81,7 +81,7 @@ export class NotesModel implements INotesModel {
         }
     }
 
-    async move(sourceId: string, destinationId: string) {
+    async move(sourceId: string, destinationId?: string) {
         try {
             await this.API.move(sourceId, destinationId);
             return {};

@@ -8,7 +8,7 @@ export const useUpdateNoteMutation = () => {
         (updatedNote: NotePartial) => NotesModel.Instance.update(updatedNote),
         {
             onSuccess: (_, variables) => {
-                queryClient.invalidateQueries("notes");
+                queryClient.refetchQueries("notes");
                 queryClient.setQueryData(["note", variables.id], variables);
             },
             onError(err) {
@@ -23,8 +23,8 @@ export const useUpdateMultipleNotesMutation = () => {
     return useMutation(
         (updatedNotes: Note[]) => NotesModel.Instance.saveAll(updatedNotes),
         {
-            onSuccess: () => {
-                queryClient.invalidateQueries("notes");
+            onSuccess: async () => {
+                await queryClient.refetchQueries("notes");
             },
             onError(err) {
                 console.error(err);

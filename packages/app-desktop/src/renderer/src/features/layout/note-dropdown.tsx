@@ -18,26 +18,26 @@ export function NoteDropdown() {
                 <Button
                     data-testid="note-dropdown-trigger"
                     variant={"ghost"}
-                    className="px-2 h-auto gap-0.5 [&>span]:leading-[18px]"
+                    className="px-2 h-auto gap-0.5 [&>span]:leading-[18px] max-w-64 [&>span]:overflow-hidden overflow-hidden text-start justify-start [&>span]:whitespace-nowrap [&>span]:text-ellipsis"
                 >
                     {title}
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent>
+            <DropdownMenuContent className="max-w-64">
                 {parentNodes.map((n) => (
                     <DropdownMenuItem
                         key={n.id}
                         onClick={() => navToNote(n.id)}
-                        className="[&>span]:leading-[18px]"
+                        className="[&>span]:leading-[18px] [&>span]:whitespace-nowrap [&>span]:text-ellipsis [&>span]:overflow-hidden"
                     >
                         <div className="text-lg translate-y-[-5%]">
                             {fromUnicode(n.icon)}
                         </div>
-                        {n.title}
+                        <span className="text-ellipsis">{n.title}</span>
                     </DropdownMenuItem>
                 ))}
                 {parentNodes.length === 0 ? (
-                    <span className="text-sm text-foreground/50 p-2 inline-block">
+                    <span className="text-sm text-foreground/50 p-2 inline-block ">
                         No pages above
                     </span>
                 ) : (

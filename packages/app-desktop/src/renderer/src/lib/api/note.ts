@@ -24,6 +24,7 @@ export interface INotesModel {
     saveAll: (notes: Note[]) => Promise<void>;
     exportHTML: (note: Note, content: string) => Promise<{ error?: Error }>;
     importHTML: () => Promise<Result<string, Error>>;
+    duplicate: (id: string) => Promise<Result<Note, Error>>;
 }
 
 export class NotesModel implements INotesModel {
@@ -146,6 +147,21 @@ export class NotesModel implements INotesModel {
             if (error instanceof Error) return { error };
             else return { error: new Error("Failed to create note") };
         }
+    }
+
+    async duplicate(id: string) {
+        const original = await this.getNote(id);
+        if (original.error) return { error: original.error };
+        const duplicate = await this.create(
+            `Copy of ${original.value.title}`,
+            original.value.parentID ?? undefined,
+        );
+        if (duplicate.error) return { error: duplicate.error };
+        await this.update({ ...original.value, id: duplicate.value.id });
+        const contents = await this.getContents(original.value.id);
+        if (contents.error) return { error: contents.error };
+        await this.updateContents(duplicate.value.id, contents.value);
+        return { value: duplicate.value };
     }
 }
 

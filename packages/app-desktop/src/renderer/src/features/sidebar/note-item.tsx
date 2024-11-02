@@ -14,8 +14,9 @@ import {
     ContextMenuTrigger,
 } from "@renderer/components/ui/context-menu";
 import { useEditorState } from "@renderer/context/editor-state";
-import { createNewNote, duplicateNote } from "@renderer/context/notes-context";
 import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
+import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mutation";
+import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
 import { useMoveNoteMutation } from "@renderer/hooks/query/use-move-note";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { exportHTML } from "@renderer/lib/api/note";
@@ -45,17 +46,18 @@ export function NoteItem({
     noDrag?: boolean;
 }) {
     // global state
-    const notesQuery = useNotesQuery();
-    const notes = notesQuery.data?.value;
+    const notes = useNotesQuery().data?.value;
     const [params] = useSearchParams();
     const location = useLocation();
 
     // global actions
     const forceSave = useEditorState((state) => state.forceSave);
+    const createNote = useCreateNoteMutation().mutateAsync;
     const update = useUpdateNoteMutation().mutate;
     const trash = (id: string) => {
         update({ id, isTrashed: true });
     };
+    const duplicate = useDuplicateNoteMutation().mutate;
     const move = useMoveNoteMutation().mutate;
     const navigate = useNavigate();
     const navToNote = useNavigateToNote();
@@ -104,7 +106,7 @@ export function NoteItem({
             <NoteDropZone last parentID={note.id} key={"$"}></NoteDropZone>,
         );
         return elements;
-    }, [subnotes]);
+    }, [subnotes, noDrag, noDrop, note.id]);
 
     useEffect(() => {
         const id = params.get("id");
@@ -142,7 +144,7 @@ export function NoteItem({
     };
 
     const newSubnote = async () => {
-        const sub = await createNewNote(note.id);
+        const sub = (await createNote(note.id)).value;
         if (sub) {
             navToNote(sub.id);
             setOpen(true);
@@ -261,11 +263,7 @@ export function NoteItem({
                     <Forward className="opacity-75" size={20}></Forward>&nbsp;
                     Move to
                 </ContextMenuItem>
-                <ContextMenuItem
-                    onClick={() => {
-                        duplicateNote(note.id);
-                    }}
-                >
+                <ContextMenuItem onClick={() => duplicate(note.id)}>
                     <Copy className="opacity-75" size={20}></Copy>&nbsp;
                     Duplicate
                 </ContextMenuItem>

@@ -14,14 +14,16 @@ import { exportHTML, importHTML } from "@renderer/lib/api/note";
 import { Brush, Copy, Download, Menu, Upload } from "lucide-react";
 import { useState } from "react";
 import { CustimzationSheet } from "./customizations/customization-sheet";
+import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 
 export function EditorMenu() {
     const [customizationsOpen, setCustomizationsOpen] = useState(false);
     const editor = useEditorState((state) => state.editorInstance);
-    const activeNoteId = useEditorState((s) => s.id);
+    const activeNoteId = useNoteFromURL();
     const checker = useLocalStore((s) => s.useSpellcheck);
     const setCheck = useLocalStore((s) => s.setSpellcheck);
     const duplicate = useDuplicateNoteMutation().mutate;
+    if (!activeNoteId) return <></>;
     return (
         <DropdownMenu modal={false}>
             <DropdownMenuTrigger asChild>

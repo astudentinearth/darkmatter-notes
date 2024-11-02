@@ -19,6 +19,7 @@ import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mut
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
 import { useMoveNoteMutation } from "@renderer/hooks/query/use-move-note";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
+import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { exportHTML } from "@renderer/lib/api/note";
 import { cn, fromUnicode } from "@renderer/lib/utils";
 import {
@@ -33,7 +34,7 @@ import {
     Trash,
 } from "lucide-react";
 import { DragEvent, useCallback, useEffect, useState } from "react";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { NoteDropZone } from "./note-drop-zone";
 
 export function NoteItem({
@@ -47,8 +48,7 @@ export function NoteItem({
 }) {
     // global state
     const notes = useNotesQuery().data?.value;
-    const [params] = useSearchParams();
-    const location = useLocation();
+    const activeNoteId = useNoteFromURL();
 
     // global actions
     const forceSave = useEditorState((state) => state.forceSave);
@@ -109,12 +109,9 @@ export function NoteItem({
     }, [subnotes, noDrag, noDrop, note.id]);
 
     useEffect(() => {
-        const id = params.get("id");
-        const path = location.pathname;
-        if (path !== "/page") setActive(false);
-        else if (id != null && id === note.id) setActive(true);
-        else setActive(false);
-    }, [params, location, note.id]);
+        if (!activeNoteId || activeNoteId !== note.id) setActive(false);
+        else setActive(true);
+    }, [note.id, activeNoteId]);
 
     const handleDragStart = (event: DragEvent<HTMLElement>) => {
         event.stopPropagation();

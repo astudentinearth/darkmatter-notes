@@ -9,25 +9,21 @@ import {
 } from "@renderer/components/ui/context-menu";
 import { useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
+import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { cn, fromUnicode } from "@renderer/lib/utils";
 import { ArrowRightFromLine, Star, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
-import { useLocation, useSearchParams } from "react-router-dom";
 
 export function FavoriteItem({ note, index }: { note: Note; index: number }) {
     const [active, setActive] = useState(false);
     const navToNote = useNavigateToNote();
     const update = useUpdateNoteMutation().mutate;
     const trash = (id: string) => update({ id, isTrashed: true });
-    const [params] = useSearchParams();
-    const location = useLocation();
+    const activeNoteId = useNoteFromURL();
     useEffect(() => {
-        const id = params.get("id");
-        const path = location.pathname;
-        if (path !== "/page") setActive(false);
-        else if (id != null && id === note.id) setActive(true);
-        else setActive(false);
-    }, [params, location, note.id]);
+        if (!activeNoteId || activeNoteId !== note.id) setActive(false);
+        else setActive(true);
+    }, [note.id, activeNoteId]);
 
     return (
         <ContextMenu>

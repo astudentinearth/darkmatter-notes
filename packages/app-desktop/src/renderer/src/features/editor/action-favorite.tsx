@@ -1,21 +1,16 @@
-import { Note } from "@darkwrite/common";
 import { HeaderbarButton } from "@renderer/components/ui/headerbar-button";
-import { useEditorState } from "@renderer/context/editor-state";
-import { useNotesStore } from "@renderer/context/notes-context";
+import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
+import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { cn } from "@renderer/lib/utils";
 import { Star } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export function FavoriteActionButton() {
-    const id = useEditorState((state) => state.id);
-    const notes = useNotesStore((state) => state.notes);
-    const update = useNotesStore((state) => state.update);
-    const [targetNote, setTargetNote] = useState<Note | undefined>(undefined);
+    const id = useNoteFromURL();
+    const notes = useNotesQuery().data?.value;
+    const targetNote = notes?.find((n) => n.id === id);
+    const update = useUpdateNoteMutation().mutate;
 
-    useEffect(() => {
-        setTargetNote(notes.find((n) => n.id === id));
-    }, [notes, id]);
-
+    if (!id) return <></>;
     return (
         <HeaderbarButton
             onClick={() => update({ id, isFavorite: !targetNote?.isFavorite })}

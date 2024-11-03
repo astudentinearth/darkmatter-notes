@@ -1,11 +1,16 @@
-import { ScrollArea } from "@renderer/components/ui/scroll-area";
 import { useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useNoteEditor } from "@renderer/hooks/use-note-editor";
 import { EditorCover } from "./cover";
 
 export function EditorRoot() {
-    const { note, isFetching } = useNoteEditor();
+    const { note, isFetching, isError, content } = useNoteEditor();
     const update = useUpdateNoteMutation();
+    if (isError)
+        return (
+            <div className="bg-destructive text-destructive-foreground">
+                Something went wrong loading note.
+            </div>
+        );
     return (
         <div className="h-full w-full overflow-y-auto overflow-x-auto flex flex-col items-center">
             {note?.value != null && !isFetching ? (
@@ -17,6 +22,7 @@ export function EditorRoot() {
             ) : (
                 "Loading"
             )}
+            {JSON.stringify(content)}
         </div>
     );
 }

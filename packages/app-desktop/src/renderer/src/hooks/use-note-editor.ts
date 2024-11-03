@@ -1,16 +1,26 @@
 import { useNoteByIdQuery } from "./query";
+import { useNoteContentsQuery } from "./query/use-note-contents-query";
 import { useNoteFromURL } from "./use-note-from-url";
 
 export const useNoteEditor = () => {
     const id = useNoteFromURL();
-    console.log(`useNoteEditor - id: ${id}`);
-    const { data: note, isFetching, isError } = useNoteByIdQuery(id ?? "");
-    console.log(
-        `useNoteEditor - note:`,
-        note?.value,
-        `isFetching: ${isFetching}`,
-        `isError: ${isError}`,
-    );
+    const {
+        data: note,
+        isFetching: isFetchingInfo,
+        isError,
+    } = useNoteByIdQuery(id ?? "");
+    const {
+        data: contentData,
+        isFetching: isFetchingContent,
+        isError: contentError,
+    } = useNoteContentsQuery(id ?? "");
+
     //TODO: get customizations etc.
-    return { note, isFetching };
+    return {
+        note,
+        isFetching: isFetchingInfo || isFetchingContent,
+        content: contentData?.content,
+        customizations: contentData?.customizations,
+        isError: isError || contentError,
+    };
 };

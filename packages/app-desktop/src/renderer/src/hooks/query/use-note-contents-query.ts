@@ -14,12 +14,16 @@ export const useNoteContentsQuery = (id: string) => {
                     customizations: {} as NoteCustomizations,
                 };
             }
+            console.log("Read file: ", response.value);
             const json = JSON.parse(response.value);
-            const content = (json["content"] ?? {}) as JSONContent;
+            const content = (json["contents"] ?? {}) as JSONContent;
             const customizations = (json["customizations"] ??
                 {}) as NoteCustomizations;
+            console.log(content);
             return { content, customizations };
         },
         enabled: Boolean(id),
+        refetchOnWindowFocus: false,
+        staleTime: 1,
     });
 };

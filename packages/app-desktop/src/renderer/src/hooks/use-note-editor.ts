@@ -15,7 +15,6 @@ export const useNoteEditor = () => {
         isError: contentError,
     } = useNoteContentsQuery(id ?? "");
 
-    //TODO: get customizations etc.
     return {
         note,
         isFetching: isFetchingInfo || isFetchingContent,

@@ -14,6 +14,7 @@ export default function DynamicTextarea(props: {
     placeholder?: string;
     /** Whether to allow line breaks in the textarea */
     preventNewline?: boolean;
+    defaultValue?: string;
 }) {
     const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -53,6 +54,7 @@ export default function DynamicTextarea(props: {
             className={props.className}
             value={props.value}
             onChange={handleChange}
+            defaultValue={props.defaultValue}
             onKeyDown={(e) => {
                 if (props.preventNewline && e.key === "Enter") {
                     e.preventDefault();

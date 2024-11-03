@@ -1,21 +1,20 @@
 import { NotesModel } from "@renderer/lib/api/note";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteNoteMutation = () => {
     const client = useQueryClient();
-    return useMutation(
-        async (id: string) => {
+    return useMutation({
+        mutationFn: async (id: string) => {
             const result = await NotesModel.Instance.delete(id);
             if (result.error) throw result.error;
         },
-        {
-            onSuccess(_data, id) {
-                client.refetchQueries("notes");
-                client.invalidateQueries(["note", id]);
-            },
-            onError(err) {
-                console.log(err);
-            },
+
+        onSuccess(_data, id) {
+            client.refetchQueries({ queryKey: ["notes"] });
+            client.invalidateQueries({ queryKey: ["note", id] });
         },
-    );
+        onError(err) {
+            console.log(err);
+        },
+    });
 };

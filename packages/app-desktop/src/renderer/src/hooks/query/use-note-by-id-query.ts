@@ -1,19 +1,14 @@
 import { NotesModel } from "@renderer/lib/api/note";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const useNoteByIdQuery = (id: string) => {
-    return useQuery(
-        ["note", id],
-        () => {
-            return NotesModel.Instance.getNote(id);
+    return useQuery({
+        queryKey: ["note", id],
+        queryFn: async () => {
+            return await NotesModel.Instance.getNote(id);
         },
-        {
-            enabled: Boolean(id),
-            staleTime: 1000 * 60 * 5, // 5 minutes,
-            refetchOnWindowFocus: false,
-            onError(err) {
-                console.error(err);
-            },
-        },
-    );
+        enabled: Boolean(id),
+        staleTime: 1000 * 60 * 5, // 5 minutes,
+        refetchOnWindowFocus: false,
+    });
 };

@@ -5,7 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HomePage } from "./features/home";
 import { EditorRoot } from "./features/editor";
 import { SettingsPage } from "./features/settings";
-import { QueryClientProvider, QueryClient } from "react-query";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function App() {
     const store = useSettingsStore();
@@ -32,6 +33,7 @@ function App() {
                         </Route>
                     </Routes>
                 </BrowserRouter>
+                <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </div>
     );

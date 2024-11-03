@@ -1,16 +1,15 @@
 import { NotesModel } from "@renderer/lib/api/note";
-import { useMutation, useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDuplicateNoteMutation = () => {
     const client = useQueryClient();
-    return useMutation(
-        async (id: string) => {
+    return useMutation({
+        mutationFn: async (id: string) => {
             return await NotesModel.Instance.duplicate(id);
         },
-        {
-            onSuccess: () => {
-                client.refetchQueries("notes");
-            },
+
+        onSuccess: () => {
+            client.refetchQueries({ queryKey: ["notes"] });
         },
-    );
+    });
 };

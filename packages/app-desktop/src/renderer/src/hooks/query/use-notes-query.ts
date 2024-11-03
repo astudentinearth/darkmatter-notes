@@ -1,10 +1,10 @@
 import { NotesModel } from "@renderer/lib/api/note";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const useNotesQuery = () => {
-    return useQuery(
-        "notes",
-        async () => {
+    return useQuery({
+        queryKey: ["notes"],
+        queryFn: async () => {
             console.log("Fetching notes");
             const data = await NotesModel.Instance.getNotes();
             if (data.error) {
@@ -12,13 +12,8 @@ export const useNotesQuery = () => {
             }
             return data;
         },
-        {
-            staleTime: 1000 * 60 * 5, // 5 minutes,
-            refetchOnWindowFocus: false,
-            refetchOnMount: "always",
-            onError(err) {
-                console.error(err);
-            },
-        },
-    );
+        staleTime: 1000 * 60 * 5, // 5 minutes,
+        refetchOnWindowFocus: false,
+        refetchOnMount: "always",
+    });
 };

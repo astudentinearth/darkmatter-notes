@@ -7,7 +7,7 @@ export function EditorRoot() {
     const { note, isFetching } = useNoteEditor();
     const update = useUpdateNoteMutation();
     return (
-        <ScrollArea className="h-full w-full overflow-y-auto overflow-x-auto">
+        <div className="h-full w-full overflow-y-auto overflow-x-auto flex flex-col items-center">
             {note?.value != null && !isFetching ? (
                 <EditorCover
                     key={note.value.id}
@@ -17,6 +17,6 @@ export function EditorRoot() {
             ) : (
                 "Loading"
             )}
-        </ScrollArea>
+        </div>
     );
 }

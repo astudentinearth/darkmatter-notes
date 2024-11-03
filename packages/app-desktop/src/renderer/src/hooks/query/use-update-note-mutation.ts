@@ -8,9 +8,16 @@ export const useUpdateNoteMutation = () => {
         mutationFn: (updatedNote: NotePartial) =>
             NotesModel.Instance.update(updatedNote),
 
-        onSuccess: (_, variables) => {
-            queryClient.refetchQueries({ queryKey: ["notes"] });
-            queryClient.setQueryData(["note", variables.id], variables);
+        onSuccess: (_data, variables) => {
+            queryClient.setQueryData(
+                ["note", variables.id],
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (oldData: any) => ({
+                    ...oldData,
+                    value: { ...oldData.value, ...variables },
+                }),
+            );
+            queryClient.invalidateQueries({ queryKey: ["notes"] });
         },
         onError(err) {
             console.error(err);
@@ -25,7 +32,7 @@ export const useUpdateMultipleNotesMutation = () => {
             NotesModel.Instance.saveAll(updatedNotes),
 
         onSuccess: async () => {
-            await queryClient.refetchQueries({ queryKey: ["notes"] });
+            await queryClient.invalidateQueries({ queryKey: ["notes"] });
         },
         onError(err) {
             console.error(err);

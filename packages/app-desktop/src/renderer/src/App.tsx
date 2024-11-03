@@ -25,7 +25,14 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Layout />}>
                             <Route index element={<HomePage />}></Route>
-                            <Route path="page" element={<EditorRoot />}></Route>
+                            <Route
+                                path="/page/:pageId"
+                                loader={({ params }) => {
+                                    console.log(params.pageId); // "hotspur"
+                                    return null; // Return a value of type DataFunctionReturnValue
+                                }}
+                                element={<EditorRoot />}
+                            ></Route>
                             <Route
                                 path="settings"
                                 element={<SettingsPage />}

@@ -13,7 +13,6 @@ import {
     ContextMenuSeparator,
     ContextMenuTrigger,
 } from "@renderer/components/ui/context-menu";
-import { useEditorState } from "@renderer/context/editor-state";
 import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mutation";
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
@@ -34,7 +33,6 @@ import {
     Trash,
 } from "lucide-react";
 import { DragEvent, useCallback, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { NoteDropZone } from "./note-drop-zone";
 
 export function NoteItem({
@@ -51,7 +49,6 @@ export function NoteItem({
     const activeNoteId = useNoteFromURL();
 
     // global actions
-    const forceSave = useEditorState((state) => state.forceSave);
     const createNote = useCreateNoteMutation().mutateAsync;
     const update = useUpdateNoteMutation().mutate;
     const trash = (id: string) => {
@@ -59,7 +56,6 @@ export function NoteItem({
     };
     const duplicate = useDuplicateNoteMutation().mutate;
     const move = useMoveNoteMutation().mutate;
-    const navigate = useNavigate();
     const navToNote = useNavigateToNote();
 
     // local state
@@ -174,11 +170,7 @@ export function NoteItem({
                         onDragLeave={noDrag ? () => {} : handleDragLeave}
                         onDragOver={noDrag ? () => {} : handleDragOver}
                         onClick={() => {
-                            forceSave();
-                            navigate({
-                                pathname: "/page",
-                                search: `?id=${note.id}`,
-                            });
+                            navToNote(note.id);
                         }}
                         className={cn(
                             "rounded-[8px] note-item hover:bg-secondary/50 hover:text-foreground font-medium active:bg-secondary/25 transition-colors grid grid-cols-[20px_24px_1fr] hover:grid-cols-[20px_24px_1fr_24px] select-none p-1 h-8 overflow-hidden",

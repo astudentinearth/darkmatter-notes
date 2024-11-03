@@ -1,12 +1,13 @@
-import { useLocation, useSearchParams } from "react-router-dom";
-import { useNotesQuery } from "./query";
 import { Note, resolveParents } from "@darkwrite/common";
-import { useState, ReactNode, useEffect } from "react";
 import { fromUnicode } from "@renderer/lib/utils";
-import { Home, Settings, ChevronDown } from "lucide-react";
+import { ChevronDown, Home, Settings } from "lucide-react";
+import { ReactNode, useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+import { useNotesQuery } from "./query";
+import { useNoteFromURL } from "./use-note-from-url";
 
 export const useTitleDropdown = () => {
-    const [search] = useSearchParams();
+    const id = useNoteFromURL();
     const location = useLocation();
     const { data: notesQuery, isLoading } = useNotesQuery();
     const notes = notesQuery?.value;
@@ -19,14 +20,13 @@ export const useTitleDropdown = () => {
             setTitle("Loading...");
             return;
         }
-        const id = search.get("id");
         const path = location.pathname;
         const resolveUpperTree = (note: Note) => {
             if (note.parentID == null) setParentNodes([]);
             const nodes: Note[] = resolveParents(note.id, notes);
             setParentNodes(nodes);
         };
-        if (id == null && path !== "/page") {
+        if (id == null && !path.startsWith("/page")) {
             switch (path) {
                 case "/": {
                     setTitle(
@@ -64,6 +64,6 @@ export const useTitleDropdown = () => {
                 );
             }
         }
-    }, [search, location, notes, isLoading]);
+    }, [location, notes, isLoading, id]);
     return { parentNodes, title };
 };

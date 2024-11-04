@@ -9,20 +9,25 @@ import { HeaderbarButton } from "@renderer/components/ui/headerbar-button";
 import { Switch } from "@renderer/components/ui/switch";
 import { useEditorState } from "@renderer/context/editor-state";
 import { useLocalStore } from "@renderer/context/local-state";
+import { useNoteByIdQuery } from "@renderer/hooks/query";
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
-import { exportHTML, importHTML } from "@renderer/lib/api/note";
+import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
+import { importHTML, NotesModel } from "@renderer/lib/api/note";
 import { Brush, Copy, Download, Menu, Upload } from "lucide-react";
 import { useState } from "react";
 import { CustimzationSheet } from "./customizations/customization-sheet";
-import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
+import { generateHTML } from "@tiptap/html";
+import { defaultExtensions } from "./extensions/extensions";
 
 export function EditorMenu() {
     const [customizationsOpen, setCustomizationsOpen] = useState(false);
     const editor = useEditorState((state) => state.editorInstance);
     const activeNoteId = useNoteFromURL();
+    const activeNote = useNoteByIdQuery(activeNoteId ?? "");
     const checker = useLocalStore((s) => s.useSpellcheck);
     const setCheck = useLocalStore((s) => s.setSpellcheck);
     const duplicate = useDuplicateNoteMutation().mutate;
+    const getSerializable = useEditorState((s) => s.getSerializableObject);
     if (!activeNoteId) return <></>;
     return (
         <DropdownMenu modal={false}>
@@ -63,7 +68,15 @@ export function EditorMenu() {
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onSelect={() => {
-                        exportHTML(activeNoteId);
+                        if (!activeNote.data?.value) return;
+                        const content = getSerializable().content;
+                        const html = generateHTML(content, [
+                            ...defaultExtensions,
+                        ]);
+                        NotesModel.Instance.exportHTML(
+                            activeNote.data?.value,
+                            html,
+                        );
                     }}
                     className="gap-2 rounded-lg"
                 >

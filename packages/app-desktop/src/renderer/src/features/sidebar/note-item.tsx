@@ -17,9 +17,9 @@ import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mutation";
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
 import { useMoveNoteMutation } from "@renderer/hooks/query/use-move-note";
+import { useExport } from "@renderer/hooks/use-export";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
-import { exportHTML } from "@renderer/lib/api/note";
 import { cn, fromUnicode } from "@renderer/lib/utils";
 import {
     ArrowRightFromLine,
@@ -57,6 +57,7 @@ export function NoteItem({
     const duplicate = useDuplicateNoteMutation().mutate;
     const move = useMoveNoteMutation().mutate;
     const navToNote = useNavigateToNote();
+    const _export = useExport();
 
     // local state
     const [subnotes, setSubnotes] = useState([] as Note[]);
@@ -258,7 +259,7 @@ export function NoteItem({
                 </ContextMenuItem>
                 <ContextMenuItem
                     onClick={() => {
-                        exportHTML(note.id);
+                        _export(note);
                     }}
                 >
                     <ArrowRightFromLine

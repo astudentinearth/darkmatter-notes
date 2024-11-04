@@ -162,3 +162,20 @@ body,
 .resize-handle:active {
   filter: brightness(200%);
 }
+
+.main-view::-webkit-scrollbar{
+  width: 6px;
+}
+
+.main-view::-webkit-scrollbar-track{
+  overflow: hidden;
+}
+
+.main-view::-webkit-scrollbar-thumb{
+  background-color: hsl(var(--secondary) / 0.75);
+  border-radius: 0.3em;
+}
+
+.main-wiew::-webkit-scrollbar-thumb:hover{
+  background-color: hsl(var(--secondary) / 1);
+}

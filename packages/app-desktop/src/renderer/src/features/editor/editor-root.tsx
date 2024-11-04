@@ -28,9 +28,14 @@ export function EditorRoot() {
     useEffect(() => {
         const handleResize = () => {
             if (!rootContainerRef.current) return;
-            // if sidebar is collapsed, we subtract its width + 1px for resize handle, which gives remaining width for editor area
+            // if sidebar is collapsed, we subtract its width
+            // + 1px  for resize handle,
+            // + 8px to prevent the scrollbar going off-screen
+            // which gives remaining width for editor area
             const availableWidth =
-                window.innerWidth - (isSidebarCollapsed ? 0 : sidebarWidth + 1);
+                window.innerWidth -
+                (isSidebarCollapsed ? 0 : sidebarWidth + 1) -
+                8;
             // if less than 960px is available, we give it all. if we have more than 960, we give 960
             setEditorWidth(availableWidth <= 960 ? availableWidth : 960);
             console.log(availableWidth);
@@ -74,7 +79,7 @@ export function EditorRoot() {
     return (
         <div
             ref={rootContainerRef}
-            className="h-full w-full overflow-y-auto overflow-x-hidden flex flex-col items-center"
+            className="h-full w-full overflow-y-auto overflow-x-auto main-view flex flex-col items-center"
             style={
                 {
                     "--editor-max-width": `${editorWidth}px`,
@@ -96,7 +101,6 @@ export function EditorRoot() {
                     customizations={_customizations ?? {}}
                     initialValue={content}
                     onChange={handleContentChange}
-                    maxWidth={editorWidth}
                 />
             )}
         </div>

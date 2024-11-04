@@ -10,7 +10,9 @@
     "build:mac": "pnpm --filter common build && pnpm --filter app-desktop build:mac"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "vite-tsconfig-paths": "^5.1.0",
+    "vitest": "^2.1.4"
   },
   "pnpm": {
     "overrides": {

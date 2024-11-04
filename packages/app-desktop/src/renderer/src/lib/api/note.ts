@@ -1,11 +1,4 @@
 import { Note, NotePartial } from "@darkwrite/common";
-import { useNotesStore } from "@renderer/context/notes-context";
-import { defaultExtensions } from "@renderer/features/editor/extensions/extensions";
-import { generateHTML } from "@tiptap/html";
-import { attempt } from "lodash";
-
-const DW_API: DarkwriteElectronAPI = window.api;
-const API = DW_API.note; // electron API
 
 export interface INotesModel {
     create: (title: string, parent?: string) => Promise<Result<Note, Error>>;
@@ -163,68 +156,4 @@ export class NotesModel implements INotesModel {
         await this.updateContents(duplicate.value.id, contents.value);
         return { value: duplicate.value };
     }
-}
-/** @deprecated */
-export async function createNote(title: string, parent?: string) {
-    return await API.create(title, parent);
-}
-/** @deprecated */
-export async function updateContents(id: string, content: string) {
-    API.setContents(id, content);
-}
-/** @deprecated */
-export async function getContents(id: string) {
-    return await API.getContents(id);
-}
-/** @deprecated */
-export async function deleteNote(id: string) {
-    await API.delete(id);
-}
-/** @deprecated */
-export async function moveNote(sourceID: string, destinationID: string) {
-    await API.move(sourceID, destinationID);
-}
-/** @deprecated */
-export async function updateNote(data: Partial<Note>) {
-    if (!data.id) return;
-    await API.update(data);
-}
-/** @deprecated */
-export async function getNotes() {
-    return await API.getAll();
-}
-
-/** @deprecated */
-export async function moveToTrash(id: string) {
-    await API.setTrashStatus(id, true);
-}
-/** @deprecated */
-export async function restoreFromTrash(id: string) {
-    await API.setTrashStatus(id, false);
-}
-/** @deprecated */
-export async function getNote(id: string) {
-    return await API.getNote(id);
-}
-/** @deprecated */
-export async function saveAll(notes: Note[]) {
-    await API.saveAll(notes);
-}
-/** @deprecated */
-export async function exportHTML(id: string) {
-    const contentStr = await getContents(id);
-    const parsed = attempt(() => JSON.parse(contentStr));
-    if (parsed instanceof Error) return;
-    if ("content" in parsed) {
-        const output = generateHTML(parsed.content, [...defaultExtensions]);
-        const note = useNotesStore.getState().getOne(id);
-        if (!note) return;
-        await API.export(note.title, output, "html");
-    }
-}
-/** @deprecated */
-export async function importHTML() {
-    const html = await API.importHTML();
-    if (html === "") return "";
-    else return html;
 }

@@ -55,6 +55,7 @@ export function HomePage() {
                     ) : (
                         recents.map((note) => (
                             <Button
+                                key={note.id}
                                 onClick={() => {
                                     nav(note.id);
                                 }}

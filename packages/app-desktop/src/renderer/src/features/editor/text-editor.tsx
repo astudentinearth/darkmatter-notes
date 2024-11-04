@@ -26,7 +26,7 @@ export const TextEditor = ({
         <EditorRoot>
             <EditorContent
                 className={cn(
-                    "p-0 rounded-xl w-full max-w-[960px] flex-grow dark break-words transition-transform",
+                    "p-0 px-16 rounded-xl w-full max-w-[--editor-max-width] flex-grow dark break-words transition-transform",
                     (fontStyle == "sans" || fontStyle == null) &&
                         "darkwrite-sans",
                     fontStyle == "serif" && "darkwrite-serif",

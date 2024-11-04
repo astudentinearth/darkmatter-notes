@@ -33,7 +33,7 @@ function createWindow() {
         titleBarOverlay:
             process.platform === "win32" || process.platform === "linux"
                 ? {
-                      color: "#131313",
+                      color: "#13131300",
                       symbolColor: "#ffffff",
                       height: 48,
                   }

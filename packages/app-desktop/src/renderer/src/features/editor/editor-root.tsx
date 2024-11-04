@@ -10,7 +10,7 @@ import { useEditorState } from "@renderer/context/editor-state";
 import { useLocalStore } from "@renderer/context/local-state";
 
 export function EditorRoot() {
-    const { note, isFetching, isError, content, customizations } =
+    const { note, isFetching, isError, content, customizations, spellcheck } =
         useNoteEditor();
     const update = useUpdateNoteMutation();
     const updateContent = useNoteContentsMutation(note?.value?.id ?? "").mutate;
@@ -78,6 +78,7 @@ export function EditorRoot() {
 
     return (
         <div
+            spellCheck={spellcheck}
             ref={rootContainerRef}
             className="h-full w-full overflow-y-auto overflow-x-auto main-view flex flex-col items-center"
             style={

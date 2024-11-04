@@ -1,9 +1,11 @@
+import { useLocalStore } from "@renderer/context/local-state";
 import { useNoteByIdQuery } from "./query";
 import { useNoteContentsQuery } from "./query/use-note-contents-query";
 import { useNoteFromURL } from "./use-note-from-url";
 
 export const useNoteEditor = () => {
     const id = useNoteFromURL();
+    const spellcheck = useLocalStore((s) => s.useSpellcheck);
     const {
         data: note,
         isFetching: isFetchingInfo,
@@ -21,5 +23,6 @@ export const useNoteEditor = () => {
         content: contentData?.content,
         customizations: contentData?.customizations,
         isError: isError || contentError,
+        spellcheck,
     };
 };

@@ -8,6 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 import { useEditorState } from "@renderer/context/editor-state";
 import { useLocalStore } from "@renderer/context/local-state";
+import { cn } from "@renderer/lib/utils";
 
 export function EditorRoot() {
     const { note, isFetching, isError, content, customizations, spellcheck } =
@@ -63,6 +64,14 @@ export function EditorRoot() {
         }
     }, [debouncedValue, value, updateContent, _customizations, isFetching]);
 
+    useEffect(() => {
+        if (!rootContainerRef.current) return;
+        rootContainerRef.current.style.setProperty(
+            "--dw-custom-font-name",
+            _customizations.customFont ?? "",
+        );
+    }, [_customizations]);
+
     // Something must have failed if we are not fetching and there is no note to be seen
     if (isError || note?.error || (!note && !isFetching))
         return (
@@ -80,7 +89,15 @@ export function EditorRoot() {
         <div
             spellCheck={spellcheck}
             ref={rootContainerRef}
-            className="h-full w-full overflow-y-auto overflow-x-auto main-view flex flex-col items-center"
+            className={cn(
+                "h-full w-full overflow-y-auto overflow-x-auto main-view flex flex-col items-center",
+                (_customizations.font == "sans" ||
+                    _customizations.font == null) &&
+                    "darkwrite-sans",
+                _customizations.font == "serif" && "darkwrite-serif",
+                _customizations.font == "mono" && "darkwrite-mono",
+                _customizations.font == "custom" && "darkwrite-custom-font",
+            )}
             style={
                 {
                     "--editor-max-width": `${editorWidth}px`,

@@ -12,11 +12,11 @@ import { useLocalStore } from "@renderer/context/local-state";
 import { useNoteByIdQuery } from "@renderer/hooks/query";
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
-import { importHTML, NotesModel } from "@renderer/lib/api/note";
+import { NotesModel } from "@renderer/lib/api/note";
+import { generateHTML } from "@tiptap/html";
 import { Brush, Copy, Download, Menu, Upload } from "lucide-react";
 import { useState } from "react";
 import { CustimzationSheet } from "./customizations/customization-sheet";
-import { generateHTML } from "@tiptap/html";
 import { defaultExtensions } from "./extensions/extensions";
 
 export function EditorMenu() {

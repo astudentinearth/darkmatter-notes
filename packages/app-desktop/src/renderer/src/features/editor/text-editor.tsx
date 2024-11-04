@@ -16,22 +16,12 @@ interface TextEditorProps {
 
 const extensions = [...defaultExtensions, slashCommand];
 
-export const TextEditor = ({
-    initialValue,
-    onChange,
-    customizations,
-}: TextEditorProps) => {
-    const fontStyle = customizations.font;
+export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
     return (
         <EditorRoot>
             <EditorContent
                 className={cn(
                     "p-0 px-16 rounded-xl w-full max-w-[--editor-max-width] flex-grow dark break-words transition-transform",
-                    (fontStyle == "sans" || fontStyle == null) &&
-                        "darkwrite-sans",
-                    fontStyle == "serif" && "darkwrite-serif",
-                    fontStyle == "mono" && "darkwrite-mono",
-                    fontStyle == "custom" && "darkwrite-custom-font",
                 )}
                 {...(initialValue && { initialContent: initialValue })}
                 extensions={extensions}

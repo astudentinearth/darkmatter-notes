@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test:all": "pnpm -r test",
+    "coverage:all": "pnpm -r test:coverage",
     "dev": "concurrently \" pnpm --filter common run watch \"  \" pnpm --filter app-desktop dev  \"",
     "build:win": "pnpm --filter common build && pnpm --filter app-desktop build:win",
     "build:linux": "pnpm --filter common build && pnpm --filter app-desktop build:linux",

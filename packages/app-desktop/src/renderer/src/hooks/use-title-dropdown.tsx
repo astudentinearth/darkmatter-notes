@@ -6,15 +6,12 @@ import { useLocation } from "react-router-dom";
 import { useNotesQuery } from "./query";
 import { useNoteFromURL } from "./use-note-from-url";
 
-function getTitle(
+export function getTitle(
     notes: Note[] | undefined,
     isLoading: boolean,
     path: string,
     pageId: string | undefined,
 ) {
-    if (notes == null || isLoading) {
-        return "Loading";
-    }
     if (pageId == null && !path.startsWith("/page")) {
         switch (path) {
             case "/": {
@@ -37,6 +34,9 @@ function getTitle(
                 return "";
         }
     } else {
+        if (notes == null || isLoading) {
+            return "Loading";
+        }
         const note = notes.find((n) => n.id === pageId);
         if (note) {
             return (
@@ -52,7 +52,7 @@ function getTitle(
     }
 }
 
-function resolveUpperTree(notes: Note[], id: string): Note[] {
+export function resolveUpperTree(notes: Note[], id: string): Note[] {
     const note = notes.find((n) => n.id === id);
     if (!note || !note.parentID) return [];
     const nodes: Note[] = resolveParents(id, notes);

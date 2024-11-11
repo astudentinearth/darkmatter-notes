@@ -12,10 +12,13 @@ export const useUpdateNoteMutation = () => {
             queryClient.setQueryData(
                 ["note", variables.id],
                 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                (oldData: any) => ({
-                    ...oldData,
-                    value: { ...oldData.value, ...variables },
-                }),
+                (oldData: any) => {
+                    if (!oldData || !oldData.value) return;
+                    return {
+                        ...oldData,
+                        value: { ...oldData.value, ...variables },
+                    };
+                },
             );
             queryClient.invalidateQueries({ queryKey: ["notes"] });
         },

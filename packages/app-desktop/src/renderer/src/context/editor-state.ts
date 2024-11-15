@@ -49,3 +49,8 @@ export const useEditorState = create<editorState & editorStateAction>()(
         },
     }),
 );
+
+export const setEditorContent = (content: JSONContent) =>
+    useEditorState.setState({ content });
+export const setEditorCustomizations = (customizations: NoteCustomizations) =>
+    useEditorState.setState({ customizations });

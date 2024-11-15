@@ -8,6 +8,7 @@ import {
     ContextMenuTrigger,
 } from "@renderer/components/ui/context-menu";
 import { useUpdateNoteMutation } from "@renderer/hooks/query";
+import { useExport } from "@renderer/hooks/use-export";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { cn, fromUnicode } from "@renderer/lib/utils";
@@ -20,6 +21,7 @@ export function FavoriteItem({ note, index }: { note: Note; index: number }) {
     const update = useUpdateNoteMutation().mutate;
     const trash = (id: string) => update({ id, isTrashed: true });
     const activeNoteId = useNoteFromURL();
+    const _export = useExport();
     useEffect(() => {
         if (!activeNoteId || activeNoteId !== note.id) setActive(false);
         else setActive(true);
@@ -82,7 +84,11 @@ export function FavoriteItem({ note, index }: { note: Note; index: number }) {
                         ? "Remove from favorites"
                         : "Add to favorites"}
                 </ContextMenuItem>
-                <ContextMenuItem disabled>
+                <ContextMenuItem
+                    onClick={() => {
+                        _export(note);
+                    }}
+                >
                     <ArrowRightFromLine
                         className="opacity-75"
                         size={20}

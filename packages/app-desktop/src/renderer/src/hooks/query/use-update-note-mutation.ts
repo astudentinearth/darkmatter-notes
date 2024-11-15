@@ -5,8 +5,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 export const useUpdateNoteMutation = () => {
     const queryClient = useQueryClient();
     return useMutation({
-        mutationFn: (updatedNote: NotePartial) =>
-            NotesModel.Instance.update(updatedNote),
+        mutationFn: async (updatedNote: NotePartial) => {
+            const updated = {
+                ...updatedNote,
+                modified: updatedNote.modified ?? new Date(),
+            };
+            NotesModel.Instance.update({ ...updated });
+            return updated;
+        },
 
         onSuccess: (_data, variables) => {
             queryClient.setQueryData(
@@ -16,7 +22,7 @@ export const useUpdateNoteMutation = () => {
                     if (!oldData || !oldData.value) return;
                     return {
                         ...oldData,
-                        value: { ...oldData.value, ...variables },
+                        value: { ...oldData.value, ..._data },
                     };
                 },
             );

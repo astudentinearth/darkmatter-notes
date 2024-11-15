@@ -1,24 +1,27 @@
+import {
+    setEditorContent,
+    setEditorCustomizations,
+    useEditorState,
+} from "@renderer/context/editor-state";
+import { useLocalStore } from "@renderer/context/local-state";
 import { useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useNoteContentsMutation } from "@renderer/hooks/query/use-note-contents-mutation";
 import { useNoteEditor } from "@renderer/hooks/use-note-editor";
+import { cn } from "@renderer/lib/utils";
 import { JSONContent } from "novel";
-import { EditorCover } from "./cover";
-import { TextEditor } from "./text-editor";
 import React, { useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
-import { useEditorState } from "@renderer/context/editor-state";
-import { useLocalStore } from "@renderer/context/local-state";
-import { cn } from "@renderer/lib/utils";
+import { EditorCover } from "./cover";
+import { TextEditor } from "./text-editor";
 
 export function EditorRoot() {
     const { note, isFetching, isError, content, customizations, spellcheck } =
         useNoteEditor();
-    const update = useUpdateNoteMutation();
+    const update = useUpdateNoteMutation().mutate;
     const updateContent = useNoteContentsMutation(note?.value?.id ?? "").mutate;
     const value = useEditorState((s) => s.content);
     const setValue = useEditorState((s) => s.setContent);
     const _customizations = useEditorState((s) => s.customizations);
-    const setCustomizations = useEditorState((s) => s.setCustomzations);
     const [debouncedValue] = useDebounce(value, 200);
     const rootContainerRef = useRef<HTMLDivElement>(null);
     const [editorWidth, setEditorWidth] = useState(960);
@@ -47,8 +50,8 @@ export function EditorRoot() {
 
     useEffect(() => {
         if (content && customizations) {
-            setValue(content);
-            setCustomizations(customizations);
+            setEditorContent(content);
+            setEditorCustomizations(customizations);
         }
     }, [content, customizations]);
 
@@ -60,8 +63,12 @@ export function EditorRoot() {
                 contents: value,
                 customizations: _customizations ?? {},
             });
+            if (note?.value?.id)
+                update({ id: note?.value?.id, modified: new Date() });
         }
-    }, [debouncedValue, value, updateContent, _customizations, isFetching]);
+        // Adding mutations will create a black hole
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [_customizations, debouncedValue, isFetching, note?.value?.id, value]);
 
     useEffect(() => {
         if (!rootContainerRef.current) return;
@@ -107,7 +114,7 @@ export function EditorRoot() {
                 <EditorCover
                     key={`cover-${note.value.id}`}
                     note={note.value}
-                    update={update.mutate}
+                    update={update}
                 />
             ) : (
                 "Loading"

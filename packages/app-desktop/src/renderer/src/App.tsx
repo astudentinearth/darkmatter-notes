@@ -7,6 +7,13 @@ import { EditorRoot } from "./features/editor";
 import { SettingsPage } from "./features/settings";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useNoteFromURL } from "./hooks/use-note-from-url";
+
+const EditorRootWrapper = () => {
+    const note = useNoteFromURL();
+    if (!note) return "Not found";
+    return <EditorRoot key={`editor-root-${note}`} />;
+};
 
 function App() {
     const store = useSettingsStore();
@@ -28,10 +35,10 @@ function App() {
                             <Route
                                 path="/page/:pageId"
                                 loader={({ params }) => {
-                                    console.log(params.pageId); // "hotspur"
+                                    console.log(params.pageId);
                                     return null; // Return a value of type DataFunctionReturnValue
                                 }}
-                                element={<EditorRoot />}
+                                element={<EditorRootWrapper />}
                             ></Route>
                             <Route
                                 path="settings"

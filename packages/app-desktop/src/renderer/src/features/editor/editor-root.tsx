@@ -39,7 +39,6 @@ export function EditorRoot() {
                 8;
             // if less than 960px is available, we give it all. if we have more than 960, we give 960
             setEditorWidth(availableWidth <= 960 ? availableWidth : 960);
-            console.log(availableWidth);
         };
         handleResize();
         window.addEventListener("resize", handleResize);

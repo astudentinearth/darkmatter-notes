@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef } from "react";
+import { ChangeEvent, ClipboardEvent, useEffect, useRef } from "react";
 
 /**
  * A textarea component which automatically resizes vertically to fit its content.
@@ -15,6 +15,7 @@ export default function DynamicTextarea(props: {
     /** Whether to allow line breaks in the textarea */
     preventNewline?: boolean;
     defaultValue?: string;
+    newLineCallback?: () => void;
 }) {
     const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -46,6 +47,22 @@ export default function DynamicTextarea(props: {
         adjustHeight();
     };
 
+    const handlePaste = (event: ClipboardEvent<HTMLTextAreaElement>) => {
+        if (!props.preventNewline || !ref.current) return;
+        event.preventDefault();
+        const paste = event.clipboardData.getData("text");
+        const sanitized = paste.replace(/(\r\n|\n|\r)/gm, " ");
+        const start = ref.current.selectionStart;
+        const end = ref.current.selectionEnd;
+        ref.current.value =
+            ref.current.value.slice(0, start) +
+            sanitized +
+            ref.current.value.slice(end);
+        ref.current.selectionStart = ref.current.selectionEnd =
+            start + sanitized.length;
+        handleChange();
+    };
+
     return (
         <textarea
             ref={ref}
@@ -55,9 +72,11 @@ export default function DynamicTextarea(props: {
             value={props.value}
             onChange={handleChange}
             defaultValue={props.defaultValue}
+            onPaste={handlePaste}
             onKeyDown={(e) => {
                 if (props.preventNewline && e.key === "Enter") {
                     e.preventDefault();
+                    props.newLineCallback?.call(null);
                 }
             }}
         ></textarea>

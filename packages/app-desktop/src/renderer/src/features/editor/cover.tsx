@@ -1,6 +1,7 @@
 import { Note, NotePartial } from "@darkwrite/common";
 import DynamicTextarea from "@renderer/components/dynamic-textarea";
 import { EmojiPicker } from "@renderer/components/emoji-picker";
+import { useEditorState } from "@renderer/context/editor-state";
 import { fromUnicode } from "@renderer/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
@@ -17,9 +18,10 @@ export function EditorCover(props: {
     const queryClient = useQueryClient();
     const lastMutationRef = useRef<string>("");
     const lastInputRef = useRef<string>("");
+    const editor = useEditorState((s) => s.editorInstance);
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        lastInputRef.current = e.target.value;
+        lastInputRef.current = e.target.value.replace(/\r?\n|\r/g, " ");
         setInputValue(e.target.value);
     };
 
@@ -41,6 +43,11 @@ export function EditorCover(props: {
         update({ id, icon: unified });
     };
 
+    const handleNewLine = () => {
+        editor?.commands.insertContentAt(0, "<p></p>");
+        editor?.commands.focus("start");
+    };
+
     return (
         <div className="flex-shrink-0 flex flex-col max-w-[960px] w-full p-4 px-16 gap-2 pt-24">
             <EmojiPicker
@@ -53,6 +60,7 @@ export function EditorCover(props: {
                 value={inputValue}
                 onChange={handleChange}
                 preventNewline
+                newLineCallback={handleNewLine}
             />
         </div>
     );

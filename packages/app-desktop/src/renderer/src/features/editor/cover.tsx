@@ -1,9 +1,12 @@
 import { Note, NotePartial } from "@darkwrite/common";
 import DynamicTextarea from "@renderer/components/dynamic-textarea";
 import { EmojiPicker } from "@renderer/components/emoji-picker";
+import { FlexibleSpacer } from "@renderer/components/spacer";
+import { Button } from "@renderer/components/ui/button";
 import { useEditorState } from "@renderer/context/editor-state";
 import { fromUnicode } from "@renderer/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
+import { TriangleAlert } from "lucide-react";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
@@ -50,6 +53,29 @@ export function EditorCover(props: {
 
     return (
         <div className="flex-shrink-0 flex flex-col max-w-[960px] w-full p-4 px-16 gap-2 pt-24">
+            {note.isTrashed && (
+                <>
+                    <div className="bg-destructive/20 text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
+                        <TriangleAlert />
+                        <div className="flex items-center">
+                            <span className="justify-self-start">
+                                This note is in the trash.
+                            </span>
+                            <FlexibleSpacer />
+                            <Button
+                                variant={"outline"}
+                                className="rounded-xl bg-view-2 w-fit justify-self-end"
+                                onClick={() => {
+                                    update({ id, isTrashed: false });
+                                }}
+                            >
+                                Restore
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="h-4"></div>
+                </>
+            )}
             <EmojiPicker
                 show={fromUnicode(note.icon ?? "")}
                 closeOnSelect

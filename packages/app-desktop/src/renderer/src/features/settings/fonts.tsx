@@ -9,8 +9,8 @@ const save = debounce((font: string) => {
 
 export default function FontSettings() {
     return (
-        <>
-            <h1 className="text-lg pt-8">Fonts</h1>
+        <div className="p-4 bg-card/80 rounded-2xl flex flex-col gap-4">
+            <h1 className="text-lg font-semibold text-foreground/75">Fonts</h1>
             <hr className="border-foreground/25" />
             <div className="flex flex-row gap-2 justify-items-center">
                 <Label
@@ -75,6 +75,6 @@ export default function FontSettings() {
                     defaultValue={"SpaceMono Nerd Font"}
                 />
             </div>
-        </>
+        </div>
     );
 }

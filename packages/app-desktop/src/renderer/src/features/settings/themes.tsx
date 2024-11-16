@@ -5,8 +5,10 @@ import { Switch } from "@renderer/components/ui/switch";
 
 export function ThemeSettings() {
     return (
-        <>
-            <h1 className="text-lg">Appearance</h1>
+        <div className="p-4 bg-card/80 rounded-2xl flex flex-col gap-4">
+            <h1 className="text-lg font-semibold text-foreground/75">
+                Appearance
+            </h1>
             <hr className="border-foreground/25" />
             <div className="flex flex-row items-center">
                 <Label htmlFor="enable-titlebar-on-macos">Accent color</Label>
@@ -21,6 +23,6 @@ export function ThemeSettings() {
                 <FlexibleSpacer />
                 <Switch disabled id="use-system-window-frame" />
             </div>
-        </>
+        </div>
     );
 }

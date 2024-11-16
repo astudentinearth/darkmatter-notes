@@ -19,7 +19,7 @@ const require = createRequire(import.meta.url);
 let win: BrowserWindow | null;
 
 function createWindow() {
-    const prefs = readUserPrefs();
+    //const prefs = readUserPrefs();
     log.debug("creating main window");
     win = new BrowserWindow({
         icon,

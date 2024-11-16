@@ -19,7 +19,7 @@ export function HomePage() {
         return <div>Error loading notes</div>;
     }
     return (
-        <div className="flex flex-col items-center p-4">
+        <div className="flex flex-col items-center p-4 pt-16">
             <div
                 className={cn(
                     "max-w-[50vw] sm:max-w-[55vw] w-full gap-2 flex-col flex",

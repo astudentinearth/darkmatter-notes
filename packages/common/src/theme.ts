@@ -1,0 +1,21 @@
+export type Theme = {
+    id: string;
+    name: string;
+    background1: string;
+    background2: string;
+    background3: string;
+    foreground: string;
+    cardBackground: string;
+    cardForeground: string;
+    popoverBackground: string;
+    popoverForeground: string;
+    secondaryBackground: string;
+    secondaryForeground: string;
+    mutedBackground: string;
+    mutedForeground: string;
+    destructiveBackground: string;
+    destructiveForeground: string;
+    disabled: string;
+    border: string;
+    focusRing: string;
+};

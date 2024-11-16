@@ -7,6 +7,7 @@ import {
     useSettingsStore,
 } from "@renderer/context/settings-store";
 import { produce } from "immer";
+import { ThemeMenu } from "./theme-menu";
 
 export function ThemeSettings() {
     const accentColor = useSettingsStore(
@@ -25,8 +26,13 @@ export function ThemeSettings() {
                 Appearance
             </h1>
             <hr className="border-foreground/25" />
+            <div className="flex items-center">
+                <Label>Color theme</Label>
+                <FlexibleSpacer />
+                <ThemeMenu />
+            </div>
             <div className="flex flex-row items-center">
-                <Label htmlFor="enable-titlebar-on-macos">Accent color</Label>
+                <Label>Accent color</Label>
                 <FlexibleSpacer />
                 <ColorPicker value={accentColor} onChange={setAccentColor} />
             </div>

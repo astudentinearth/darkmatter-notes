@@ -1,0 +1,22 @@
+import { Theme } from "@darkwrite/common";
+export const DarkwriteDefault: Theme = {
+    id: "darkwrite-default",
+    name: "Darkwrite Default",
+    foreground: "0 0% 100%",
+    background1: "0 0% 7%",
+    background2: "0 0% 10%",
+    background3: "0 0% 15%",
+    cardBackground: "0 0% 13%",
+    cardForeground: "0 0% 94%",
+    popoverBackground: "0 0% 9%",
+    popoverForeground: "0 0% 94%",
+    secondaryBackground: "0 0% 20%",
+    secondaryForeground: "0 0% 100%",
+    mutedBackground: "0 0% 17%",
+    mutedForeground: "0 0% 89%",
+    destructiveBackground: "0 51% 55%",
+    destructiveForeground: "210 40% 98%",
+    disabled: "0 0% 22%",
+    border: "0 0% 26%",
+    focusRing: "212.7 26.8% 50%",
+};

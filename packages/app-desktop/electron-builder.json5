@@ -11,7 +11,11 @@
     "out"
   ],
   "extraFiles":[
-    "THIRDPARTY.txt"
+    "THIRDPARTY.txt",
+    {
+      "from": "LICENSE",
+      "to": "LICENSE.darkwrite.txt"
+    }
   ],
   "mac": {
     "target": [

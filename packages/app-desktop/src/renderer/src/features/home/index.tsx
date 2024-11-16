@@ -32,7 +32,7 @@ export function HomePage() {
                 </h2>
                 <div
                     className={cn(
-                        "flex flex-col border-border border rounded-xl w-full overflow-hidden transition-[filter] hover:drop-shadow-xl bg-view-1",
+                        "flex flex-col rounded-xl w-full overflow-hidden bg-view-1 gap-2",
                         recents.length === 0 &&
                             "items-center justify-center p-4 gap-2",
                     )}
@@ -59,9 +59,9 @@ export function HomePage() {
                                 onClick={() => {
                                     nav(note.id);
                                 }}
-                                variant={"ghost"}
+                                variant={"secondary"}
                                 className={cn(
-                                    "rounded-none w-full grid grid-cols-[1fr_120px] overflow-hidden justify-start place-items-start min-w-0",
+                                    "rounded-xl w-full grid grid-cols-[1fr_120px] overflow-hidden justify-start place-items-start min-w-0 bg-card/80 h-12",
                                 )}
                             >
                                 <span className="whitespace-nowrap min-w-0 text-ellipsis overflow-hidden block w-full text-start pr-2">

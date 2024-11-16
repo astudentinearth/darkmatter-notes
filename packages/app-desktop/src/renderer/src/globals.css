@@ -53,16 +53,15 @@
     }
 
     .darkwrite-sans {
-        font-family: "Segoe UI", "Noto Sans", "Roboto", "Cantarell", sans-serif;
+        font-family: var(--darkwrite-sans);
     }
 
     .darkwrite-serif {
-        font-family: "Times New Roman", "Noto Serif", "Liberation Serif", serif;
+        font-family: var(--darkwrite-serif);
     }
 
     .darkwrite-mono {
-        font-family: "Cascadia Code", "Courier New", "Liberation Mono",
-            monospace;
+        font-family: var(--darkwrite-mono);
     }
 
     .darkwrite-custom-font {

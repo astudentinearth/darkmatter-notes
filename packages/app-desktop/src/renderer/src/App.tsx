@@ -1,13 +1,14 @@
 import { Layout } from "@renderer/features/layout";
-import { useSettingsStore } from "./context/settings-store";
-import { useEffect, useState } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { HomePage } from "./features/home";
-import { EditorRoot } from "./features/editor";
-import { SettingsPage } from "./features/settings";
-import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useEffect, useState } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { initializeUserSettings } from "./context/settings-store";
+import { EditorRoot } from "./features/editor";
+import { HomePage } from "./features/home";
+import { SettingsPage } from "./features/settings";
 import { useNoteFromURL } from "./hooks/use-note-from-url";
+import { ThemeHandler } from "./components/theme-handler";
 
 const EditorRootWrapper = () => {
     const note = useNoteFromURL();
@@ -16,12 +17,11 @@ const EditorRootWrapper = () => {
 };
 
 function App() {
-    const store = useSettingsStore();
     const [queryClient] = useState(() => new QueryClient());
     useEffect(() => {
         window.api.settings.load().then((prefs) => {
             if (prefs == null) throw new Error("Could not load user settings");
-            else store.overwrite(prefs);
+            else initializeUserSettings(prefs);
         });
     }, []);
 
@@ -49,6 +49,7 @@ function App() {
                 </BrowserRouter>
                 <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
+            <ThemeHandler />
         </div>
     );
 }

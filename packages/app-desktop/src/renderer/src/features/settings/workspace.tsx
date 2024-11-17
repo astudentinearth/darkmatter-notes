@@ -29,14 +29,14 @@ export function WorkspaceSettings() {
                     variant={"secondary"}
                     className="flex-shrink-0"
                 >
-                    Backup your data
+                    Backup
                 </Button>
                 <Button
                     disabled
                     variant={"secondary"}
                     className="flex-shrink-0"
                 >
-                    Restore your data
+                    Restore
                 </Button>
             </div>
         </div>

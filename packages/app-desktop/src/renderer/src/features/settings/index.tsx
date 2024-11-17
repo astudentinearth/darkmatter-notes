@@ -3,6 +3,7 @@ import ExperimentalFeatures from "./experimental";
 import FontSettings from "./fonts";
 import { ThemeSettings } from "./themes";
 import { WorkspaceSettings } from "./workspace";
+import { AboutCard } from "./about";
 
 export function SettingsPage() {
     const initialized = useSettingsStore((s) => s.initialized);
@@ -14,6 +15,7 @@ export function SettingsPage() {
                     <ThemeSettings />
                     <FontSettings />
                     <ExperimentalFeatures />
+                    <AboutCard />
                 </>
             )}
         </div>

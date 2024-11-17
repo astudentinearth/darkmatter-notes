@@ -30,12 +30,12 @@ export function ThemeMenu() {
                     {theme?.name ?? "Choose theme"}
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="rounded-md bg-view-2">
+            <DropdownMenuContent className="rounded-lg bg-view-2 p-1">
                 {DEFAULT_THEMES.map((theme) => (
                     <DropdownMenuItem
                         onSelect={() => setTheme(theme.id)}
                         key={theme.id}
-                        className="rounded-xl"
+                        className="rounded-md"
                     >
                         {theme.name}
                     </DropdownMenuItem>

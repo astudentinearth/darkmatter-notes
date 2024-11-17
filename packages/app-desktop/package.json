@@ -1,5 +1,6 @@
 {
   "name": "@darkwrite/app-desktop",
+  "productName": "Darkwrite",
   "private": true,
   "version": "0.1.0-alpha.1",
   "type": "module",

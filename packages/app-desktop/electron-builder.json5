@@ -3,7 +3,7 @@
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "io.github.astudentinearth.darkwrite",
   "asar": true,
-  "productName": "darkwrite",
+  "productName": "Darkwrite",
   "directories": {
     "output": "release/${version}"
   },
@@ -15,6 +15,12 @@
     {
       "from": "LICENSE",
       "to": "LICENSE.darkwrite.txt"
+    }
+  ],
+  "extraResources":[
+    {
+      "from": "resources/icon512.png",
+      "to": "icon.png"
     }
   ],
   "mac": {

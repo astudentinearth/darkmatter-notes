@@ -2,7 +2,7 @@
 {
   "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
   "appId": "io.github.astudentinearth.darkwrite",
-  "asar": true,
+  "asar": false,
   "productName": "Darkwrite",
   "directories": {
     "output": "release/${version}"

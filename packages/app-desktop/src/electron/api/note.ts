@@ -1,8 +1,8 @@
 import { Note } from "@darkwrite/common";
 import { AppDataSource } from "../db";
 import { NoteEntity } from "../db/entity/note";
-import { randomUUID } from "crypto";
-import { join } from "path";
+import { randomUUID } from "node:crypto";
+import { join } from "node:path";
 import { app } from "electron";
 import fse from "fs-extra";
 import { isNodeError } from "../util";
@@ -16,24 +16,24 @@ const notesDir = join(app.getPath("userData"), "notes/");
  * @param parent Parent of the note
  */
 export async function createNote(title: string, parent?: string) {
-  try {
-    const note = new NoteEntity();
-    note.title = title;
-    note.created = new Date();
-    note.modified = new Date();
-    note.parentID = parent;
-    note.isFavorite = false;
-    note.isTrashed = false;
-    note.icon = "1f4c4";
-    note.id = randomUUID();
-    const filename = join(notesDir, `${note.id}.json`);
-    await fse.ensureFile(filename);
-    await AppDataSource.manager.save(note);
-    return note;
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-    return null;
-  }
+    try {
+        const note = new NoteEntity();
+        note.title = title;
+        note.created = new Date();
+        note.modified = new Date();
+        note.parentID = parent;
+        note.isFavorite = false;
+        note.isTrashed = false;
+        note.icon = "1f4c4";
+        note.id = randomUUID();
+        const filename = join(notesDir, `${note.id}.json`);
+        await fse.ensureFile(filename);
+        await AppDataSource.manager.save(note);
+        return note;
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
+        return null;
+    }
 }
 
 /**
@@ -42,13 +42,13 @@ export async function createNote(title: string, parent?: string) {
  * @param content New contents to **overwrite** with
  */
 export async function setNoteContents(id: string, content: string) {
-  try {
-    const filename = join(notesDir, `${id}.json`);
-    await fse.ensureFile(filename);
-    await fse.writeFile(filename, content);
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-  }
+    try {
+        const filename = join(notesDir, `${id}.json`);
+        await fse.ensureFile(filename);
+        await fse.writeFile(filename, content);
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
+    }
 }
 
 /**
@@ -57,26 +57,26 @@ export async function setNoteContents(id: string, content: string) {
  * @returns JSON contents of the note as string
  */
 export async function getNoteContents(id: string) {
-  try {
-    const filename = join(notesDir, `${id}.json`);
-    const data = await fse.readFile(filename);
-    return data.toString("utf8");
-  } catch (error) {
-    if (isNodeError(error) && error.code === "ENOENT") {
-      await AppDataSource.createQueryBuilder()
-        .delete()
-        .from(NoteEntity)
-        .where("id = :id", { id })
-        .execute();
-    } else {
-      console.log(
-        error instanceof Error
-          ? error.message
-          : "Unknowm error in main/api/note/getNoteContets",
-      );
+    try {
+        const filename = join(notesDir, `${id}.json`);
+        const data = await fse.readFile(filename);
+        return data.toString("utf8");
+    } catch (error) {
+        if (isNodeError(error) && error.code === "ENOENT") {
+            await AppDataSource.createQueryBuilder()
+                .delete()
+                .from(NoteEntity)
+                .where("id = :id", { id })
+                .execute();
+        } else {
+            console.log(
+                error instanceof Error
+                    ? error.message
+                    : "Unknowm error in main/api/note/getNoteContets",
+            );
+        }
+        return null;
     }
-    return null;
-  }
 }
 
 /**
@@ -84,26 +84,26 @@ export async function getNoteContents(id: string) {
  * @param id UUID of the note to delete
  */
 export async function deleteNote(id: string) {
-  try {
-    const filename = join(notesDir, `${id}.json`);
-    await fse.remove(filename);
-    await AppDataSource.createQueryBuilder()
-      .delete()
-      .from(NoteEntity)
-      .where("id = :id", { id })
-      .execute(); // delete the note
-    await AppDataSource.createQueryBuilder()
-      .delete()
-      .from(NoteEntity)
-      .where("parentID = :id", { id })
-      .execute(); // delete its subnotes
-  } catch (error) {
-    console.log(
-      error instanceof Error
-        ? error.message
-        : "Unknowm error in main/api/note/getNoteContets",
-    );
-  }
+    try {
+        const filename = join(notesDir, `${id}.json`);
+        await fse.remove(filename);
+        await AppDataSource.createQueryBuilder()
+            .delete()
+            .from(NoteEntity)
+            .where("id = :id", { id })
+            .execute(); // delete the note
+        await AppDataSource.createQueryBuilder()
+            .delete()
+            .from(NoteEntity)
+            .where("parentID = :id", { id })
+            .execute(); // delete its subnotes
+    } catch (error) {
+        console.log(
+            error instanceof Error
+                ? error.message
+                : "Unknowm error in main/api/note/getNoteContets",
+        );
+    }
 }
 
 /**
@@ -112,24 +112,24 @@ export async function deleteNote(id: string) {
  * @param destID Destination UUID or undefined if the note is being moved to the top
  */
 export async function moveNote(sourceID: string, destID: string | undefined) {
-  if (sourceID === destID) return;
-  try {
-    const source = await AppDataSource.getRepository(NoteEntity)
-      .createQueryBuilder("note")
-      .where("note.id = :id", { id: sourceID })
-      .getOne();
-    if (destID == null && source != null) {
-      // We are moving the note to the top level
-      source.parentID = null; // set parent to null
-      await AppDataSource.getRepository(NoteEntity).save(source);
-      return;
+    if (sourceID === destID) return;
+    try {
+        const source = await AppDataSource.getRepository(NoteEntity)
+            .createQueryBuilder("note")
+            .where("note.id = :id", { id: sourceID })
+            .getOne();
+        if (destID == null && source != null) {
+            // We are moving the note to the top level
+            source.parentID = null; // set parent to null
+            await AppDataSource.getRepository(NoteEntity).save(source);
+            return;
+        }
+        if (source == null) return;
+        source.parentID = destID;
+        await AppDataSource.getRepository(NoteEntity).save(source);
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
     }
-    if (source == null) return;
-    source.parentID = destID;
-    await AppDataSource.getRepository(NoteEntity).save(source);
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-  }
 }
 
 /**
@@ -137,12 +137,13 @@ export async function moveNote(sourceID: string, destID: string | undefined) {
  * @param note
  */
 export async function updateNote(note: Partial<Note>) {
-  try {
-    if (!note.id) throw new Error("No identifier was passed to updateNote.");
-    await AppDataSource.getRepository(NoteEntity).save(note);
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-  }
+    try {
+        if (!note.id)
+            throw new Error("No identifier was passed to updateNote.");
+        await AppDataSource.getRepository(NoteEntity).save(note);
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
+    }
 }
 
 /**
@@ -150,15 +151,15 @@ export async function updateNote(note: Partial<Note>) {
  * @returns a whole lot of notes
  */
 export async function getAllNotes(): Promise<Note[] | null> {
-  try {
-    const notes = await AppDataSource.getRepository(NoteEntity).find({
-      order: { index: "ASC" },
-    });
-    return notes;
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-    return null;
-  }
+    try {
+        const notes = await AppDataSource.getRepository(NoteEntity).find({
+            order: { index: "ASC" },
+        });
+        return notes;
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
+        return null;
+    }
 }
 
 /**
@@ -167,15 +168,15 @@ export async function getAllNotes(): Promise<Note[] | null> {
  * @param state true moves into trash, false restores it
  */
 export async function setTrashStatus(id: string, state: boolean) {
-  try {
-    await AppDataSource.getRepository(NoteEntity)
-      .createQueryBuilder("note")
-      .where("id = :id", { id })
-      .update({ isTrashed: state })
-      .execute();
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-  }
+    try {
+        await AppDataSource.getRepository(NoteEntity)
+            .createQueryBuilder("note")
+            .where("id = :id", { id })
+            .update({ isTrashed: state })
+            .execute();
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
+    }
 }
 
 /**
@@ -183,16 +184,16 @@ export async function setTrashStatus(id: string, state: boolean) {
  * @param id
  */
 export async function getNote(id: string) {
-  try {
-    const note = await AppDataSource.getRepository(NoteEntity)
-      .createQueryBuilder("note")
-      .where("note.id = :id", { id })
-      .getOne();
-    return note;
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-    return null;
-  }
+    try {
+        const note = await AppDataSource.getRepository(NoteEntity)
+            .createQueryBuilder("note")
+            .where("note.id = :id", { id })
+            .getOne();
+        return note;
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
+        return null;
+    }
 }
 
 /**
@@ -200,11 +201,11 @@ export async function getNote(id: string) {
  * @param notes
  */
 export async function saveNotes(notes: Note[]) {
-  try {
-    await AppDataSource.getRepository(NoteEntity).save(
-      NoteEntity.fromMetadataArray(notes),
-    );
-  } catch (error) {
-    if (error instanceof Error) log.error(error.message);
-  }
+    try {
+        await AppDataSource.getRepository(NoteEntity).save(
+            NoteEntity.fromMetadataArray(notes),
+        );
+    } catch (error) {
+        if (error instanceof Error) log.error(error.message);
+    }
 }

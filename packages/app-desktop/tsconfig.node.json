@@ -4,12 +4,15 @@
   "src/electron/**/*", 
   "src/electron/**/*.d.ts"],
   "compilerOptions": {
-    "composite": true,
-    "types": ["electron-vite/node", "vitest/globals"],
+    "types": ["vitest/globals"],
     "target": "ESNext",
+    "module": "ESNext",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictPropertyInitialization": false
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "moduleResolution": "node",
   },
   "ts-node": {
     "esm": true

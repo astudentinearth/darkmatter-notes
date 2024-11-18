@@ -2,9 +2,9 @@ import { is } from "@electron-toolkit/utils";
 import { app, BrowserWindow, shell } from "electron";
 import log from "electron-log/main.js";
 import { createRequire } from "node:module";
-import { join } from "node:path";
+import path, { join } from "node:path";
 import "reflect-metadata";
-import icon from "../../resources/icon256.png?asset";
+//import icon from "../../resources/icon256.png?asset";
 import { readUserPrefs } from "./api/settings";
 import { AppDataSource } from "./db";
 import "./ipc";
@@ -12,19 +12,25 @@ import { initAppMenu } from "./menu";
 import installExtension, {
     REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";
+import { fileURLToPath } from "node:url";
 
 log.initialize();
-const require = createRequire(import.meta.url);
+/*const require = createRequire(import.meta.url);*/
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 let win: BrowserWindow | null;
+
+const DEV_SERVER_URL =
+    process.env["ELECTRON_RENDERER_URL"] ?? "http://localhost:5173";
 
 function createWindow() {
     //const prefs = readUserPrefs();
     log.debug("creating main window");
     win = new BrowserWindow({
-        icon,
+        //icon,
         webPreferences: {
-            preload: join(__dirname, "../preload/index.cjs"),
+            preload: join(__dirname, "preload.mjs"),
         },
         titleBarStyle:
             process.platform === "win32" || process.platform === "linux"
@@ -52,10 +58,10 @@ function createWindow() {
         return { action: "deny" };
     });
 
-    if (is.dev && process.env["ELECTRON_RENDERER_URL"]) {
-        win.loadURL(process.env["ELECTRON_RENDERER_URL"]);
+    if (is.dev && DEV_SERVER_URL) {
+        win.loadURL(DEV_SERVER_URL);
     } else {
-        win.loadFile(join(__dirname, "../renderer/index.html"));
+        win.loadFile(join(__dirname, "../../index.html"));
     }
     initAppMenu();
 }

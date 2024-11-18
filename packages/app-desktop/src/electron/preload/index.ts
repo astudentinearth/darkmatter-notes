@@ -2,7 +2,7 @@
 import { Note, NoteExportType } from "@darkwrite/common";
 import { UserSettings } from "@darkwrite/common";
 import { contextBridge, ipcRenderer } from "electron";
-import { ChannelNames } from "../main/channels";
+import { ChannelNames } from "../channels";
 
 contextBridge.exposeInMainWorld("api", {
     showAppMenu: () => ipcRenderer.invoke("show-app-menu"),

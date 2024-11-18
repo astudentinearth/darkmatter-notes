@@ -1,11 +1,14 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
-    "src/renderer/src/env.d.ts",
-    "src/renderer/src/**/*",
-    "src/renderer/src/**/*.tsx",
-    "src/preload/*.d.ts",
-    "src/common/**/*"
+    "src/env.d.ts",
+    "src/**/*",
+    "src/**/*.tsx",
+    "src/**/*.d.ts",
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "src/electron/**/*"
   ],
   "compilerOptions": {
     "composite": true,
@@ -13,9 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@renderer/*": [
-        "src/renderer/src/*"
+        "src/*"
       ],
-      "@common/*": ["src/common/*"]
     },
     "types": ["vitest/globals"],
     "moduleResolution": "bundler"

@@ -25,5 +25,5 @@ export default defineProject({
             "@renderer": path.resolve("src"),
         },
     },
-    //root: path.resolve("src")
+    //root: path.resolve("src"),
 });

@@ -85,6 +85,8 @@
     "zustand": "^4.5.4"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^7.5.0",
+    "@electron-forge/plugin-vite": "^7.5.0",
     "@electron-toolkit/tsconfig": "^1.0.1",
     "@electron/rebuild": "^3.6.0",
     "@eslint/compat": "^1.1.1",

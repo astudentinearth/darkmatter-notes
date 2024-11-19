@@ -1,8 +1,95 @@
 # Building
-> This document is a work in progress (TODO)  
 
-[Instructions to build Darkwrite on Windows 10/11](./BUILDING_WIN.md)
+> This document is work in progress. If you run into issues while building, open an issue.
 
-Instructions to build the current version of Darkwrite for macOS and Linux will be added soon. To run development builds, see [DEVELOPMENT.md](DEVELOPMENT.md)
+### [Build on Windows 10 or above](#windows-1011)
 
-To see instructions on building old Darkwrite, see commit [648840e](https://github.com/astudentinearth/darkwrite/tree/648840e77a5c1c32e89739167269a87629feffd7) and continue the build from there.
+### [Build on Linux](#linux)
+
+### [Build on macOS](#macos)
+
+# Windows 10/11
+
+## Requirements
+
+-   yarn
+-   git
+-   Visual C++ Build Tools
+-   node-gyp
+-   Node 20
+-   Windows 10 or later (no testing was done for older versions)
+-   a good internet connection to download dependencies
+
+## Building
+
+Building on Windows may fail in some circumstances. To avoid such issues, clone the repository in your `C:\` drive and run the build scripts as administrator (this is what solved the issues on my machine)
+
+```ps
+cd C:\
+git clone https://github.com/astudentinearth/darkwrite
+cd darkwrite
+yarn
+yarn build:win
+```
+
+> See the troubleshooting section below if the build fails.
+
+An installer should appear in `packages/app-desktop/release/`, under a subdirectory which is named after the compiled version number.
+
+## Troubleshooting
+
+### better-sqlite3 was compiled against a different node version
+
+Run the command below to ensure the module is compiled against the correct node and electron version.
+
+```
+yarn workspace @darkwrite/app-desktop install_app_deps
+```
+
+### Electron builder throws some error involving `rcedit-x64.exe`
+
+This means builder failed to set metadata for Darkwrite's executable. If you haven't followed the advice in the building section, do it. It fixed this issue in my case. If it still persists, consider opening an issue so we can discuss it.
+
+# Linux
+
+> These instructions were tested on Fedora 41, however any mainstream and recent distribution should work.
+
+## Requirements
+
+-   yarn
+-   Node 20 (using nvm is recommended)
+-   git
+
+## Building
+
+```bash
+git clone https://github.com/astudentinearth/darkwrite
+cd darkwrite
+yarn
+yarn build:linux
+```
+
+You can find your AppImage in `packages/app-desktop/release/<version>/`
+
+# macOS
+
+> **WARNING: These instructions have not been tested, though it should work anyways.**
+
+> **WARNING: Neither code signing nor notarization was set up for Darkwrite. You will need to create an exception for it. [This Apple support page explains how to create an exception.](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac)**
+
+## Requirements
+
+-   yarn
+-   Node 20
+-   git (install whatever XCode provides)
+
+## Building
+
+```bash
+git clone https://github.com/astudentinearth/darkwrite
+cd darkwrite
+yarn
+yarn build:mac
+```
+
+You can find your dmg in `packages/app-desktop/release/<version>/`

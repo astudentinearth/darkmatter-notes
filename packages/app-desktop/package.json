@@ -1,5 +1,10 @@
 {
     "name": "@darkwrite/app-desktop",
+    "author": {
+        "name": "astudentinearth",
+        "email": "burak.yn.dev@gmail.com"
+    },
+    "description": "The eye candy note-taking app for all desktops.",
     "productName": "Darkwrite",
     "private": true,
     "version": "0.1.0-alpha.1",
@@ -21,7 +26,8 @@
         "_postinstall": "electron-builder install-app-deps",
         "install_app_deps": "electron-builder install-app-deps",
         "build:unpack": "yarn run build && electron-builder --dir",
-        "build:win": "npm-run-all --serial build 'electron-builder --win'",
+        "build:electron:win": "electron-builder --win",
+        "build:win": "npm-run-all --serial build build:electron:win",
         "build:mac": "yarn run build && electron-builder --mac",
         "build:linux": "yarn run build && electron-builder --linux",
         "rebuild": "electron-rebuild -f -w better-sqlite3"

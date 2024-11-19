@@ -13,7 +13,7 @@
 # Notes and todo, the way you want.
 [Follow me on Twitter](https://twitter.com/codingwithburak)  
 Darkwrite is a simple and easy way to organize your notes and todos. It was developed with the user in mind, where personalization plays a key role. 
-Darkwrite is currently in alpha, basic features are available, however bugs are likely to happen and there is still a lot to work on. To download the alpha, go to the [releases page.](https://github.com/astudentinearth/darkwrite/releases).  
+Darkwrite is currently in alpha, basic features are available, however bugs are likely to happen and there is still a lot to work on. To download the alpha, go to the [releases page.](https://github.com/astudentinearth/darkwrite/releases). 
 Star this repository to know when we release new updates.
 ## Easy to use and rich editor
 Darkwrite features a rich editor which supports formatting, headings, todo lists, numbered lists, links and much more.

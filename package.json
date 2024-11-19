@@ -3,15 +3,20 @@
   "version": "0.1.0-alpha.1",
   "description": "",
   "scripts": {
-    "test:all": "pnpm -r test",
+    "test:all": "yarn worksapces foreach test",
     "coverage:all": "pnpm -r test:coverage",
-    "dev": "concurrently \" pnpm --filter common run watch \"  \" pnpm --filter app-desktop dev  \"",
-    "build:win": "pnpm --filter common build && pnpm --filter app-desktop build:win",
-    "build:linux": "pnpm --filter common build && pnpm --filter app-desktop build:linux",
-    "build:mac": "pnpm --filter common build && pnpm --filter app-desktop build:mac"
+    "dev": "concurrently \" yarn workspace @darkwrite/common watch \"  \" yarn workspace @darkwrite/app-desktop dev  \"",
+    "build:common":"yarn workspace @darkwrite/common build",
+    "build:desktop:win":"yarn workspace @darkwrite/app-desktop build:win",
+    "build:desktop:linux":"yarn workspace @darkwrite/app-desktop build:linux",
+    "build:desktop:mac":"yarn workspace @darkwrite/app-desktop build:mac",
+    "build:win": "npm-run-all --serial build:common build:desktop:win",
+    "build:linux": "npm-run-all --serial build:common build:desktop:linux",
+    "build:mac": "npm-run-all --serial build:common build:desktop:mac"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
+    "npm-run-all": "^4.1.5",
     "vite-tsconfig-paths": "^5.1.0",
     "vitest": "^2.1.4"
   },

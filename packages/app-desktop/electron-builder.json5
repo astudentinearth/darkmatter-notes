@@ -5,7 +5,8 @@
   "asar": true,
   "productName": "Darkwrite",
   "directories": {
-    "output": "release/${version}"
+    "output": "release/${version}",
+    "buildResources": "resources"
   },
   "files": [  
     "dist-electron",

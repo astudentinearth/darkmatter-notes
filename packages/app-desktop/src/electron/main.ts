@@ -4,7 +4,6 @@ import log from "electron-log/main.js";
 import { createRequire } from "node:module";
 import path, { join } from "node:path";
 import "reflect-metadata";
-//import icon from "../../resources/icon256.png?asset";
 import { readUserPrefs } from "./api/settings";
 import { AppDataSource } from "./db";
 import "./ipc";
@@ -28,10 +27,10 @@ function createWindow() {
     //const prefs = readUserPrefs();
     log.debug("creating main window");
     win = new BrowserWindow({
-        //icon,
         webPreferences: {
             preload: join(__dirname, "preload.mjs"),
         },
+        icon: is.dev ? join(__dirname, "../resources/icon.png") : undefined,
         titleBarStyle:
             process.platform === "win32" || process.platform === "linux"
                 ? "hidden"

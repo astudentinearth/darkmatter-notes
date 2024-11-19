@@ -9,9 +9,9 @@ import { readUserPrefs } from "./api/settings";
 import { AppDataSource } from "./db";
 import "./ipc";
 import { initAppMenu } from "./menu";
-import installExtension, {
+/*import installExtension, {
     REACT_DEVELOPER_TOOLS,
-} from "electron-devtools-installer";
+} from "electron-devtools-installer";*/
 import { fileURLToPath } from "node:url";
 
 log.initialize();
@@ -61,7 +61,7 @@ function createWindow() {
     if (is.dev && DEV_SERVER_URL) {
         win.loadURL(DEV_SERVER_URL);
     } else {
-        win.loadFile(join(__dirname, "../../index.html"));
+        win.loadFile(join(__dirname, "../dist/index.html"));
     }
     initAppMenu();
 }
@@ -85,8 +85,10 @@ app.on("activate", () => {
 });
 
 app.whenReady().then(() => {
-    installExtension([REACT_DEVELOPER_TOOLS]).then((name) => {
-        console.log(`Added extension => ${name}`);
-    });
+    /*if (is.dev) {
+        installExtension([REACT_DEVELOPER_TOOLS]).then((name) => {
+            console.log(`Added extension => ${name}`);
+        });
+    }*/
     AppDataSource.initialize().then(createWindow);
 });

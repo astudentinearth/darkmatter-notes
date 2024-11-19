@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import electron from "vite-plugin-electron/simple";
+import { swcPlugin, externalizeDepsPlugin } from "electron-vite";
 
 export default defineConfig({
     plugins: [
@@ -12,9 +13,10 @@ export default defineConfig({
                 vite: {
                     build: {
                         rollupOptions: {
-                            external: ["typeorm"],
+                            external: ["typeorm", "dotenv"],
                         },
                     },
+                    plugins: [swcPlugin(), externalizeDepsPlugin()],
                 },
             },
             preload: {
@@ -28,6 +30,6 @@ export default defineConfig({
         },
     },
     build: {
-        outDir: path.resolve("dist/renderer"),
+        outDir: path.resolve("dist"),
     },
 });

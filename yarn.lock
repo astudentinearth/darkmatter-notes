@@ -1296,7 +1296,7 @@ __metadata:
     "@babel/plugin-proposal-decorators": "npm:^7.25.9"
     "@babel/preset-env": "npm:^7.26.0"
     "@babel/preset-typescript": "npm:^7.26.0"
-    "@darkwrite/common": "workspace:^0.1.0-alpha.1"
+    "@darkwrite/common": "workspace:^"
     "@electron-forge/cli": "npm:^7.5.0"
     "@electron-forge/plugin-vite": "npm:^7.5.0"
     "@electron-toolkit/preload": "npm:^3.0.1"
@@ -1415,7 +1415,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@darkwrite/common@workspace:^0.1.0-alpha.1, @darkwrite/common@workspace:packages/common":
+"@darkwrite/common@workspace:^, @darkwrite/common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@darkwrite/common@workspace:packages/common"
   dependencies:

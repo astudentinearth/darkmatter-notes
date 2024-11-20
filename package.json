@@ -6,6 +6,7 @@
     "test:all": "yarn worksapces foreach test",
     "coverage:all": "pnpm -r test:coverage",
     "dev": "concurrently \" yarn workspace @darkwrite/common watch \"  \" yarn workspace @darkwrite/app-desktop dev  \"",
+    "build:desktop": "yarn workspace @darkwrite/app-desktop build",
     "build:common": "yarn workspace @darkwrite/common build",
     "build:desktop:win": "yarn workspace @darkwrite/app-desktop build:win",
     "build:desktop:linux": "yarn workspace @darkwrite/app-desktop build:linux",

@@ -7,12 +7,7 @@ import {
     useSettingsStore,
 } from "@renderer/context/settings-store";
 import { produce } from "immer";
-import { debounce } from "lodash";
 import { useRef } from "react";
-
-const save = debounce((font: string) => {
-    console.log(font);
-}, 300);
 
 export default function FontSettings() {
     const fonts = useSettingsStore((s) => s.settings.fonts);
@@ -61,6 +56,7 @@ export default function FontSettings() {
                     className="max-w-80"
                     defaultValue={fonts.ui}
                     ref={uiRef}
+                    placeholder="System default"
                 />
             </div>
             <div className="flex flex-row gap-2">

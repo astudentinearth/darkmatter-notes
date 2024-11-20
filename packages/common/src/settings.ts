@@ -22,10 +22,10 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
     },
     // terrible selection - to be changed
     fonts: {
-        sans: "Arial",
-        serif: "Times New Roman",
-        code: "Courier New",
-        ui: "Segoe UI",
+        sans: "Arial, sans-serif",
+        serif: "Times New Roman, serif",
+        code: "Cascadia Code, Noto Mono, monospace",
+        ui: "",
     },
     version: "1",
 };

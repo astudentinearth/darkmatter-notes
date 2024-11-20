@@ -7,7 +7,7 @@ import {
     useSettingsStore,
 } from "@renderer/context/settings-store";
 import { produce } from "immer";
-import { useRef } from "react";
+import { ChangeEvent, useRef } from "react";
 
 export default function FontSettings() {
     const fonts = useSettingsStore((s) => s.settings.fonts);
@@ -18,7 +18,6 @@ export default function FontSettings() {
     const submit = () => {
         updateUserSettings((old) =>
             produce(old, (draft) => {
-                console.log("saving");
                 if (
                     !uiRef.current ||
                     !sansRef.current ||
@@ -34,6 +33,17 @@ export default function FontSettings() {
             }),
         );
     };
+
+    const handlePreview = (
+        e: ChangeEvent<HTMLInputElement>,
+        fallback: string,
+    ) => {
+        e.target.style.setProperty(
+            "font-family",
+            `${e.target.value}, ${fallback}`,
+        );
+    };
+
     return (
         <div
             className="p-4 bg-card/80 rounded-2xl flex flex-col gap-4"
@@ -57,6 +67,8 @@ export default function FontSettings() {
                     defaultValue={fonts.ui}
                     ref={uiRef}
                     placeholder="System default"
+                    onChange={(e) => handlePreview(e, fonts.ui)}
+                    style={{ fontFamily: fonts.ui }}
                 />
             </div>
             <div className="flex flex-row gap-2">
@@ -72,6 +84,8 @@ export default function FontSettings() {
                     className="max-w-80"
                     defaultValue={fonts.sans}
                     ref={sansRef}
+                    onChange={(e) => handlePreview(e, fonts.sans)}
+                    style={{ fontFamily: fonts.sans }}
                 />
             </div>
             <div className="flex flex-row gap-2">
@@ -87,6 +101,8 @@ export default function FontSettings() {
                     className="max-w-80"
                     defaultValue={fonts.serif}
                     ref={serifRef}
+                    onChange={(e) => handlePreview(e, fonts.serif)}
+                    style={{ fontFamily: fonts.serif }}
                 />
             </div>
             <div className="flex flex-row gap-2">
@@ -102,6 +118,8 @@ export default function FontSettings() {
                     className="max-w-80"
                     defaultValue={fonts.code}
                     ref={codeRef}
+                    onChange={(e) => handlePreview(e, fonts.code)}
+                    style={{ fontFamily: fonts.code }}
                 />
             </div>
             <div className="flex flex-row gap-2">

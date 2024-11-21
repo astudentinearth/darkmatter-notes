@@ -1,11 +1,19 @@
 # 0.1.0-alpha.2
 
+## Features
+
+-   Export entire workspace as HTML
+-   Create backup of all settings and notes
+-   Restore from backups
+
 ## Improvements
 
 -   Tweaked default font settings to match different systems
     -   Default UI font is now empty, meaning it will follow system by default
     -   Other fonts now include fallbacks to system defaults
 -   Tweaked font settings to preview the font as you type
+-   Home and settings pages are now more responsive
+-   Tweaked dates in home page
 
 ## Technical changes
 

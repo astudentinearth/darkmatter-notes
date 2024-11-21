@@ -22,3 +22,5 @@ export const CACHE_DIR = join(app.getPath("temp"));
 export const EXPORTER_CACHE_DIR = join(CACHE_DIR, "dw-html-export/");
 /** Cache folder to use when creating a full backup of Darkwrite data. */
 export const BACKUP_CACHE_DIR = join(CACHE_DIR, "dw-backup");
+/** Cache folder to use when extracting Darkwrite backups */
+export const RESTORE_CACHE_DIR = join(CACHE_DIR, "dw-restore");

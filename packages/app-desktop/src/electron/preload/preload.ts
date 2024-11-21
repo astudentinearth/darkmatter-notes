@@ -53,6 +53,9 @@ const darkwriteAPI: DarkwriteElectronAPI = {
     getClientInfo: () => ipcRenderer.invoke(ChannelNames.GET_APP_INFO),
     backup: {
         backupUserData: () => ipcRenderer.invoke(ChannelNames.BACKUP_USER_DATA),
+        openBackup: () => ipcRenderer.invoke(ChannelNames.OPEN_BACKUP),
+        restore: (path: string) =>
+            ipcRenderer.invoke(ChannelNames.RESTORE_BACKUP, path),
     },
 };
 

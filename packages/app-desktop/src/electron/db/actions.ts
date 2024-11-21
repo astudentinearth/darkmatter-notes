@@ -30,4 +30,10 @@ export const DB = {
     async update(data: NotePartial) {
         await AppDataSource.getRepository(NoteEntity).save(data);
     },
+    async disconnect() {
+        await AppDataSource.destroy();
+    },
+    async init() {
+        await AppDataSource.initialize();
+    },
 };

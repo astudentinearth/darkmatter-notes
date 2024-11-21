@@ -7,3 +7,10 @@ export const useBackup = () => {
         mutationFn: BackupModel.backupData,
     });
 };
+
+export const useRestore = () => {
+    return useMutation({
+        mutationKey: ["darkwrite-restore"],
+        mutationFn: (path: string) => BackupModel.restoreData(path),
+    });
+};

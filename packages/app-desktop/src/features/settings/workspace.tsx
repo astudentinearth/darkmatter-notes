@@ -1,3 +1,4 @@
+import { RestoreDataDialog } from "@renderer/components/restore-data-dialog";
 import { Button } from "@renderer/components/ui/button";
 import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
 
@@ -32,13 +33,7 @@ export function WorkspaceSettings() {
                 >
                     Backup
                 </Button>
-                <Button
-                    disabled
-                    variant={"secondary"}
-                    className="flex-shrink-0 w-fit"
-                >
-                    Restore
-                </Button>
+                <RestoreDataDialog />
             </div>
         </div>
     );

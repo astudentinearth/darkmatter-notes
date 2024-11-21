@@ -1,16 +1,21 @@
+import { app, dialog } from "electron";
 import log from "electron-log";
+import extract from "extract-zip";
 import fse from "fs-extra";
 import { join } from "node:path";
 import { zip } from "zip-a-folder";
+import { DB } from "../db";
+import { rmIfExists } from "../lib/fs";
 import {
     BACKUP_CACHE_DIR,
+    DATA_DIR,
     DB_PATH,
     EXPORTER_CACHE_DIR,
     NOTE_CONTENTS_DIR,
+    RESTORE_CACHE_DIR,
     SETTINGS_PATH,
 } from "../lib/paths";
 import { saveFile } from "./dialog";
-import { rmIfExists } from "../lib/fs";
 
 /**
  * APIs to perform a complete workspace export.
@@ -82,6 +87,71 @@ export const BackupAPI = {
             await fse.rm(BACKUP_CACHE_DIR, { recursive: true, force: true });
         } catch (error) {
             if (error instanceof Error) log.error(error.message);
+        }
+    },
+    async restore(archivePath: string) {
+        const dbBackupPath = join(DATA_DIR, "data.db.old");
+        const notesBackupPath = join(DATA_DIR, "notes_old");
+        const settingsBackupPath = join(DATA_DIR, "settings.json.old");
+        let didRename = false;
+        await DB.disconnect();
+        try {
+            await rmIfExists(RESTORE_CACHE_DIR);
+            await extract(archivePath, { dir: RESTORE_CACHE_DIR });
+
+            const isValidBackup =
+                (await fse.exists(join(RESTORE_CACHE_DIR, "data.db"))) &&
+                (await fse.exists(join(RESTORE_CACHE_DIR, "settings.json")));
+            if (!isValidBackup)
+                throw new Error(
+                    "This does not seem to be a Darkwrite backup archive.",
+                );
+
+            // before we do anything else, we will rename the old files so we can rollback if something goes wrong.
+            try {
+                await fse.rename(DB_PATH, dbBackupPath);
+                await fse.rename(NOTE_CONTENTS_DIR, notesBackupPath);
+                await fse.rename(SETTINGS_PATH, settingsBackupPath);
+            } catch (error) {
+                /*empty */
+            }
+            didRename = true;
+
+            await fse.copy(join(RESTORE_CACHE_DIR, "data.db"), DB_PATH, {
+                overwrite: true,
+            });
+            await fse.copy(
+                join(RESTORE_CACHE_DIR, "settings.json"),
+                SETTINGS_PATH,
+                { overwrite: true },
+            );
+            await fse.copy(
+                join(RESTORE_CACHE_DIR, "notes"),
+                NOTE_CONTENTS_DIR,
+                { overwrite: true },
+            );
+
+            dialog.showMessageBoxSync({
+                message:
+                    "We restored your backup, we will relaunch Darkwrite for the changes to take effect.",
+            });
+            app.relaunch();
+            app.exit();
+        } catch (error) {
+            log.error("!!! Restore failed. Rolling back...");
+            if (error instanceof Error) log.error(error.message);
+            if (didRename) {
+                await fse.rename(dbBackupPath, DB_PATH);
+                await fse.rename(notesBackupPath, NOTE_CONTENTS_DIR);
+                await fse.rename(settingsBackupPath, SETTINGS_PATH);
+            }
+            await DB.init();
+            dialog.showMessageBoxSync({
+                type: "error",
+                message:
+                    "Something went wrong while restoring your backup. Your current data won't be affected.\n" +
+                    (error instanceof Error ? error.message : ""),
+            });
         }
     },
 };

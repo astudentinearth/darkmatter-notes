@@ -22,4 +22,6 @@ export enum ChannelNames {
     PUSH_EXPORT_DOCUMENT = "push-export-document",
     FINISH_EXPORT = "finish-export",
     BACKUP_USER_DATA = "backup-user-data",
+    OPEN_BACKUP = "choose-backup-file",
+    RESTORE_BACKUP = "restore-user-data",
 }

@@ -97,6 +97,8 @@ export interface DarkwriteElectronAPI {
     };
     backup: {
         backupUserData: () => Promise<void>;
+        openBackup: () => Promise<string | null>;
+        restore: (archivePath: string) => Promise<void>;
     };
     getClientInfo: () => Promise<DarkwriteDesktopClientInfo>;
 }

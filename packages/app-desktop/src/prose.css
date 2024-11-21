@@ -149,7 +149,6 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
     height: 1.5rem;
     z-index: 50;
     cursor: grab;
-    transform: translateX(-8px);
 
     &:hover {
         background-color: hsl(var(--secondary) / 50);

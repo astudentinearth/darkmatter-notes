@@ -5,8 +5,9 @@
 -   Export entire workspace as HTML
 -   Create backup of all settings and notes
 -   Restore from backups
+-   Added an even darker theme
 
-## Improvements
+## Improvements and fixes
 
 -   Tweaked default font settings to match different systems
     -   Default UI font is now empty, meaning it will follow system by default
@@ -14,6 +15,7 @@
 -   Tweaked font settings to preview the font as you type
 -   Home and settings pages are now more responsive
 -   Tweaked dates in home page
+-   Fixed unreachable drag handle bug
 
 ## Technical changes
 

@@ -3,13 +3,13 @@ import {
     setEditorCustomizations,
     useEditorState,
 } from "@renderer/context/editor-state";
-import { useLocalStore } from "@renderer/context/local-state";
 import { useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useNoteContentsMutation } from "@renderer/hooks/query/use-note-contents-mutation";
+import { useCenteredLayout } from "@renderer/hooks/use-centered-layout";
 import { useNoteEditor } from "@renderer/hooks/use-note-editor";
 import { cn } from "@renderer/lib/utils";
 import { JSONContent } from "novel";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { useDebounce } from "use-debounce";
 import { EditorCover } from "./cover";
 import { TextEditor } from "./text-editor";
@@ -24,29 +24,7 @@ export function EditorRoot() {
     const _customizations = useEditorState((s) => s.customizations);
     const [debouncedValue] = useDebounce(value, 200);
     const rootContainerRef = useRef<HTMLDivElement>(null);
-    const [editorWidth, setEditorWidth] = useState(960);
-    const sidebarWidth = useLocalStore((s) => s.sidebarWidth);
-    const isSidebarCollapsed = useLocalStore((s) => s.isSidebarCollapsed);
-    //const reset = useEditorState((s) => s.resetState);
-
-    useEffect(() => {
-        const handleResize = () => {
-            if (!rootContainerRef.current) return;
-            // if sidebar is collapsed, we subtract its width
-            // + 1px  for resize handle,
-            // + 8px to prevent the scrollbar going off-screen
-            // which gives remaining width for editor area
-            const availableWidth =
-                window.innerWidth -
-                (isSidebarCollapsed ? 0 : sidebarWidth + 1) -
-                8;
-            // if less than 960px is available, we give it all. if we have more than 960, we give 960
-            setEditorWidth(availableWidth <= 960 ? availableWidth : 960);
-        };
-        handleResize();
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [isSidebarCollapsed, sidebarWidth]);
+    const editorWidth = useCenteredLayout();
 
     useEffect(() => {
         if (content && customizations) {

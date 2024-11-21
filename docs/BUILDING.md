@@ -22,14 +22,14 @@
 
 ## Building
 
-Building on Windows may fail in some circumstances. To avoid such issues, clone the repository in your `C:\` drive and run the build scripts as administrator (this is what solved the issues on my machine)
+Run the following commands:
 
 ```ps
 cd C:\
 git clone https://github.com/astudentinearth/darkwrite
 cd darkwrite
 yarn
-yarn build:win
+yarn build:desktop
 ```
 
 > See the troubleshooting section below if the build fails.
@@ -46,12 +46,13 @@ Run the command below to ensure the module is compiled against the correct node 
 yarn workspace @darkwrite/app-desktop install_app_deps
 ```
 
-### Electron builder throws some error involving `rcedit-x64.exe`
+### Electron builder throws some error involving `rcedit-x64.exe` (or anything else)
 
-This means builder failed to set metadata for Darkwrite's executable. If you haven't followed the advice in the building section, do it. It fixed this issue in my case. If it still persists, consider opening an issue so we can discuss it.
+Clone the repository to the root of your `C:\` drive and run the build commands in an admin shell (run your terminal as administrator). This fixed issues on my end a few times, it might be completely unrelated but I'm leaving this here just in case.
 
 # Linux
 
+> [!NOTE]  
 > These instructions were tested on Fedora 41, however any mainstream and recent distribution should work.
 
 ## Requirements
@@ -66,16 +67,18 @@ This means builder failed to set metadata for Darkwrite's executable. If you hav
 git clone https://github.com/astudentinearth/darkwrite
 cd darkwrite
 yarn
-yarn build:linux
+yarn build:desktop
 ```
 
 You can find your AppImage in `packages/app-desktop/release/<version>/`
 
 # macOS
 
-> **WARNING: These instructions have not been tested, though it should work anyways.**
+> [!WARNING]  
+> These instructions have not been tested, though it should work anyways.
 
-> **WARNING: Neither code signing nor notarization was set up for Darkwrite. You will need to create an exception for it. [This Apple support page explains how to create an exception.](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac)**
+> [!WARNING]  
+> **Neither code signing nor notarization was set up for Darkwrite. You will need to create an exception for it. [This Apple support page explains how to create an exception.](https://support.apple.com/guide/mac-help/open-a-mac-app-from-an-unknown-developer-mh40616/mac)**
 
 ## Requirements
 
@@ -89,7 +92,7 @@ You can find your AppImage in `packages/app-desktop/release/<version>/`
 git clone https://github.com/astudentinearth/darkwrite
 cd darkwrite
 yarn
-yarn build:mac
+yarn build:desktop
 ```
 
 You can find your dmg in `packages/app-desktop/release/<version>/`

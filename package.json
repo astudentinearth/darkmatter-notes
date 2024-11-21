@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test:all": "yarn workspaces foreach -A run test",
-    "coverage:all": "pnpm -r test:coverage",
+    "coverage:all": "yarn workspaces foreach -A run test:coverage",
     "dev": "concurrently \" yarn workspace @darkwrite/common watch \"  \" yarn workspace @darkwrite/app-desktop dev  \"",
     "build:desktop": "yarn workspace @darkwrite/app-desktop build",
     "build:common": "yarn workspace @darkwrite/common build",

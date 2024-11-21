@@ -126,6 +126,11 @@ declare global {
             load: () => Promise<UserSettings | null>;
             save: (data: UserSettings) => Promise<void>;
         };
+        exporter: {
+            init: () => Promise<void>;
+            push: (filename: string, content: string) => Promise<void>;
+            finish: () => Promise<void>;
+        };
         getClientInfo: () => Promise<DarkwriteDesktopClientInfo>;
     }
 }

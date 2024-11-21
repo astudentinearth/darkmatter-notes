@@ -39,5 +39,15 @@ contextBridge.exposeInMainWorld("api", {
         save: (data: UserSettings) =>
             ipcRenderer.invoke(ChannelNames.SAVE_USER_PREFS, data),
     },
+    exporter: {
+        init: () => ipcRenderer.invoke(ChannelNames.INIT_EXPORT_CACHE),
+        push: (filename: string, content: string) =>
+            ipcRenderer.invoke(
+                ChannelNames.PUSH_EXPORT_DOCUMENT,
+                filename,
+                content,
+            ),
+        finish: () => ipcRenderer.invoke(ChannelNames.FINISH_EXPORT),
+    },
     getClientInfo: () => ipcRenderer.invoke(ChannelNames.GET_APP_INFO),
 });

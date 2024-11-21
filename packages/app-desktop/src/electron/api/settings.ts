@@ -1,17 +1,14 @@
-import { FileHandle, open, writeFile } from "fs/promises";
-import { app } from "electron";
-import { join } from "node:path";
 import {
     DEFAULT_USER_SETTINGS,
     UserSettings,
     buildUserSettings,
 } from "@darkwrite/common";
-import { isNodeError, isValidJSON } from "../util";
 import log from "electron-log/main.js";
+import { FileHandle, open, writeFile } from "fs/promises";
+import { SETTINGS_PATH } from "../lib/paths";
+import { isNodeError, isValidJSON } from "../util";
 
-const dir =
-    process.env["NODE_ENV"] === "test" ? "./data/" : app.getPath("userData"); // check env here for test convenience
-const filename = join(dir, "settings.json");
+const filename = SETTINGS_PATH;
 
 export async function createSettingsFile() {
     log.info("Creating user settings file");

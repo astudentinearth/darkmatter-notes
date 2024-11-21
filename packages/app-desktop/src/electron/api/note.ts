@@ -1,14 +1,14 @@
 import { Note } from "@darkwrite/common";
-import { AppDataSource } from "../db";
-import { NoteEntity } from "../db/entity/note";
+import log from "electron-log";
+import fse from "fs-extra";
 import { randomUUID } from "node:crypto";
 import { join } from "node:path";
-import { app } from "electron";
-import fse from "fs-extra";
+import { AppDataSource } from "../db";
+import { NoteEntity } from "../db/entity/note";
+import { NOTE_CONTENTS_DIR } from "../lib/paths";
 import { isNodeError } from "../util";
-import log from "electron-log";
 
-const notesDir = join(app.getPath("userData"), "notes/");
+const notesDir = NOTE_CONTENTS_DIR;
 
 /**
  * Creates a new note by creating a database entry and a JSON file. A randomly generated UUID is assigned.

@@ -1,5 +1,6 @@
 import { FlexibleSpacer } from "@renderer/components/spacer";
 import { Button } from "@renderer/components/ui/button";
+import { ExporterModel } from "@renderer/lib/api/exporter";
 
 export function WorkspaceSettings() {
     return (
@@ -13,8 +14,9 @@ export function WorkspaceSettings() {
                     Export all notes as HTML
                 </span>
                 <FlexibleSpacer />
+                {/** Move this to a mutation for pending state */}
                 <Button
-                    disabled
+                    onClick={() => ExporterModel.exportAllAsHTML()}
                     variant={"secondary"}
                     className="flex-shrink-0"
                 >

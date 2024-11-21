@@ -18,4 +18,7 @@ export enum ChannelNames {
     IMPORT_HTML = "import-html",
     SHOW_APP_MENU = "show-app-menu",
     GET_APP_INFO = "get-app-info",
+    INIT_EXPORT_CACHE = "init-export-cache",
+    PUSH_EXPORT_DOCUMENT = "push-export-document",
+    FINISH_EXPORT = "finish-export",
 }

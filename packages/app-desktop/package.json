@@ -97,6 +97,7 @@
         "tslib": "^2.8.1",
         "typeorm": "^0.3.20",
         "use-debounce": "^10.0.4",
+        "zip-a-folder": "^3.1.8",
         "zustand": "^4.5.4"
     },
     "devDependencies": {

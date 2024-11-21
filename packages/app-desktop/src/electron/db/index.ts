@@ -1,14 +1,2 @@
-import { DataSource } from "typeorm";
-import { NoteEntity } from "./entity/note";
-import { join } from "node:path";
-import { app } from "electron";
-import { TodoEntity, TodoListEntity } from "./entity/todo";
-
-const dbPath = join(app.getPath("userData"), "data.db");
-
-export const AppDataSource = new DataSource({
-    type: "better-sqlite3",
-    database: dbPath,
-    entities: [NoteEntity, TodoEntity, TodoListEntity],
-    synchronize: true, // FIXME: REMOVE BEFORE RELEASE
-});
+export * from "./data-source";
+export * from "./actions";

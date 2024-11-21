@@ -19,6 +19,7 @@ import {
     setTrashStatus,
     updateNote,
 } from "./api/note";
+import { HTMLExporterAPI } from "./api/backup";
 import { readUserPrefs, writeUserPrefs } from "./api/settings";
 import { ChannelNames } from "./channels";
 import os from "os";
@@ -138,3 +139,17 @@ ipcMain.handle(ChannelNames.GET_APP_INFO, () => {
     };
     return info;
 });
+
+ipcMain.handle(ChannelNames.INIT_EXPORT_CACHE, async () => {
+    await HTMLExporterAPI.initializeExporterCache();
+});
+
+ipcMain.handle(
+    ChannelNames.PUSH_EXPORT_DOCUMENT,
+    (_event, filename: string, content: string) =>
+        HTMLExporterAPI.pushToExporterCache(filename, content),
+);
+
+ipcMain.handle(ChannelNames.FINISH_EXPORT, () =>
+    HTMLExporterAPI.finishExport(),
+);

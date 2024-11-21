@@ -1,10 +1,8 @@
 import { is } from "@electron-toolkit/utils";
 import { app, BrowserWindow, shell } from "electron";
 import log from "electron-log/main.js";
-import { createRequire } from "node:module";
 import path, { join } from "node:path";
 import "reflect-metadata";
-import { readUserPrefs } from "./api/settings";
 import { AppDataSource } from "./db";
 import "./ipc";
 import { initAppMenu } from "./menu";
@@ -12,11 +10,14 @@ import { initAppMenu } from "./menu";
     REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";*/
 import { fileURLToPath } from "node:url";
+import { CACHE_DIR } from "./lib/paths";
 
 log.initialize();
 /*const require = createRequire(import.meta.url);*/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+console.log(CACHE_DIR);
 
 let win: BrowserWindow | null;
 

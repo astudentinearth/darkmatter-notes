@@ -53,6 +53,7 @@ export default function FontSettings() {
         >
             <h1 className="text-lg font-semibold text-foreground/75">Fonts</h1>
             <hr className="border-foreground/25" />
+            {/* TODO: Switch this with a grid layout. */}
             <div className="flex flex-row gap-2 justify-items-center">
                 <Label
                     htmlFor="ui-font-input"

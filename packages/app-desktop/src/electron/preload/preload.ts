@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import { Note, NoteExportType } from "@darkwrite/common";
+import { Note, NoteExportType, NotePartial } from "@darkwrite/common";
 import { UserSettings } from "@darkwrite/common";
 import { contextBridge, ipcRenderer } from "electron";
 import { ChannelNames } from "../channels";
@@ -17,7 +17,7 @@ contextBridge.exposeInMainWorld("api", {
             ipcRenderer.invoke(ChannelNames.DELETE_NOTE, id),
         move: (sourceID: string, destID: string | undefined) =>
             ipcRenderer.invoke(ChannelNames.MOVE_NOTE, sourceID, destID),
-        update: (note: Partial<Note>) =>
+        update: (note: NotePartial) =>
             ipcRenderer.invoke(ChannelNames.UPDATE_NOTE, note),
         getAll: () => ipcRenderer.invoke(ChannelNames.GET_ALL_NOTES),
         setTrashStatus: (id: string, state: boolean) =>

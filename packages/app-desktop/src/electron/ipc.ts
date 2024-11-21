@@ -2,6 +2,7 @@ import {
     DarkwriteDesktopClientInfo,
     Note,
     NoteExportType,
+    NotePartial,
     UserSettings,
 } from "@darkwrite/common";
 import { app, ipcMain } from "electron";
@@ -55,7 +56,7 @@ ipcMain.handle(
     },
 );
 
-ipcMain.handle(ChannelNames.UPDATE_NOTE, async (_event, note: Note) => {
+ipcMain.handle(ChannelNames.UPDATE_NOTE, async (_event, note: NotePartial) => {
     await updateNote(note);
 });
 

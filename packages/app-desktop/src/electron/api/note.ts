@@ -1,14 +1,10 @@
-import { Note } from "@darkwrite/common";
+import { Note, NotePartial } from "@darkwrite/common";
 import log from "electron-log";
 import fse from "fs-extra";
-import { randomUUID } from "node:crypto";
-import { join } from "node:path";
-import { AppDataSource } from "../db";
+import { AppDataSource, DB } from "../db";
 import { NoteEntity } from "../db/entity/note";
-import { NOTE_CONTENTS_DIR } from "../lib/paths";
+import { getNotePath } from "../lib/paths";
 import { isNodeError } from "../util";
-
-const notesDir = NOTE_CONTENTS_DIR;
 
 /**
  * Creates a new note by creating a database entry and a JSON file. A randomly generated UUID is assigned.
@@ -17,18 +13,9 @@ const notesDir = NOTE_CONTENTS_DIR;
  */
 export async function createNote(title: string, parent?: string) {
     try {
-        const note = new NoteEntity();
-        note.title = title;
-        note.created = new Date();
-        note.modified = new Date();
-        note.parentID = parent;
-        note.isFavorite = false;
-        note.isTrashed = false;
-        note.icon = "1f4c4";
-        note.id = randomUUID();
-        const filename = join(notesDir, `${note.id}.json`);
+        const note = await DB.create(title, parent);
+        const filename = getNotePath(note.id);
         await fse.ensureFile(filename);
-        await AppDataSource.manager.save(note);
         return note;
     } catch (error) {
         if (error instanceof Error) log.error(error.message);
@@ -43,7 +30,7 @@ export async function createNote(title: string, parent?: string) {
  */
 export async function setNoteContents(id: string, content: string) {
     try {
-        const filename = join(notesDir, `${id}.json`);
+        const filename = getNotePath(id);
         await fse.ensureFile(filename);
         await fse.writeFile(filename, content);
     } catch (error) {
@@ -58,7 +45,7 @@ export async function setNoteContents(id: string, content: string) {
  */
 export async function getNoteContents(id: string) {
     try {
-        const filename = join(notesDir, `${id}.json`);
+        const filename = getNotePath(id);
         const data = await fse.readFile(filename);
         return data.toString("utf8");
     } catch (error) {
@@ -72,7 +59,7 @@ export async function getNoteContents(id: string) {
             console.log(
                 error instanceof Error
                     ? error.message
-                    : "Unknowm error in main/api/note/getNoteContets",
+                    : "Unknown error in main/api/note/getNoteContets",
             );
         }
         return null;
@@ -85,7 +72,7 @@ export async function getNoteContents(id: string) {
  */
 export async function deleteNote(id: string) {
     try {
-        const filename = join(notesDir, `${id}.json`);
+        const filename = getNotePath(id);
         await fse.remove(filename);
         await AppDataSource.createQueryBuilder()
             .delete()
@@ -121,12 +108,12 @@ export async function moveNote(sourceID: string, destID: string | undefined) {
         if (destID == null && source != null) {
             // We are moving the note to the top level
             source.parentID = null; // set parent to null
-            await AppDataSource.getRepository(NoteEntity).save(source);
+            await DB.update(source);
             return;
         }
         if (source == null) return;
         source.parentID = destID;
-        await AppDataSource.getRepository(NoteEntity).save(source);
+        await DB.update(source);
     } catch (error) {
         if (error instanceof Error) log.error(error.message);
     }
@@ -136,11 +123,9 @@ export async function moveNote(sourceID: string, destID: string | undefined) {
  * Updates the database entry for given note
  * @param note
  */
-export async function updateNote(note: Partial<Note>) {
+export async function updateNote(note: NotePartial) {
     try {
-        if (!note.id)
-            throw new Error("No identifier was passed to updateNote.");
-        await AppDataSource.getRepository(NoteEntity).save(note);
+        await DB.update(note);
     } catch (error) {
         if (error instanceof Error) log.error(error.message);
     }
@@ -152,9 +137,7 @@ export async function updateNote(note: Partial<Note>) {
  */
 export async function getAllNotes(): Promise<Note[] | null> {
     try {
-        const notes = await AppDataSource.getRepository(NoteEntity).find({
-            order: { index: "ASC" },
-        });
+        const notes = await DB.getAllNotes();
         return notes;
     } catch (error) {
         if (error instanceof Error) log.error(error.message);
@@ -169,11 +152,7 @@ export async function getAllNotes(): Promise<Note[] | null> {
  */
 export async function setTrashStatus(id: string, state: boolean) {
     try {
-        await AppDataSource.getRepository(NoteEntity)
-            .createQueryBuilder("note")
-            .where("id = :id", { id })
-            .update({ isTrashed: state })
-            .execute();
+        await DB.update({ id, isTrashed: state });
     } catch (error) {
         if (error instanceof Error) log.error(error.message);
     }

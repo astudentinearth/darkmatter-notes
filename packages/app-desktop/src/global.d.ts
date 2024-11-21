@@ -2,6 +2,7 @@ import {
     DarkwriteDesktopClientInfo,
     Note,
     NoteExportType,
+    NotePartial,
 } from "@darkwrite/common";
 import { UserSettings } from "@darkwrite/common";
 import { ElectronAPI } from "@electron-toolkit/preload";
@@ -81,7 +82,7 @@ declare global {
              * Performs a database update for the given note. All fields are updated with the passed parameter.
              * @param note The partial note object to update with. An ID must be provided.
              */
-            update: (note: Partial<Note>) => Promise<void>;
+            update: (note: NotePartial) => Promise<void>;
             /**
              * Gets all notes from the database.
              * @returns an array of notes.

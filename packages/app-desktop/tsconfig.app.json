@@ -5,7 +5,9 @@
     "src/**/*",
     "src/**/*.tsx",
     "src/**/*.d.ts",
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "src/api.d.ts",
+    "src/global.d.ts"
   ],
   "exclude": [
     "src/electron/**/*"

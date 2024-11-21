@@ -3,8 +3,9 @@ import { Note, NoteExportType, NotePartial } from "@darkwrite/common";
 import { UserSettings } from "@darkwrite/common";
 import { contextBridge, ipcRenderer } from "electron";
 import { ChannelNames } from "../channels";
+import { DarkwriteElectronAPI } from "../../api";
 
-contextBridge.exposeInMainWorld("api", {
+const darkwriteAPI: DarkwriteElectronAPI = {
     showAppMenu: () => ipcRenderer.invoke("show-app-menu"),
     note: {
         create: (title: string, parent?: string) =>
@@ -50,4 +51,9 @@ contextBridge.exposeInMainWorld("api", {
         finish: () => ipcRenderer.invoke(ChannelNames.FINISH_EXPORT),
     },
     getClientInfo: () => ipcRenderer.invoke(ChannelNames.GET_APP_INFO),
-});
+    backup: {
+        backupUserData: () => ipcRenderer.invoke(ChannelNames.BACKUP_USER_DATA),
+    },
+};
+
+contextBridge.exposeInMainWorld("api", darkwriteAPI);

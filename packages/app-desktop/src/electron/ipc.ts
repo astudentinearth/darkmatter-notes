@@ -20,7 +20,7 @@ import {
     setTrashStatus,
     updateNote,
 } from "./api/note";
-import { HTMLExporterAPI } from "./api/backup";
+import { BackupAPI, HTMLExporterAPI } from "./api/backup";
 import { readUserPrefs, writeUserPrefs } from "./api/settings";
 import { ChannelNames } from "./channels";
 import os from "os";
@@ -154,3 +154,5 @@ ipcMain.handle(
 ipcMain.handle(ChannelNames.FINISH_EXPORT, () =>
     HTMLExporterAPI.finishExport(),
 );
+
+ipcMain.handle(ChannelNames.BACKUP_USER_DATA, () => BackupAPI.backup());

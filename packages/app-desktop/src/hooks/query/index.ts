@@ -8,3 +8,4 @@ export * from "./use-move-note";
 export * from "./use-note-contents-mutation";
 export * from "./use-note-contents-query";
 export * from "./use-workspace-export";
+export * from "./use-backup";

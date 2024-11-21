@@ -21,4 +21,5 @@ export enum ChannelNames {
     INIT_EXPORT_CACHE = "init-export-cache",
     PUSH_EXPORT_DOCUMENT = "push-export-document",
     FINISH_EXPORT = "finish-export",
+    BACKUP_USER_DATA = "backup-user-data",
 }

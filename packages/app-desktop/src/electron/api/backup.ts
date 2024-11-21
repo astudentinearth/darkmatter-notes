@@ -2,8 +2,15 @@ import log from "electron-log";
 import fse from "fs-extra";
 import { join } from "node:path";
 import { zip } from "zip-a-folder";
-import { EXPORTER_CACHE_DIR } from "../lib/paths";
+import {
+    BACKUP_CACHE_DIR,
+    DB_PATH,
+    EXPORTER_CACHE_DIR,
+    NOTE_CONTENTS_DIR,
+    SETTINGS_PATH,
+} from "../lib/paths";
 import { saveFile } from "./dialog";
+import { rmIfExists } from "../lib/fs";
 
 /**
  * APIs to perform a complete workspace export.
@@ -15,12 +22,7 @@ import { saveFile } from "./dialog";
 export const HTMLExporterAPI = {
     async initializeExporterCache() {
         try {
-            if (await fse.pathExists(EXPORTER_CACHE_DIR)) {
-                await fse.rm(EXPORTER_CACHE_DIR, {
-                    recursive: true,
-                    force: true,
-                });
-            }
+            await rmIfExists(EXPORTER_CACHE_DIR);
             await fse.ensureDir(EXPORTER_CACHE_DIR);
         } catch (error) {
             if (error instanceof Error) log.error(error.message);
@@ -49,6 +51,35 @@ export const HTMLExporterAPI = {
             if (canceled || !path) return;
             await zip(EXPORTER_CACHE_DIR, path);
             await fse.rm(EXPORTER_CACHE_DIR, { recursive: true, force: true });
+        } catch (error) {
+            if (error instanceof Error) log.error(error.message);
+        }
+    },
+};
+
+export const BackupAPI = {
+    async backup() {
+        try {
+            // initialize empty cache directory
+            await rmIfExists(BACKUP_CACHE_DIR);
+            await fse.ensureDir(BACKUP_CACHE_DIR);
+
+            // copy user data
+            await fse.copy(DB_PATH, join(BACKUP_CACHE_DIR, "data.db"));
+            await fse.copy(NOTE_CONTENTS_DIR, join(BACKUP_CACHE_DIR, "notes/"));
+            await fse.copy(
+                SETTINGS_PATH,
+                join(BACKUP_CACHE_DIR, "settings.json"),
+            );
+
+            const saveResult = await saveFile({
+                buttonLabel: "Export",
+                title: "Backup your data",
+                defaultPath: "darkwrite-backup.zip",
+            });
+            if (saveResult.canceled || !saveResult.path) return;
+            await zip(BACKUP_CACHE_DIR, saveResult.path);
+            await fse.rm(BACKUP_CACHE_DIR, { recursive: true, force: true });
         } catch (error) {
             if (error instanceof Error) log.error(error.message);
         }

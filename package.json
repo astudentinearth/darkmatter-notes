@@ -3,7 +3,7 @@
   "version": "0.1.0-alpha.1",
   "description": "",
   "scripts": {
-    "test:all": "yarn worksapces foreach test",
+    "test:all": "yarn workspaces foreach -A run test",
     "coverage:all": "pnpm -r test:coverage",
     "dev": "concurrently \" yarn workspace @darkwrite/common watch \"  \" yarn workspace @darkwrite/app-desktop dev  \"",
     "build:desktop": "yarn workspace @darkwrite/app-desktop build",

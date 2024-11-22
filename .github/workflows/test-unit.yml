@@ -3,6 +3,13 @@ on:
     push:
         branches:
             - dev
+        paths:
+            - "packages/*/src/**/*"
+            - "yarn.lock"
+            - "package.json"
+            - "packages/*/package.json"
+            - "!*.md"
+            - "./**/*.md"
 
 env:
     CI: false

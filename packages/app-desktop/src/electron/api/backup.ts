@@ -3,17 +3,16 @@ import log from "electron-log";
 import extract from "extract-zip";
 import fse from "fs-extra";
 import { join } from "node:path";
+import os from "os";
 import { zip } from "zip-a-folder";
 import { DB } from "../db";
 import { rmIfExists } from "../lib/fs";
 import {
     BACKUP_CACHE_DIR,
     DATA_DIR,
-    DB_PATH,
+    DATA_SNAPSHOT_DIR,
     EXPORTER_CACHE_DIR,
-    NOTE_CONTENTS_DIR,
     RESTORE_CACHE_DIR,
-    SETTINGS_PATH,
 } from "../lib/paths";
 import { saveFile } from "./dialog";
 
@@ -70,17 +69,18 @@ export const BackupAPI = {
             await fse.ensureDir(BACKUP_CACHE_DIR);
 
             // copy user data
-            await fse.copy(DB_PATH, join(BACKUP_CACHE_DIR, "data.db"));
-            await fse.copy(NOTE_CONTENTS_DIR, join(BACKUP_CACHE_DIR, "notes/"));
-            await fse.copy(
-                SETTINGS_PATH,
-                join(BACKUP_CACHE_DIR, "settings.json"),
-            );
+            await fse.copy(DATA_DIR, BACKUP_CACHE_DIR);
+            // await fse.copy(DB_PATH, join(BACKUP_CACHE_DIR, "data.db"));
+            // await fse.copy(NOTE_CONTENTS_DIR, join(BACKUP_CACHE_DIR, "notes/"));
+            // await fse.copy(
+            //     SETTINGS_PATH,
+            //     join(BACKUP_CACHE_DIR, "settings.json"),
+            // );
 
             const saveResult = await saveFile({
                 buttonLabel: "Export",
                 title: "Backup your data",
-                defaultPath: "darkwrite-backup.zip",
+                defaultPath: `darkwrite-backup-${new Date().toDateString()}.zip`,
             });
             if (saveResult.canceled || !saveResult.path) return;
             await zip(BACKUP_CACHE_DIR, saveResult.path);
@@ -90,9 +90,9 @@ export const BackupAPI = {
         }
     },
     async restore(archivePath: string) {
-        const dbBackupPath = join(DATA_DIR, "data.db.old");
-        const notesBackupPath = join(DATA_DIR, "notes_old");
-        const settingsBackupPath = join(DATA_DIR, "settings.json.old");
+        // const dbBackupPath = join(DATA_DIR, "data.db.old");
+        // const notesBackupPath = join(DATA_DIR, "notes_old");
+        // const settingsBackupPath = join(DATA_DIR, "settings.json.old");
         let didRename = false;
         await DB.disconnect();
         try {
@@ -107,33 +107,41 @@ export const BackupAPI = {
                     "This does not seem to be a Darkwrite backup archive.",
                 );
 
-            // before we do anything else, we will rename the old files so we can rollback if something goes wrong.
+            // before we do anything else, we will rename the old directory so we can rollback if something goes wrong.
             try {
-                await fse.rename(DB_PATH, dbBackupPath);
-                await fse.rename(NOTE_CONTENTS_DIR, notesBackupPath);
-                await fse.rename(SETTINGS_PATH, settingsBackupPath);
+                await fse.move(DATA_DIR, DATA_SNAPSHOT_DIR, {
+                    overwrite: true,
+                });
+                // await fse.rename(DB_PATH, dbBackupPath);
+                // await fse.rename(NOTE_CONTENTS_DIR, notesBackupPath);
+                // await fse.rename(SETTINGS_PATH, settingsBackupPath);
             } catch (error) {
-                /*empty */
+                /*empty*/
             }
             didRename = true;
 
-            await fse.copy(join(RESTORE_CACHE_DIR, "data.db"), DB_PATH, {
-                overwrite: true,
-            });
-            await fse.copy(
-                join(RESTORE_CACHE_DIR, "settings.json"),
-                SETTINGS_PATH,
-                { overwrite: true },
-            );
-            await fse.copy(
-                join(RESTORE_CACHE_DIR, "notes"),
-                NOTE_CONTENTS_DIR,
-                { overwrite: true },
-            );
+            await fse.ensureDir(DATA_DIR);
+            await fse.copy(RESTORE_CACHE_DIR, DATA_DIR, { overwrite: true });
+
+            // await fse.copy(join(RESTORE_CACHE_DIR, "data.db"), DB_PATH, {
+            //     overwrite: true,
+            // });
+            // await fse.copy(
+            //     join(RESTORE_CACHE_DIR, "settings.json"),
+            //     SETTINGS_PATH,
+            //     { overwrite: true },
+            // );
+            // await fse.copy(
+            //     join(RESTORE_CACHE_DIR, "notes"),
+            //     NOTE_CONTENTS_DIR,
+            //     { overwrite: true },
+            // );
 
             dialog.showMessageBoxSync({
                 message:
-                    "We restored your backup, we will relaunch Darkwrite for the changes to take effect.",
+                    os.type() === "Linux"
+                        ? "We restored your backup. Darkwrite needs to relaunch for the changes to take effect."
+                        : "We restored your backup, we will relaunch Darkwrite for the changes to take effect.",
             });
             app.relaunch();
             app.exit();
@@ -141,9 +149,12 @@ export const BackupAPI = {
             log.error("!!! Restore failed. Rolling back...");
             if (error instanceof Error) log.error(error.message);
             if (didRename) {
-                await fse.rename(dbBackupPath, DB_PATH);
-                await fse.rename(notesBackupPath, NOTE_CONTENTS_DIR);
-                await fse.rename(settingsBackupPath, SETTINGS_PATH);
+                await fse.move(DATA_SNAPSHOT_DIR, DATA_DIR, {
+                    overwrite: true,
+                });
+                // await fse.rename(dbBackupPath, DB_PATH);
+                // await fse.rename(notesBackupPath, NOTE_CONTENTS_DIR);
+                // await fse.rename(settingsBackupPath, SETTINGS_PATH);
             }
             await DB.init();
             dialog.showMessageBoxSync({

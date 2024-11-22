@@ -1,8 +1,18 @@
+import { is } from "@electron-toolkit/utils";
 import { app } from "electron";
 import { join } from "node:path";
 
-/** The user data directory, as defined by Electron. */
-export const DATA_DIR = app.getPath("userData");
+/** The folder to store Darkwrite's user data.
+ * It will point to `darkwrite-data/` on production and `darkwrite-data-nightly/` on development. */
+export const DATA_DIR = join(
+    app.getPath("userData"),
+    is.dev ? "darkwrite-data-nightly/" : "darkwrite-data/",
+);
+/** The folder to rollback from if a restore operation fails. */
+export const DATA_SNAPSHOT_DIR = join(
+    app.getPath("userData"),
+    "darkwrite-data-old",
+);
 /** The directory in which note contents are stored. */
 export const NOTE_CONTENTS_DIR = join(DATA_DIR, "notes/");
 /** Path to the SQLite database which holds the note entries. */

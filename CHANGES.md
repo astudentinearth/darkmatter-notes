@@ -1,3 +1,18 @@
+# 0.2.0-alpha.1
+
+## ⚠️ Breaking changes
+
+-   Directories in which application data is stored has changed. App data will be stored in a subdirectory named `darkwrite-data` when running production builds, and `darkwrite-data-nightly` when running development builds. If you are upgrading from 0.1.0-alpha.x, navigate to Darkwrite's data directory (you can use the application menu for this), move `data.db`, `settings.json` and `notes/` into `darkwrite-data/`.
+-   Alternatively, create a backup before upgrading and restore from the backup after upgrading.
+
+## ✨ Improvements and fixes
+
+-   New backups now include a date in their file names by default.
+
+## 🛠️ Technical changes
+
+-   App data is now stored in an isolated folder, which opens the door to safe development sessions without risking data and simplifies the code responsible from backups.
+
 # 0.1.0-alpha.2
 
 ## Features

@@ -1,0 +1,27 @@
+name: vitest workflow
+on:
+    push:
+        branches:
+            - dev
+
+env:
+    CI: false
+    ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        name: unit tests
+        steps:
+            - name: Install node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Install dependencies
+              run: yarn
+
+            - name: Run tests
+              run: yarn test:all

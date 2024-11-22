@@ -9,9 +9,9 @@
    id="svg5"
    inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
    sodipodi:docname="darkwrite_icon.svg"
-   inkscape:export-filename="icon64.png"
-   inkscape:export-xdpi="192"
-   inkscape:export-ydpi="192"
+   inkscape:export-filename="icon512 final.png"
+   inkscape:export-xdpi="1536"
+   inkscape:export-ydpi="1536"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,21 +27,21 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="px"
-     showgrid="true"
+     showgrid="false"
      showguides="false"
      inkscape:zoom="12.127117"
-     inkscape:cx="3.8343821"
-     inkscape:cy="21.893085"
+     inkscape:cx="3.9993017"
+     inkscape:cy="12.410204"
      inkscape:window-width="1920"
      inkscape:window-height="1009"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g1">
+     inkscape:current-layer="layer1">
     <inkscape:grid
        type="xygrid"
        id="grid9"
-       visible="true"
+       visible="false"
        spacingx="1"
        spacingy="1"
        originx="-35"
@@ -54,11 +54,11 @@
        inkscape:collect="always"
        id="linearGradient4587">
       <stop
-         style="stop-color:#080816;stop-opacity:1;"
+         style="stop-color:#05050b;stop-opacity:1;"
          offset="0"
          id="stop4583" />
       <stop
-         style="stop-color:#474766;stop-opacity:1;"
+         style="stop-color:#4536a1;stop-opacity:1;"
          offset="1"
          id="stop4585" />
     </linearGradient>

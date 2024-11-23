@@ -19,6 +19,7 @@ export type Theme = {
     disabled: string;
     border: string;
     focusRing: string;
+    star: string;
 };
 
 export function isTheme(maybeTheme: unknown): maybeTheme is Theme {

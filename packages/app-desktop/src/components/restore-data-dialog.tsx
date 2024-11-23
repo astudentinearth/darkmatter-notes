@@ -43,12 +43,22 @@ export function RestoreDataDialog() {
                         be merged.
                     </strong>
                 </AlertDialogDescription>
-                <Button onClick={chooseFile} variant={"outline"}>
+                <Button
+                    onClick={chooseFile}
+                    variant={"outline"}
+                    className={cn(
+                        "overflow-hidden",
+                        path &&
+                            "grid grid-cols-[18px_auto] gap-2 text-start justify-start",
+                    )}
+                >
                     {path ? (
-                        <span className="flex gap-2 items-center">
+                        <>
                             <FileArchive size={18} />
-                            {path}
-                        </span>
+                            <span className="w-full whitespace-nowrap overflow-hidden text-ellipsis">
+                                {path}
+                            </span>
+                        </>
                     ) : (
                         "Choose file"
                     )}

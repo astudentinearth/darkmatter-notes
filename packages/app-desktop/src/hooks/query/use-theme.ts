@@ -6,6 +6,7 @@ export const useTheme = () => {
     const query = useQuery({
         queryKey: ["themes-query"],
         queryFn: ThemesModel.getUserThemes,
+        refetchOnWindowFocus: false,
     });
     const themes = DEFAULT_THEMES.concat(query.data ?? []);
     return { themes, query };

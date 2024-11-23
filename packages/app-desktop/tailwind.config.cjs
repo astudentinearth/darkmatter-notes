@@ -56,7 +56,8 @@ module.exports = {
           "1": "hsl(var(--view-1))",
           "2": "hsl(var(--view-2))"
         },
-        disabled: "hsl(var(--disabled))"
+        disabled: "hsl(var(--disabled))",
+        star: "hsl(var(--star))"
       },
       borderRadius: {
         lg: "var(--radius)",

@@ -17,9 +17,7 @@ export function FavoriteActionButton() {
         >
             <Star
                 size={20}
-                className={cn(
-                    targetNote?.isFavorite && "text-yellow-300 fill-yellow-300",
-                )}
+                className={cn(targetNote?.isFavorite && "text-star fill-star")}
             />
         </HeaderbarButton>
     );

@@ -8,11 +8,15 @@
 ## 🌟 Features
 
 -   Import and use custom themes
+-   New dark themes: Catppuccin Macchiato, Frappé
+-   New light themes: Catppuccin Latte (experimental)
+-   Themes can now define the color for favorite stars
 
 ## ✨ Improvements and fixes
 
 -   New backups now include a date in their file names by default.
 -   Tweaked emoji picker styles to better follow theme preferences
+-   Fixed overflow of file chooser button in restore dialog when a long path is chosen
 
 ## 🛠️ Technical changes
 

@@ -41,6 +41,7 @@ export function ThemeHandler() {
         setGlobalStyle("--disabled", theme.disabled);
         setGlobalStyle("--border", theme.border);
         setGlobalStyle("--ring", theme.focusRing);
+        setGlobalStyle("--star", theme.star);
     }, [fonts, theme, accentColor]);
     return <></>;
 }

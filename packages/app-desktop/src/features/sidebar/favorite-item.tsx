@@ -74,7 +74,7 @@ export function FavoriteItem({ note, index }: { note: Note; index: number }) {
                     <Star
                         className={cn(
                             note.isFavorite
-                                ? "text-yellow-300 fill-yellow-300"
+                                ? "text-star fill-star"
                                 : "opacity-75",
                         )}
                         size={20}

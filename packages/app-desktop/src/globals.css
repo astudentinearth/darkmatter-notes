@@ -40,6 +40,8 @@
 
         --radius: 0.5rem;
 
+        --star: 50 97% 63%;
+
         /* generic fonts until its loaded from settings */
         --darkwrite-sans: "Segoe UI", "Noto Sans", "Roboto", sans-serif;
         --darkwrite-serif: "Times New Roman", "Noto Serif", "Liberation Serif",

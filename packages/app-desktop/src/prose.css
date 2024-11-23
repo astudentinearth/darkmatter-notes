@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 .ProseMirror {
-    @apply px-1 pt-2 pb-16 min-h-96;
+    @apply px-1 pt-2 pb-16 min-h-96 text-foreground;
 }
 
 .ProseMirror .is-editor-empty:first-child::before {
@@ -83,8 +83,8 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
     height: 1.2em;
     position: relative;
     top: 8px;
-    border: 1px solid white; /* TODO: Use custom foreground color here: hsl(var(--border)) */
-    border-radius: 2px;
+    border: 1px solid hsl(var(--foreground)); /* TODO: Use custom foreground color here: hsl(var(--border)) */
+    border-radius: 4px;
     margin-right: 0.05rem;
     display: grid;
     place-content: center;
@@ -118,7 +118,7 @@ ul[data-type="taskList"] li {
 }
 
 ul[data-type="taskList"] li[data-checked="true"] > div > p {
-    color: var(--muted-foreground);
+    color: hsl(var(--muted-foreground));
     text-decoration: line-through;
     text-decoration-thickness: 2px;
 }
@@ -211,11 +211,15 @@ div[data-youtube-video] > iframe {
 
 /* CSS for bold coloring and highlighting issue*/
 span[style] > strong {
-    color: inherit;
+    color: inherit !important;
 }
 
 mark[style] > strong {
-    color: inherit;
+    color: inherit !important;
+}
+
+strong {
+    color: inherit !important;
 }
 
 #slash-command::-webkit-scrollbar {

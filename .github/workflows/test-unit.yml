@@ -9,7 +9,7 @@ on:
             - "package.json"
             - "packages/*/package.json"
             - "!*.md"
-            - "./**/*.md"
+            - "!./**/*.md"
 
 env:
     CI: false

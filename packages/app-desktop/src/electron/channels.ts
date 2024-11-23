@@ -24,4 +24,6 @@ export enum ChannelNames {
     BACKUP_USER_DATA = "backup-user-data",
     OPEN_BACKUP = "choose-backup-file",
     RESTORE_BACKUP = "restore-user-data",
+    IMPORT_THEME = "import-theme",
+    LOAD_THEMES = "load-themes",
 }

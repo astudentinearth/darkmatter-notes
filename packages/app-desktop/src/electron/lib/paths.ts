@@ -34,3 +34,5 @@ export const EXPORTER_CACHE_DIR = join(CACHE_DIR, "dw-html-export/");
 export const BACKUP_CACHE_DIR = join(CACHE_DIR, "dw-backup");
 /** Cache folder to use when extracting Darkwrite backups */
 export const RESTORE_CACHE_DIR = join(CACHE_DIR, "dw-restore");
+/** Directory to store user defined themes */
+export const THEME_DIR = join(DATA_DIR, "themes/");

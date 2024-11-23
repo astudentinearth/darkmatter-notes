@@ -1,6 +1,7 @@
 export type Theme = {
     id: string;
     name: string;
+    mode: "light" | "dark";
     background1: string;
     background2: string;
     background3: string;
@@ -19,3 +20,14 @@ export type Theme = {
     border: string;
     focusRing: string;
 };
+
+export function isTheme(maybeTheme: unknown): maybeTheme is Theme {
+    if (typeof maybeTheme !== "object") return false;
+    if (!("id" in maybeTheme && "name" in maybeTheme)) return false;
+    if (
+        typeof maybeTheme.id !== "string" ||
+        typeof maybeTheme.name !== "string"
+    )
+        return false;
+    return true;
+}

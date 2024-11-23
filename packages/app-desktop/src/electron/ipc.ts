@@ -24,6 +24,7 @@ import { BackupAPI, HTMLExporterAPI } from "./api/backup";
 import { readUserPrefs, writeUserPrefs } from "./api/settings";
 import { ChannelNames } from "./channels";
 import os from "os";
+import { ThemeAPI } from "./api/theme";
 
 // notes
 
@@ -169,3 +170,6 @@ ipcMain.handle(ChannelNames.OPEN_BACKUP, async () => {
 ipcMain.handle(ChannelNames.RESTORE_BACKUP, async (_event, archive: string) => {
     await BackupAPI.restore(archive);
 });
+
+ipcMain.handle(ChannelNames.IMPORT_THEME, () => ThemeAPI.import());
+ipcMain.handle(ChannelNames.LOAD_THEMES, () => ThemeAPI.load());

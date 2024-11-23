@@ -19,4 +19,5 @@ export const DarkwriteDefault: Theme = {
     disabled: "0 0% 22%",
     border: "0 0% 26%",
     focusRing: "212.7 26.8% 50%",
+    mode: "dark",
 };

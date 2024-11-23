@@ -19,4 +19,5 @@ export const DarkwriteDim: Theme = {
     disabled: "0 0% 16%",
     border: "0 0% 14%",
     focusRing: "212.7 26.8% 50%",
+    mode: "dark",
 };

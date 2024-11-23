@@ -43,4 +43,5 @@ export const CatppuccinMocha: Theme = {
     disabled: "233 12% 39%",
     border: "231 11% 47%",
     focusRing: "232 97% 85%",
+    mode: "dark",
 };

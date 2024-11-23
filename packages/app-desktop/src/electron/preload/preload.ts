@@ -57,6 +57,10 @@ const darkwriteAPI: DarkwriteElectronAPI = {
         restore: (path: string) =>
             ipcRenderer.invoke(ChannelNames.RESTORE_BACKUP, path),
     },
+    theme: {
+        import: () => ipcRenderer.invoke(ChannelNames.IMPORT_THEME),
+        load: () => ipcRenderer.invoke(ChannelNames.LOAD_THEMES),
+    },
 };
 
 contextBridge.exposeInMainWorld("api", darkwriteAPI);

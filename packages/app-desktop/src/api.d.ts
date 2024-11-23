@@ -3,6 +3,7 @@ import {
     Note,
     NoteExportType,
     NotePartial,
+    Theme,
 } from "@darkwrite/common";
 import { UserSettings } from "@darkwrite/common";
 
@@ -99,6 +100,14 @@ export interface DarkwriteElectronAPI {
         backupUserData: () => Promise<void>;
         openBackup: () => Promise<string | null>;
         restore: (archivePath: string) => Promise<void>;
+    };
+    theme: {
+        /** Prompts the user to choose a theme file and imports it if the theme is valid. */
+        import: () => Promise<void>;
+        /** Reads the contents of themes folder and loads all of them.
+         * @returns all themes installed in current profile.
+         */
+        load: () => Promise<Theme[]>;
     };
     getClientInfo: () => Promise<DarkwriteDesktopClientInfo>;
 }

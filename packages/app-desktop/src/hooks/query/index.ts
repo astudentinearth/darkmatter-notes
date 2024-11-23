@@ -9,3 +9,4 @@ export * from "./use-note-contents-mutation";
 export * from "./use-note-contents-query";
 export * from "./use-workspace-export";
 export * from "./use-backup";
+export * from "./use-theme";

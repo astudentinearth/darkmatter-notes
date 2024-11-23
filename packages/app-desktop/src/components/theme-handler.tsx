@@ -1,12 +1,15 @@
 import { useSettingsStore } from "@renderer/context/settings-store";
-import { DEFAULT_THEMES } from "@renderer/lib/themes";
+import { useTheme } from "@renderer/hooks/query";
+import { DarkwriteDefault } from "@renderer/lib/themes/darkwrite-default";
 import { hexToHslVariable, setGlobalStyle } from "@renderer/lib/utils";
 import { useEffect } from "react";
 
 export function ThemeHandler() {
     const fonts = useSettingsStore((s) => s.settings.fonts);
+    const { themes } = useTheme();
     const themeId = useSettingsStore((s) => s.settings.appearance.theme);
-    const theme = DEFAULT_THEMES.find((theme) => theme.id === themeId);
+    const theme =
+        themes.find((theme) => theme.id === themeId) ?? DarkwriteDefault;
     const accentColor = useSettingsStore(
         (s) => s.settings.appearance.accentColor,
     );

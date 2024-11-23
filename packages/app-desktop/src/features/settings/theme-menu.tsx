@@ -9,13 +9,14 @@ import {
     updateUserSettings,
     useSettingsStore,
 } from "@renderer/context/settings-store";
-import { DEFAULT_THEMES } from "@renderer/lib/themes";
+import { useTheme } from "@renderer/hooks/query";
 import { produce } from "immer";
 import { ChevronDown } from "lucide-react";
 
 export function ThemeMenu() {
     const themeId = useSettingsStore((s) => s.settings.appearance.theme);
-    const theme = DEFAULT_THEMES.find((n) => n.id === themeId);
+    const { themes } = useTheme();
+    const theme = themes.find((n) => n.id === themeId);
     const setTheme = (id: string) =>
         updateUserSettings((old) =>
             produce(old, (draft) => {
@@ -31,7 +32,7 @@ export function ThemeMenu() {
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="rounded-lg bg-view-2 p-1">
-                {DEFAULT_THEMES.map((theme) => (
+                {themes.map((theme) => (
                     <DropdownMenuItem
                         onSelect={() => setTheme(theme.id)}
                         key={theme.id}

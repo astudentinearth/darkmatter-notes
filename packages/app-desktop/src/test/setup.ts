@@ -33,6 +33,12 @@ vi.mock("@renderer/lib/api/backup.ts", () => ({
     },
 }));
 
+vi.mock("@renderer/lib/api/theme.ts", () => ({
+    BackupModel: {
+        backupData: vi.fn(),
+    },
+}));
+
 afterEach(() => {
     cleanup();
 });

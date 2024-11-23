@@ -3,6 +3,7 @@ import { useTheme } from "@renderer/hooks/query";
 import { DarkwriteDefault } from "@renderer/lib/themes/darkwrite-default";
 import { hexToHslVariable, setGlobalStyle } from "@renderer/lib/utils";
 import { useEffect } from "react";
+import { hsl } from "color-convert";
 
 export function ThemeHandler() {
     const fonts = useSettingsStore((s) => s.settings.fonts);
@@ -42,6 +43,18 @@ export function ThemeHandler() {
         setGlobalStyle("--border", theme.border);
         setGlobalStyle("--ring", theme.focusRing);
         setGlobalStyle("--star", theme.star);
+        if (window.api != null && window.api.setTitlebarSymbolColor != null) {
+            const fgHSLStr = theme.foreground.replace("%", "").split(" ");
+            if (fgHSLStr.length !== 3) return;
+            const fgHSL: [number, number, number] = [
+                parseFloat(fgHSLStr[0]),
+                parseFloat(fgHSLStr[1]),
+                parseFloat(fgHSLStr[2]),
+            ];
+            const fgHEX = hsl.hex(fgHSL);
+            console.log(fgHEX);
+            window.api.setTitlebarSymbolColor(`#${fgHEX}`, theme.mode);
+        }
     }, [fonts, theme, accentColor]);
     return <></>;
 }

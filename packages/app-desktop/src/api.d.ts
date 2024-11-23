@@ -110,4 +110,8 @@ export interface DarkwriteElectronAPI {
         load: () => Promise<Theme[]>;
     };
     getClientInfo: () => Promise<DarkwriteDesktopClientInfo>;
+    setTitlebarSymbolColor: (
+        symbolColor: string,
+        themeMode: "light" | "dark" | "system" = "system",
+    ) => Promise<void>;
 }

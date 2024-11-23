@@ -5,7 +5,7 @@ import {
     NotePartial,
     UserSettings,
 } from "@darkwrite/common";
-import { app, ipcMain } from "electron";
+import { app, BrowserWindow, ipcMain, nativeTheme } from "electron";
 import { readFile, writeFile } from "fs/promises";
 import { openFile, saveFile } from "./api/dialog";
 import {
@@ -173,3 +173,17 @@ ipcMain.handle(ChannelNames.RESTORE_BACKUP, async (_event, archive: string) => {
 
 ipcMain.handle(ChannelNames.IMPORT_THEME, () => ThemeAPI.import());
 ipcMain.handle(ChannelNames.LOAD_THEMES, () => ThemeAPI.load());
+ipcMain.handle(
+    ChannelNames.SET_TITLEBAR_SYMBOL_COLOR,
+    (
+        _event,
+        symbolColor: string,
+        themeMode: "light" | "dark" | "system" = "system",
+    ) => {
+        const windows = BrowserWindow.getAllWindows();
+        windows.forEach((window) => {
+            window.setTitleBarOverlay({ symbolColor });
+        });
+        nativeTheme.themeSource = themeMode;
+    },
+);

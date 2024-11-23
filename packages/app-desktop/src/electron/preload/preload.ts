@@ -61,6 +61,15 @@ const darkwriteAPI: DarkwriteElectronAPI = {
         import: () => ipcRenderer.invoke(ChannelNames.IMPORT_THEME),
         load: () => ipcRenderer.invoke(ChannelNames.LOAD_THEMES),
     },
+    setTitlebarSymbolColor: (
+        symbolColor: string,
+        themeMode: "light" | "dark" | "system" = "system",
+    ) =>
+        ipcRenderer.invoke(
+            ChannelNames.SET_TITLEBAR_SYMBOL_COLOR,
+            symbolColor,
+            themeMode,
+        ),
 };
 
 contextBridge.exposeInMainWorld("api", darkwriteAPI);

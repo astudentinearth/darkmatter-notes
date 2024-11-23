@@ -26,4 +26,5 @@ export enum ChannelNames {
     RESTORE_BACKUP = "restore-user-data",
     IMPORT_THEME = "import-theme",
     LOAD_THEMES = "load-themes",
+    SET_TITLEBAR_SYMBOL_COLOR = "set-titlebar-symbol-color",
 }

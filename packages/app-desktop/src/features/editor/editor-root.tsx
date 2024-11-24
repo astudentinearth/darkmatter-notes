@@ -34,15 +34,13 @@ export function EditorRoot() {
     }, [content, customizations]);
 
     useEffect(() => {
-        console.log("In debounce effect");
-        if (value === debouncedValue && !isFetching) {
-            console.log("Saving");
+        if (!isFetching) {
             updateContent({
                 contents: value,
                 customizations: _customizations ?? {},
             });
-            if (note?.value?.id)
-                update({ id: note?.value?.id, modified: new Date() });
+            //if (note?.value?.id)
+            //    upd({ id: note?.value?.id, modified: new Date() });
         }
         // Adding mutations will create a black hole
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -53,6 +51,14 @@ export function EditorRoot() {
         rootContainerRef.current.style.setProperty(
             "--dw-custom-font-name",
             _customizations.customFont ?? "",
+        );
+        rootContainerRef.current.style.setProperty(
+            "--dw-editor-background",
+            _customizations.backgroundColor || "transparent",
+        );
+        rootContainerRef.current.style.setProperty(
+            "--dw-editor-foreground",
+            _customizations.textColor || "hsl(var(--foreground))",
         );
     }, [_customizations]);
 
@@ -74,7 +80,7 @@ export function EditorRoot() {
             spellCheck={spellcheck}
             ref={rootContainerRef}
             className={cn(
-                "h-full w-full overflow-y-auto overflow-x-auto main-view flex flex-col items-center",
+                "h-full w-full overflow-y-auto overflow-x-auto main-view flex bg-[--dw-editor-background] text-[--dw-editor-foreground] flex-col items-center",
                 (_customizations.font == "sans" ||
                     _customizations.font == null) &&
                     "darkwrite-sans",
@@ -95,7 +101,7 @@ export function EditorRoot() {
                     update={update}
                 />
             ) : (
-                "Loading"
+                ""
             )}
             {content != null && !isError && !isFetching && note?.value && (
                 <TextEditor

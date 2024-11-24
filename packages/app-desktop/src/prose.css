@@ -8,7 +8,7 @@
 .ProseMirror .is-editor-empty:first-child::before {
     content: attr(data-placeholder);
     float: left;
-    color: hsl(var(--muted-foreground));
+    color: var(--dw-editor-foreground);
     pointer-events: none;
     height: 0;
     opacity: 0.5;
@@ -16,7 +16,7 @@
 .ProseMirror .is-empty::before {
     content: attr(data-placeholder);
     float: left;
-    color: hsl(var(--muted-foreground));
+    color: var(--dw-editor-foreground);
     pointer-events: none;
     height: 0;
     opacity: 0.5;
@@ -83,7 +83,7 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
     height: 1.2em;
     position: relative;
     top: 8px;
-    border: 1px solid hsl(var(--foreground)); /* TODO: Use custom foreground color here: hsl(var(--border)) */
+    border: 1px solid var(--dw-editor-foreground); /* TODO: Use custom foreground color here: hsl(var(--border)) */
     border-radius: 4px;
     margin-right: 0.05rem;
     display: grid;
@@ -104,6 +104,11 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
         background-size: 100%;
     }
 
+    &:checked {
+        background: hsl(var(--primary));
+        border-color: hsl(var(--primary));
+    }
+
     &:checked::before {
         transform: scale(1);
     }
@@ -118,7 +123,8 @@ ul[data-type="taskList"] li {
 }
 
 ul[data-type="taskList"] li[data-checked="true"] > div > p {
-    color: hsl(var(--muted-foreground));
+    color: var(--dw-editor-foreground);
+    opacity: 0.5;
     text-decoration: line-through;
     text-decoration-thickness: 2px;
 }
@@ -271,18 +277,26 @@ strong {
     opacity: 1;
 }
 
+.prose {
+    color: var(--dw-editor-foreground);
+}
+
 .ProseMirror h1 {
+    color: var(--dw-editor-foreground);
     @apply font-bold text-3xl m-0 mt-4;
 }
 
 .ProseMirror h2 {
+    color: var(--dw-editor-foreground);
     @apply font-bold text-2xl m-0 mt-4;
 }
 
 .ProseMirror h3 {
+    color: var(--dw-editor-foreground);
     @apply font-bold text-lg m-0 mt-4;
 }
 .ProseMirror h4 {
+    color: var(--dw-editor-foreground);
     @apply font-semibold text-lg m-0 mt-4;
 }
 

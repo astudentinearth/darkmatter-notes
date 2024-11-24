@@ -1,3 +1,17 @@
+# 0.2.0-alpha.2
+
+## 🌟 Features
+
+-   Added option to use native window frame
+-   Added option to use custom window frame on macOS as an experimental feature
+-   Notes can have custom background/text colors
+
+## ✨ Improvements and fixes
+
+-   Fixed potential performance issues when typing on the custom font box
+-   Reworked note customization UI so it's not obnoxious anymore
+-   Headings now follow the theme better
+
 # 0.2.0-alpha.1
 
 ## ⚠️ Breaking changes

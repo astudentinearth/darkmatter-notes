@@ -16,6 +16,8 @@ export interface NoteCustomizations {
     font?: "sans" | "serif" | "mono" | "custom";
     customFont?: string;
     largeText?: boolean;
+    backgroundColor?: string;
+    textColor?: string;
 }
 
 export type NotePartial = Partial<Note> & { id: string };
@@ -66,7 +68,7 @@ export const FontStyleClassNames = {
     sans: "darkwrite-sans",
     serif: "darkwrite-serif",
     mono: "darkwrite-mono",
-    custom: "darkwrite-custom-font"
+    custom: "darkwrite-custom-font",
 };
 
 export function findSubnotes(parentId: string, notes: Note[]) {

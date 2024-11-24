@@ -21,7 +21,7 @@ export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
         <EditorRoot>
             <EditorContent
                 className={cn(
-                    "p-0 px-16 rounded-xl w-full max-w-[--editor-max-width] flex-grow dark break-words transition-transform",
+                    "p-0 px-16 rounded-xl w-full max-w-[--editor-max-width] flex-grow break-words transition-transform",
                 )}
                 {...(initialValue && { initialContent: initialValue })}
                 extensions={extensions}
@@ -32,7 +32,7 @@ export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
                     },
                     attributes: {
                         class: cn(
-                            `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
+                            `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full text-[--dw-editor-foreground]`,
                         ),
                     },
                     handleDrop: (_view, event) => {

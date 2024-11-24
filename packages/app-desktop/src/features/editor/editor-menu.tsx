@@ -16,8 +16,11 @@ import { NotesModel } from "@renderer/lib/api/note";
 import { generateHTML } from "@tiptap/html";
 import { Copy, Download, Menu, Upload } from "lucide-react";
 import { defaultExtensions } from "./extensions/extensions";
+import { useState } from "react";
+import { cn } from "@renderer/lib/utils";
 
 export function EditorMenu() {
+    const [open, setOpen] = useState(false);
     const editor = useEditorState((state) => state.editorInstance);
     const activeNoteId = useNoteFromURL();
     const activeNote = useNoteByIdQuery(activeNoteId ?? "");
@@ -28,9 +31,11 @@ export function EditorMenu() {
     if (!activeNoteId) return <></>;
     return (
         <>
-            <DropdownMenu modal={false}>
+            <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
                 <DropdownMenuTrigger asChild>
-                    <HeaderbarButton>
+                    <HeaderbarButton
+                        className={cn(open && "bg-secondary/80 opacity-100")}
+                    >
                         <Menu size={20} />
                     </HeaderbarButton>
                 </DropdownMenuTrigger>

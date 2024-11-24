@@ -8,6 +8,7 @@ import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { Brush } from "lucide-react";
 import ColorsView from "./colors";
 import FontStyleView from "./font-style";
+import { cn } from "@renderer/lib/utils";
 
 export function CustimzationSheet(props: {
     open: boolean;
@@ -18,7 +19,9 @@ export function CustimzationSheet(props: {
     return (
         <Popover open={props.open} onOpenChange={props.onOpenChange}>
             <PopoverTrigger asChild>
-                <HeaderbarButton>
+                <HeaderbarButton
+                    className={cn(props.open && "bg-secondary/80 opacity-100")}
+                >
                     <Brush size={20} />
                 </HeaderbarButton>
             </PopoverTrigger>

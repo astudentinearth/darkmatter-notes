@@ -1,6 +1,6 @@
 {
   "name": "@darkwrite/common",
-  "version": "0.2.0-alpha.1",
+  "version": "0.2.0-alpha.2",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "scripts": {
@@ -16,5 +16,9 @@
     "typescript": "^5.2.2",
     "vitest": "^2.1.4"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "@types/lodash": "^4.17.7",
+    "lodash": "^4.17.21"
+  }
 }

@@ -16,6 +16,15 @@ export function ThemeSettings() {
     const accentColor = useSettingsStore(
         (state) => state.settings.appearance.accentColor,
     );
+    const useSystemWindowFrame = useSettingsStore(
+        (s) => s.settings.appearance.useSystemWindowFrame,
+    );
+    const setWindowFrame = (val: boolean) =>
+        updateUserSettings((state) =>
+            produce(state, (draft) => {
+                draft.appearance.useSystemWindowFrame = val;
+            }),
+        );
     const setAccentColor = (val: string) => {
         updateUserSettings((state) =>
             produce(state, (draft) => {
@@ -55,7 +64,11 @@ export function ThemeSettings() {
                     Use system window frame (requires restart)
                 </Label>
                 <FlexibleSpacer />
-                <Switch disabled id="use-system-window-frame" />
+                <Switch
+                    checked={useSystemWindowFrame}
+                    onCheckedChange={setWindowFrame}
+                    id="use-system-window-frame"
+                />
             </div>
         </div>
     );

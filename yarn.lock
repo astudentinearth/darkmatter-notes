@@ -1422,7 +1422,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@darkwrite/common@workspace:packages/common"
   dependencies:
+    "@types/lodash": "npm:^4.17.7"
     "@vitest/coverage-v8": "npm:^2.1.4"
+    lodash: "npm:^4.17.21"
     tsup: "npm:^8.2.4"
     typescript: "npm:^5.2.2"
     vitest: "npm:^2.1.4"

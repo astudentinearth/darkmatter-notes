@@ -25,6 +25,7 @@ import { readUserPrefs, writeUserPrefs } from "./api/settings";
 import { ChannelNames } from "./channels";
 import os from "os";
 import { ThemeAPI } from "./api/theme";
+import _ from "lodash";
 
 // notes
 
@@ -182,7 +183,9 @@ ipcMain.handle(
     ) => {
         const windows = BrowserWindow.getAllWindows();
         windows.forEach((window) => {
-            window.setTitleBarOverlay({ symbolColor });
+            _.attempt(() => {
+                window.setTitleBarOverlay({ symbolColor });
+            });
         });
         nativeTheme.themeSource = themeMode;
     },

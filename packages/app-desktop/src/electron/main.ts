@@ -11,6 +11,9 @@ import { initAppMenu } from "./menu";
 } from "electron-devtools-installer";*/
 import { fileURLToPath } from "node:url";
 import { CACHE_DIR } from "./lib/paths";
+import { readUserPrefs } from "./api/settings";
+import { constructWindow } from "./window";
+import { DEFAULT_USER_SETTINGS } from "@darkwrite/common";
 
 log.initialize();
 /*const require = createRequire(import.meta.url);*/
@@ -24,27 +27,10 @@ let win: BrowserWindow | null;
 const DEV_SERVER_URL =
     process.env["ELECTRON_RENDERER_URL"] ?? "http://localhost:5173";
 
-function createWindow() {
-    //const prefs = readUserPrefs();
+async function createWindow() {
+    const prefs = await readUserPrefs();
     log.debug("creating main window");
-    win = new BrowserWindow({
-        webPreferences: {
-            preload: join(__dirname, "preload.mjs"),
-        },
-        icon: is.dev ? join(__dirname, "../resources/icon.png") : undefined,
-        titleBarStyle:
-            process.platform === "win32" || process.platform === "linux"
-                ? "hidden"
-                : "default", //TODO: Implement experimental support for macOS later
-        titleBarOverlay:
-            process.platform === "win32" || process.platform === "linux"
-                ? {
-                      color: "#13131300",
-                      symbolColor: "#ffffff",
-                      height: 48,
-                  }
-                : false,
-    });
+    win = new BrowserWindow(constructWindow(prefs ?? DEFAULT_USER_SETTINGS));
     // Test active push message to Renderer-process.
     win.webContents.on("did-finish-load", () => {
         win?.webContents.send(

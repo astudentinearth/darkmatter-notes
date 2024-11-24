@@ -19,6 +19,7 @@ export default defineProject({
             },
         },
         pool: "vmThreads",
+        environmentMatchGlobs: [["src/electron/**/*", "node"]],
     },
     resolve: {
         alias: {

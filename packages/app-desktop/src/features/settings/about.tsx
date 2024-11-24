@@ -1,11 +1,7 @@
-import { ClientAPI } from "@renderer/lib/api/client";
-import { useQuery } from "@tanstack/react-query";
+import { useClientInfo } from "@renderer/hooks/query";
 
 export function AboutCard() {
-    const { data } = useQuery({
-        queryKey: ["app-info"],
-        queryFn: ClientAPI.getClientInfo,
-    });
+    const data = useClientInfo();
     return (
         <div className="p-4 bg-card/80 rounded-2xl gap-4">
             <div className="grid grid-cols-[64px_1fr] grid-rows-[auto] gap-4">

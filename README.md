@@ -13,26 +13,34 @@
 </p>
 </strong>
 
-# 📓Notes and todo, the way you want.
+# 📓*Take notes the way you want.*
 
-✒️ Darkwrite is a simple and easy way to organize your notes and todos. It was developed with the user in mind, where personalization plays a key role.
+✒️ Darkwrite lets you take notes without getting on your way.
 
-🛠️ Darkwrite is currently in alpha, basic features are available, however bugs are likely to happen and there is still a lot to work on. Head over to the [releases page](https://github.com/astudentinearth/darkwrite/releases) to get started.
+**Head over to the [releases page](https://github.com/astudentinearth/darkwrite/releases) to get started.**
 
-⭐Star this repository to know when we release new updates.
+⭐ Star this repository to know when we release new updates.
 
-## 🖊️ Easy to use and rich editor
+## 🖊️ Just start typing.
 
 🖋️ Unleash the power of a rich editor which supports formatting, headings, todo lists, numbered lists, links and much more.
 
 ## 🖌️ Make it yours.
 
-🎨 Choose from the selection of included themes - or create your own. Say goodbye to the boring light and dark themes.  
+🎨 Choose from the selection of included themes - or create your own. Say goodbye to boring light and dark themes.
+
 ✒️ Pick the fonts you like. You can change the default styles for your notes or choose a font you like only for one specific note. You can also change the user interface font and everything else will follow suit.
+
+## 🖥️ Work offline.
+
+Everything stays on device. With Darkwrite you never depend on a server. An outage will never leave you without your notes.
 
 ## 🔒 Open and private.
 
-👨‍💻 Darkwrite's source code is right here. It does not collect any of your data. All your notes are stored locally on your device.  
+👨‍💻 Darkwrite's source code is right here. It does not collect **any of your data.** All your notes are stored locally on your device.
+
+🤖 Darkwrite doesn't need an AI bot to function.
+
 📦 You are never locked in. Export all your notes as HTML files, and you can use them anywhere else. Need to backup your data? No problem. Get an archive with just one click and restore them later if you need it.
 
 ## Docs

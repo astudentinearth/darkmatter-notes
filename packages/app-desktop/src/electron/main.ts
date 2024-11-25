@@ -10,7 +10,7 @@ import { initAppMenu } from "./menu";
     REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";*/
 import { fileURLToPath } from "node:url";
-import { CACHE_DIR } from "./lib/paths";
+import { CACHE_DIR, Paths } from "./lib/paths";
 import { readUserPrefs } from "./api/settings";
 import { constructWindow } from "./window";
 import { DEFAULT_USER_SETTINGS } from "@darkwrite/common";
@@ -28,6 +28,7 @@ const DEV_SERVER_URL =
     process.env["ELECTRON_RENDERER_URL"] ?? "http://localhost:5173";
 
 async function createWindow() {
+    await Paths.initialize();
     const prefs = await readUserPrefs();
     log.debug("creating main window");
     win = new BrowserWindow(constructWindow(prefs ?? DEFAULT_USER_SETTINGS));

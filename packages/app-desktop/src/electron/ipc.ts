@@ -26,6 +26,9 @@ import { ChannelNames } from "./channels";
 import os from "os";
 import { ThemeAPI } from "./api/theme";
 import _ from "lodash";
+import { EmbedAPI } from "./api/embed";
+
+//TODO: Organize handlers to separate files
 
 // notes
 
@@ -189,4 +192,12 @@ ipcMain.handle(
         });
         nativeTheme.themeSource = themeMode;
     },
+);
+
+ipcMain.handle(ChannelNames.RESOLVE_EMBED, (_event, id: string) =>
+    EmbedAPI.resolve(id),
+);
+
+ipcMain.handle(ChannelNames.UPLOAD_EMBED, (_event, embedPath: string) =>
+    EmbedAPI.create(embedPath),
 );

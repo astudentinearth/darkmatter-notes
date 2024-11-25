@@ -1,6 +1,5 @@
 import {
     TiptapLink,
-    UpdatedImage,
     TaskList,
     TaskItem,
     HorizontalRule,
@@ -12,11 +11,13 @@ import {
     TextStyle,
     Color,
     HighlightExtension,
+    TiptapImage,
 } from "novel/extensions";
 import { cx } from "class-variance-authority";
 import AutoJoiner from "tiptap-extension-auto-joiner";
 import { cn } from "@renderer/lib/utils";
 import { LinkToPage } from "./link-to-page";
+import { mergeAttributes } from "@tiptap/core";
 
 const aiHighlight = AIHighlight;
 const placeholder = Placeholder.configure({});
@@ -28,10 +29,50 @@ const tiptapLink = TiptapLink.configure({
     },
 });
 
-const updatedImage = UpdatedImage.configure({
+const updatedImage = TiptapImage.extend({
+    name: "dwimage",
+    addAttributes() {
+        return {
+            ...this.parent?.(),
+            embedId: {
+                default: null,
+                parseHTML: (element) => {
+                    return {
+                        embedId: element.getAttribute("data-embed-id"),
+                    };
+                },
+                renderHTML: (attributes) => {
+                    return {
+                        "data-embed-id": attributes.embedId,
+                    };
+                },
+            },
+            pendingId: {
+                default: null,
+                parseHTML: (element) => {
+                    return {
+                        pendingId: element.getAttribute("data-pending-id"),
+                    };
+                },
+                renderHTML: (attributes) => {
+                    return {
+                        "data-pending-id": attributes.pendingId,
+                    };
+                },
+            },
+        };
+    },
+    renderHTML({ HTMLAttributes }) {
+        const embedId = HTMLAttributes["data-embed-id"];
+        console.log("Our embedId is ", embedId);
+        const src = embedId ? `embed://${embedId}` : "";
+        return ["img", mergeAttributes(HTMLAttributes, { src })];
+    },
+}).configure({
     HTMLAttributes: {
         class: cx("rounded-lg border border-muted"),
     },
+    allowBase64: true,
 });
 
 const taskList = TaskList.configure({

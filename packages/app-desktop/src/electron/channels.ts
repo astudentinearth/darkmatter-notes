@@ -27,4 +27,6 @@ export enum ChannelNames {
     IMPORT_THEME = "import-theme",
     LOAD_THEMES = "load-themes",
     SET_TITLEBAR_SYMBOL_COLOR = "set-titlebar-symbol-color",
+    RESOLVE_EMBED = "resolve-embed",
+    UPLOAD_EMBED = "upload-embed",
 }

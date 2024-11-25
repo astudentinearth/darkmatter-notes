@@ -1,6 +1,7 @@
 import { is } from "@electron-toolkit/utils";
 import { app } from "electron";
 import { join } from "node:path";
+import fse from "fs-extra";
 
 /** The folder to store Darkwrite's user data.
  * It will point to `darkwrite-data/` on production and `darkwrite-data-nightly/` on development. */
@@ -36,3 +37,29 @@ export const BACKUP_CACHE_DIR = join(CACHE_DIR, "dw-backup");
 export const RESTORE_CACHE_DIR = join(CACHE_DIR, "dw-restore");
 /** Directory to store user defined themes */
 export const THEME_DIR = join(DATA_DIR, "themes/");
+/** Directory to store user uploaded files */
+export const EMBED_DIR = join(DATA_DIR, "embeds/");
+
+/** Ensures all data directories are ready. */
+const initialize = async () => {
+    fse.ensureDir(DATA_DIR);
+    fse.ensureDir(NOTE_CONTENTS_DIR);
+    fse.ensureDir(THEME_DIR);
+    fse.ensureDir(EMBED_DIR);
+};
+
+export const Paths = {
+    DATA_DIR,
+    DATA_SNAPSHOT_DIR,
+    NOTE_CONTENTS_DIR,
+    DB_PATH,
+    SETTINGS_PATH,
+    getNotePath,
+    CACHE_DIR,
+    EXPORTER_CACHE_DIR,
+    BACKUP_CACHE_DIR,
+    RESTORE_CACHE_DIR,
+    THEME_DIR,
+    EMBED_DIR,
+    initialize,
+};

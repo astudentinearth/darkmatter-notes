@@ -2,7 +2,7 @@
 /// <reference types="vitest/globals" />
 
 import { DarkwriteElectronAPI } from "./api";
-
+import { type WebUtils } from "electron";
 interface Navigator {
     windowControlsOverlay?: WindowControlsOverlay;
 }
@@ -26,6 +26,7 @@ declare global {
 
     interface Window {
         api: DarkwriteElectronAPI;
+        webUtils: WebUtils;
     }
 
     type Result<T, E> =

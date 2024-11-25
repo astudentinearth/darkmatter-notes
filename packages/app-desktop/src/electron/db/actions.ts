@@ -1,7 +1,8 @@
-import { Note, NotePartial } from "@darkwrite/common";
+import { Embed, Note, NotePartial } from "@darkwrite/common";
 import { AppDataSource } from "./data-source";
 import { NoteEntity } from "./entity/note";
 import { randomUUID } from "node:crypto";
+import { EmbedEntity } from "./entity/embed";
 
 export const DB = {
     async getAllNotes() {
@@ -35,5 +36,28 @@ export const DB = {
     },
     async init() {
         await AppDataSource.initialize();
+    },
+    embeds: {
+        async create(embed: Embed) {
+            await AppDataSource.getRepository(EmbedEntity).save(embed);
+        },
+        async update(embed: Partial<Embed>) {
+            await AppDataSource.getRepository(EmbedEntity).save(embed);
+        },
+        async delete(id: string) {
+            await AppDataSource.createQueryBuilder()
+                .delete()
+                .from(EmbedEntity)
+                .where("id = :id", { id })
+                .execute();
+        },
+        async getOne(id: string) {
+            return await AppDataSource.getRepository(EmbedEntity).findOne({
+                where: { id },
+            });
+        },
+        async getAll() {
+            return await AppDataSource.getRepository(EmbedEntity).find();
+        },
     },
 };

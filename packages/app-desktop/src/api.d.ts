@@ -3,6 +3,7 @@ import {
     Note,
     NoteExportType,
     NotePartial,
+    ResolvedEmbed,
     Theme,
 } from "@darkwrite/common";
 import { UserSettings } from "@darkwrite/common";
@@ -108,6 +109,10 @@ export interface DarkwriteElectronAPI {
          * @returns all themes installed in current profile.
          */
         load: () => Promise<Theme[]>;
+    };
+    embed: {
+        create: (filePath: string) => Promise<Embed>;
+        resolve: (id: string) => Promise<ResolvedEmbed>;
     };
     getClientInfo: () => Promise<DarkwriteDesktopClientInfo>;
     setTitlebarSymbolColor: (

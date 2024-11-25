@@ -4,6 +4,7 @@ import { UserSettings } from "@darkwrite/common";
 import { contextBridge, ipcRenderer } from "electron";
 import { ChannelNames } from "../channels";
 import { DarkwriteElectronAPI } from "../../api";
+import { webUtils } from "electron";
 
 const darkwriteAPI: DarkwriteElectronAPI = {
     showAppMenu: () => ipcRenderer.invoke("show-app-menu"),
@@ -70,6 +71,11 @@ const darkwriteAPI: DarkwriteElectronAPI = {
             symbolColor,
             themeMode,
         ),
+    embed: {
+        create: (path) => ipcRenderer.invoke(ChannelNames.UPLOAD_EMBED, path),
+        resolve: (id) => ipcRenderer.invoke(ChannelNames.RESOLVE_EMBED, id),
+    },
 };
 
 contextBridge.exposeInMainWorld("api", darkwriteAPI);
+contextBridge.exposeInMainWorld("webUtils", webUtils);

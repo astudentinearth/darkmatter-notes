@@ -1,3 +1,9 @@
+# 0.2.0-alpha.3
+
+## 🌟 Features
+
+-   Added striked text
+
 # 0.2.0-alpha.2
 
 ## 🌟 Features

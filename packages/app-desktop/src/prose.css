@@ -136,7 +136,7 @@ ul[data-type="taskList"] li[data-checked="true"] > div > p {
 
 .ProseMirror:not(.dragging) .ProseMirror-selectednode {
     outline: none !important;
-    background-color: var(--novel-highlight-blue);
+    background: hsl(var(--primary) / 0.1);
     transition: background-color 0.2s;
     box-shadow: none;
     border-radius: 8px;

@@ -22,6 +22,29 @@ export const EmbedAPI = {
             filename,
             createdAt: new Date(),
         };
+
+        console.log(id);
+        // we want to see if an embed with the same size already exists
+        const embeds = await DB.embeds.getBySize(fileSize);
+        if (embeds.length > 0) {
+            const targetContents = await fse.readFile(filePath);
+            for (const e of embeds) {
+                try {
+                    const existingFile = join(Paths.EMBED_DIR, e.filename);
+                    const existingContents = await fse.readFile(existingFile);
+
+                    const identical =
+                        Buffer.compare(existingContents, targetContents) === 0;
+                    if (identical) {
+                        // we already have this file
+                        return e;
+                    }
+                } catch (error) {
+                    continue;
+                }
+            }
+        }
+
         await DB.embeds.create(embed);
         await fse.copy(filePath, join(Paths.EMBED_DIR, filename));
         return embed;

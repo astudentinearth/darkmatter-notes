@@ -59,5 +59,10 @@ export const DB = {
         async getAll() {
             return await AppDataSource.getRepository(EmbedEntity).find();
         },
+        async getBySize(size: number) {
+            return await AppDataSource.getRepository(EmbedEntity).find({
+                where: { fileSize: size },
+            });
+        },
     },
 };

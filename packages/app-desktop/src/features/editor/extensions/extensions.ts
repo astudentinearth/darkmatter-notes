@@ -119,14 +119,14 @@ const starterKit = StarterKit.configure({
     codeBlock: {
         HTMLAttributes: {
             class: cn(
-                "rounded-xl bg-secondary/50 text-muted-foreground border-none p-4 font-mono font-medium",
+                "rounded-xl bg-secondary/50 text-muted-foreground border-none p-4 darkwrite-mono font-medium",
             ),
         },
     },
     code: {
         HTMLAttributes: {
             class: cn(
-                "rounded-md bg-secondary/50 text-muted-foreground px-1.5 py-1 font-mono font-medium before:content-none after:content-none",
+                "rounded-md bg-secondary/50 text-muted-foreground px-1.5 py-1 darkwrite-mono font-medium before:content-none after:content-none",
             ),
             spellcheck: "false",
         },

@@ -48,7 +48,7 @@ function App() {
                     </Routes>
                 </HashRouter>
                 <ThemeHandler />
-                <ReactQueryDevtools initialIsOpen={false} />
+                {/* <ReactQueryDevtools initialIsOpen={false} /> */}
             </QueryClientProvider>
         </div>
     );

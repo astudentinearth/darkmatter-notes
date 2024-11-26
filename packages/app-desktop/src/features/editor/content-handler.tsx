@@ -1,4 +1,3 @@
-import { useEditorState } from "@renderer/context/editor-state";
 import { useNoteEditor } from "@renderer/hooks/use-note-editor";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { useEditor } from "novel";
@@ -13,6 +12,7 @@ export function ContentHandler() {
         if (id != "" && content) {
             editor?.commands.setContent(content);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, content]);
     return <></>;
 }

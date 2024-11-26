@@ -48,6 +48,7 @@
             serif;
         --darkwrite-mono: "Cascadia Code", "Courier New", "Liberation Mono",
             monospace;
+        --font-ui: "";
     }
 
     :root .dark {
@@ -68,6 +69,10 @@
 
     .darkwrite-custom-font {
         font-family: var(--dw-custom-font-name);
+    }
+
+    .font-ui{
+        font-family: var(--font-ui);
     }
 }
 

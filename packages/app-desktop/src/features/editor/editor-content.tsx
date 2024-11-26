@@ -39,7 +39,9 @@ export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
                         `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
                     ),
                 },
-                handleDrop: (_view, event) => {
+                // TODO: Come back here later
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                handleDrop: (_view, _event) => {
                     //if (event.dataTransfer?.types.includes("note_id"))
                     //console.log("Linking to note");
                 },

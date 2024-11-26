@@ -17,6 +17,7 @@ export function ThemeHandler() {
     useEffect(() => {
         //console.log("Applying themes");
         setGlobalStyle("font-family", fonts.ui);
+        setGlobalStyle("--font-ui", fonts.ui);
         setGlobalStyle("--darkwrite-sans", fonts.sans);
         setGlobalStyle("--darkwrite-mono", fonts.code);
         setGlobalStyle("--darkwrite-serif", fonts.serif);

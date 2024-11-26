@@ -88,7 +88,7 @@ export function EditorCover(props: {
         >
             {note.isTrashed && (
                 <>
-                    <div className="bg-destructive/20 text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
+                    <div className="bg-destructive/20 font-ui text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
                         <TriangleAlert />
                         <div className="flex items-center">
                             <span className="justify-self-start">
@@ -121,7 +121,7 @@ export function EditorCover(props: {
                     <Button
                         onClick={addCover}
                         variant={"secondary"}
-                        className="z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground"
+                        className="z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui"
                     >
                         <ImagePlus size={18} />
                         Add cover

@@ -1,3 +1,4 @@
+import { KeyboardEvent } from "react";
 import { ChangeEvent, ClipboardEvent, useEffect, useRef } from "react";
 
 /**
@@ -14,6 +15,7 @@ export default function DynamicTextarea(props: {
     placeholder?: string;
     /** Whether to allow line breaks in the textarea */
     preventNewline?: boolean;
+    onKeyDown?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
     defaultValue?: string;
     newLineCallback?: () => void;
 }) {
@@ -73,12 +75,7 @@ export default function DynamicTextarea(props: {
             onChange={handleChange}
             defaultValue={props.defaultValue}
             onPaste={handlePaste}
-            onKeyDown={(e) => {
-                if (props.preventNewline && e.key === "Enter") {
-                    e.preventDefault();
-                    props.newLineCallback?.call(null);
-                }
-            }}
+            onKeyDown={props.onKeyDown}
         ></textarea>
     );
 }

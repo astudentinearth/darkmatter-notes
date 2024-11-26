@@ -7,7 +7,7 @@ import { useEditorState } from "@renderer/context/editor-state";
 import { fromUnicode } from "@renderer/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { TriangleAlert } from "lucide-react";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
 export function EditorCover(props: {
@@ -51,6 +51,16 @@ export function EditorCover(props: {
         editor?.commands.focus("start");
     };
 
+    const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            handleNewLine();
+        }
+        if (e.key === "ArrowDown") {
+            editor?.commands.focus("start");
+        }
+    };
+
     return (
         <div className="flex-shrink-0 flex flex-col max-w-[960px] w-full p-4 px-16 gap-2 pt-24">
             {note.isTrashed && (
@@ -85,8 +95,7 @@ export function EditorCover(props: {
                 className="text-4xl px-1 box-border bg-transparent border-none p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
                 value={inputValue}
                 onChange={handleChange}
-                preventNewline
-                newLineCallback={handleNewLine}
+                onKeyDown={handleKeyDown}
             />
         </div>
     );

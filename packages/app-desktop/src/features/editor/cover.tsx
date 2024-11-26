@@ -3,16 +3,21 @@ import DynamicTextarea from "@renderer/components/dynamic-textarea";
 import { EmojiPicker } from "@renderer/components/emoji-picker";
 import { FlexibleSpacer } from "@renderer/components/spacer";
 import { Button } from "@renderer/components/ui/button";
-import { useEditorState } from "@renderer/context/editor-state";
+import {
+    setEditorCustomizations,
+    useEditorState,
+} from "@renderer/context/editor-state";
+import { uploadImage } from "@renderer/lib/upload";
 import { fromUnicode } from "@renderer/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
-import { TriangleAlert } from "lucide-react";
+import { ImagePlus, TriangleAlert } from "lucide-react";
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
 export function EditorCover(props: {
     note: Note;
     update: (data: NotePartial) => void;
+    hasCover?: boolean;
 }) {
     const { note, update } = props;
     const id = note.id;
@@ -22,6 +27,8 @@ export function EditorCover(props: {
     const lastMutationRef = useRef<string>("");
     const lastInputRef = useRef<string>("");
     const editor = useEditorState((s) => s.editorInstance);
+    const customizations = useEditorState((s) => s.customizations);
+    const [mouseOver, setMouseOver] = useState(false);
 
     const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         lastInputRef.current = e.target.value.replace(/\r?\n|\r/g, " ");
@@ -61,8 +68,24 @@ export function EditorCover(props: {
         }
     };
 
+    const addCover = async () => {
+        try {
+            const embed = await uploadImage();
+            setEditorCustomizations({
+                ...customizations,
+                coverEmbedId: embed.id,
+            });
+        } catch (error) {
+            /**empty */
+        }
+    };
+
     return (
-        <div className="flex-shrink-0 flex flex-col max-w-[960px] w-full p-4 px-16 gap-2 pt-24">
+        <div
+            onMouseOver={() => setMouseOver(true)}
+            onMouseOut={() => setMouseOver(false)}
+            className="flex-shrink-0 flex flex-col max-w-[960px] w-full p-4 px-16 gap-2 mt-[-50px]"
+        >
             {note.isTrashed && (
                 <>
                     <div className="bg-destructive/20 text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
@@ -86,11 +109,25 @@ export function EditorCover(props: {
                     <div className="h-4"></div>
                 </>
             )}
-            <EmojiPicker
-                show={fromUnicode(note.icon ?? "")}
-                closeOnSelect
-                onSelect={handleEmojiChange}
-            />
+
+            <div className="flex items-end gap-2">
+                <EmojiPicker
+                    show={fromUnicode(note.icon ?? "")}
+                    closeOnSelect
+                    onSelect={handleEmojiChange}
+                    className="z-50 "
+                />
+                {mouseOver && !props.hasCover && (
+                    <Button
+                        onClick={addCover}
+                        variant={"secondary"}
+                        className="z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground"
+                    >
+                        <ImagePlus size={18} />
+                        Add cover
+                    </Button>
+                )}
+            </div>
             <DynamicTextarea
                 className="text-4xl px-1 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
                 value={inputValue}

@@ -13,6 +13,7 @@ import React, { useEffect, useRef } from "react";
 import { useDebounce } from "use-debounce";
 import { EditorCover } from "./cover";
 import { TextEditor } from "./text-editor";
+import { CoverImage } from "./cover-image";
 
 export function EditorRoot() {
     const { note, isFetching, isError, content, customizations, spellcheck } =
@@ -95,11 +96,19 @@ export function EditorRoot() {
             }
         >
             {note?.value != null && !isFetching ? (
-                <EditorCover
-                    key={`cover-${note.value.id}`}
-                    note={note.value}
-                    update={update}
-                />
+                <>
+                    <CoverImage
+                        key={`coverimg-${note.value.id}`}
+                        note={note.value}
+                        embedId={_customizations?.coverEmbedId}
+                    />
+                    <EditorCover
+                        key={`cover-${note.value.id}`}
+                        note={note.value}
+                        update={update}
+                        hasCover={!!_customizations.coverEmbedId}
+                    />
+                </>
             ) : (
                 ""
             )}

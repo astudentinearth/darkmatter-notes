@@ -54,7 +54,7 @@ export function NoteDropZone({
         if (!notes) return;
         event.preventDefault();
         event.stopPropagation();
-        const below = notes.find((n) => n.id === belowID);
+        //const below = notes.find((n) => n.id === belowID);
         //console.log(below?.title);
         setDragOver(true);
     };

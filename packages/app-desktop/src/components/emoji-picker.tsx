@@ -35,7 +35,10 @@ export function EmojiPicker(props: {
             <DropdownMenuTrigger asChild>
                 <Button
                     variant={"ghost"}
-                    className={cn("w-16 h-16 text-6xl", props.className)}
+                    className={cn(
+                        "w-20 h-20 text-6xl hover:bg-secondary/50",
+                        props.className,
+                    )}
                 >
                     {props.show}
                 </Button>

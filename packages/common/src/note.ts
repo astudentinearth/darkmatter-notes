@@ -18,6 +18,7 @@ export interface NoteCustomizations {
     largeText?: boolean;
     backgroundColor?: string;
     textColor?: string;
+    coverEmbedId?: string;
 }
 
 export type NotePartial = Partial<Note> & { id: string };

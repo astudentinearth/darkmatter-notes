@@ -10,6 +10,7 @@ import {
     useSettingsStore,
 } from "@renderer/context/settings-store";
 import { useTheme } from "@renderer/hooks/query";
+import { cn } from "@renderer/lib/utils";
 import { produce } from "immer";
 import { ChevronDown } from "lucide-react";
 
@@ -31,12 +32,15 @@ export function ThemeMenu() {
                     {theme?.name ?? "Choose theme"}
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="rounded-lg bg-view-2 p-1">
+            <DropdownMenuContent className="rounded-lg bg-view-2 p-1 max-h-[60vh] overflow-y-auto main-view">
                 {themes.map((theme) => (
                     <DropdownMenuItem
                         onSelect={() => setTheme(theme.id)}
                         key={theme.id}
-                        className="rounded-md"
+                        className={cn(
+                            "rounded-md",
+                            theme.id === themeId && "bg-secondary/50",
+                        )}
                     >
                         {theme.name}
                     </DropdownMenuItem>

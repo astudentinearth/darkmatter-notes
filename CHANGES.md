@@ -3,6 +3,16 @@
 ## 🌟 Features
 
 -   Added striked text
+-   Added image support
+-   Added cover images
+
+## ✨ Improvements and fixes
+
+-   Titlebar buttons now have an active style
+-   Fixed nodes being dragged using the wrong background style
+-   Hitting down arrow on the note title now moves the cursor to the editor
+-   Fixed code blocks using the wrong font
+-   Added a divider below the title text
 
 # 0.2.0-alpha.2
 

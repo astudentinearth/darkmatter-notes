@@ -92,7 +92,7 @@ export function EditorCover(props: {
                 onSelect={handleEmojiChange}
             />
             <DynamicTextarea
-                className="text-4xl px-1 box-border bg-transparent border-none p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
+                className="text-4xl px-1 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
                 value={inputValue}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}

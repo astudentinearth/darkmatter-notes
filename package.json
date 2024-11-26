@@ -7,13 +7,7 @@
     "coverage:all": "yarn workspaces foreach -A run test:coverage",
     "dev": "concurrently \" yarn workspace @darkwrite/common watch \"  \" yarn workspace @darkwrite/app-desktop dev  \"",
     "build:desktop": "yarn workspace @darkwrite/app-desktop build",
-    "build:common": "yarn workspace @darkwrite/common build",
-    "build:desktop:win": "yarn workspace @darkwrite/app-desktop build:win",
-    "build:desktop:linux": "yarn workspace @darkwrite/app-desktop build:linux",
-    "build:desktop:mac": "yarn workspace @darkwrite/app-desktop build:mac",
-    "build:win": "npm-run-all --serial build:common build:desktop:win",
-    "build:linux": "npm-run-all --serial build:common build:desktop:linux",
-    "build:mac": "npm-run-all --serial build:common build:desktop:mac"
+    "build:common": "yarn workspace @darkwrite/common build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

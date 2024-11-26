@@ -7,7 +7,7 @@ export const useNoteByIdQuery = (id: string) => {
         queryFn: async () => {
             console.log(`Fetching note with id: ${id}`);
             const note = await NotesModel.Instance.getNote(id);
-            console.log(`Fetched note:`, note);
+            //console.log(`Fetched note:`, note);
             return note;
         },
         enabled: Boolean(id),

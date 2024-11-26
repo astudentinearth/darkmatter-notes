@@ -64,7 +64,7 @@ const updatedImage = TiptapImage.extend({
     },
     renderHTML({ HTMLAttributes }) {
         const embedId = HTMLAttributes["data-embed-id"];
-        console.log("Our embedId is ", embedId);
+        //console.log("Our embedId is ", embedId);
         const src = embedId ? `embed://${embedId}` : "";
         return ["img", mergeAttributes(HTMLAttributes, { src })];
     },

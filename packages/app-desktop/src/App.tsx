@@ -35,7 +35,7 @@ function App() {
                             <Route
                                 path="/page/:pageId"
                                 loader={({ params }) => {
-                                    console.log(params.pageId);
+                                    //console.log(params.pageId);
                                     return null; // Return a value of type DataFunctionReturnValue
                                 }}
                                 element={<EditorRootWrapper />}

@@ -56,7 +56,7 @@ export async function getNoteContents(id: string) {
                 .where("id = :id", { id })
                 .execute();
         } else {
-            console.log(
+            log.error(
                 error instanceof Error
                     ? error.message
                     : "Unknown error in main/api/note/getNoteContets",
@@ -85,7 +85,7 @@ export async function deleteNote(id: string) {
             .where("parentID = :id", { id })
             .execute(); // delete its subnotes
     } catch (error) {
-        console.log(
+        log.error(
             error instanceof Error
                 ? error.message
                 : "Unknowm error in main/api/note/getNoteContets",

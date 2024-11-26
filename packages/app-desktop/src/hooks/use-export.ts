@@ -8,12 +8,12 @@ export const useExport = () => {
     return async (note: Note) => {
         const result = await NotesModel.Instance.getContents(note.id);
         if (result.error) {
-            console.log(result.error);
+            console.error(result.error);
             return;
         }
         const json = attempt(() => JSON.parse(result.value));
         if (json instanceof Error) {
-            console.log(json);
+            console.error(json);
             return;
         }
         if ("contents" in json) {

@@ -15,7 +15,7 @@ export function ThemeHandler() {
         (s) => s.settings.appearance.accentColor,
     );
     useEffect(() => {
-        console.log("Applying themes");
+        //console.log("Applying themes");
         setGlobalStyle("font-family", fonts.ui);
         setGlobalStyle("--darkwrite-sans", fonts.sans);
         setGlobalStyle("--darkwrite-mono", fonts.code);
@@ -52,7 +52,7 @@ export function ThemeHandler() {
                 parseFloat(fgHSLStr[2]),
             ];
             const fgHEX = hsl.hex(fgHSL);
-            console.log(fgHEX);
+            //console.log(fgHEX);
             window.api.setTitlebarSymbolColor(`#${fgHEX}`, theme.mode);
         }
     }, [fonts, theme, accentColor]);

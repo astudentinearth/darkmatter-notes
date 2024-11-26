@@ -36,8 +36,8 @@ export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
                         ),
                     },
                     handleDrop: (_view, event) => {
-                        if (event.dataTransfer?.types.includes("note_id"))
-                            console.log("Linking to note");
+                        //if (event.dataTransfer?.types.includes("note_id"))
+                        //console.log("Linking to note");
                     },
                 }}
                 onUpdate={({ editor }) => {

@@ -9,7 +9,7 @@ export function ContentHandler() {
     const id = useNoteFromURL();
     const { content } = useNoteEditor();
     useEffect(() => {
-        console.log(content);
+        //console.log(content);
         if (id != "" && content) {
             editor?.commands.setContent(content);
         }

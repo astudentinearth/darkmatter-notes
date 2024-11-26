@@ -71,7 +71,7 @@ export function EditorRoot() {
         );
 
     const handleContentChange = (content: JSONContent) => {
-        console.log("Updating content");
+        //console.log("Updating content");
         setValue(content);
     };
 

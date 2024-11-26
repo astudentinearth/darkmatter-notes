@@ -21,10 +21,10 @@ export const ExporterModel = {
                 json = attempt(() => JSON.parse(contentsOpt.value));
             } else json = { contents: {}, customizations: {} };
             if (json instanceof Error) {
-                console.log(json);
+                console.error(json);
                 continue;
             }
-            console.log(json);
+            console.error(json);
             if ("contents" in json) {
                 if (!("content" in json.contents && "type" in json.contents)) {
                     json.contents.content = [];

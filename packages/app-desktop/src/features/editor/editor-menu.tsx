@@ -77,7 +77,7 @@ export function EditorMenu() {
                         onSelect={async () => {
                             const html = await NotesModel.Instance.importHTML();
                             if (html.error) {
-                                console.log(html.error);
+                                console.error(html.error);
                                 return;
                             }
                             editor?.commands.insertContent(html.value);

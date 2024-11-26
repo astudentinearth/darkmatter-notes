@@ -30,7 +30,7 @@ export const EmbedAPI = {
         const embed = await DB.embeds.getOne(id);
         if (!embed) return null;
         const uri = pathToFileURL(join(Paths.EMBED_DIR, embed.filename));
-        console.log(uri);
+        //console.log(uri);
         const resolved: ResolvedEmbed = {
             ...embed,
             uri: uri.href,
@@ -41,7 +41,6 @@ export const EmbedAPI = {
 
 app.whenReady().then(() => {
     protocol.handle("embed", async (req) => {
-        console.log(req.url);
         const id = req.url.slice("embed://".length);
         const embed = await EmbedAPI.resolve(id);
         if (!embed)

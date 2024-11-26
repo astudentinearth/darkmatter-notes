@@ -14,7 +14,7 @@ export const useDeleteNoteMutation = () => {
             client.invalidateQueries({ queryKey: ["note", id] });
         },
         onError(err) {
-            console.log(err);
+            console.error(err);
         },
     });
 };

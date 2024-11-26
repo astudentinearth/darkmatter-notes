@@ -119,7 +119,7 @@ export function NoteItem({
     const handleDrop = (event: DragEvent<HTMLElement>) => {
         event.preventDefault();
         event.stopPropagation();
-        console.log("Dropping to item");
+        //console.log("Dropping to item");
         const data = event.dataTransfer.getData("note_id");
         if (data === note.id) {
             setDragOver(false);

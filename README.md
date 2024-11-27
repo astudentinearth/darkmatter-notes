@@ -23,9 +23,11 @@
 
 ## 🖊️ Just start typing.
 
-🖋️ Unleash the power of a rich editor which supports formatting, headings, todo lists, numbered lists, links and much more.
+🖋️ Unleash the power of a rich editor which supports formatting, headings, todo lists, numbered lists, links, images and much more.
 
-![Darkwrite's Editor](res/Editor.png)
+<p align="center">
+<img src="res/Editor.png">
+</p>
 
 ## 🖌️ Make it yours.
 
@@ -33,9 +35,11 @@
 
 ✒️ Pick the fonts you like. You can change the default styles for your notes or choose a font you like only for one specific note. You can also change the user interface font and everything else will follow suit.
 
-## 🖥️ Work offline.
+🖼️ Add cover images to your notes.
 
-Everything stays on device. With Darkwrite you never depend on a server. An outage will never leave you without your notes.
+<p align="center">
+<img src="res/Customization.png">
+</p>
 
 ## 🔒 Open and private.
 
@@ -44,6 +48,14 @@ Everything stays on device. With Darkwrite you never depend on a server. An outa
 🤖 Darkwrite doesn't need an AI bot to function.
 
 📦 You are never locked in. Export all your notes as HTML files, and you can use them anywhere else. Need to backup your data? No problem. Get an archive with just one click and restore them later if you need it.
+
+<p align="center">
+<img src="res/Backup.png">
+</p>
+
+## 🖥️ Work offline.
+
+Everything stays on device. With Darkwrite you never depend on a server. An outage will never leave you without your notes.
 
 ## Docs
 

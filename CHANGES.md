@@ -1,8 +1,17 @@
 # 0.2.0-alpha.4
 
+## ⚠️ Minor breaking change
+
+- This release changes the directories in which Chromium session data is stored. This change means the following preferences will be lost:
+  - Sidebar width
+  - Whether sidebar was hidden or not
+  - Whether spell checking was disabled or not
+- As these are local preferences and are not even persisted in backups, it shouldn't be a problem.
+
 ## ✨ Improvements and fixes
 
 - Fixed a bug where "this note is trashed" alert would go below the cover image
+- Chromium session data is now stored in directories called `session-dev/` and `session/` when running development and production builds respectively.
 
 # 0.2.0-alpha.3
 

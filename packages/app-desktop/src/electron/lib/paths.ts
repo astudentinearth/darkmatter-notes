@@ -40,6 +40,11 @@ export const THEME_DIR = join(DATA_DIR, "themes/");
 /** Directory to store user uploaded files */
 export const EMBED_DIR = join(DATA_DIR, "embeds/");
 
+export const SESSION_DATA_DIR = join(
+  app.getPath("userData"),
+  is.dev ? "session-dev/" : "session/",
+);
+
 /** Ensures all data directories are ready. */
 const initialize = async () => {
   fse.ensureDir(DATA_DIR);
@@ -62,4 +67,5 @@ export const Paths = {
   THEME_DIR,
   EMBED_DIR,
   initialize,
+  SESSION_DATA_DIR,
 };

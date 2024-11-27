@@ -9,18 +9,19 @@ import { initAppMenu } from "./menu";
 /*import installExtension, {
     REACT_DEVELOPER_TOOLS,
 } from "electron-devtools-installer";*/
-import { fileURLToPath } from "node:url";
-import { CACHE_DIR, Paths } from "./lib/paths";
-import { readUserPrefs } from "./api/settings";
-import { constructWindow } from "./window";
 import { DEFAULT_USER_SETTINGS } from "@darkwrite/common";
+import { fileURLToPath } from "node:url";
+import { readUserPrefs } from "./api/settings";
+import { Paths } from "./lib/paths";
+import { constructWindow } from "./window";
 
 log.initialize();
 /*const require = createRequire(import.meta.url);*/
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log(CACHE_DIR);
+// We change the session data directory to avoid polluting user data any further
+app.setPath("sessionData", Paths.SESSION_DATA_DIR);
 
 let win: BrowserWindow | null;
 

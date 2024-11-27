@@ -8,7 +8,7 @@ import {
   useEditorState,
 } from "@renderer/context/editor-state";
 import { uploadImage } from "@renderer/lib/upload";
-import { fromUnicode } from "@renderer/lib/utils";
+import { cn, fromUnicode } from "@renderer/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { ImagePlus, TriangleAlert } from "lucide-react";
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
@@ -84,11 +84,14 @@ export function EditorCover(props: {
     <div
       onMouseOver={() => setMouseOver(true)}
       onMouseOut={() => setMouseOver(false)}
-      className="flex-shrink-0 flex flex-col max-w-[960px] w-full p-4 px-16 gap-2 mt-[-50px]"
+      className={cn(
+        "flex-shrink-0 flex flex-col max-w-[960px] w-full p-4 px-16 gap-2",
+        !note.isTrashed && "mt-[-50px]",
+      )}
     >
       {note.isTrashed && (
         <>
-          <div className="bg-destructive/20 font-ui text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
+          <div className="bg-destructive/20 font-ui z-30 text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
             <TriangleAlert />
             <div className="flex items-center">
               <span className="justify-self-start">

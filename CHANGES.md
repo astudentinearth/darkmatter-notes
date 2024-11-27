@@ -12,6 +12,7 @@
 
 - Fixed a bug where "this note is trashed" alert would go below the cover image
 - Chromium session data is now stored in directories called `session-dev/` and `session/` when running development and production builds respectively.
+- Added padding to editor's sides to make drag handles more accessible
 
 # 0.2.0-alpha.3
 

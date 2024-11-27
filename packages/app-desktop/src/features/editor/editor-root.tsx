@@ -14,6 +14,7 @@ import { useDebounce } from "use-debounce";
 import { EditorCover } from "./cover";
 import { TextEditor } from "./text-editor";
 import { CoverImage } from "./cover-image";
+import "./css/editor.css";
 
 export function EditorRoot() {
   const { note, isFetching, isError, content, customizations, spellcheck } =
@@ -25,7 +26,7 @@ export function EditorRoot() {
   const _customizations = useEditorState((s) => s.customizations);
   const [debouncedValue] = useDebounce(value, 200);
   const rootContainerRef = useRef<HTMLDivElement>(null);
-  const editorWidth = useCenteredLayout();
+  const editorWidth = useCenteredLayout(984);
 
   useEffect(() => {
     if (content && customizations) {

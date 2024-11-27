@@ -25,6 +25,8 @@
 
 🖋️ Unleash the power of a rich editor which supports formatting, headings, todo lists, numbered lists, links and much more.
 
+![Darkwrite's Editor](res/Editor.png)
+
 ## 🖌️ Make it yours.
 
 🎨 Choose from the selection of included themes - or create your own. Say goodbye to boring light and dark themes.
@@ -45,8 +47,8 @@ Everything stays on device. With Darkwrite you never depend on a server. An outa
 
 ## Docs
 
--   [Building Darkwrite](docs/BUILDING.md)
--   [Development docs](docs/DEVELOPMENT.md)
+- [Building Darkwrite](docs/BUILDING.md)
+- [Development docs](docs/DEVELOPMENT.md)
 
 For everything else, see [the docs folder](docs)
 

@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -26,7 +26,7 @@ module.exports = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
-          text: "hsl(var(--primary-text))"
+          text: "hsl(var(--primary-text))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -53,11 +53,11 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         view: {
-          "1": "hsl(var(--view-1))",
-          "2": "hsl(var(--view-2))"
+          1: "hsl(var(--view-1))",
+          2: "hsl(var(--view-2))",
         },
         disabled: "hsl(var(--disabled))",
-        star: "hsl(var(--star))"
+        star: "hsl(var(--star))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -81,4 +81,4 @@ module.exports = {
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-}
+};

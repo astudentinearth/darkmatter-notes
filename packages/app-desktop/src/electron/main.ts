@@ -25,57 +25,54 @@ console.log(CACHE_DIR);
 let win: BrowserWindow | null;
 
 const DEV_SERVER_URL =
-    process.env["ELECTRON_RENDERER_URL"] ?? "http://localhost:5173";
+  process.env["ELECTRON_RENDERER_URL"] ?? "http://localhost:5173";
 
 async function createWindow() {
-    await Paths.initialize();
-    const prefs = await readUserPrefs();
-    log.debug("creating main window");
-    win = new BrowserWindow(constructWindow(prefs ?? DEFAULT_USER_SETTINGS));
-    // Test active push message to Renderer-process.
-    win.webContents.on("did-finish-load", () => {
-        win?.webContents.send(
-            "main-process-message",
-            new Date().toLocaleString(),
-        );
-    });
+  await Paths.initialize();
+  const prefs = await readUserPrefs();
+  log.debug("creating main window");
+  win = new BrowserWindow(constructWindow(prefs ?? DEFAULT_USER_SETTINGS));
+  // Test active push message to Renderer-process.
+  win.webContents.on("did-finish-load", () => {
+    win?.webContents.send("main-process-message", new Date().toLocaleString());
+  });
 
-    win.webContents.setWindowOpenHandler(({ url }) => {
-        shell.openExternal(url);
-        return { action: "deny" };
-    });
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: "deny" };
+  });
 
-    if (is.dev && DEV_SERVER_URL) {
-        win.loadURL(DEV_SERVER_URL);
-    } else {
-        win.loadFile(join(__dirname, "../dist/index.html"));
-    }
-    initAppMenu();
+  if (is.dev && DEV_SERVER_URL) {
+    win.loadURL(DEV_SERVER_URL);
+  } else {
+    win.loadFile(join(__dirname, "../dist/index.html"));
+  }
+  initAppMenu();
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
 app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
-        app.quit();
-        win = null;
-    }
+  if (process.platform !== "darwin") {
+    app.quit();
+    win = null;
+  }
 });
 
 app.on("activate", () => {
-    // On OS X it's common to re-create a window in the app when the
-    // dock icon is clicked and there are no other windows open.
-    if (BrowserWindow.getAllWindows().length === 0) {
-        createWindow();
-    }
+  // On OS X it's common to re-create a window in the app when the
+  // dock icon is clicked and there are no other windows open.
+  if (BrowserWindow.getAllWindows().length === 0) {
+    createWindow();
+  }
 });
 
 app.whenReady().then(() => {
-    /*if (is.dev) {
+  /*if (is.dev) {
         installExtension([REACT_DEVELOPER_TOOLS]).then((name) => {
             console.log(`Added extension => ${name}`);
         });
     }*/
-    AppDataSource.initialize().then(createWindow);
+  AppDataSource.initialize().then(createWindow);
 });

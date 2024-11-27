@@ -5,31 +5,31 @@ import electron from "vite-plugin-electron/simple";
 import { swcPlugin, externalizeDepsPlugin } from "electron-vite";
 
 export default defineConfig({
-    plugins: [
-        react(),
-        electron({
-            main: {
-                entry: path.resolve("src/electron/main.ts"),
-                vite: {
-                    build: {
-                        rollupOptions: {
-                            external: ["typeorm", "dotenv"],
-                        },
-                    },
-                    plugins: [swcPlugin(), externalizeDepsPlugin()],
-                },
+  plugins: [
+    react(),
+    electron({
+      main: {
+        entry: path.resolve("src/electron/main.ts"),
+        vite: {
+          build: {
+            rollupOptions: {
+              external: ["typeorm", "dotenv"],
             },
-            preload: {
-                input: path.resolve("src/electron/preload/preload.ts"),
-            },
-        }),
-    ],
-    resolve: {
-        alias: {
-            "@renderer": path.resolve("src/"),
+          },
+          plugins: [swcPlugin(), externalizeDepsPlugin()],
         },
+      },
+      preload: {
+        input: path.resolve("src/electron/preload/preload.ts"),
+      },
+    }),
+  ],
+  resolve: {
+    alias: {
+      "@renderer": path.resolve("src/"),
     },
-    build: {
-        outDir: path.resolve("dist"),
-    },
+  },
+  build: {
+    outDir: path.resolve("dist"),
+  },
 });

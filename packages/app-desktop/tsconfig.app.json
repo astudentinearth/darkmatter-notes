@@ -9,17 +9,13 @@
     "src/api.d.ts",
     "src/global.d.ts"
   ],
-  "exclude": [
-    "src/electron/**/*"
-  ],
+  "exclude": ["src/electron/**/*"],
   "compilerOptions": {
     "composite": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@renderer/*": [
-        "src/*"
-      ],
+      "@renderer/*": ["src/*"]
     },
     "types": ["vitest/globals"],
     "moduleResolution": "bundler"

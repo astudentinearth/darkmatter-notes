@@ -11,47 +11,44 @@ import { SettingsPage } from "./features/settings";
 import { useNoteFromURL } from "./hooks/use-note-from-url";
 
 const EditorRootWrapper = () => {
-    const note = useNoteFromURL();
-    if (!note) return "Not found";
-    return <EditorRoot key={`editor-root-${note}`} />;
+  const note = useNoteFromURL();
+  if (!note) return "Not found";
+  return <EditorRoot key={`editor-root-${note}`} />;
 };
 
 function App() {
-    const [queryClient] = useState(() => new QueryClient());
-    useEffect(() => {
-        window.api.settings.load().then((prefs) => {
-            if (prefs == null) throw new Error("Could not load user settings");
-            else initializeUserSettings(prefs);
-        });
-    }, []);
+  const [queryClient] = useState(() => new QueryClient());
+  useEffect(() => {
+    window.api.settings.load().then((prefs) => {
+      if (prefs == null) throw new Error("Could not load user settings");
+      else initializeUserSettings(prefs);
+    });
+  }, []);
 
-    return (
-        <div className="w-full h-full overflow-hidden">
-            <QueryClientProvider client={queryClient}>
-                <HashRouter>
-                    <Routes>
-                        <Route path="/" element={<Layout />}>
-                            <Route index element={<HomePage />}></Route>
-                            <Route
-                                path="/page/:pageId"
-                                loader={({ params }) => {
-                                    //console.log(params.pageId);
-                                    return null; // Return a value of type DataFunctionReturnValue
-                                }}
-                                element={<EditorRootWrapper />}
-                            ></Route>
-                            <Route
-                                path="settings"
-                                element={<SettingsPage />}
-                            ></Route>
-                        </Route>
-                    </Routes>
-                </HashRouter>
-                <ThemeHandler />
-                {/* <ReactQueryDevtools initialIsOpen={false} /> */}
-            </QueryClientProvider>
-        </div>
-    );
+  return (
+    <div className="w-full h-full overflow-hidden">
+      <QueryClientProvider client={queryClient}>
+        <HashRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<HomePage />}></Route>
+              <Route
+                path="/page/:pageId"
+                loader={({ params }) => {
+                  //console.log(params.pageId);
+                  return null; // Return a value of type DataFunctionReturnValue
+                }}
+                element={<EditorRootWrapper />}
+              ></Route>
+              <Route path="settings" element={<SettingsPage />}></Route>
+            </Route>
+          </Routes>
+        </HashRouter>
+        <ThemeHandler />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+      </QueryClientProvider>
+    </div>
+  );
 }
 
 export default App;

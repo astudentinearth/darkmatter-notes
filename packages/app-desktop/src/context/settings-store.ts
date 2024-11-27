@@ -4,27 +4,27 @@ import { debounce } from "lodash";
 import { create } from "zustand";
 
 type SettingsAction = {
-    settings: UserSettings;
-    initialized: boolean;
+  settings: UserSettings;
+  initialized: boolean;
 };
 
 export const useSettingsStore = create<SettingsAction>()((set, get) => ({
-    settings: DEFAULT_USER_SETTINGS,
-    initialized: false,
+  settings: DEFAULT_USER_SETTINGS,
+  initialized: false,
 }));
 
 const saveWithDebounce = debounce((data: UserSettings) => {
-    SettingsModel.save(data);
+  SettingsModel.save(data);
 }, 300);
 
 export function initializeUserSettings(data: UserSettings) {
-    useSettingsStore.setState({ settings: data, initialized: true });
+  useSettingsStore.setState({ settings: data, initialized: true });
 }
 
 export function updateUserSettings(
-    callback: (oldState: UserSettings) => UserSettings,
+  callback: (oldState: UserSettings) => UserSettings,
 ) {
-    const newState = callback(useSettingsStore.getState().settings);
-    useSettingsStore.setState({ settings: newState });
-    saveWithDebounce(newState);
+  const newState = callback(useSettingsStore.getState().settings);
+  useSettingsStore.setState({ settings: newState });
+  saveWithDebounce(newState);
 }

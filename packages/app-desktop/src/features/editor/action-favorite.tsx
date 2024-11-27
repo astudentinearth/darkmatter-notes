@@ -5,20 +5,20 @@ import { cn } from "@renderer/lib/utils";
 import { Star } from "lucide-react";
 
 export function FavoriteActionButton() {
-    const id = useNoteFromURL();
-    const notes = useNotesQuery().data?.value;
-    const targetNote = notes?.find((n) => n.id === id);
-    const update = useUpdateNoteMutation().mutate;
+  const id = useNoteFromURL();
+  const notes = useNotesQuery().data?.value;
+  const targetNote = notes?.find((n) => n.id === id);
+  const update = useUpdateNoteMutation().mutate;
 
-    if (!id) return <></>;
-    return (
-        <HeaderbarButton
-            onClick={() => update({ id, isFavorite: !targetNote?.isFavorite })}
-        >
-            <Star
-                size={20}
-                className={cn(targetNote?.isFavorite && "text-star fill-star")}
-            />
-        </HeaderbarButton>
-    );
+  if (!id) return <></>;
+  return (
+    <HeaderbarButton
+      onClick={() => update({ id, isFavorite: !targetNote?.isFavorite })}
+    >
+      <Star
+        size={20}
+        className={cn(targetNote?.isFavorite && "text-star fill-star")}
+      />
+    </HeaderbarButton>
+  );
 }

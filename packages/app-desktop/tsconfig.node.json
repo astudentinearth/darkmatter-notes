@@ -1,9 +1,6 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
-  "include": [
-  "src/electron/**/*", 
-  "src/electron/**/*.d.ts",
-"src/api.d.ts"],
+  "include": ["src/electron/**/*", "src/electron/**/*.d.ts", "src/api.d.ts"],
   "compilerOptions": {
     "types": ["vitest/globals"],
     "target": "ESNext",
@@ -13,7 +10,7 @@
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node",
+    "moduleResolution": "node"
   },
   "ts-node": {
     "esm": true

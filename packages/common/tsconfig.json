@@ -1,14 +1,14 @@
 {
-    "include": ["./src/**/*"],
-    "exclude": [],
-    "compilerOptions": {
-        "types": ["vitest/globals"],
-        "esModuleInterop": true,
-        "target": "ESNext",
-        "module": "ESNext",
-        "rootDir": "./src",
-        "outDir": "./dist",
-        "skipLibCheck": true,
-        "declaration": true
-    }
+  "include": ["./src/**/*"],
+  "exclude": [],
+  "compilerOptions": {
+    "types": ["vitest/globals"],
+    "esModuleInterop": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "declaration": true
+  }
 }

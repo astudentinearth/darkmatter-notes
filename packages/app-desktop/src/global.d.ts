@@ -4,7 +4,7 @@
 import { DarkwriteElectronAPI } from "./api";
 import { type WebUtils } from "electron";
 interface Navigator {
-    windowControlsOverlay?: WindowControlsOverlay;
+  windowControlsOverlay?: WindowControlsOverlay;
 }
 
 /**
@@ -12,26 +12,24 @@ interface Navigator {
  * https://developer.mozilla.org/en-US/docs/Web/API/Window_Controls_Overlay_API
  */
 interface WindowControlsOverlay extends EventTarget {
-    visible: boolean;
-    getTitlebarAreaRect(): DOMRect;
-    ongeometrychange:
-        | ((this: WindowControlsOverlay, e: Event) => unknown)
-        | null;
+  visible: boolean;
+  getTitlebarAreaRect(): DOMRect;
+  ongeometrychange: ((this: WindowControlsOverlay, e: Event) => unknown) | null;
 }
 
 declare global {
-    type Result<T, E> =
-        | { value: T; error?: undefined }
-        | { value?: undefined; error: E };
+  type Result<T, E> =
+    | { value: T; error?: undefined }
+    | { value?: undefined; error: E };
 
-    interface Window {
-        api: DarkwriteElectronAPI;
-        webUtils: WebUtils;
-    }
+  interface Window {
+    api: DarkwriteElectronAPI;
+    webUtils: WebUtils;
+  }
 
-    type Result<T, E> =
-        | { value: T; error?: undefined }
-        | { value?: undefined; error: E };
+  type Result<T, E> =
+    | { value: T; error?: undefined }
+    | { value?: undefined; error: E };
 
-    //type DarkwriteElectronAPI = dw;
+  //type DarkwriteElectronAPI = dw;
 }

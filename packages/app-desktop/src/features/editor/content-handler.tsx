@@ -4,15 +4,15 @@ import { useEditor } from "novel";
 import { useEffect } from "react";
 
 export function ContentHandler() {
-    const { editor } = useEditor();
-    const id = useNoteFromURL();
-    const { content } = useNoteEditor();
-    useEffect(() => {
-        //console.log(content);
-        if (id != "" && content) {
-            editor?.commands.setContent(content);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id, content]);
-    return <></>;
+  const { editor } = useEditor();
+  const id = useNoteFromURL();
+  const { content } = useNoteEditor();
+  useEffect(() => {
+    //console.log(content);
+    if (id != "" && content) {
+      editor?.commands.setContent(content);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, content]);
+  return <></>;
 }

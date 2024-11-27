@@ -7,8 +7,8 @@ import { EmbedEntity } from "./entity/embed";
 const dbPath = DB_PATH;
 
 export const AppDataSource = new DataSource({
-    type: "better-sqlite3",
-    database: dbPath,
-    entities: [NoteEntity, TodoEntity, TodoListEntity, EmbedEntity],
-    synchronize: true, // FIXME: REMOVE BEFORE RELEASE
+  type: "better-sqlite3",
+  database: dbPath,
+  entities: [NoteEntity, TodoEntity, TodoListEntity, EmbedEntity],
+  synchronize: true, // FIXME: REMOVE BEFORE RELEASE
 });

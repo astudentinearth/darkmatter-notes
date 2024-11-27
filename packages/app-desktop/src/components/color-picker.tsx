@@ -5,47 +5,44 @@ import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Pipette } from "lucide-react";
 
 export type ColorPickerProps = {
-    onChange?: (val: string) => void;
-    value?: string;
-    className?: string;
-    defaultValue?: string;
+  onChange?: (val: string) => void;
+  value?: string;
+  className?: string;
+  defaultValue?: string;
 };
 
 export function ColorPicker(props: ColorPickerProps) {
-    return (
-        <Popover>
-            <PopoverTrigger asChild>
-                <Button
-                    style={{
-                        background: `${props.value || "hsl(var(--secondary))"}`,
-                    }}
-                    className={cn(
-                        "p-0 w-8 h-8 rounded-lg border-border border",
-                        !props.value && "hover:!bg-secondary/50 bg-secondary",
-                        props.className,
-                    )}
-                >
-                    {!props.value && (
-                        <Pipette
-                            size={14}
-                            className="text-secondary-foreground"
-                        />
-                    )}
-                </Button>
-            </PopoverTrigger>
-            <PopoverContent className="p-1 w-fit drop-shadow-xl overflow-hidden flex flex-col rounded-xl m-4 gap-1">
-                <HexColorPicker
-                    color={props.value}
-                    onChange={props.onChange}
-                    defaultValue={props.defaultValue}
-                />
-                <HexColorInput
-                    className="bg-view-2 p-2 rounded-lg"
-                    color={props.value}
-                    onChange={props.onChange}
-                    defaultValue={props.defaultValue}
-                />
-            </PopoverContent>
-        </Popover>
-    );
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          style={{
+            background: `${props.value || "hsl(var(--secondary))"}`,
+          }}
+          className={cn(
+            "p-0 w-8 h-8 rounded-lg border-border border",
+            !props.value && "hover:!bg-secondary/50 bg-secondary",
+            props.className,
+          )}
+        >
+          {!props.value && (
+            <Pipette size={14} className="text-secondary-foreground" />
+          )}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="p-1 w-fit drop-shadow-xl overflow-hidden flex flex-col rounded-xl m-4 gap-1">
+        <HexColorPicker
+          color={props.value}
+          onChange={props.onChange}
+          defaultValue={props.defaultValue}
+        />
+        <HexColorInput
+          className="bg-view-2 p-2 rounded-lg"
+          color={props.value}
+          onChange={props.onChange}
+          defaultValue={props.defaultValue}
+        />
+      </PopoverContent>
+    </Popover>
+  );
 }

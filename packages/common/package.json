@@ -8,10 +8,12 @@
     "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
     "build": "tsup src/index.ts --dts --format esm,cjs",
-    "watch": "tsup src/index.ts --dts --format esm,cjs --watch"
+    "watch": "tsup src/index.ts --dts --format esm,cjs --watch",
+    "format": "prettier . --write"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^2.1.4",
+    "prettier": "^3.4.1",
     "tsup": "^8.2.4",
     "typescript": "^5.2.2",
     "vitest": "^2.1.4"

@@ -8,35 +8,35 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export function constructWindow(
-    prefs: UserSettings,
+  prefs: UserSettings,
 ): BrowserWindowConstructorOptions {
-    let titleBarStyle: "default" | "hidden" = "default";
-    if (
-        (process.platform === "win32" || process.platform === "linux") &&
-        !prefs.appearance.useSystemWindowFrame
-    ) {
-        titleBarStyle = "hidden";
-    }
-    if (
-        prefs.appearance.enableCustomWindowFrameOnDarwin &&
-        process.platform === "darwin" &&
-        !prefs.appearance.useSystemWindowFrame
-    )
-        titleBarStyle = "hidden";
-    return {
-        webPreferences: {
-            preload: join(__dirname, "preload.mjs"),
-        },
-        icon: is.dev ? join(__dirname, "../resources/icon.png") : undefined,
-        titleBarStyle,
-        titleBarOverlay:
-            titleBarStyle == "hidden"
-                ? {
-                      color: "#13131300",
-                      symbolColor: "#ffffff",
-                      height: 48,
-                  }
-                : false,
-        autoHideMenuBar: true,
-    };
+  let titleBarStyle: "default" | "hidden" = "default";
+  if (
+    (process.platform === "win32" || process.platform === "linux") &&
+    !prefs.appearance.useSystemWindowFrame
+  ) {
+    titleBarStyle = "hidden";
+  }
+  if (
+    prefs.appearance.enableCustomWindowFrameOnDarwin &&
+    process.platform === "darwin" &&
+    !prefs.appearance.useSystemWindowFrame
+  )
+    titleBarStyle = "hidden";
+  return {
+    webPreferences: {
+      preload: join(__dirname, "preload.mjs"),
+    },
+    icon: is.dev ? join(__dirname, "../resources/icon.png") : undefined,
+    titleBarStyle,
+    titleBarOverlay:
+      titleBarStyle == "hidden"
+        ? {
+            color: "#13131300",
+            symbolColor: "#ffffff",
+            height: 48,
+          }
+        : false,
+    autoHideMenuBar: true,
+  };
 }

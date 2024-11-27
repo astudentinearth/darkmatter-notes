@@ -7,45 +7,45 @@ import log from "electron-log";
 import _ from "lodash";
 
 export const ThemeAPI = {
-    import: async () => {
-        try {
-            const openResult = await openFile({
-                title: "Import theme",
-                filters: [{ extensions: ["json"], name: "Darkwrite theme" }],
-                buttonLabel: "Import",
-            });
-            if (openResult.canceled) return;
-            await fse.ensureDir(THEME_DIR);
-            const contents = await fse.readFile(openResult.filePaths[0], {
-                encoding: "utf-8",
-            });
-            const theme = JSON.parse(contents);
-            const valid = isTheme(theme);
-            if (!valid) throw new Error("Invalid theme file");
-            await fse.copy(
-                openResult.filePaths[0],
-                join(THEME_DIR, `${theme.id}.json`),
-            );
-        } catch (error) {
-            if (error instanceof Error) log.error(error.message);
-        }
-    },
-    load: async () => {
-        await fse.ensureDir(THEME_DIR);
-        const files = await fse.readdir(THEME_DIR);
-        const themes: Theme[] = [];
-        for (const file of files) {
-            const theme_str = await fse.readFile(join(THEME_DIR, file), {
-                encoding: "utf-8",
-            });
+  import: async () => {
+    try {
+      const openResult = await openFile({
+        title: "Import theme",
+        filters: [{ extensions: ["json"], name: "Darkwrite theme" }],
+        buttonLabel: "Import",
+      });
+      if (openResult.canceled) return;
+      await fse.ensureDir(THEME_DIR);
+      const contents = await fse.readFile(openResult.filePaths[0], {
+        encoding: "utf-8",
+      });
+      const theme = JSON.parse(contents);
+      const valid = isTheme(theme);
+      if (!valid) throw new Error("Invalid theme file");
+      await fse.copy(
+        openResult.filePaths[0],
+        join(THEME_DIR, `${theme.id}.json`),
+      );
+    } catch (error) {
+      if (error instanceof Error) log.error(error.message);
+    }
+  },
+  load: async () => {
+    await fse.ensureDir(THEME_DIR);
+    const files = await fse.readdir(THEME_DIR);
+    const themes: Theme[] = [];
+    for (const file of files) {
+      const theme_str = await fse.readFile(join(THEME_DIR, file), {
+        encoding: "utf-8",
+      });
 
-            const theme = _.attempt(() => JSON.parse(theme_str));
-            if (theme instanceof Error) continue; // file must be broken, we don't care
-            const valid = isTheme(theme);
-            if (!valid) continue;
-            log.info(`Found theme: ${theme.id}`);
-            themes.push(theme);
-        }
-        return themes;
-    },
+      const theme = _.attempt(() => JSON.parse(theme_str));
+      if (theme instanceof Error) continue; // file must be broken, we don't care
+      const valid = isTheme(theme);
+      if (!valid) continue;
+      log.info(`Found theme: ${theme.id}`);
+      themes.push(theme);
+    }
+    return themes;
+  },
 };

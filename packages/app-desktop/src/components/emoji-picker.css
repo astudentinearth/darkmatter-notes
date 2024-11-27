@@ -4,6 +4,6 @@
 
 /* we force the emoji picker to look as if its following the theme */
 em-emoji-picker {
-    --rgb-background: 0, 0, 0, 0;
-    --shadow: none;
+  --rgb-background: 0, 0, 0, 0;
+  --shadow: none;
 }

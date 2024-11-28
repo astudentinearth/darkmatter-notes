@@ -50,7 +50,6 @@ export function EmojiPicker(props: {
       >
         <Picker
           previewPosition="none"
-          theme="dark"
           onEmojiSelect={(e: { unified: string }) => {
             props.onSelect?.call(null, e.unified);
             if (props.closeOnSelect) setOpen(false);

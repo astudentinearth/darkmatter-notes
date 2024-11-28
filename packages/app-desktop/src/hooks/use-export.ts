@@ -17,6 +17,10 @@ export const useExport = () => {
       return;
     }
     if ("contents" in json) {
+      if (!("content" in json.contents && "type" in json.contents)) {
+        json.contents.content = [];
+        json.contents.type = "doc";
+      }
       const html = generateHTML(json.contents, [...defaultExtensions]);
       NotesModel.Instance.exportHTML(note, html);
     }

@@ -13,6 +13,11 @@
 - Fixed a bug where "this note is trashed" alert would go below the cover image
 - Chromium session data is now stored in directories called `session-dev/` and `session/` when running development and production builds respectively.
 - Added padding to editor's sides to make drag handles more accessible
+- Reduced margins above headings
+- Reduced padding between title and the page
+- Fixed the use of wrong destructive color in Catppuccin Frappé (it's not blue anymore)
+- Fixed a bug causing the emoji picker to always appear in dark mode, which caused unreadable text in light themes
+- Fixed a bug where exporting empty notes would fail when done from the context menu or the editor menu
 
 # 0.2.0-alpha.3
 

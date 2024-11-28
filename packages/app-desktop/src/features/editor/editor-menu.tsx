@@ -11,13 +11,12 @@ import { useEditorState } from "@renderer/context/editor-state";
 import { useLocalStore } from "@renderer/context/local-state";
 import { useNoteByIdQuery } from "@renderer/hooks/query";
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
+import { useExport } from "@renderer/hooks/use-export";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { NotesModel } from "@renderer/lib/api/note";
-import { generateHTML } from "@tiptap/html";
-import { Copy, Download, Menu, Upload } from "lucide-react";
-import { defaultExtensions } from "./extensions/extensions";
-import { useState } from "react";
 import { cn } from "@renderer/lib/utils";
+import { Copy, Download, Menu, Upload } from "lucide-react";
+import { useState } from "react";
 
 export function EditorMenu() {
   const [open, setOpen] = useState(false);
@@ -27,7 +26,7 @@ export function EditorMenu() {
   const checker = useLocalStore((s) => s.useSpellcheck);
   const setCheck = useLocalStore((s) => s.setSpellcheck);
   const duplicate = useDuplicateNoteMutation().mutate;
-  const getSerializable = useEditorState((s) => s.getSerializableObject);
+  const _export = useExport();
   if (!activeNoteId) return <></>;
   return (
     <>
@@ -59,9 +58,10 @@ export function EditorMenu() {
           <DropdownMenuItem
             onSelect={() => {
               if (!activeNote.data?.value) return;
-              const content = getSerializable().content;
-              const html = generateHTML(content, [...defaultExtensions]);
-              NotesModel.Instance.exportHTML(activeNote.data?.value, html);
+              _export(activeNote.data.value);
+              //const content = getSerializable().content;
+              //const html = generateHTML(content, [...defaultExtensions]);
+              //NotesModel.Instance.exportHTML(activeNote.data?.value, html);
             }}
             className="gap-2 rounded-lg"
           >

@@ -9,7 +9,7 @@
 @tailwind utilities;
 
 .ProseMirror {
-  @apply px-4 pt-2 pb-16 min-h-96 text-foreground;
+  @apply px-4 pt-0 pb-16 min-h-96 text-foreground;
   .react-renderer {
     background: transparent !important;
   }

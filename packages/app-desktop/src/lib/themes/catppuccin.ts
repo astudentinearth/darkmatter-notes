@@ -86,7 +86,7 @@ export const CatppuccinFrappe: Theme = {
   secondaryForeground: "227 70% 87%",
   mutedBackground: "227 15% 37%",
   mutedForeground: "227 70% 87%",
-  destructiveBackground: "231 68% 71%",
+  destructiveBackground: "359 68% 71%",
   destructiveForeground: "227 70% 87%",
   disabled: "227 17% 58%",
   border: "229 13% 52%",

@@ -32,13 +32,11 @@ export function TrashWidget() {
       </PopoverTrigger>
       <PopoverContent
         side={"right"}
-        className={cn("p-2 rounded-2xl h-[70vh]")}
+        className={cn("p-0 rounded-xl h-[70vh] flex flex-col mb-4")}
         sticky="always"
       >
-        <h1 className="font-semibold text-foreground/80 pl-2 backdrop-blur-sm pb-2">
-          Trash
-        </h1>
-        <ScrollArea className="h-full overflow-y-auto">
+        <h1 className="font-semibold text-foreground/80 p-2">Trash</h1>
+        <ScrollArea className="overflow-y-auto p-1">
           <div className="">
             {trashed?.map((note) => (
               <div key={note.id}>

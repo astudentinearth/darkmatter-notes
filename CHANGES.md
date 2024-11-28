@@ -18,6 +18,8 @@
 - Fixed the use of wrong destructive color in Catppuccin Frappé (it's not blue anymore)
 - Fixed a bug causing the emoji picker to always appear in dark mode, which caused unreadable text in light themes
 - Fixed a bug where exporting empty notes would fail when done from the context menu or the editor menu
+- Fixed a bug which caused trash contents to overflow down the container
+- Trash panel now has a bottom margin which prevents it from sticking close to the bottom
 
 # 0.2.0-alpha.3
 

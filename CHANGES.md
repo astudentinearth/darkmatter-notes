@@ -27,6 +27,7 @@
 - Top left corner of the editor is no longer rounded when sidebar is collapsed
 - Fixed a bug where changing the text color of a note would affect icons in formatting bubble
 - Fixed a bug where changing the text color of a note would also change the color of cover image buttons
+- Increased startup window size to 1000x700
 
 # 0.2.0-alpha.3
 

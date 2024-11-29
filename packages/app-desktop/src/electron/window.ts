@@ -38,5 +38,8 @@ export function constructWindow(
           }
         : false,
     autoHideMenuBar: true,
+    // TODO: Persist window size
+    width: 1000,
+    height: 700,
   };
 }

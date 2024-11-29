@@ -14,11 +14,14 @@ import { produce } from "immer";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { FavoriteItem } from "./favorite-item";
+import { useLocalStore } from "@renderer/context/local-state";
 
 export function FavortiesWidget() {
   const notes = useNotesQuery().data?.value;
   const updateMany = useUpdateMultipleNotesMutation().mutate;
-  const [open, setOpen] = useState(true);
+  const open = !useLocalStore((s) => s.favoritesCollapsed);
+  const setCollapsed = useLocalStore((s) => s.setFavoritesCollapsed);
+  const setOpen = (val: boolean) => setCollapsed(!val);
   const [target, setTarget] = useState<Note[]>([]);
 
   const getFavorites = (arr: Note[]) => {

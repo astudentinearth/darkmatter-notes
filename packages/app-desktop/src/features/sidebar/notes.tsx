@@ -10,13 +10,16 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { DragEvent, useCallback, useState } from "react";
 import { NoteDropZone } from "./note-drop-zone";
 import { NoteItem } from "./note-item";
+import { useLocalStore } from "@renderer/context/local-state";
 
 export function NotesWidget() {
   const notesQuery = useNotesQuery();
   const moveMutation = useMoveNoteMutation();
   const notes = notesQuery.data?.value;
   const move = moveMutation.mutate;
-  const [open, setOpen] = useState(true);
+  const open = !useLocalStore((s) => s.allNotesCollapsed);
+  const setCollapsed = useLocalStore((s) => s.setAllNotesCollapsed);
+  const setOpen = (val: boolean) => setCollapsed(!val);
   const [dragOver, setDragOver] = useState(false);
 
   const render = useCallback(() => {

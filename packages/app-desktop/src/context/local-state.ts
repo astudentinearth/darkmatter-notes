@@ -16,6 +16,8 @@ type localStore = {
   sidebarWidth: number;
   route: string;
   useSpellcheck: boolean;
+  allNotesCollapsed: boolean;
+  favoritesCollapsed: boolean;
 };
 
 type localStoreAction = {
@@ -24,6 +26,8 @@ type localStoreAction = {
   setRoute: (r: string) => void;
   setCalculatedWidth: (change: number) => void;
   setSpellcheck: (val: boolean) => void;
+  setAllNotesCollapsed: (val: boolean) => void;
+  setFavoritesCollapsed: (val: boolean) => void;
 };
 
 export const useLocalStore = create<localStore & localStoreAction>()(
@@ -33,6 +37,10 @@ export const useLocalStore = create<localStore & localStoreAction>()(
       sidebarWidth: 240,
       route: "/",
       useSpellcheck: true,
+      allNotesCollapsed: false,
+      favoritesCollapsed: false,
+      setFavoritesCollapsed: (val) => set({ favoritesCollapsed: val }),
+      setAllNotesCollapsed: (val) => set({ allNotesCollapsed: val }),
       setSidebarCollapsed: (collapsed: boolean) =>
         set({ isSidebarCollapsed: collapsed }),
       setSidebarWidth: (width: number) => set({ sidebarWidth: width }),

@@ -8,6 +8,10 @@
   - Whether spell checking was disabled or not
 - As these are local preferences and are not even persisted in backups, it shouldn't be a problem.
 
+## 🌟 Features
+
+- When you collapse favorites or all notes views in the sidebar, that preference will be remembered
+
 ## ✨ Improvements and fixes
 
 - Fixed a bug where "this note is trashed" alert would go below the cover image

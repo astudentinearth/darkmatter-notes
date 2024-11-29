@@ -20,6 +20,7 @@
 - Fixed a bug where exporting empty notes would fail when done from the context menu or the editor menu
 - Fixed a bug which caused trash contents to overflow down the container
 - Trash panel now has a bottom margin which prevents it from sticking close to the bottom
+- Top left corner of the editor is no longer rounded when sidebar is collapsed
 
 # 0.2.0-alpha.3
 

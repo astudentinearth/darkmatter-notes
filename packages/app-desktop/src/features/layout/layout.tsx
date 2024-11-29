@@ -53,6 +53,7 @@ export function Layout() {
         adjustTitlebarWidth,
       );
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSidebarCollapsed, width]);
 
   // enter resize mode if handle triggers mouse down
@@ -102,7 +103,12 @@ export function Layout() {
           }}
           isSidebarCollapsed={isSidebarCollapsed}
         ></Titlebar>
-        <div className="bg-view-1 rounded-tl-[16px] h-full overflow-x-hidden main-view  border-border/25">
+        <div
+          className={cn(
+            "bg-view-1 rounded-tl-[16px] h-full overflow-x-hidden main-view  border-border/25",
+            isSidebarCollapsed && "rounded-none",
+          )}
+        >
           <Outlet />
         </div>
       </div>

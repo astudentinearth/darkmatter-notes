@@ -3,9 +3,6 @@
 
 import { DarkwriteElectronAPI } from "./api";
 import { type WebUtils } from "electron";
-interface Navigator {
-  windowControlsOverlay?: WindowControlsOverlay;
-}
 
 /**
  * Type definition for WindowControlsOverlay API
@@ -25,6 +22,10 @@ declare global {
   interface Window {
     api: DarkwriteElectronAPI;
     webUtils: WebUtils;
+  }
+
+  interface Navigator {
+    windowControlsOverlay?: WindowControlsOverlay;
   }
 
   type Result<T, E> =

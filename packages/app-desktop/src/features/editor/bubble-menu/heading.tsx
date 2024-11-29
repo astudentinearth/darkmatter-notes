@@ -55,13 +55,13 @@ export function HeadingSelector(props: {
         <Button
           variant="ghost"
           size={"bubble"}
-          className="rounded-none w-fit gap-1 px-2"
+          className="rounded-none w-fit gap-1 px-2 text-foreground"
         >
           {icon}
           <ChevronDown size={16} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2">
+      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground">
         {item(<Heading1 />, "Heading 1", () => {
           editor?.chain().toggleHeading({ level: 1 }).run();
         })}

@@ -19,7 +19,10 @@ export function BubbleButton(props: BubbleButtonProps) {
       <Button variant="ghost" size={"bubble"} className="rounded-none">
         <props.icon
           size={20}
-          className={cn(props.isActive(editor) && "text-primary-text")}
+          className={cn(
+            "text-foreground",
+            props.isActive(editor) && "text-primary-text",
+          )}
         />
       </Button>
     </EditorBubbleItem>

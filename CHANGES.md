@@ -21,6 +21,7 @@
 - Fixed a bug which caused trash contents to overflow down the container
 - Trash panel now has a bottom margin which prevents it from sticking close to the bottom
 - Top left corner of the editor is no longer rounded when sidebar is collapsed
+- Fixed a bug where changing the text color of a note would affect icons in formatting bubble
 
 # 0.2.0-alpha.3
 

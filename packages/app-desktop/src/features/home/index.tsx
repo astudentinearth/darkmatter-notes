@@ -39,6 +39,7 @@ export function HomePage() {
                   create(undefined);
                 }}
                 variant={"default"}
+                data-testid="home-button-new-page"
                 className="gap-2 rounded-xl"
               >
                 <SquarePen /> Create one

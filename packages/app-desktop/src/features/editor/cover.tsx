@@ -19,6 +19,7 @@ export function EditorCover(props: {
   update: (data: NotePartial) => void;
   hasCover?: boolean;
 }) {
+  //TODO: get rid of this mess
   const { note, update } = props;
   const id = note.id;
   const [inputValue, setInputValue] = useState(note.title);

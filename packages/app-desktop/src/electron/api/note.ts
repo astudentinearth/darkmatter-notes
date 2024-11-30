@@ -1,10 +1,11 @@
 import { Note, NotePartial } from "@darkwrite/common";
-import log from "electron-log";
 import fse from "fs-extra";
 import { AppDataSource, DB } from "../db";
 import { NoteEntity } from "../db/entity/note";
 import { getNotePath } from "../lib/paths";
 import { isNodeError } from "../util";
+import { logError } from "../lib/log";
+import { rmIfExists } from "../lib/fs";
 
 /**
  * Creates a new note by creating a database entry and a JSON file. A randomly generated UUID is assigned.
@@ -13,12 +14,12 @@ import { isNodeError } from "../util";
  */
 export async function createNote(title: string, parent?: string) {
   try {
-    const note = await DB.create(title, parent);
+    const note = await DB.note.create(title, parent);
     const filename = getNotePath(note.id);
     await fse.ensureFile(filename);
     return note;
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
     return null;
   }
 }
@@ -34,12 +35,12 @@ export async function setNoteContents(id: string, content: string) {
     await fse.ensureFile(filename);
     await fse.writeFile(filename, content);
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
   }
 }
 
 /**
- * Loads data from a note's JSON file
+ * Loads data from a note's JSON file. If the file does not exist, assumes the note was deleted and removes the database entry.
  * @param id UUID of the note to load data from
  * @returns JSON contents of the note as string
  */
@@ -56,11 +57,7 @@ export async function getNoteContents(id: string) {
         .where("id = :id", { id })
         .execute();
     } else {
-      log.error(
-        error instanceof Error
-          ? error.message
-          : "Unknown error in main/api/note/getNoteContets",
-      );
+      logError(error, "Unknown error in getNoteContents API");
     }
     return null;
   }
@@ -73,23 +70,16 @@ export async function getNoteContents(id: string) {
 export async function deleteNote(id: string) {
   try {
     const filename = getNotePath(id);
-    await fse.remove(filename);
-    await AppDataSource.createQueryBuilder()
-      .delete()
-      .from(NoteEntity)
-      .where("id = :id", { id })
-      .execute(); // delete the note
+    await rmIfExists(filename);
+    await DB.note.delete(id); // delete the note
+    //FIXME: This is not recursive and leaves behind the JSON files.
     await AppDataSource.createQueryBuilder()
       .delete()
       .from(NoteEntity)
       .where("parentID = :id", { id })
       .execute(); // delete its subnotes
   } catch (error) {
-    log.error(
-      error instanceof Error
-        ? error.message
-        : "Unknowm error in main/api/note/getNoteContets",
-    );
+    logError(error);
   }
 }
 
@@ -108,14 +98,14 @@ export async function moveNote(sourceID: string, destID: string | undefined) {
     if (destID == null && source != null) {
       // We are moving the note to the top level
       source.parentID = null; // set parent to null
-      await DB.update(source);
+      await DB.note.update(source);
       return;
     }
     if (source == null) return;
     source.parentID = destID;
-    await DB.update(source);
+    await DB.note.update(source);
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
   }
 }
 
@@ -125,9 +115,9 @@ export async function moveNote(sourceID: string, destID: string | undefined) {
  */
 export async function updateNote(note: NotePartial) {
   try {
-    await DB.update(note);
+    await DB.note.update(note);
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
   }
 }
 
@@ -137,10 +127,10 @@ export async function updateNote(note: NotePartial) {
  */
 export async function getAllNotes(): Promise<Note[] | null> {
   try {
-    const notes = await DB.getAllNotes();
+    const notes = await DB.note.getAll();
     return notes;
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
     return null;
   }
 }
@@ -149,12 +139,13 @@ export async function getAllNotes(): Promise<Note[] | null> {
  * Moves a note to trash
  * @param id
  * @param state true moves into trash, false restores it
+ * @deprecated Use `updateNote` instead.
  */
 export async function setTrashStatus(id: string, state: boolean) {
   try {
-    await DB.update({ id, isTrashed: state });
+    await DB.note.update({ id, isTrashed: state });
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
   }
 }
 
@@ -170,7 +161,7 @@ export async function getNote(id: string) {
       .getOne();
     return note;
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
     return null;
   }
 }
@@ -185,6 +176,6 @@ export async function saveNotes(notes: Note[]) {
       NoteEntity.fromMetadataArray(notes),
     );
   } catch (error) {
-    if (error instanceof Error) log.error(error.message);
+    logError(error);
   }
 }

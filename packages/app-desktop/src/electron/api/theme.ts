@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { THEME_DIR } from "../lib/paths";
 import log from "electron-log";
 import _ from "lodash";
+import { logError } from "../lib/log";
 
 export const ThemeAPI = {
   import: async () => {
@@ -27,7 +28,7 @@ export const ThemeAPI = {
         join(THEME_DIR, `${theme.id}.json`),
       );
     } catch (error) {
-      if (error instanceof Error) log.error(error.message);
+      logError(error);
     }
   },
   load: async () => {

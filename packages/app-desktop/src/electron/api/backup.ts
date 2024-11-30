@@ -15,6 +15,7 @@ import {
   RESTORE_CACHE_DIR,
 } from "../lib/paths";
 import { saveFile } from "./dialog";
+import { logError } from "../lib/log";
 
 /**
  * APIs to perform a complete workspace export.
@@ -29,7 +30,7 @@ export const HTMLExporterAPI = {
       await rmIfExists(EXPORTER_CACHE_DIR);
       await fse.ensureDir(EXPORTER_CACHE_DIR);
     } catch (error) {
-      if (error instanceof Error) log.error(error.message);
+      logError(error);
     }
   },
   async pushToExporterCache(filename: string, content: string) {
@@ -39,7 +40,7 @@ export const HTMLExporterAPI = {
       }
       await fse.writeFile(join(EXPORTER_CACHE_DIR, filename), content);
     } catch (error) {
-      if (error instanceof Error) log.error(error.message);
+      logError(error);
     }
   },
   async finishExport() {
@@ -56,7 +57,7 @@ export const HTMLExporterAPI = {
       await zip(EXPORTER_CACHE_DIR, path);
       await fse.rm(EXPORTER_CACHE_DIR, { recursive: true, force: true });
     } catch (error) {
-      if (error instanceof Error) log.error(error.message);
+      logError(error);
     }
   },
 };
@@ -70,12 +71,6 @@ export const BackupAPI = {
 
       // copy user data
       await fse.copy(DATA_DIR, BACKUP_CACHE_DIR);
-      // await fse.copy(DB_PATH, join(BACKUP_CACHE_DIR, "data.db"));
-      // await fse.copy(NOTE_CONTENTS_DIR, join(BACKUP_CACHE_DIR, "notes/"));
-      // await fse.copy(
-      //     SETTINGS_PATH,
-      //     join(BACKUP_CACHE_DIR, "settings.json"),
-      // );
 
       const saveResult = await saveFile({
         buttonLabel: "Export",
@@ -86,13 +81,10 @@ export const BackupAPI = {
       await zip(BACKUP_CACHE_DIR, saveResult.path);
       await fse.rm(BACKUP_CACHE_DIR, { recursive: true, force: true });
     } catch (error) {
-      if (error instanceof Error) log.error(error.message);
+      logError(error);
     }
   },
   async restore(archivePath: string) {
-    // const dbBackupPath = join(DATA_DIR, "data.db.old");
-    // const notesBackupPath = join(DATA_DIR, "notes_old");
-    // const settingsBackupPath = join(DATA_DIR, "settings.json.old");
     let didRename = false;
     await DB.disconnect();
     try {
@@ -110,9 +102,6 @@ export const BackupAPI = {
         await fse.move(DATA_DIR, DATA_SNAPSHOT_DIR, {
           overwrite: true,
         });
-        // await fse.rename(DB_PATH, dbBackupPath);
-        // await fse.rename(NOTE_CONTENTS_DIR, notesBackupPath);
-        // await fse.rename(SETTINGS_PATH, settingsBackupPath);
       } catch (error) {
         /*empty*/
       }
@@ -120,20 +109,6 @@ export const BackupAPI = {
 
       await fse.ensureDir(DATA_DIR);
       await fse.copy(RESTORE_CACHE_DIR, DATA_DIR, { overwrite: true });
-
-      // await fse.copy(join(RESTORE_CACHE_DIR, "data.db"), DB_PATH, {
-      //     overwrite: true,
-      // });
-      // await fse.copy(
-      //     join(RESTORE_CACHE_DIR, "settings.json"),
-      //     SETTINGS_PATH,
-      //     { overwrite: true },
-      // );
-      // await fse.copy(
-      //     join(RESTORE_CACHE_DIR, "notes"),
-      //     NOTE_CONTENTS_DIR,
-      //     { overwrite: true },
-      // );
 
       dialog.showMessageBoxSync({
         message:
@@ -145,14 +120,11 @@ export const BackupAPI = {
       app.exit();
     } catch (error) {
       log.error("!!! Restore failed. Rolling back...");
-      if (error instanceof Error) log.error(error.message);
+      logError(error);
       if (didRename) {
         await fse.move(DATA_SNAPSHOT_DIR, DATA_DIR, {
           overwrite: true,
         });
-        // await fse.rename(dbBackupPath, DB_PATH);
-        // await fse.rename(notesBackupPath, NOTE_CONTENTS_DIR);
-        // await fse.rename(settingsBackupPath, SETTINGS_PATH);
       }
       await DB.init();
       dialog.showMessageBoxSync({

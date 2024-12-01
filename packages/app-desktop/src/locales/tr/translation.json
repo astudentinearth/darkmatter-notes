@@ -1,0 +1,14 @@
+{
+  "sidebar":{
+    "button":{
+      "newPage": "Yeni sayfa",
+      "home": "Giriş",
+      "settings": "Ayarlar",
+      "trash": "Çöp kutusu"
+    },
+    "title":{
+      "favorites": "Favoriler",
+      "allNotes": "Tüm notlar"
+    }
+  }
+}

@@ -15,6 +15,7 @@ import { ChevronDown, ChevronRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { FavoriteItem } from "./favorite-item";
 import { useLocalStore } from "@renderer/context/local-state";
+import { useTranslation } from "react-i18next";
 
 export function FavortiesWidget() {
   const notes = useNotesQuery().data?.value;
@@ -23,6 +24,7 @@ export function FavortiesWidget() {
   const setCollapsed = useLocalStore((s) => s.setFavoritesCollapsed);
   const setOpen = (val: boolean) => setCollapsed(!val);
   const [target, setTarget] = useState<Note[]>([]);
+  const {t} = useTranslation();
 
   const getFavorites = (arr: Note[]) => {
     const favorites = arr.filter((n) => n.isFavorite && !n.isTrashed);
@@ -86,7 +88,7 @@ export function FavortiesWidget() {
             ) : (
               <ChevronRight size={14}></ChevronRight>
             )}
-            <span>Favorites</span>
+            <span>{t("sidebar.title.favorites")}</span>
           </div>
         </CollapsibleTrigger>
         <CollapsibleContent>

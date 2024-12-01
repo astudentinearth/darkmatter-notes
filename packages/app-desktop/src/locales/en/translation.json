@@ -1,0 +1,14 @@
+{
+  "sidebar":{
+    "button":{
+      "newPage": "New Page",
+      "home": "Home",
+      "settings": "Settings",
+      "trash": "Trash"
+    },
+    "title":{
+      "favorites": "Favorites",
+      "allNotes": "All notes"
+    }
+  }
+}

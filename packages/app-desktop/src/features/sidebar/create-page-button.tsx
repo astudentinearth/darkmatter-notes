@@ -2,10 +2,12 @@ import { Button } from "@renderer/components/ui/button";
 import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mutation";
 import { cn } from "@renderer/lib/utils";
 import { SquarePen } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function CreatePageButton() {
   const createMutation = useCreateNoteMutation(true);
   const create = () => createMutation.mutate(undefined);
+  const {t }= useTranslation();
   //FIXME: Extract this button component
   return (
     <Button
@@ -16,7 +18,7 @@ export default function CreatePageButton() {
       )}
     >
       <SquarePen size={16}></SquarePen>
-      <span className="justify-self-start">New page</span>
+      <span className="justify-self-start">{t("sidebar.button.newPage")}</span>
     </Button>
   );
 }

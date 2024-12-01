@@ -11,6 +11,7 @@ import { DragEvent, useCallback, useState } from "react";
 import { NoteDropZone } from "./note-drop-zone";
 import { NoteItem } from "./note-item";
 import { useLocalStore } from "@renderer/context/local-state";
+import { useTranslation } from "react-i18next";
 
 export function NotesWidget() {
   const notesQuery = useNotesQuery();
@@ -21,6 +22,8 @@ export function NotesWidget() {
   const setCollapsed = useLocalStore((s) => s.setAllNotesCollapsed);
   const setOpen = (val: boolean) => setCollapsed(!val);
   const [dragOver, setDragOver] = useState(false);
+  const {t} = useTranslation();
+
 
   const render = useCallback(() => {
     const target = notes?.filter((n) => n.parentID == null && !n.isTrashed);
@@ -78,7 +81,7 @@ export function NotesWidget() {
             ) : (
               <ChevronRight size={14}></ChevronRight>
             )}
-            <span>All notes</span>
+            <span>{t("sidebar.title.allNotes")}</span>
           </div>
         </CollapsibleTrigger>
         <CollapsibleContent>{render()}</CollapsibleContent>

@@ -1,6 +1,8 @@
 import _ from "lodash";
 export interface UserSettings {
-  /** Determines the user's locale. @default "en" */
+  /** Determines the user's locale. 
+   * @deprecated Language is now persisted in `localStorage`. This key has no effect.
+   * @default "en" */
   lang: string;
   appearance: {
     /** Identifier for user's color scheme.

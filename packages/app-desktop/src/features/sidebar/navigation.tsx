@@ -1,11 +1,13 @@
 import { Button } from "@renderer/components/ui/button";
 import { cn } from "@renderer/lib/utils";
 import { House, Settings } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export function NavigationWidget() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
   return (
     <div className="rounded-[12px] flex flex-col gap-0.5">
       <Button
@@ -19,7 +21,7 @@ export function NavigationWidget() {
         )}
       >
         <House size={16}></House>
-        <span className="justify-self-start">Home</span>
+        <span className="justify-self-start">{t("sidebar.button.home")}</span>
       </Button>
       <Button
         onClick={() => navigate("/settings")}
@@ -32,7 +34,7 @@ export function NavigationWidget() {
         )}
       >
         <Settings size={16}></Settings>
-        <span className="justify-self-start">Settings</span>
+        <span className="justify-self-start">{t("sidebar.button.settings")}</span>
       </Button>
     </div>
   );

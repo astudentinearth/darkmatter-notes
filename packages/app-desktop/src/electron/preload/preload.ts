@@ -63,6 +63,8 @@ const darkwriteAPI: DarkwriteElectronAPI = {
     ),
   embed: {
     create: (path) => ipcRenderer.invoke(ChannelNames.UPLOAD_EMBED, path),
+    createFromBuffer: (buf, ext) =>
+      ipcRenderer.invoke(ChannelNames.UPLOAD_EMBED_WITH_BUFFER, buf, ext),
     resolve: (id) => ipcRenderer.invoke(ChannelNames.RESOLVE_EMBED, id),
   },
 };

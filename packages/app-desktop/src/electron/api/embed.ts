@@ -6,6 +6,7 @@ import fse from "fs-extra";
 import { Embed, ResolvedEmbed } from "@darkwrite/common";
 import { DB } from "../db";
 import { app, protocol, net } from "electron";
+import { EmbedEntity } from "../db/entity/embed";
 
 export const EmbedAPI = {
   create: async (filePath: string) => {
@@ -25,9 +26,41 @@ export const EmbedAPI = {
 
     console.log(id);
     // we want to see if an embed with the same size already exists
+    const contents = await fse.readFile(filePath);
+    const existing = await EmbedAPI.checkDuplicates(fileSize, contents);
+    if (existing != false) return existing;
+
+    await DB.embeds.create(embed);
+    await fse.copy(filePath, join(Paths.EMBED_DIR, filename));
+    return embed;
+  },
+  /**
+   * Given the byte data and file type, creates an embed and its file
+   * @param buf Data of the embed
+   * @param fileExt Extension of the file, *without* a period in the beginning.
+   */
+  createFromArrayBuffer: async (buf: ArrayBuffer, fileExt: string) => {
+    const id = randomUUID();
+    const embed: Embed = {
+      id,
+      fileSize: buf.byteLength,
+      filename: `${id}.${fileExt}`,
+      displayName: `${id}.${fileExt}`,
+      createdAt: new Date(),
+    };
+    const existing = await EmbedAPI.checkDuplicates(
+      buf.byteLength,
+      Buffer.from(buf),
+    );
+    if (existing != false) return existing;
+    const view = new Uint8Array(buf);
+    await fse.writeFile(join(Paths.EMBED_DIR, embed.filename), view);
+    await DB.embeds.create(embed);
+    return embed;
+  },
+  checkDuplicates: async (fileSize: number, targetContents: Buffer) => {
     const embeds = await DB.embeds.getBySize(fileSize);
     if (embeds.length > 0) {
-      const targetContents = await fse.readFile(filePath);
       for (const e of embeds) {
         try {
           const existingFile = join(Paths.EMBED_DIR, e.filename);
@@ -44,10 +77,7 @@ export const EmbedAPI = {
         }
       }
     }
-
-    await DB.embeds.create(embed);
-    await fse.copy(filePath, join(Paths.EMBED_DIR, filename));
-    return embed;
+    return false;
   },
   resolve: async (id: string) => {
     const embed = await DB.embeds.getOne(id);

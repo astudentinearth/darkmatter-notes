@@ -1,6 +1,8 @@
+import { EmbedAPI } from "@renderer/lib/api/embed";
 import { cn } from "@renderer/lib/utils";
 import { mergeAttributes } from "@tiptap/core";
 import { TiptapImage } from "novel/extensions";
+import { Plugin } from "prosemirror-state";
 
 export const DarkwriteImage = TiptapImage.extend({
   name: "dwimage",
@@ -40,6 +42,39 @@ export const DarkwriteImage = TiptapImage.extend({
     //console.log("Our embedId is ", embedId);
     const src = embedId ? `embed://${embedId}` : "";
     return ["img", mergeAttributes(HTMLAttributes, { src })];
+  },
+  addProseMirrorPlugins() {
+    return [
+      new Plugin({
+        props: {
+          handlePaste(view, event) {
+            if (!event.clipboardData) return;
+            for (const item of event.clipboardData.items) {
+              if (item.type.startsWith("image/")) {
+                event.preventDefault();
+                const filetype = item.type.slice("image/".length);
+                const file = item.getAsFile();
+                if (!file) return;
+                file.arrayBuffer().then(async (buf) => {
+                  const embed = await EmbedAPI.createFromArrayBuffer(
+                    buf,
+                    filetype,
+                  );
+                  const tr = view.state.tr;
+                  const node = view.state.schema.nodes.dwimage.create({
+                    src: `embed://${embed.id}`,
+                    embedId: embed.id,
+                  });
+                  tr.replaceSelectionWith(node);
+                  view.dispatch(tr);
+                });
+                console.log("An image was pasted", filetype);
+              }
+            }
+          },
+        },
+      }),
+    ];
   },
 }).configure({
   HTMLAttributes: {

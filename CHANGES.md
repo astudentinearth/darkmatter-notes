@@ -2,6 +2,7 @@
 
 ## 🌟 Features
 
+- You can now paste images directly to the editor
 - Editor now has a context menu
 
 # 0.2.0-alpha.4

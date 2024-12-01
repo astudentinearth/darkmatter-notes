@@ -112,6 +112,7 @@ export interface DarkwriteElectronAPI {
   };
   embed: {
     create: (filePath: string) => Promise<Embed>;
+    createFromBuffer: (buffer: ArrayBuffer, fileExt: string) => Promise<Embed>;
     resolve: (id: string) => Promise<ResolvedEmbed>;
   };
   getClientInfo: () => Promise<DarkwriteDesktopClientInfo>;

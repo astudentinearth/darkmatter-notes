@@ -29,4 +29,5 @@ export enum ChannelNames {
   SET_TITLEBAR_SYMBOL_COLOR = "set-titlebar-symbol-color",
   RESOLVE_EMBED = "resolve-embed",
   UPLOAD_EMBED = "upload-embed",
+  UPLOAD_EMBED_WITH_BUFFER = "upload-embed-with-buffer",
 }

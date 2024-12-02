@@ -60,7 +60,7 @@ export function EditorMenu() {
         </DropdownMenuTrigger>
 
         {/* TODO: Unify dropdown menu item style */}
-        <DropdownMenuContent className="mr-3 mt-1 rounded-xl bg-card">
+        <DropdownMenuContent className="mr-3 mt-1 rounded-xl bg-card/70">
           <DropdownMenuItem
             onSelect={(e) => {
               e.preventDefault();

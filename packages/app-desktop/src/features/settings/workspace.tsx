@@ -1,11 +1,12 @@
 import { RestoreDataDialog } from "@renderer/components/restore-data-dialog";
 import { Button } from "@renderer/components/ui/button";
 import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
+import { Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 export function WorkspaceSettings() {
   const workspaceExport = useWorkspaceExport();
-  const { t } = useTranslation(undefined, { keyPrefix: "settings.workspace" });
+  const { t, i18n } = useTranslation(undefined, { keyPrefix: "settings.workspace" });
   const dataBackup = useBackup();
   return (
     <div className="p-4 bg-card/80 rounded-2xl grid grid-cols-[1fr_auto] items-center auto-rows-auto gap-4">
@@ -33,6 +34,23 @@ export function WorkspaceSettings() {
           {t("backupButton")}
         </Button>
         <RestoreDataDialog />
+      </div>
+      <span><Languages size={18} className="inline"/> {t("languageText")}</span>
+      <div className="flex gap-2 place-self-end">
+      <Button
+          onClick={() => i18n.changeLanguage("tr")}
+          variant={i18n.resolvedLanguage == "tr" ? "default" : "secondary"}
+          className="flex-shrink-0 w-fit"
+        >
+          Türkçe
+        </Button>
+        <Button
+          onClick={() => i18n.changeLanguage("en")}
+          variant={i18n.resolvedLanguage == "en" ? "default" : "secondary"}
+          className="flex-shrink-0 w-fit"
+        >
+          English
+        </Button>
       </div>
     </div>
   );

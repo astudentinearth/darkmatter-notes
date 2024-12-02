@@ -54,7 +54,8 @@
         "chooseFile": "Choose file",
         "cancel": "Cancel",
         "restore": "Restore"
-      }
+      },
+      "languageText": "Language"
     },
     "appearance": {
       "title": "Appearance",

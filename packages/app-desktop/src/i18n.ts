@@ -12,7 +12,7 @@ i18n
   .init({
     fallbackLng: "en",
     detection: {
-      caches: ["localstorage"],
+      caches: ["localStorage"],
     },
   });
 export default i18n;

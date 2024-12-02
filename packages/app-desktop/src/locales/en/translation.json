@@ -80,5 +80,34 @@
       "sourceCode": "Source code",
       "reportBugs": "Report bugs"
     }
+  },
+  "editor": {
+    "menu": {
+      "checkSpelling": "Check spelling",
+      "export": "Export",
+      "import": "Import",
+      "duplicate": "Duplicate",
+      "wordCount": "{{count}} words"
+    },
+    "contextmenu": {
+      "copy": "Copy",
+      "cut": "Cut",
+      "paste": "Paste",
+      "delete": "Delete"
+    },
+    "slashCommand": {
+      "text": "Text",
+      "toDoList": "To-do List",
+      "heading1": "Heading 1",
+      "heading2": "Heading 2",
+      "heading3": "Heading 3",
+      "bulletList": "Bullet List",
+      "numberedList": "Numbered List",
+      "quote": "Quote",
+      "code": "Code",
+      "divider": "Divider",
+      "linkToPage": "Link to page",
+      "image": "Image"
+    }
   }
 }

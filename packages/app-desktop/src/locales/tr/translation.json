@@ -80,5 +80,34 @@
       "sourceCode": "Kaynak kodu",
       "reportBugs": "Hata bildir"
     }
+  },
+  "editor": {
+    "menu": {
+      "checkSpelling": "Yazım denetimi",
+      "export": "Dışa aktar",
+      "import": "İçe aktar",
+      "duplicate": "Kopyasını oluştur",
+      "wordCount": "{{count}} kelime"
+    },
+    "contextmenu": {
+      "copy": "Kopyala",
+      "cut": "Kes",
+      "paste": "Yapıştır",
+      "delete": "Sil"
+    },
+    "slashCommand": {
+      "text": "Metin",
+      "toDoList": "Yapılacaklar Listesi",
+      "heading1": "Başlık 1",
+      "heading2": "Başlık 2",
+      "heading3": "Başlık 3",
+      "bulletList": "Madde İşaretli Liste",
+      "numberedList": "Numaralı Liste",
+      "quote": "Alıntı",
+      "code": "Kod",
+      "divider": "Bölücü",
+      "linkToPage": "Sayfaya Bağlantı",
+      "image": "Resim"
+    }
   }
 }

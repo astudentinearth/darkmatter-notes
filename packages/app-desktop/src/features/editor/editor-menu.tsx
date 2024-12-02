@@ -17,8 +17,10 @@ import { NotesModel } from "@renderer/lib/api/note";
 import { cn } from "@renderer/lib/utils";
 import { Copy, Download, Menu, Upload } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function EditorMenu() {
+  const { t } = useTranslation(undefined, { keyPrefix: "editor.menu" });
   const [open, setOpen] = useState(false);
   const [count, setCount] = useState({ words: 0 });
   const editor = useEditorState((state) => state.editorInstance);
@@ -70,7 +72,7 @@ export function EditorMenu() {
               checked={checker}
               className="cursor-default data-[state=unchecked]:bg-view-2 outline-border outline-1 outline outline-offset-0"
             />
-            Check spelling
+            {t("checkSpelling")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
@@ -84,7 +86,7 @@ export function EditorMenu() {
             className="gap-2 rounded-lg"
           >
             <Download size={18} />
-            Export
+            {t("export")}
           </DropdownMenuItem>
           <DropdownMenuItem
             onSelect={async () => {
@@ -98,18 +100,18 @@ export function EditorMenu() {
             className="gap-2 rounded-lg"
           >
             <Upload size={18} />
-            Import
+            {t("import")}
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() => duplicate(activeNoteId)}
             className="gap-2 rounded-lg"
           >
             <Copy size={18} />
-            Duplicate
+            {t("duplicate")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <div className="px-2 text-sm text-foreground/75">
-            <span className="block">{count.words} words</span>
+            <span className="block">{t("wordCount", { count: count.words })}</span>
           </div>
         </DropdownMenuContent>
       </DropdownMenu>

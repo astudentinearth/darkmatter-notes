@@ -9,6 +9,7 @@
 
 ## ✨ Improvements and fixes
 - Removed the empty space to the right side of color pickers 
+- Displaying dates in the recent notes view now follows correct locale
 
 # 0.2.0-alpha.4
 

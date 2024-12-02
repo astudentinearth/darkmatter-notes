@@ -13,7 +13,7 @@ export function HomePage() {
   const { mutate: create } = useCreateNoteMutation(true);
   const width = useCenteredLayout(600);
   const recents = useRecentNotes(5);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   if (recents == null) {
     return <div>Error loading notes</div>;
   }
@@ -64,7 +64,7 @@ export function HomePage() {
                   {note.title}
                 </span>
                 <span className="text-foreground/50">
-                  {note.modified.toLocaleString(undefined, {
+                  {note.modified.toLocaleString(i18n.resolvedLanguage != null ? [i18n.resolvedLanguage] : undefined, {
                     day: "2-digit",
                     month: "short",
                     hour: "2-digit",

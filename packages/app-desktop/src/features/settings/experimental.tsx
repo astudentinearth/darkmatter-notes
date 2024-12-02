@@ -7,8 +7,12 @@ import {
 } from "@renderer/context/settings-store";
 import { useClientInfo } from "@renderer/hooks/query";
 import { produce } from "immer";
+import { useTranslation } from "react-i18next";
 
 export default function ExperimentalFeatures() {
+  const { t } = useTranslation(undefined, {
+    keyPrefix: "settings.experimental",
+  });
   const darwinTitlebar = useSettingsStore(
     (s) => s.settings.appearance.enableCustomWindowFrameOnDarwin,
   );
@@ -21,13 +25,11 @@ export default function ExperimentalFeatures() {
   const info = useClientInfo();
   return (
     <div className="p-4 bg-card/80 rounded-2xl flex flex-col gap-4">
-      <h1 className="text-lg font-semibold text-foreground/75">
-        Experimental features
-      </h1>
+      <h1 className="text-lg font-semibold text-foreground/75">{t("title")}</h1>
       <hr className="border-foreground/25" />
       <div className="flex flex-row items-center">
         <Label htmlFor="enable-titlebar-on-macos">
-          Enable custom titlebar on macOS (requires restart)
+          {t("enableCustomTitlebarOnMac")}
         </Label>
         <FlexibleSpacer />
         <Switch

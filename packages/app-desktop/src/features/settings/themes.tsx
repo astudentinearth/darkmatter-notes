@@ -11,6 +11,7 @@ import { ThemeMenu } from "./theme-menu";
 import { Button } from "@renderer/components/ui/button";
 import { Download } from "lucide-react";
 import { useImportThemeMutation } from "@renderer/hooks/query";
+import { useTranslation } from "react-i18next";
 
 export function ThemeSettings() {
   const accentColor = useSettingsStore(
@@ -33,16 +34,17 @@ export function ThemeSettings() {
     );
   };
   const importMutation = useImportThemeMutation();
+  const { t } = useTranslation(undefined, { keyPrefix: "settings.appearance" });
   return (
     <div className="p-4 bg-card/80 rounded-2xl flex flex-col gap-4">
-      <h1 className="text-lg font-semibold text-foreground/75">Appearance</h1>
+      <h1 className="text-lg font-semibold text-foreground/75">{t("title")}</h1>
       <hr className="border-foreground/25" />
       <div className="flex items-center">
-        <Label>Color theme</Label>
+        <Label>{t("colorThemeText")}</Label>
         <FlexibleSpacer />
         <div className="flex items-center gap-2">
           <Button
-            title="Import theme"
+            title={t("importTooltip")}
             variant={"secondary"}
             className="w-10 h-10 p-0"
             onClick={() => importMutation.mutateAsync()}
@@ -53,13 +55,13 @@ export function ThemeSettings() {
         </div>
       </div>
       <div className="flex flex-row items-center">
-        <Label>Accent color</Label>
+        <Label>{t("accentColorText")}</Label>
         <FlexibleSpacer />
         <ColorPicker value={accentColor} onChange={setAccentColor} />
       </div>
       <div className="flex flex-row items-center">
         <Label htmlFor="use-system-window-frame">
-          Use system window frame (requires restart)
+          {t("useSystemWindowFrame")}
         </Label>
         <FlexibleSpacer />
         <Switch

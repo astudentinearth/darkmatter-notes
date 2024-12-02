@@ -30,12 +30,55 @@
         "lastModified": "Last edited:"
       },
       "noPages": "No pages."
+    }
+  },
+  "home": {
+    "welcome": "Welcome back",
+    "recents": "Recent notes",
+    "noPages": "You don't have any pages yet.",
+    "createPage": "Create a page"
+  },
+  "settings": {
+    "workspace": {
+      "title": "Workspace",
+      "exportAllText": "Export all notes as HTML",
+      "exportAllButton": "Export all notes",
+      "backupAndRestoreText": "Backup and restore data",
+      "backupButton": "Backup",
+      "restoreButton": "Restore",
+      "exporting": "Exporting...",
+      "restoreDialog": {
+        "title": "Restore backup",
+        "description": "You can restore a backup of your application data. ",
+        "warningText": "When you restore your data, your current data will be replaced with the contents of your backup. They will NOT be merged.",
+        "chooseFile": "Choose file",
+        "cancel": "Cancel",
+        "restore": "Restore"
+      }
     },
-    "home": {
-      "welcome": "Welcome back",
-      "recents": "Recent notes",
-      "noPages": "You don't have any pages yet.",
-      "createPage": "Create a page"
+    "appearance": {
+      "title": "Appearance",
+      "colorThemeText": "Color theme",
+      "importTooltip": "Import theme",
+      "accentColorText": "Accent color",
+      "useSystemWindowFrame": "Use system window frame (requires restart)"
+    },
+    "fonts": {
+      "title": "Fonts",
+      "uiText": "User interface font",
+      "sansText": "Sans font:",
+      "serifText": "Serif font:",
+      "monoText": "Monospaced font:",
+      "applyButton": "Apply",
+      "systemDefault": "System default"
+    },
+    "experimental": {
+      "title": "Experimental features",
+      "enableCustomTitlebarOnMac": "Enable custom titlebar on macOS (requires restart)"
+    },
+    "about": {
+      "sourceCode": "Source code",
+      "reportBugs": "Report bugs"
     }
   }
 }

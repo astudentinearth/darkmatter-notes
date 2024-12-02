@@ -8,8 +8,10 @@ import {
 } from "@renderer/context/settings-store";
 import { produce } from "immer";
 import { ChangeEvent, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function FontSettings() {
+  const { t } = useTranslation(undefined, { keyPrefix: "settings.fonts" });
   const fonts = useSettingsStore((s) => s.settings.fonts);
   const uiRef = useRef<HTMLInputElement>(null);
   const sansRef = useRef<HTMLInputElement>(null);
@@ -48,7 +50,7 @@ export default function FontSettings() {
         if (e.key == "Enter") submit();
       }}
     >
-      <h1 className="text-lg font-semibold text-foreground/75">Fonts</h1>
+      <h1 className="text-lg font-semibold text-foreground/75">{t("title")}</h1>
       <hr className="border-foreground/25" />
       {/* TODO: Switch this with a grid layout. */}
       <div className="flex flex-row gap-2 justify-items-center">
@@ -56,7 +58,7 @@ export default function FontSettings() {
           htmlFor="ui-font-input"
           className="flex-shrink-0 align-middle flex items-center"
         >
-          User interface font:
+          {t("uiText")}
         </Label>
         <FlexibleSpacer />
         <Input
@@ -64,7 +66,7 @@ export default function FontSettings() {
           className="max-w-80"
           defaultValue={fonts.ui}
           ref={uiRef}
-          placeholder="System default"
+          placeholder={t("systemDefault")}
           onChange={(e) => handlePreview(e, fonts.ui)}
           style={{ fontFamily: fonts.ui }}
         />
@@ -74,7 +76,7 @@ export default function FontSettings() {
           htmlFor="sans-font-input"
           className="flex-shrink-0 flex items-center"
         >
-          Sans font:
+          {t("sansText")}
         </Label>
         <FlexibleSpacer />
         <Input
@@ -91,7 +93,7 @@ export default function FontSettings() {
           htmlFor="serif-font-input"
           className="flex-shrink-0 flex items-center"
         >
-          Serif font:
+          {t("serifText")}
         </Label>
         <FlexibleSpacer />
         <Input
@@ -108,7 +110,7 @@ export default function FontSettings() {
           htmlFor="mono-font-input"
           className="flex-shrink-0 flex items-center"
         >
-          Monospaced font:
+          {t("monoText")}
         </Label>
         <FlexibleSpacer />
         <Input
@@ -122,7 +124,7 @@ export default function FontSettings() {
       </div>
       <div className="flex flex-row gap-2">
         <FlexibleSpacer />
-        <Button onClick={submit}>Apply</Button>
+        <Button onClick={submit}>{t("applyButton")}</Button>
       </div>
     </div>
   );

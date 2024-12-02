@@ -30,12 +30,55 @@
         "lastModified": "Son düzenleme:"
       },
       "noPages": "Başka sayfa yok."
+    }
+  },
+  "home": {
+    "welcome": "Hoşgeldiniz",
+    "recents": "Yakınlarda açılanlar",
+    "noPages": "Henüz bir not oluşturmadınız.",
+    "createPage": "Yeni not oluştur"
+  },
+  "settings": {
+    "workspace": {
+      "title": "Çalışma alanı",
+      "exportAllText": "Tüm notları HTML olarak dışa aktar",
+      "exportAllButton": "Tüm notları dışa aktar",
+      "backupAndRestoreText": "Verileri yedekle veya geri yükle",
+      "backupButton": "Yedekle",
+      "restoreButton": "Geri yükle",
+      "exporting": "Dışa aktarılıyor...",
+      "restoreDialog": {
+        "title": "Yedeklemeyi geri yükle",
+        "description": "Uygulama verilerinizin bir yedeğini geri yükleyebilirsiniz. ",
+        "warningText": "Yedeğinizi geri yüklediğinizde şu anda var olan verileriniz silinecek ve yerine yedeklediğiniz veriler koyulacaktır. Şu anki verilerinizle yedeğiniz BİRLEŞTİRİLMEYECEKTİR.",
+        "chooseFile": "Dosya seç",
+        "cancel": "Vazgeç",
+        "restore": "Geri yükle"
+      }
     },
-    "home": {
-      "welcome": "Hoşgeldiniz",
-      "recents": "Yakınlarda açılanlar",
-      "noPages": "Henüz bir not oluşturmadınız.",
-      "createPage": "Yeni not oluştur"
+    "appearance": {
+      "title": "Görünüm",
+      "colorThemeText": "Renk teması",
+      "importTooltip": "Temayı içe aktar",
+      "accentColorText": "Tema rengi",
+      "useSystemWindowFrame": "Sistemin pencere kenarlıklarını kullan (yeniden başlatma gerekir)"
+    },
+    "fonts": {
+      "title": "Yazı tipleri",
+      "uiText": "Arayüz yazı tipi",
+      "sansText": "Çentiksiz yazı tipi",
+      "serifText": "Çentikli yazı tipi",
+      "monoText": "Sabit boşluklu yazı tipi",
+      "applyButton": "Uygula",
+      "systemDefault": "Sistem varsayılanı"
+    },
+    "experimental": {
+      "title": "Deneysel özellikler",
+      "enableCustomTitlebarOnMac": "macOS'te özel başlık çubuğu kullan (yeniden başlatma gerektirir)"
+    },
+    "about": {
+      "sourceCode": "Kaynak kodu",
+      "reportBugs": "Hata bildir"
     }
   }
 }

@@ -1,7 +1,9 @@
 import { useClientInfo } from "@renderer/hooks/query";
+import { useTranslation } from "react-i18next";
 
 export function AboutCard() {
   const data = useClientInfo();
+  const { t } = useTranslation(undefined, { keyPrefix: "settings.about" });
   return (
     <div className="p-4 bg-card/80 rounded-2xl gap-4">
       <div className="grid grid-cols-[64px_1fr] grid-rows-[auto] gap-4">
@@ -21,7 +23,7 @@ export function AboutCard() {
               href="https://github.com/astudentinearth/darkwrite"
               className="hover:underline"
             >
-              Source code
+              {t("sourceCode")}
             </a>{" "}
             |{" "}
             <a
@@ -29,7 +31,7 @@ export function AboutCard() {
               href="https://github.com/astudentinearth/darkwrite/issues"
               className="hover:underline"
             >
-              Report bugs
+              {t("reportBugs")}
             </a>
           </div>
         </div>

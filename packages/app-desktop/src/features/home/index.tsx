@@ -5,6 +5,7 @@ import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useRecentNotes } from "@renderer/hooks/use-recents";
 import { cn, fromUnicode } from "@renderer/lib/utils";
 import { SquarePen } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function HomePage() {
   // navigation
@@ -12,6 +13,7 @@ export function HomePage() {
   const { mutate: create } = useCreateNoteMutation(true);
   const width = useCenteredLayout(600);
   const recents = useRecentNotes(5);
+  const { t } = useTranslation();
   if (recents == null) {
     return <div>Error loading notes</div>;
   }
@@ -21,8 +23,10 @@ export function HomePage() {
         style={{ width: `${width - 32}px` }}
         className={cn("gap-2 flex-col flex")}
       >
-        <h1 className="font-bold text-2xl">Welcome back</h1>
-        <h2 className="font-semibold text-foreground/60">Recent notes</h2>
+        <h1 className="font-bold text-2xl">{t("home.welcome")}</h1>
+        <h2 className="font-semibold text-foreground/60">
+          {t("home.recents")}
+        </h2>
         <div
           className={cn(
             "flex flex-col rounded-xl w-full overflow-hidden bg-view-1 gap-2",
@@ -31,9 +35,7 @@ export function HomePage() {
         >
           {recents.length === 0 ? (
             <>
-              <span className="text-foreground/60">
-                You don't have any notes yet
-              </span>
+              <span className="text-foreground/60">{t("home.noPages")}</span>
               <Button
                 onClick={() => {
                   create(undefined);
@@ -42,7 +44,7 @@ export function HomePage() {
                 data-testid="home-button-new-page"
                 className="gap-2 rounded-xl"
               >
-                <SquarePen /> Create one
+                <SquarePen /> {t("home.createPage")}
               </Button>
             </>
           ) : (

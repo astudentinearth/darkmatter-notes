@@ -14,9 +14,11 @@ import { cn } from "@renderer/lib/utils";
 import { FileArchive } from "lucide-react";
 import { useRestore } from "@renderer/hooks/query";
 import { BackupModel } from "@renderer/lib/api/backup";
+import { useTranslation } from "react-i18next";
 
 export function RestoreDataDialog() {
   const [path, setPath] = useState<string | null>(null);
+  const { t } = useTranslation(undefined, { keyPrefix: "settings.workspace" });
   const restore = useRestore();
   const chooseFile = async () => {
     const filename = await BackupModel.chooseArchive();
@@ -30,17 +32,14 @@ export function RestoreDataDialog() {
     >
       <AlertDialogTrigger asChild>
         <Button variant={"secondary"} className="flex-shrink-0 w-fit">
-          Restore
+          {t("restoreButton")}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className={cn("p-4")}>
-        <AlertDialogTitle>Restore backup</AlertDialogTitle>
+        <AlertDialogTitle>{t("restoreDialog.title")}</AlertDialogTitle>
         <AlertDialogDescription>
-          You can restore a backup of your application data.{" "}
-          <strong>
-            When you restore your data, your current data will be replaced with
-            the contents of your backup. They will NOT be merged.
-          </strong>
+          {t("restoreDialog.description")}
+          <strong>{t("restoreDialog.warningText")}</strong>
         </AlertDialogDescription>
         <Button
           onClick={chooseFile}
@@ -58,12 +57,12 @@ export function RestoreDataDialog() {
               </span>
             </>
           ) : (
-            "Choose file"
+            t("restoreDialog.chooseFile")
           )}
         </Button>
         <AlertDialogFooter>
           <AlertDialogCancel disabled={restore.isPending}>
-            Cancel
+            {t("restoreDialog.cancel")}
           </AlertDialogCancel>
           <AlertDialogAction
             disabled={restore.isPending || path == null}
@@ -72,7 +71,7 @@ export function RestoreDataDialog() {
             }}
             className="bg-transparent border-destructive border text-foreground hover:bg-destructive hover:text-destructive-foreground"
           >
-            Restore
+            {t("restoreDialog.restore")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

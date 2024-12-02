@@ -34,9 +34,9 @@ vi.mock("@renderer/lib/api/backup.ts", () => ({
 }));
 
 vi.mock("@renderer/lib/api/theme.ts", () => ({
-  BackupModel: {
-    backupData: vi.fn(),
-  },
+}));
+
+vi.mock("@renderer/lib/api/embed.ts", () => ({
 }));
 
 afterEach(() => {

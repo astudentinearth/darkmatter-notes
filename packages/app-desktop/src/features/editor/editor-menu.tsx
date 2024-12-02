@@ -16,18 +16,36 @@ import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { NotesModel } from "@renderer/lib/api/note";
 import { cn } from "@renderer/lib/utils";
 import { Copy, Download, Menu, Upload } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export function EditorMenu() {
   const [open, setOpen] = useState(false);
+  const [count, setCount] = useState({ words: 0 });
   const editor = useEditorState((state) => state.editorInstance);
+  const content = useEditorState((state) => state.content);
   const activeNoteId = useNoteFromURL();
   const activeNote = useNoteByIdQuery(activeNoteId ?? "");
   const checker = useLocalStore((s) => s.useSpellcheck);
   const setCheck = useLocalStore((s) => s.setSpellcheck);
   const duplicate = useDuplicateNoteMutation().mutate;
   const _export = useExport();
+
+  // we don't want to cause issues if the document is very long
+  const updateWordCount = async () => {
+    if (!editor || !content) return;
+    const text = editor.getText();
+    const words = text.match(/\b\w+\b/g)?.length ?? 0;
+    const characters = text.length;
+    console.log(words, ",", characters);
+    setCount({ words });
+  };
+
+  useEffect(() => {
+    if (!open) return; // we don't need to count words if we are not going to display them
+    updateWordCount();
+  }, [editor, content, open]);
   if (!activeNoteId) return <></>;
+
   return (
     <>
       <DropdownMenu open={open} onOpenChange={setOpen} modal={false}>
@@ -89,6 +107,10 @@ export function EditorMenu() {
             <Copy size={18} />
             Duplicate
           </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <div className="px-2 text-sm text-foreground/75">
+            <span className="block">{count.words} words</span>
+          </div>
         </DropdownMenuContent>
       </DropdownMenu>
     </>

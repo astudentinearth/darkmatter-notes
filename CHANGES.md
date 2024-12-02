@@ -4,6 +4,7 @@
 
 - You can now paste images directly to the editor
 - Editor now has a context menu
+- Added word count - you can view it by clicking the menu icon on the top right.
 
 # 0.2.0-alpha.4
 

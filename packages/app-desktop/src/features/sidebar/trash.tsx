@@ -18,7 +18,7 @@ export function TrashWidget() {
   const del = useDeleteNoteMutation().mutate;
   const trashed = notes?.filter((n) => n.isTrashed);
   const nav = useNavigateToNote();
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <Popover>
@@ -30,7 +30,9 @@ export function TrashWidget() {
           )}
         >
           <Trash size={16} />
-          <span className="justify-self-start">{t("sidebar.button.trash")}</span>
+          <span className="justify-self-start">
+            {t("sidebar.button.trash")}
+          </span>
         </Button>
       </PopoverTrigger>
       <PopoverContent
@@ -38,7 +40,9 @@ export function TrashWidget() {
         className={cn("p-0 rounded-xl h-[70vh] flex flex-col mb-4")}
         sticky="always"
       >
-        <h1 className="font-semibold text-foreground/80 p-2">Trash</h1>
+        <h1 className="font-semibold text-foreground/80 p-2">
+          {t("sidebar.trash.title")}
+        </h1>
         <ScrollArea className="overflow-y-auto p-1">
           <div className="">
             {trashed?.map((note) => (
@@ -62,7 +66,7 @@ export function TrashWidget() {
                     {note.title}
                   </span>
                   <Button
-                    title="Restore"
+                    title={t("sidebar.trash.restore")}
                     size="icon24"
                     className="justify-self-end btn-add text-foreground/75 hover:text-foreground/100"
                     variant={"ghost"}
@@ -74,7 +78,7 @@ export function TrashWidget() {
                     <Undo size={18} />
                   </Button>
                   <Button
-                    title="Delete permanently"
+                    title={t("sidebar.trash.delete")}
                     size="icon24"
                     className="justify-self-end btn-add text-destructive/75 hover:text-destructive/100"
                     variant={"ghost"}

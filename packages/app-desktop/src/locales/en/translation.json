@@ -1,14 +1,41 @@
 {
-  "sidebar":{
-    "button":{
+  "sidebar": {
+    "button": {
       "newPage": "New Page",
       "home": "Home",
       "settings": "Settings",
-      "trash": "Trash"
+      "trash": "Trash",
+      "hideSidebar": "Hide sidebar",
+      "search": "Search",
+      "menu": "Menu"
     },
-    "title":{
+    "title": {
       "favorites": "Favorites",
       "allNotes": "All notes"
+    },
+    "trash": {
+      "title": "Trash",
+      "restore": "Restore",
+      "delete": "Delete permanently"
+    },
+    "notes": {
+      "contextmenu": {
+        "addFavorite": "Add to favorites",
+        "removeFavorite": "Remove from favorites",
+        "newSubpage": "New subpage",
+        "moveTo": "Move to",
+        "duplicate": "Duplicate",
+        "export": "Export",
+        "trash": "Move to trash",
+        "lastModified": "Last edited:"
+      },
+      "noPages": "No pages."
+    },
+    "home": {
+      "welcome": "Welcome back",
+      "recents": "Recent notes",
+      "noPages": "You don't have any pages yet.",
+      "createPage": "Create a page"
     }
   }
 }

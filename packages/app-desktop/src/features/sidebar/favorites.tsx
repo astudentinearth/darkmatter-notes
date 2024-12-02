@@ -24,7 +24,7 @@ export function FavortiesWidget() {
   const setCollapsed = useLocalStore((s) => s.setFavoritesCollapsed);
   const setOpen = (val: boolean) => setCollapsed(!val);
   const [target, setTarget] = useState<Note[]>([]);
-  const {t} = useTranslation();
+  const { t } = useTranslation();
 
   const getFavorites = (arr: Note[]) => {
     const favorites = arr.filter((n) => n.isFavorite && !n.isTrashed);

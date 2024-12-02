@@ -34,7 +34,9 @@ export function NavigationWidget() {
         )}
       >
         <Settings size={16}></Settings>
-        <span className="justify-self-start">{t("sidebar.button.settings")}</span>
+        <span className="justify-self-start">
+          {t("sidebar.button.settings")}
+        </span>
       </Button>
     </div>
   );

@@ -1,14 +1,41 @@
 {
-  "sidebar":{
-    "button":{
+  "sidebar": {
+    "button": {
       "newPage": "Yeni sayfa",
       "home": "Giriş",
       "settings": "Ayarlar",
-      "trash": "Çöp kutusu"
+      "trash": "Çöp kutusu",
+      "hideSidebar": "Kenar çubuğunu gizle",
+      "search": "Ara",
+      "menu": "Menü"
     },
-    "title":{
+    "title": {
       "favorites": "Favoriler",
       "allNotes": "Tüm notlar"
+    },
+    "trash": {
+      "title": "Çöp kutusu",
+      "restore": "Geri yükle",
+      "delete": "Kalıcı olarak sil"
+    },
+    "notes": {
+      "contextmenu": {
+        "addFavorite": "Favorilere ekle",
+        "removeFavorite": "Favorilerden kaldır",
+        "newSubpage": "Yeni alt sayfa",
+        "moveTo": "Taşı",
+        "duplicate": "Kopyasını oluştur",
+        "export": "Dışa aktar",
+        "trash": "Çöp kutusuna taşı",
+        "lastModified": "Son düzenleme:"
+      },
+      "noPages": "Başka sayfa yok."
+    },
+    "home": {
+      "welcome": "Hoşgeldiniz",
+      "recents": "Yakınlarda açılanlar",
+      "noPages": "Henüz bir not oluşturmadınız.",
+      "createPage": "Yeni not oluştur"
     }
   }
 }

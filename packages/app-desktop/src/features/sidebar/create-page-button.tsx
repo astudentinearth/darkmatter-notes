@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 export default function CreatePageButton() {
   const createMutation = useCreateNoteMutation(true);
   const create = () => createMutation.mutate(undefined);
-  const {t }= useTranslation();
+  const { t } = useTranslation();
   //FIXME: Extract this button component
   return (
     <Button

@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { DragEvent, useCallback, useEffect, useState } from "react";
 import { NoteDropZone } from "./note-drop-zone";
+import { useTranslation } from "react-i18next";
 
 export function NoteItem({
   note,
@@ -66,6 +67,8 @@ export function NoteItem({
   const [dragOver, setDragOver] = useState(false);
   const [moveDialogOpen, setMoveDialogOpen] = useState(false);
 
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (!notes) return;
     const sub = findSubnotes(note.id, notes);
@@ -77,7 +80,11 @@ export function NoteItem({
     target = target.filter((n) => !n.isTrashed);
     const elements: JSX.Element[] = [];
     if (target.length === 0)
-      return <span className="text-sm text-foreground/50 px-2">No pages</span>;
+      return (
+        <span className="text-sm text-foreground/50 px-2">
+          {t("sidebar.notes.noPages")}
+        </span>
+      );
     for (let i = 0; i < target.length; i++) {
       elements.push(
         <NoteDropZone
@@ -232,17 +239,21 @@ export function NoteItem({
             size={20}
           ></Star>
           &nbsp;{" "}
-          {note.isFavorite ? "Remove from favorites" : "Add to favorites"}
+          {note.isFavorite
+            ? t("sidebar.notes.contextmenu.removeFavorite")
+            : t("sidebar.notes.contextmenu.addFavorite")}
         </ContextMenuItem>
         <ContextMenuItem onClick={newSubnote}>
-          <FilePlus2 className="opacity-75" size={20}></FilePlus2> &nbsp; New
-          subpage
+          <FilePlus2 className="opacity-75" size={20}></FilePlus2> &nbsp;{" "}
+          {t("sidebar.notes.contextmenu.newSubpage")}
         </ContextMenuItem>
         <ContextMenuItem onClick={() => setMoveDialogOpen(true)}>
-          <Forward className="opacity-75" size={20}></Forward>&nbsp; Move to
+          <Forward className="opacity-75" size={20}></Forward>&nbsp;{" "}
+          {t("sidebar.notes.contextmenu.moveTo")}
         </ContextMenuItem>
         <ContextMenuItem onClick={() => duplicate(note.id)}>
-          <Copy className="opacity-75" size={20}></Copy>&nbsp; Duplicate
+          <Copy className="opacity-75" size={20}></Copy>&nbsp;{" "}
+          {t("sidebar.notes.contextmenu.duplicate")}
         </ContextMenuItem>
         <ContextMenuItem
           onClick={() => {
@@ -253,7 +264,7 @@ export function NoteItem({
             className="opacity-75"
             size={20}
           ></ArrowRightFromLine>
-          &nbsp; Export
+          &nbsp; {t("sidebar.notes.contextmenu.export")}
         </ContextMenuItem>
         <ContextMenuItem
           onClick={() => {
@@ -261,11 +272,13 @@ export function NoteItem({
           }}
           className="text-destructive focus:bg-destructive/20 focus:text-destructive-foreground"
         >
-          <Trash className="opacity-75" size={20}></Trash>&nbsp; Move to trash
+          <Trash className="opacity-75" size={20}></Trash>&nbsp;{" "}
+          {t("sidebar.notes.contextmenu.trash")}
         </ContextMenuItem>
         <ContextMenuSeparator></ContextMenuSeparator>
         <span className="text-foreground/50 text-sm p-2">
-          Last edited: {note.modified.toLocaleString()}
+          {t("sidebar.notes.contextmenu.lastModified")}{" "}
+          {note.modified.toLocaleString()}
         </span>
       </ContextMenuContent>
     </ContextMenu>

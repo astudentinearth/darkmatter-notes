@@ -22,8 +22,7 @@ export function NotesWidget() {
   const setCollapsed = useLocalStore((s) => s.setAllNotesCollapsed);
   const setOpen = (val: boolean) => setCollapsed(!val);
   const [dragOver, setDragOver] = useState(false);
-  const {t} = useTranslation();
-
+  const { t } = useTranslation();
 
   const render = useCallback(() => {
     const target = notes?.filter((n) => n.parentID == null && !n.isTrashed);

@@ -7,6 +7,9 @@
 - Added word count - you can view it by clicking the menu icon on the top right.
 - Added translations for Turkish
 
+## ✨ Improvements and fixes
+- Removed the empty space to the right side of color pickers 
+
 # 0.2.0-alpha.4
 
 ## ⚠️ Minor breaking change

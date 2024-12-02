@@ -35,9 +35,10 @@ export function ColorPicker(props: ColorPickerProps) {
           color={props.value}
           onChange={props.onChange}
           defaultValue={props.defaultValue}
+          className=""
         />
         <HexColorInput
-          className="bg-view-2 p-2 rounded-lg"
+          className="bg-view-2 p-2 rounded-lg w-[200px]"
           color={props.value}
           onChange={props.onChange}
           defaultValue={props.defaultValue}

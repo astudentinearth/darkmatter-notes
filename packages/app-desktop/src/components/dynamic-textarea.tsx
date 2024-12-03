@@ -1,24 +1,24 @@
-import { KeyboardEvent } from "react";
+import { HTMLAttributes, KeyboardEvent } from "react";
 import { ChangeEvent, ClipboardEvent, useEffect, useRef } from "react";
 
-/**
- * A textarea component which automatically resizes vertically to fit its content.
- */
-export default function DynamicTextarea(props: {
-  /** HTML `className` attribute */
-  className?: string;
+
+export type DynamicTextareaProps = Omit<HTMLAttributes<HTMLTextAreaElement>, "onChange" | "onPaste"> & {
   /** The callback to run when value changes. Height will get adjusted **after** this method is called. */
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onValueChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   /** Value of the textarea */
   value?: string;
   /** Placeholder of the textarea */
   placeholder?: string;
   /** Whether to allow line breaks in the textarea */
   preventNewline?: boolean;
-  onKeyDown?: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
   defaultValue?: string;
   newLineCallback?: () => void;
-}) {
+}
+
+/**
+ * A textarea component which automatically resizes vertically to fit its content.
+ */
+export default function DynamicTextarea(props: DynamicTextareaProps) {
   const ref = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function DynamicTextarea(props: {
   };
 
   const handleChange = () => {
-    props.onChange?.call(null, {
+    props.onValueChange?.call(null, {
       target: ref.current!,
     } as ChangeEvent<HTMLTextAreaElement>);
     adjustHeight();
@@ -70,12 +70,10 @@ export default function DynamicTextarea(props: {
       ref={ref}
       rows={1}
       cols={1}
-      className={props.className}
-      value={props.value}
+      {...props}
       onChange={handleChange}
-      defaultValue={props.defaultValue}
       onPaste={handlePaste}
-      onKeyDown={props.onKeyDown}
+
     ></textarea>
   );
 }

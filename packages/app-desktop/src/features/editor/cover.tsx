@@ -135,8 +135,10 @@ export function EditorCover(props: {
       <DynamicTextarea
         className="text-4xl px-1 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
         value={inputValue}
-        onChange={handleChange}
+        onValueChange={handleChange}
         onKeyDown={handleKeyDown}
+        preventNewline
+        onDrop={(event) => event.preventDefault()}
       />
     </div>
   );

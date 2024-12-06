@@ -8,6 +8,7 @@
 - Added word count - you can view it by clicking the menu icon on the top right.
 - Added translations for Turkish
 - Images are now centered
+- Add undo and redo options to editor menu (it was possible to perform these with keyboard shortcuts previously)
 
 ## ✨ Improvements and fixes
 - Removed the empty space to the right side of color pickers 

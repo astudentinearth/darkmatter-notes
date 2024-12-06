@@ -15,7 +15,7 @@ import { useExport } from "@renderer/hooks/use-export";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { NotesModel } from "@renderer/lib/api/note";
 import { cn } from "@renderer/lib/utils";
-import { Copy, Download, Menu, Upload } from "lucide-react";
+import { Copy, Download, Menu, Redo, Undo, Upload } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -108,6 +108,25 @@ export function EditorMenu() {
           >
             <Copy size={18} />
             {t("duplicate")}
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem
+          className="gap-2 rounded-lg"
+          onSelect={(e)=>{
+            e.preventDefault();
+            editor?.commands.undo();
+          }}>
+            <Undo size={18}/>
+            {t("undo")}
+          </DropdownMenuItem>
+          <DropdownMenuItem
+          className="gap-2 rounded-lg"
+          onSelect={(e)=>{
+            e.preventDefault();
+            editor?.commands.redo();
+          }}>
+            <Redo size={18}/>
+            {t("redo")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <div className="px-2 text-sm text-foreground/75">

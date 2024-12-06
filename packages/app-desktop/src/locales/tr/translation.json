@@ -88,7 +88,9 @@
       "export": "Dışa aktar",
       "import": "İçe aktar",
       "duplicate": "Kopyasını oluştur",
-      "wordCount": "{{count}} kelime"
+      "wordCount": "{{count}} kelime",
+      "undo": "Geri al",
+      "redo": "Yinele"
     },
     "contextmenu": {
       "copy": "Kopyala",

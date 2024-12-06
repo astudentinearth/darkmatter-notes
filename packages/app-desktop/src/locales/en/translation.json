@@ -88,7 +88,9 @@
       "export": "Export",
       "import": "Import",
       "duplicate": "Duplicate",
-      "wordCount": "{{count}} words"
+      "wordCount": "{{count}} words",
+      "undo": "Undo",
+      "redo": "Redo"
     },
     "contextmenu": {
       "copy": "Copy",

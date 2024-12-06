@@ -3,6 +3,7 @@ import { cn } from "@renderer/lib/utils";
 import { mergeAttributes } from "@tiptap/core";
 import { TiptapImage } from "novel/extensions";
 import { Plugin } from "prosemirror-state";
+import { createImageNode, isImageFile } from "./image-upload";
 
 export const DarkwriteImage = TiptapImage.extend({
   name: "dwimage",
@@ -72,6 +73,16 @@ export const DarkwriteImage = TiptapImage.extend({
               }
             }
           },
+          handleDrop(view, event) {
+            console.log(event.dataTransfer?.files);
+            if(!event.dataTransfer || event.dataTransfer.files.length < 1) return;
+            for(const file of event.dataTransfer.files){
+              if(!isImageFile(file)) continue;
+              const coordinates = view.posAtCoords({ left: event.clientX, top: event.clientY });
+              if (!coordinates) return;
+              createImageNode(file, view, coordinates.pos);
+            }
+          }
         },
       }),
     ];

@@ -1,5 +1,5 @@
 import { EmbedAPI } from "@renderer/lib/api/embed";
-import { Editor } from "@tiptap/core";
+import { type EditorView } from "prosemirror-view";
 
 const uploadEmbed = async (file: File) => {
   const path = window.webUtils.getPathForFile(file);
@@ -8,22 +8,26 @@ const uploadEmbed = async (file: File) => {
   return resolved;
 };
 
-export const createImageNode = (file: File, editor: Editor, pos: number) => {
+export const isImageFile = (file: File) => {
+  if(file.type.startsWith("image/")) return true;
+  return false;
+}
+
+export const createImageNode = (file: File, view: EditorView, pos: number) => {
   // create placeholder node
   const id = `image-${Date.now()}`;
   //console.log("Creating image node", id);
-  editor.commands.insertContentAt(pos, {
-    type: "dwimage",
-    attrs: {
-      pendingId: id,
-      src: "",
-    },
+  const { state, dispatch } = view;
+  const node = state.schema.nodes.dwimage.create({
+    pendingId: id,
+    src: "",
   });
+  const transaction = state.tr.insert(pos, node);
+  dispatch(transaction);
 
   uploadEmbed(file).then((embed) => {
     //console.log("Uploaded: ", embed.uri);
-    const { view } = editor;
-    const tr = editor.view.state.tr;
+    const tr = view.state.tr;
     tr.doc.descendants((node, pos) => {
       //console.log("Checking node", node.type.name, node.attrs.pendingId);
       if (node.type.name === "dwimage" && node.attrs.pendingId === id) {

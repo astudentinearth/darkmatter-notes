@@ -158,7 +158,7 @@ export const suggestionItems = createSuggestionItems([
         if (!inp.files?.length) return;
         const file = inp.files[0];
         const pos = editor.view.state.selection.from;
-        createImageNode(file, editor, pos);
+        createImageNode(file, editor.view, pos);
       };
       inp.click();
     },

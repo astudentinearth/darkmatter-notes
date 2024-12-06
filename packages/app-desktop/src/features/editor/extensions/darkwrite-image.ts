@@ -4,6 +4,8 @@ import { mergeAttributes } from "@tiptap/core";
 import { TiptapImage } from "novel/extensions";
 import { Plugin } from "prosemirror-state";
 import { createImageNode, isImageFile } from "./image-upload";
+import { ReactNodeViewRenderer } from "@tiptap/react";
+import { DarkwriteImageView } from "./image-view";
 
 export const DarkwriteImage = TiptapImage.extend({
   name: "dwimage",
@@ -42,7 +44,17 @@ export const DarkwriteImage = TiptapImage.extend({
     const embedId = HTMLAttributes["data-embed-id"];
     //console.log("Our embedId is ", embedId);
     const src = embedId ? `embed://${embedId}` : "";
-    return ["img", mergeAttributes(HTMLAttributes, { src })];
+    return [
+      "div",
+      mergeAttributes(HTMLAttributes, { "data-type": "darkwrite-image" }),
+    ];
+  },
+  parseHTML() {
+    return [
+      {
+        tag: 'div[data-type="darkwrite-image"]',
+      },
+    ];
   },
   addProseMirrorPlugins() {
     return [
@@ -74,18 +86,30 @@ export const DarkwriteImage = TiptapImage.extend({
             }
           },
           handleDrop(view, event) {
-            console.log(event.dataTransfer?.files);
-            if(!event.dataTransfer || event.dataTransfer.files.length < 1) return;
-            for(const file of event.dataTransfer.files){
-              if(!isImageFile(file)) continue;
-              const coordinates = view.posAtCoords({ left: event.clientX, top: event.clientY });
+            console.log(event.target);
+            if (
+              event.target && "nodeType" in event.target
+            )
+              return;
+            if (!event.dataTransfer || event.dataTransfer.files.length < 1)
+              return;
+            for (const file of event.dataTransfer.files) {
+              if (!isImageFile(file)) continue;
+              const coordinates = view.posAtCoords({
+                left: event.clientX,
+                top: event.clientY,
+              });
               if (!coordinates) return;
               createImageNode(file, view, coordinates.pos);
             }
-          }
+          },
         },
       }),
     ];
+  },
+  addNodeView() {
+    //@ts-ignore
+    return ReactNodeViewRenderer(DarkwriteImageView);
   },
 }).configure({
   HTMLAttributes: {

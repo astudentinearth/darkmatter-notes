@@ -12,6 +12,7 @@
     "format": "prettier . --write"
   },
   "devDependencies": {
+    "@types/showdown": "^2.0.6",
     "@vitest/coverage-v8": "^2.1.4",
     "prettier": "^3.4.1",
     "tsup": "^8.2.4",
@@ -21,6 +22,7 @@
   "type": "module",
   "dependencies": {
     "@types/lodash": "^4.17.7",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "showdown": "^2.1.0"
   }
 }

@@ -4,3 +4,4 @@ export * from "./settings";
 export * from "./todo";
 export * from "./theme";
 export * from "./embed";
+export * from "./markdown";

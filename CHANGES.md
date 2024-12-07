@@ -16,6 +16,7 @@
 - Displaying dates in the recent notes view now follows correct locale
 - Added background blur to context menus, dropdowns, popovers and search
 - Disabled dropping into the title box, which should prevent you from accidentally dropping nodes there
+- Fixed low-resolution desktop icon on Windows.
 
 # 0.2.0-alpha.4
 

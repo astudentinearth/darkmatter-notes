@@ -4,6 +4,7 @@ import { DarkwriteDefault } from "@renderer/lib/themes/darkwrite-default";
 import { hexToHslVariable, setGlobalStyle } from "@renderer/lib/utils";
 import { useEffect } from "react";
 import { hsl } from "color-convert";
+import { ThemesModel } from "@renderer/lib/api/theme";
 
 export function ThemeHandler() {
   const fonts = useSettingsStore((s) => s.settings.fonts);
@@ -14,6 +15,9 @@ export function ThemeHandler() {
   const accentColor = useSettingsStore(
     (s) => s.settings.appearance.accentColor,
   );
+  const useSystemAccentColor = useSettingsStore(
+    (s) => s.settings.appearance.useSystemAccentColor,
+  );
   useEffect(() => {
     //console.log("Applying themes");
     setGlobalStyle("font-family", fonts.ui);
@@ -21,10 +25,22 @@ export function ThemeHandler() {
     setGlobalStyle("--darkwrite-sans", fonts.sans);
     setGlobalStyle("--darkwrite-mono", fonts.code);
     setGlobalStyle("--darkwrite-serif", fonts.serif);
-    const accent = hexToHslVariable(accentColor);
-    setGlobalStyle("--primary", accent);
-    setGlobalStyle("--accent", accent);
-    setGlobalStyle("--primary-text", accent);
+    console.log(useSystemAccentColor);
+    if (useSystemAccentColor) {
+      ThemesModel.getSystemAccentColor().then((color) => {
+        console.log(color);
+        const accent = hexToHslVariable(color);
+        setGlobalStyle("--primary", accent);
+        setGlobalStyle("--accent", accent);
+        setGlobalStyle("--primary-text", accent);
+      });
+    } else {
+      const accent = hexToHslVariable(accentColor);
+      setGlobalStyle("--primary", accent);
+      setGlobalStyle("--accent", accent);
+      setGlobalStyle("--primary-text", accent);
+    }
+
     if (!theme) return;
     setGlobalStyle("--background", theme.background1);
     setGlobalStyle("--foreground", theme.foreground);
@@ -56,6 +72,6 @@ export function ThemeHandler() {
       //console.log(fgHEX);
       window.api.setTitlebarSymbolColor(`#${fgHEX}`, theme.mode);
     }
-  }, [fonts, theme, accentColor]);
+  }, [fonts, theme, accentColor, useSystemAccentColor]);
   return <></>;
 }

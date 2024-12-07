@@ -10,7 +10,7 @@ import { produce } from "immer";
 import { ThemeMenu } from "./theme-menu";
 import { Button } from "@renderer/components/ui/button";
 import { Download } from "lucide-react";
-import { useImportThemeMutation } from "@renderer/hooks/query";
+import { useClientInfo, useImportThemeMutation } from "@renderer/hooks/query";
 import { useTranslation } from "react-i18next";
 
 export function ThemeSettings() {
@@ -20,10 +20,19 @@ export function ThemeSettings() {
   const useSystemWindowFrame = useSettingsStore(
     (s) => s.settings.appearance.useSystemWindowFrame,
   );
+  const useSystemAccentColor = useSettingsStore(
+    (s) => s.settings.appearance.useSystemAccentColor,
+  );
   const setWindowFrame = (val: boolean) =>
     updateUserSettings((state) =>
       produce(state, (draft) => {
         draft.appearance.useSystemWindowFrame = val;
+      }),
+    );
+  const setSystemAccentColor = (val: boolean) =>
+    updateUserSettings((state) =>
+      produce(state, (draft) => {
+        draft.appearance.useSystemAccentColor = val;
       }),
     );
   const setAccentColor = (val: string) => {
@@ -33,6 +42,7 @@ export function ThemeSettings() {
       }),
     );
   };
+  const info = useClientInfo();
   const importMutation = useImportThemeMutation();
   const { t } = useTranslation(undefined, { keyPrefix: "settings.appearance" });
   return (
@@ -57,12 +67,34 @@ export function ThemeSettings() {
       <div className="flex flex-row items-center">
         <Label>{t("accentColorText")}</Label>
         <FlexibleSpacer />
-        <ColorPicker value={accentColor} onChange={setAccentColor} />
+        <ColorPicker
+          disabled={useSystemAccentColor}
+          value={accentColor}
+          onChange={setAccentColor}
+        />
+      </div>
+      <div className="flex flex-row items-center">
+        <div className="flex flex-col">
+          <Label htmlFor="use-system-accent-color">
+            {t("useSystemAccentColor")}
+          </Label>
+          <span className="text-foreground/70 text-sm">
+            {t("useSystemAccentColorDescription")}
+          </span>
+        </div>
+        <FlexibleSpacer />
+        <Switch
+          checked={useSystemAccentColor}
+          onCheckedChange={setSystemAccentColor}
+          id="use-system-accent-color"
+          disabled={!(info?.os.includes("Windows") || info?.os.includes("Darwin"))}
+        />
       </div>
       <div className="flex flex-row items-center">
         <Label htmlFor="use-system-window-frame">
           {t("useSystemWindowFrame")}
         </Label>
+
         <FlexibleSpacer />
         <Switch
           checked={useSystemWindowFrame}

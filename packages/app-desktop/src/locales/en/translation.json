@@ -62,7 +62,9 @@
       "colorThemeText": "Color theme",
       "importTooltip": "Import theme",
       "accentColorText": "Accent color",
-      "useSystemWindowFrame": "Use system window frame (requires restart)"
+      "useSystemWindowFrame": "Use system window frame (requires restart)",
+      "useSystemAccentColor": "Use system accent color (only Windows or macOS)",
+      "useSystemAccentColorDescription": "This option may not work correctly when using automatic accent color on Windows."
     },
     "fonts": {
       "title": "Fonts",

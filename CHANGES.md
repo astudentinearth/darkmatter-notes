@@ -9,6 +9,7 @@
 - Added translations for Turkish
 - Images are now centered
 - Add undo and redo options to editor menu (it was possible to perform these with keyboard shortcuts previously)
+- Added option to follow system accent color on Windows and macOS
 
 ## ✨ Improvements and fixes
 - Removed the empty space to the right side of color pickers 

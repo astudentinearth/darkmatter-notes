@@ -18,6 +18,11 @@ export interface UserSettings {
      * @default false
      */
     enableCustomWindowFrameOnDarwin: boolean;
+    /**
+     * Whether to use system accent color for the app.
+     * @default false
+     */
+    useSystemAccentColor: boolean;
   };
   fonts: {
     /** Font to use in sans style notes. This is the default style for new notes.
@@ -48,6 +53,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
     accentColor: "#302e70",
     useSystemWindowFrame: false,
     enableCustomWindowFrameOnDarwin: false,
+    useSystemAccentColor: false,
   },
   // terrible selection - to be changed
   fonts: {

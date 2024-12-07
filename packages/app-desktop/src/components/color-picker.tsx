@@ -9,6 +9,7 @@ export type ColorPickerProps = {
   value?: string;
   className?: string;
   defaultValue?: string;
+  disabled?: boolean;
 };
 
 export function ColorPicker(props: ColorPickerProps) {
@@ -19,6 +20,7 @@ export function ColorPicker(props: ColorPickerProps) {
           style={{
             background: `${props.value || "hsl(var(--secondary))"}`,
           }}
+          disabled={props.disabled}
           className={cn(
             "p-0 w-8 h-8 rounded-lg border-border border",
             !props.value && "hover:!bg-secondary/50 bg-secondary",

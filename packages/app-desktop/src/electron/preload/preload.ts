@@ -51,6 +51,7 @@ const darkwriteAPI: DarkwriteElectronAPI = {
   theme: {
     import: () => ipcRenderer.invoke(ChannelNames.IMPORT_THEME),
     load: () => ipcRenderer.invoke(ChannelNames.LOAD_THEMES),
+    getAccentColor: ()=>ipcRenderer.invoke(ChannelNames.GET_ACCENT_COLOR)
   },
   setTitlebarSymbolColor: (
     symbolColor: string,

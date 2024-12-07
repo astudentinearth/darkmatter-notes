@@ -6,6 +6,8 @@ import { THEME_DIR } from "../lib/paths";
 import log from "electron-log";
 import _ from "lodash";
 import { logError } from "../lib/log";
+import { systemPreferences } from "electron";
+import os from "os";
 
 export const ThemeAPI = {
   import: async () => {
@@ -49,4 +51,9 @@ export const ThemeAPI = {
     }
     return themes;
   },
+  getSystemAccentColor: ()=>{
+    if(os.platform() !== "win32" || os.platform() !== "darwin") return "000000";
+    const color = systemPreferences.getAccentColor();
+    return color.substring(0,6);
+  }
 };

@@ -21,3 +21,4 @@ ipcMain.handle(
     nativeTheme.themeSource = themeMode;
   },
 );
+ipcMain.handle(ChannelNames.GET_ACCENT_COLOR, ()=>ThemeAPI.getSystemAccentColor());

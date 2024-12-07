@@ -109,6 +109,10 @@ export interface DarkwriteElectronAPI {
      * @returns all themes installed in current profile.
      */
     load: () => Promise<Theme[]>;
+    /** @returns the system accent color on Windows and macOS. If invoked on Linux, returns #000000
+     *  @platform win32,darwin
+     */
+    getAccentColor: () => Promise<string>;
   };
   embed: {
     create: (filePath: string) => Promise<Embed>;

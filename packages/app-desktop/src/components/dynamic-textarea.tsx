@@ -1,8 +1,7 @@
-import { HTMLAttributes, KeyboardEvent } from "react";
-import { ChangeEvent, ClipboardEvent, useEffect, useRef } from "react";
+import { ChangeEvent, ClipboardEvent, TextareaHTMLAttributes, useEffect, useRef } from "react";
 
 
-export type DynamicTextareaProps = Omit<HTMLAttributes<HTMLTextAreaElement>, "onChange" | "onPaste"> & {
+export interface DynamicTextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "onChange" | "onPaste"> {
   /** The callback to run when value changes. Height will get adjusted **after** this method is called. */
   onValueChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   /** Value of the textarea */

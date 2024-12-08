@@ -4,6 +4,7 @@
 
 - You can now paste images directly to the editor
 - You can now drop image files directly. You can drop more than one image and all of them will be inserted to the page.
+- Links can now be edited
 - Editor now has a context menu
 - Added word count - you can view it by clicking the menu icon on the top right.
 - Added translations for Turkish
@@ -17,6 +18,7 @@
 - Added background blur to context menus, dropdowns, popovers and search
 - Disabled dropping into the title box, which should prevent you from accidentally dropping nodes there
 - Fixed low-resolution desktop icon on Windows.
+- Fixed inability to interact with other things when heading selector in the bubble is open
 
 # 0.2.0-alpha.4
 

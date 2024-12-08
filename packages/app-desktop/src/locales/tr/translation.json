@@ -119,6 +119,14 @@
       "divider": "Bölücü",
       "linkToPage": "Sayfaya Bağlantı",
       "image": "Resim"
+    },
+    "bubble": {
+      "h1": "Başlık 1",
+      "h2": "Başlık 2",
+      "h3": "Başlık 3",
+      "h4": "Başlık 4",
+      "removeLink": "Bağlantıyı kaldır",
+      "saveLink": "Bağlantıyı kaydet"
     }
   }
 }

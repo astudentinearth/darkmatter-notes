@@ -4,6 +4,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@renderer/components/ui/popover";
+import { cn } from "@renderer/lib/utils";
 import {
   ChevronDown,
   Heading1,
@@ -13,12 +14,14 @@ import {
 } from "lucide-react";
 import { useEditor } from "novel";
 import { Dispatch, ReactNode, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 export function HeadingSelector(props: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const { editor } = useEditor();
+  const {t} = useTranslation(undefined, {keyPrefix: "editor.bubble"});
   const h1Active = editor?.isActive("heading", { level: 1 });
   const h2Active = editor?.isActive("heading", { level: 2 });
   const h3Active = editor?.isActive("heading", { level: 3 });
@@ -50,28 +53,28 @@ export function HeadingSelector(props: {
   };
 
   return (
-    <Popover open={props.open} onOpenChange={props.setOpen} modal>
+    <Popover open={props.open} onOpenChange={props.setOpen}>
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
           size={"bubble"}
-          className="rounded-none w-fit gap-1 px-2 text-foreground"
+          className={cn("rounded-none w-fit gap-1 px-2 text-foreground", props.open && "bg-secondary/80")}
         >
           {icon}
           <ChevronDown size={16} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground">
-        {item(<Heading1 />, "Heading 1", () => {
+      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground data-[state=closed]:!animate-none">
+        {item(<Heading1 />, t("h1"), () => {
           editor?.chain().toggleHeading({ level: 1 }).run();
         })}
-        {item(<Heading2 />, "Heading 2", () => {
+        {item(<Heading2 />, t("h2"), () => {
           editor?.chain().toggleHeading({ level: 2 }).run();
         })}
-        {item(<Heading3 />, "Heading 3", () => {
+        {item(<Heading3 />, t("h3"), () => {
           editor?.chain().toggleHeading({ level: 3 }).run();
         })}
-        {item(<Heading4 />, "Heading 4", () => {
+        {item(<Heading4 />, t("h4"), () => {
           editor?.chain().toggleHeading({ level: 4 }).run();
         })}
       </PopoverContent>

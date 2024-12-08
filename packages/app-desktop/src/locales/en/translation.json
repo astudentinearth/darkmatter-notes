@@ -55,7 +55,13 @@
         "cancel": "Cancel",
         "restore": "Restore"
       },
-      "languageText": "Language"
+      "languageText": "Language",
+      "startupBehaviourText": "Startup behaviour",
+      "startupBehaviour": {
+        "openHome": "Always open home page",
+        "openLastPage": "Continue where I left off",
+        "openSpecificPage": "Open a specific page"
+      }
     },
     "appearance": {
       "title": "Appearance",

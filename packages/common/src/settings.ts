@@ -1,6 +1,9 @@
 import _ from "lodash";
+
+export type StartupBehavior = "HOME_PAGE" | "LAST_SESSION" | "SPECIFIC_PAGE";
+
 export interface UserSettings {
-  /** Determines the user's locale. 
+  /** Determines the user's locale.
    * @deprecated Language is now persisted in `localStorage`. This key has no effect.
    * @default "en" */
   lang: string;
@@ -42,6 +45,12 @@ export interface UserSettings {
      */
     ui: string;
   };
+  startup: {
+    /** The startup behavior of the app. */
+    behavior: StartupBehavior;
+    /** The page ID to open when the app starts, if `behavior` is `SPECIFIC_PAGE`. */
+    pageId: string;
+  };
   /** This version number should be incremented only when there is a need for migration. Introduction of new keys does not require a version bump. */
   version: string;
 }
@@ -61,6 +70,10 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
     serif: "Times New Roman, serif",
     code: "Cascadia Code, Noto Mono, monospace",
     ui: "",
+  },
+  startup: {
+    behavior: "HOME_PAGE",
+    pageId: "",
   },
   version: "1",
 };

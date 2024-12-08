@@ -4,6 +4,7 @@ import { cn } from "../../lib/utils";
 import { Titlebar } from "./titlebar";
 import { useLocalStore } from "@renderer/context/local-state";
 import { Outlet } from "react-router-dom";
+//import { useStartup } from "@renderer/hooks/use-startup";
 
 const [MIN_WIDTH, , MAX_WIDTH] = [180, 240, 300];
 
@@ -12,6 +13,7 @@ export function Layout() {
   const width = useLocalStore((state) => state.sidebarWidth);
   const setWidth = useLocalStore((state) => state.setCalculatedWidth);
   const isSidebarCollapsed = useLocalStore((state) => state.isSidebarCollapsed);
+  //useStartup();
   const setSidebarCollapsed = useLocalStore(
     (state) => state.setSidebarCollapsed,
   );

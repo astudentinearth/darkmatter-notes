@@ -55,7 +55,13 @@
         "cancel": "Vazgeç",
         "restore": "Geri yükle"
       },
-      "languageText": "Dil"
+      "languageText": "Dil",
+      "startupBehaviourText": "Başlangıç davranışı",
+      "startupBehaviour": {
+        "openHome": "Her zaman giriş sayfasını aç",
+        "openLastPage": "Kaldığım yerden devam et",
+        "openSpecificPage": "Belirli bir sayfayı aç"
+      }
     },
     "appearance": {
       "title": "Görünüm",

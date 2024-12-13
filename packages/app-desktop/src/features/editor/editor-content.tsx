@@ -8,6 +8,7 @@ import { slashCommand } from "./command-menu/slash-command";
 import { ContentHandler } from "./content-handler";
 import { defaultExtensions } from "./extensions/extensions";
 import InstanceHandler from "./instance-handler";
+import { useCreateNoteMutation } from "@renderer/hooks/query";
 
 export interface EditorProp {
   initialValue?: JSONContent;
@@ -18,6 +19,7 @@ const extensions = [...defaultExtensions, slashCommand];
 
 export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
   const fontStyle = useEditorState((state) => state.customizations.font);
+  const {mutate: createNew} = useCreateNoteMutation();
 
   return (
     <EditorContent
@@ -32,7 +34,16 @@ export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
       extensions={extensions}
       editorProps={{
         handleDOMEvents: {
-          keydown: (_view, event) => handleCommandNavigation(event),
+          keydown: (_view, event) => {
+            console.log("handling keydown")
+            if (event.key === "n" && (event.metaKey || event.ctrlKey)) {
+              console.log("first")
+              createNew(undefined);
+              event.preventDefault();
+              return true;
+            }
+            return handleCommandNavigation(event)
+          },
         },
         attributes: {
           class: cn(

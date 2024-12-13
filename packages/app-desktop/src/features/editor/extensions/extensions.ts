@@ -11,6 +11,7 @@ import AutoJoiner from "tiptap-extension-auto-joiner";
 import { LinkToPage } from "./link-to-page";
 import { TextExtensions } from "./text";
 import { DarkwriteImage } from "./darkwrite-image";
+import { KeymapFixer } from "./keymap-fixer";
 
 const placeholder = Placeholder.configure({});
 
@@ -37,4 +38,5 @@ export const defaultExtensions = [
   HighlightExtension,
   LinkToPage,
   ...TextExtensions,
+  KeymapFixer
 ];

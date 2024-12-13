@@ -1,6 +1,5 @@
 import { Layout } from "@renderer/features/layout";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useEffect, useState } from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { ThemeHandler } from "./components/theme-handler";

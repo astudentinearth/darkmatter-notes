@@ -27,7 +27,7 @@ export function constructWindow(
     webPreferences: {
       preload: join(__dirname, "preload.mjs"),
     },
-    icon: is.dev ? join(__dirname, "../resources/icon.png") : undefined,
+    icon: is.dev ? join(__dirname, "../resources/icon_dev.png") : undefined,
     titleBarStyle,
     titleBarOverlay:
       titleBarStyle == "hidden"

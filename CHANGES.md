@@ -1,6 +1,9 @@
 # 0.3.0-alpha.2
 > Quality of life release before moving onto 1.0.0-alpha
+
+## 🌟 Features
 - Added `Ctrl+n` (or `Cmd+n` on macOS) shortcut to create new notes
+- Changed icon for development builds
 
 # 0.3.0-alpha.1
 

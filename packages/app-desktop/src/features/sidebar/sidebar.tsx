@@ -11,6 +11,7 @@ import { TrashWidget } from "./trash";
 import { SearchDialog } from "../search";
 import { useState } from "react";
 import { HeaderbarButton } from "@renderer/components/ui/headerbar-button";
+import { Button as UIButton} from "@darkwrite/ui"
 
 export type SidebarProps = React.HTMLAttributes<HTMLDivElement> & {
   collapsed?: boolean;
@@ -68,6 +69,7 @@ export function Sidebar(props: SidebarProps) {
           <CreatePageButton />
           <NavigationWidget />
           <FavortiesWidget />
+          <UIButton>Hello world</UIButton>
           <NotesWidget />
           <TrashWidget />
         </div>

@@ -3,14 +3,23 @@
   "private": true,
   "version": "1.0.0-alpha.1",
   "type": "module",
+  "main": "./dist/ui.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "lint": "eslint .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "build": "tsc -b ./tsconfig.lib.json && vite build",
+    "dev": "vite build --watch"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.1.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^2.5.5",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "1.9.0",
@@ -23,18 +32,22 @@
     "@storybook/react": "8.3.5",
     "@storybook/react-vite": "8.3.5",
     "@storybook/test": "8.3.5",
+    "@types/node": "^22.10.2",
     "@types/react": "^18.3.10",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.11.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.12",
     "eslint-plugin-storybook": "^0.9.0",
     "globals": "^15.9.0",
     "storybook": "8.3.5",
+    "tailwindcss": "^3.4.16",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.7.0",
-    "vite": "^5.4.8"
+    "vite": "^5.4.8",
+    "vite-plugin-dts": "^4.3.0"
   },
   "eslintConfig": {
     "extends": [

@@ -1,1 +1,1 @@
-export * from "./stories/Button";
+export const hello = "Hello world";

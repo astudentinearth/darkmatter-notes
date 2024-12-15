@@ -1512,6 +1512,7 @@ __metadata:
     "@storybook/react": "npm:8.3.5"
     "@storybook/react-vite": "npm:8.3.5"
     "@storybook/test": "npm:8.3.5"
+    "@tailwindcss/typography": "npm:^0.5.15"
     "@types/node": "npm:^22.10.2"
     "@types/react": "npm:^18.3.10"
     "@types/react-dom": "npm:^18.3.0"
@@ -5193,7 +5194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/typography@npm:^0.5.14":
+"@tailwindcss/typography@npm:^0.5.14, @tailwindcss/typography@npm:^0.5.15":
   version: 0.5.15
   resolution: "@tailwindcss/typography@npm:0.5.15"
   dependencies:

@@ -7,7 +7,8 @@
     "coverage:all": "yarn workspaces foreach -A run test:coverage",
     "dev": "concurrently \" yarn workspace @darkwrite/common watch \"  \" yarn workspace @darkwrite/app-desktop dev  \"",
     "build:desktop": "yarn workspace @darkwrite/app-desktop build",
-    "build:common": "yarn workspace @darkwrite/common build"
+    "build:common": "yarn workspace @darkwrite/common build",
+    "build:ui": "yarn workspace @darkwrite/ui build"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

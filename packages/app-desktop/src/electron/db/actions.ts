@@ -22,7 +22,7 @@ export const DB = {
     async create(
       title: string = "Untitled",
       parentId?: string,
-      icon: string = "1f4c4",
+      icon: string = "", // used to be: 1f4c4
     ) {
       const entity = new NoteEntity();
       entity.id = randomUUID();

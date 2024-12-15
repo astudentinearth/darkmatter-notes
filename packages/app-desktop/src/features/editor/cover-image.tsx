@@ -34,8 +34,8 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
       onMouseOver={() => setMouseOver(true)}
       onMouseOut={() => setMouseOver(false)}
       className={cn(
-        "h-40 w-full flex-shrink-0 flex items-end justify-end p-2 gap-2",
-        embedId && "z-40",
+        "w-full flex-shrink-0 flex items-end justify-end p-2 gap-2",
+        embedId && "z-40 h-40 ",
       )}
       style={
         embedId

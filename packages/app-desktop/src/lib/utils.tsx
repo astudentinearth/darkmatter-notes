@@ -1,6 +1,7 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { hex } from "color-convert";
+import { FileText } from "lucide-react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -10,6 +11,11 @@ export function fromUnicode(unicode: string) {
   if (unicode == null) return "";
   const points = unicode.split("-").map((p) => parseInt(p, 16));
   return String.fromCodePoint(...points.filter((p) => !isNaN(p)));
+}
+
+export function getNoteIcon(icon: string){
+  if(icon === "") return <FileText size={18}/>;
+  return fromUnicode(icon);
 }
 
 export function getTitlebarState() {

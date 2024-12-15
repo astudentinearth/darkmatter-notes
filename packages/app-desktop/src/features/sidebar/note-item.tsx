@@ -20,7 +20,7 @@ import { useMoveNoteMutation } from "@renderer/hooks/query/use-move-note";
 import { useExport } from "@renderer/hooks/use-export";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
-import { cn, fromUnicode } from "@renderer/lib/utils";
+import { cn, fromUnicode, getNoteIcon } from "@renderer/lib/utils";
 import {
   ArrowRightFromLine,
   ChevronDown,
@@ -196,7 +196,7 @@ export function NoteItem({
               </div>
             </CollapsibleTrigger>
             <div className="flex w-6 h-6 items-center justify-center leading-[18px] text-[18px] align-middle translate-y-[-5%]">
-              {fromUnicode(note.icon)}
+              {getNoteIcon(note.icon)}
             </div>
             <span
               className={cn(

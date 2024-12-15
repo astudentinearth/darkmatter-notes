@@ -10,7 +10,7 @@ import {
 import { uploadImage } from "@renderer/lib/upload";
 import { cn, fromUnicode } from "@renderer/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
-import { ImagePlus, TriangleAlert } from "lucide-react";
+import { Frown, ImagePlus, SmilePlus, TriangleAlert } from "lucide-react";
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 import { useDebounce } from "use-debounce";
 
@@ -81,13 +81,23 @@ export function EditorCover(props: {
     }
   };
 
+  const addIcon = ()=>{
+    update({ id, icon: "1f4c4" });
+  }
+
+  const removeIcon = ()=>{
+    update({ id, icon: "" });
+    
+  }
+
   return (
     <div
       onMouseOver={() => setMouseOver(true)}
       onMouseOut={() => setMouseOver(false)}
       className={cn(
         "flex-shrink-0 flex flex-col max-w-[984px] w-full p-4 pb-2 px-20 gap-2",
-        !note.isTrashed && "mt-[-50px]",
+        !note.isTrashed && note.icon !== "" && props.hasCover && "mt-[-50px]",
+        !note.isTrashed && note.icon !== "" && !props.hasCover && "pt-16"
       )}
     >
       {note.isTrashed && (
@@ -115,22 +125,52 @@ export function EditorCover(props: {
       )}
 
       <div className="flex items-end gap-2">
-        <EmojiPicker
-          show={fromUnicode(note.icon ?? "")}
-          closeOnSelect
-          onSelect={handleEmojiChange}
-          className="z-50 "
-        />
-        {mouseOver && !props.hasCover && (
+        {note.icon !== "" && (
+          <EmojiPicker
+            show={fromUnicode(note.icon ?? "")}
+            closeOnSelect
+            onSelect={handleEmojiChange}
+            className="z-50"
+          />
+        )}
+
+        {note.icon === "" && (
           <Button
-            onClick={addCover}
             variant={"secondary"}
-            className="z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui"
+            onClick={addIcon}
+            className={cn(
+              "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",
+              note.icon === "" && mouseOver && "opacity-100",
+            )}
           >
-            <ImagePlus size={18} />
-            Add cover
+            <SmilePlus size={18} />
+            Add icon
           </Button>
         )}
+        {note.icon !== "" && (
+          <Button
+            variant={"secondary"}
+            onClick={removeIcon}
+            className={cn(
+              "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",
+              note.icon !== "" && mouseOver && "opacity-100",
+            )}
+          >
+            <Frown size={18} />
+            Remove icon
+          </Button>
+        )}
+        <Button
+          onClick={addCover}
+          variant={"secondary"}
+          className={cn(
+            "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",
+            mouseOver && !props.hasCover && "opacity-100",
+          )}
+        >
+          <ImagePlus size={18} />
+          Add cover
+        </Button>
       </div>
       <DynamicTextarea
         className="text-4xl px-1 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"

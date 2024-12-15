@@ -1,3 +1,7 @@
+# 0.3.1-alpha.3
+## ✨ Improvements and fixes
+- Notes no longer have an icon by default, you can add or remove it as you wish
+
 # 0.3.0-alpha.2
 > Quality of life release before moving onto 1.0.0-alpha
 

@@ -30,5 +30,6 @@ export enum ChannelNames {
   RESOLVE_EMBED = "resolve-embed",
   UPLOAD_EMBED = "upload-embed",
   UPLOAD_EMBED_WITH_BUFFER = "upload-embed-with-buffer",
-  GET_ACCENT_COLOR = "get-accent-color"
+  GET_ACCENT_COLOR = "get-accent-color",
+  IMPORT_NOTE = "import-note"
 }

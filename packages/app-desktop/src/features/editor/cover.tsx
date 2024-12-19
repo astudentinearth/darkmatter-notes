@@ -19,7 +19,7 @@ export function EditorCover(props: {
   update: (data: NotePartial) => void;
   hasCover?: boolean;
 }) {
-  //TODO: get rid of this mess
+  //TODO: get rid of this mess, maybe rewrite again?
   const { note, update } = props;
   const id = note.id;
   const [inputValue, setInputValue] = useState(note.title);
@@ -173,7 +173,7 @@ export function EditorCover(props: {
         </Button>
       </div>
       <DynamicTextarea
-        className="text-4xl px-1 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
+        className="text-4xl px-0 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
         value={inputValue}
         onValueChange={handleChange}
         onKeyDown={handleKeyDown}

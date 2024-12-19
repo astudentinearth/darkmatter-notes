@@ -29,6 +29,7 @@ const darkwriteAPI: DarkwriteElectronAPI = {
     export: (title: string, content: string, exportType: NoteExportType) =>
       ipcRenderer.invoke(ChannelNames.EXPORT_NOTE, title, content, exportType),
     importHTML: () => ipcRenderer.invoke(ChannelNames.IMPORT_HTML),
+    importFile: ()=>ipcRenderer.invoke(ChannelNames.IMPORT_NOTE)
   },
   settings: {
     load: () => ipcRenderer.invoke(ChannelNames.LOAD_USER_PREFS),

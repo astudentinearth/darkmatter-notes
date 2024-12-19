@@ -1,5 +1,6 @@
 import {
   DarkwriteDesktopClientInfo,
+  FileImportResult,
   Note,
   NoteExportType,
   NotePartial,
@@ -83,10 +84,13 @@ export interface DarkwriteElectronAPI {
       exportType: NoteExportType,
     ) => Promise<void>;
     /**
+     * @deprecated Use `importFile` instead
      * Shows a dialog to open an HTML file.
      * @returns the contents to import later.
      */
     importHTML: () => Promise<string>;
+    /** Imports a file and returns its contents along with its content type. */
+    importFile: ()=> Promise<FileImportResult | null>;
   };
   settings: {
     load: () => Promise<UserSettings | null>;

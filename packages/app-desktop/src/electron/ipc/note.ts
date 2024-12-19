@@ -15,20 +15,19 @@ import { ChannelNames } from "../channels";
 import { Note, NoteExportType, NotePartial } from "@darkwrite/common";
 import { openFile, saveFile } from "../api/dialog";
 import { writeFile, readFile } from "fs/promises";
+import { ImportAPI } from "../api/import";
 
 // notes
 ipcMain.handle(
   ChannelNames.CREATE_NOTE,
-  async (_event, title: string, parent?: string) => {
-    return await createNote(title, parent);
-  },
+  (_event, title: string, parent?: string) => createNote(title, parent),
 );
+
 ipcMain.handle(
   ChannelNames.SET_JSON_CONTENT,
-  async (_event, id: string, content: string) => {
-    await setNoteContents(id, content);
-  },
+  (_event, id: string, content: string) => setNoteContents(id, content),
 );
+
 ipcMain.handle(ChannelNames.GET_JSON_CONTENT, async (_event, id: string) => {
   return await getNoteContents(id);
 });
@@ -84,6 +83,9 @@ ipcMain.handle(
   },
 );
 
+/**
+ * @deprecated Use new API instead
+ */
 ipcMain.handle(ChannelNames.IMPORT_HTML, async () => {
   const result = await openFile({
     title: "Import HTML",
@@ -101,3 +103,5 @@ ipcMain.handle(ChannelNames.IMPORT_HTML, async () => {
   const content = await readFile(file);
   return content.toString("utf-8");
 });
+
+ipcMain.handle(ChannelNames.IMPORT_NOTE, ImportAPI.importFile);

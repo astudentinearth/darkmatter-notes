@@ -5,3 +5,4 @@ export * from "./todo";
 export * from "./theme";
 export * from "./embed";
 export * from "./markdown";
+export * from "./types"

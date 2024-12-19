@@ -90,12 +90,12 @@ export function EditorMenu() {
           </DropdownMenuItem>
           <DropdownMenuItem
             onSelect={async () => {
-              const html = await NotesModel.Instance.importHTML();
-              if (html.error) {
-                console.error(html.error);
+              const html = await NotesModel.Instance.importFile();
+              if(!html) {
+                console.error("Failed to import note");
                 return;
               }
-              editor?.commands.insertContent(html.value);
+              editor?.commands.insertContent(html.content);
             }}
             className="gap-2 rounded-lg"
           >

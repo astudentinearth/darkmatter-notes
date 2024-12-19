@@ -1,4 +1,4 @@
-import { Note, NotePartial } from "@darkwrite/common";
+import { FileImportResult, Note, NotePartial } from "@darkwrite/common";
 
 export interface INotesModel {
   create: (title: string, parent?: string) => Promise<Result<Note, Error>>;
@@ -14,6 +14,7 @@ export interface INotesModel {
   saveAll: (notes: Note[]) => Promise<void>;
   exportHTML: (note: Note, content: string) => Promise<{ error?: Error }>;
   importHTML: () => Promise<Result<string, Error>>;
+  importFile: () => Promise<FileImportResult | null>;
   duplicate: (id: string) => Promise<Result<Note, Error>>;
 }
 
@@ -136,6 +137,15 @@ export class NotesModel implements INotesModel {
     } catch (error) {
       if (error instanceof Error) return { error };
       else return { error: new Error("Failed to create note") };
+    }
+  }
+
+  async importFile() {
+    try {
+      const res = await this.API.importFile();
+      return res;
+    } catch {
+      return null;
     }
   }
 

@@ -1,7 +1,8 @@
 /// <reference types="vite/client" />
 /// <reference types="vitest/globals" />
+/// <reference types="./electron/preload/types.d.ts"/>
 
-import { DarkwriteElectronAPI } from "./api";
+import { type DarkrwiteElectronAPI as DarkwriteAPI } from "./electron/preload/types";
 import { type WebUtils } from "electron";
 
 /**
@@ -20,7 +21,7 @@ declare global {
     | { value?: undefined; error: E };
 
   interface Window {
-    api: DarkwriteElectronAPI;
+    api: DarkwriteAPI;
     webUtils: WebUtils;
   }
 

@@ -6,10 +6,10 @@
     "src/**/*.tsx",
     "src/**/*.d.ts",
     "src/**/*.ts",
-    "src/api.d.ts",
-    "src/global.d.ts"
+    "src/global.d.ts",
+    "src/electron/preload/types.d.ts"
   ],
-  "exclude": ["src/electron/**/*"],
+  "exclude": ["src/electron/**/*", "!src/electron/preload/*"],
   "compilerOptions": {
     "composite": true,
     "jsx": "react-jsx",

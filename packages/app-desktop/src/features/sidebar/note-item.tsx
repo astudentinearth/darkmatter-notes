@@ -20,7 +20,7 @@ import { useMoveNoteMutation } from "@renderer/hooks/query/use-move-note";
 import { useExport } from "@renderer/hooks/use-export";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
-import { cn, fromUnicode, getNoteIcon } from "@renderer/lib/utils";
+import { cn, getNoteIcon } from "@renderer/lib/utils";
 import {
   ArrowRightFromLine,
   ChevronDown,
@@ -33,8 +33,8 @@ import {
   Trash,
 } from "lucide-react";
 import { DragEvent, useCallback, useEffect, useState } from "react";
-import { NoteDropZone } from "./note-drop-zone";
 import { useTranslation } from "react-i18next";
+import { NoteDropZone } from "./note-drop-zone";
 
 export function NoteItem({
   note,

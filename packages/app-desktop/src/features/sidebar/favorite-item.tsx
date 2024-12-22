@@ -11,7 +11,7 @@ import { useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useExport } from "@renderer/hooks/use-export";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
-import { cn, fromUnicode } from "@renderer/lib/utils";
+import { cn, getNoteIcon } from "@renderer/lib/utils";
 import { ArrowRightFromLine, Star, Trash } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -48,7 +48,7 @@ export function FavoriteItem({ note, index }: { note: Note; index: number }) {
             >
               <div></div>
               <div className="flex w-6 h-6 items-center justify-center text-[18px] translate-y-[-5%]">
-                {fromUnicode(note.icon)}
+                {getNoteIcon(note.icon)}
               </div>
               <span
                 className={cn(

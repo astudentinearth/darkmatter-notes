@@ -3,6 +3,10 @@ import { cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 
 vi.mock("zustand");
+
+vi.mock("node:fs")
+vi.mock("node:fs/promises")
+
 vi.mock("@renderer/lib/api/note", () => ({
   createNote: vi.fn(),
   updateContents: vi.fn(),

@@ -1,3 +1,7 @@
+# 0.4.0-alpha.1
+## ✨ Improvements and fixes
+- Fix 7 places where notes without icons were handled incorrectly
+
 # 0.3.1-alpha.3
 ## 🌟 Features
 - Added markdown import

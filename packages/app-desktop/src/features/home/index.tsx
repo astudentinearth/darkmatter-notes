@@ -3,7 +3,7 @@ import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mut
 import { useCenteredLayout } from "@renderer/hooks/use-centered-layout";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useRecentNotes } from "@renderer/hooks/use-recents";
-import { cn, fromUnicode } from "@renderer/lib/utils";
+import { cn, getNoteIcon } from "@renderer/lib/utils";
 import { SquarePen } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -60,7 +60,7 @@ export function HomePage() {
                 )}
               >
                 <span className="whitespace-nowrap min-w-0 text-ellipsis overflow-hidden block w-full text-start pr-2">
-                  {fromUnicode(note.icon)}
+                  {getNoteIcon(note.icon, "inline")}
                   {note.title}
                 </span>
                 <span className="text-foreground/50">

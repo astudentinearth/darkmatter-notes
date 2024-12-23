@@ -7,7 +7,7 @@ import {
   CommandList,
 } from "@renderer/components/ui/command";
 import { useNotesQuery } from "@renderer/hooks/query";
-import { cn, fromUnicode } from "@renderer/lib/utils";
+import { cn, getNoteIcon } from "@renderer/lib/utils";
 import { Command } from "lucide-react";
 import { useState } from "react";
 
@@ -50,7 +50,7 @@ export function NoteSelectCommand({
               value={`${n.id}$${n.title}`}
               className="flex gap-2"
             >
-              {fromUnicode(n.icon)}
+              {getNoteIcon(n.icon)}
               {n.title}
             </CommandItem>
           ))}
@@ -88,7 +88,7 @@ export function NoteSelectCommandDialog({
               value={`${n.id}$${n.title}`}
               className="flex gap-2 rounded-lg transition-colors"
             >
-              {fromUnicode(n.icon)}
+              {getNoteIcon(n.icon)}
               {n.title}
             </CommandItem>
           ))}

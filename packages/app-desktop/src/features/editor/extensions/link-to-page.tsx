@@ -1,9 +1,9 @@
 import {
   Command,
-  CommandInput,
   CommandEmpty,
-  CommandList,
+  CommandInput,
   CommandItem,
+  CommandList,
 } from "@renderer/components/ui/command";
 import {
   Popover,
@@ -12,7 +12,7 @@ import {
 } from "@renderer/components/ui/popover";
 import { useNoteByIdQuery, useNotesQuery } from "@renderer/hooks/query";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
-import { fromUnicode } from "@renderer/lib/utils";
+import { getNoteIcon } from "@renderer/lib/utils";
 import { mergeAttributes, Node } from "@tiptap/core";
 import { NodeViewWrapper, ReactNodeViewRenderer } from "@tiptap/react";
 import { File } from "lucide-react";
@@ -50,7 +50,7 @@ const LinkComponent = ({ node, updateAttributes }: any) => {
             {!note ? (
               <File size={18} className="opacity-75" />
             ) : (
-              fromUnicode(note?.icon ?? "")
+              getNoteIcon(note.icon)
             )}
             {!note ? (
               "Select a note"
@@ -88,7 +88,7 @@ const LinkComponent = ({ node, updateAttributes }: any) => {
                     value={`${n.id}$${n.title}`}
                     className="flex gap-2"
                   >
-                    {fromUnicode(n.icon)}
+                    {getNoteIcon(n.icon)}
                     {n.title}
                   </CommandItem>
                 ))}

@@ -13,8 +13,8 @@ export function fromUnicode(unicode: string) {
   return String.fromCodePoint(...points.filter((p) => !isNaN(p)));
 }
 
-export function getNoteIcon(icon: string){
-  if(icon === "") return <FileText size={18}/>;
+export function getNoteIcon(icon: string, className?: string){
+  if(icon === "") return <FileText size={18} className={className}/>;
   return fromUnicode(icon);
 }
 

@@ -7,7 +7,7 @@ import {
 } from "@renderer/components/ui/command";
 import { useNotesQuery } from "@renderer/hooks/query";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
-import { fromUnicode } from "@renderer/lib/utils";
+import { getNoteIcon } from "@renderer/lib/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 export function SearchDialog(props: {
@@ -53,7 +53,7 @@ export function SearchDialog(props: {
               value={`${n.id}$${n.title}`}
               className="flex gap-2 transition-colors rounded-lg"
             >
-              {fromUnicode(n.icon)}
+              {getNoteIcon(n.icon)}
               {n.title}
             </CommandItem>
           ))}

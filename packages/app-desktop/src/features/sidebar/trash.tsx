@@ -8,7 +8,7 @@ import { ScrollArea } from "@renderer/components/ui/scroll-area";
 import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useDeleteNoteMutation } from "@renderer/hooks/query/use-delete-note-mutation";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
-import { cn, fromUnicode } from "@renderer/lib/utils";
+import { cn, getNoteIcon } from "@renderer/lib/utils";
 import { Trash, Undo } from "lucide-react";
 import { useTranslation } from "react-i18next";
 export function TrashWidget() {
@@ -56,7 +56,7 @@ export function TrashWidget() {
                   )}
                 >
                   <div className="flex w-6 h-6 items-center justify-center text-[18px] translate-y-[-5%]">
-                    {fromUnicode(note.icon)}
+                    {getNoteIcon(note.icon)}
                   </div>
                   <span
                     className={cn(

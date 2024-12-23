@@ -1,5 +1,5 @@
 import { Note, resolveParents } from "@darkwrite/common";
-import { fromUnicode } from "@renderer/lib/utils";
+import { getNoteIcon } from "@renderer/lib/utils";
 import { ChevronDown, Home, Settings } from "lucide-react";
 import { ReactNode, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -43,7 +43,7 @@ export function getTitle(
         <>
           <ChevronDown size={18} />
           <div className="text-lg translate-y-[-5%]">
-            {fromUnicode(note.icon)}
+            {getNoteIcon(note.icon)}
           </div>
           {note.title}
         </>

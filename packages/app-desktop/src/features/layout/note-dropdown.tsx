@@ -7,7 +7,7 @@ import {
 } from "@renderer/components/ui/dropdown-menu";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useTitleDropdown } from "@renderer/hooks/use-title-dropdown";
-import { fromUnicode } from "@renderer/lib/utils";
+import { getNoteIcon } from "@renderer/lib/utils";
 
 export function NoteDropdown() {
   const navToNote = useNavigateToNote();
@@ -31,7 +31,7 @@ export function NoteDropdown() {
             className="[&>span]:leading-[18px] [&>span]:whitespace-nowrap [&>span]:text-ellipsis [&>span]:overflow-hidden"
           >
             <div className="text-lg translate-y-[-5%]">
-              {fromUnicode(n.icon)}
+              {getNoteIcon(n.icon)}
             </div>
             <span className="text-ellipsis">{n.title}</span>
           </DropdownMenuItem>

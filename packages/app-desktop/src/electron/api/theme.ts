@@ -1,4 +1,4 @@
-import { isTheme, Theme } from "@darkwrite/common";
+import { InvalidFileFormatError, isTheme, Theme } from "@darkwrite/common";
 import { openFile } from "./dialog";
 import fse from "fs-extra";
 import { join } from "node:path";
@@ -24,7 +24,7 @@ export const ThemeAPI = {
       });
       const theme = JSON.parse(contents);
       const valid = isTheme(theme);
-      if (!valid) throw new Error("Invalid theme file");
+      if (!valid) throw new InvalidFileFormatError("Invalid theme file");
       await fse.copy(
         openResult.filePaths[0],
         join(THEME_DIR, `${theme.id}.json`),

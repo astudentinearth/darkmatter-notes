@@ -1432,6 +1432,7 @@ __metadata:
     eslint-plugin-react-refresh: "npm:^0.4.7"
     extract-zip: "npm:^2.0.1"
     fs-extra: "npm:^11.2.0"
+    fs-monkey: "npm:^1.0.6"
     generate-license-file: "npm:^3.5.0"
     globals: "npm:^15.8.0"
     i18next: "npm:^23.11.5"
@@ -10428,6 +10429,13 @@ __metadata:
   dependencies:
     minipass: "npm:^7.0.3"
   checksum: 10c0/63e80da2ff9b621e2cb1596abcb9207f1cf82b968b116ccd7b959e3323144cce7fb141462200971c38bbf2ecca51695069db45265705bed09a7cd93ae5b89f94
+  languageName: node
+  linkType: hard
+
+"fs-monkey@npm:^1.0.6":
+  version: 1.0.6
+  resolution: "fs-monkey@npm:1.0.6"
+  checksum: 10c0/6f2508e792a47e37b7eabd5afc79459c1ea72bce2a46007d2b7ed0bfc3a4d64af38975c6eb7e93edb69ac98bbb907c13ff1b1579b2cf52d3d02dbc0303fca79f
   languageName: node
   linkType: hard
 

@@ -1,11 +1,11 @@
 import { Note, NotePartial } from "@darkwrite/common";
 import fse from "fs-extra";
-import { AppDataSource, DB } from "@electron/db";
-import { NoteEntity } from "@electron/db/entity/note";
-import { getNotePath } from "@electron/lib/paths";
-import { isNodeError } from "@electron/util";
-import { logError } from "@electron/lib/log";
-import { rmIfExists } from "@electron/lib/fs";
+import { AppDataSource, DB } from "@main/db";
+import { NoteEntity } from "@main/db/entity/note";
+import { getNotePath } from "@main/lib/paths";
+import { isNodeError } from "@main/util";
+import { logError } from "@main/lib/log";
+import { rmIfExists } from "@main/lib/fs";
 
 /**
  * Creates a new note by creating a database entry and a JSON file. A randomly generated UUID is assigned.

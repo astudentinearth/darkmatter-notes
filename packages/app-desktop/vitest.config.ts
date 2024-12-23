@@ -24,6 +24,7 @@ export default defineProject({
   resolve: {
     alias: {
       "@renderer": path.resolve("src"),
+      "@main": path.resolve("src/electron")
     },
   },
   //root: path.resolve("src"),

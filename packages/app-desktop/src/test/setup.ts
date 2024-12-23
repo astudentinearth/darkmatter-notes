@@ -1,11 +1,26 @@
-import { afterEach } from "vitest";
-import { cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
+import { cleanup } from "@testing-library/react";
+import { afterEach } from "vitest";
 
 vi.mock("zustand");
 
 vi.mock("node:fs")
 vi.mock("node:fs/promises")
+
+vi.mock("@electron-toolkit/utils", ()=>({
+  is: {
+    dev: true
+  }
+}))
+
+
+vi.mock("electron", ()=>({
+  app: {
+    getPath: (pathType: string)=>{
+      return `/${pathType}/`;
+    }
+  }
+}))
 
 vi.mock("@renderer/lib/api/note", () => ({
   createNote: vi.fn(),

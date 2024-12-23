@@ -13,7 +13,7 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@electron/*": ["src/electron/*"]
+      "@main/*": ["src/electron/*"]
     }
   },
   "ts-node": {

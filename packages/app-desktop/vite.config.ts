@@ -19,7 +19,7 @@ export default defineConfig({
           plugins: [swcPlugin(), externalizeDepsPlugin()],
           resolve: {
             alias: {
-              "@electron": path.resolve("src/electron/")
+              "@main": path.resolve("src/electron/")
             }
           }
         },

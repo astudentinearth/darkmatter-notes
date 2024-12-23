@@ -12,7 +12,7 @@
     "baseUrl": ".",
     "paths": {
       "@renderer/*": ["src/*"],
-      "@electron/*": ["src/electron/*"]
+      "@main/*": ["src/electron/*"]
     },
     "types": ["vitest/globals"]
   }

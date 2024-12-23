@@ -1,4 +1,4 @@
-import { fromUnicode } from "./utils";
+import { fromUnicode, hexToHslVariable } from "./utils";
 
 it("should convert emojis correctly", () => {
   const emojis = {
@@ -12,3 +12,10 @@ it("should convert emojis correctly", () => {
   );
   expect(fromUnicode("1f97d")).toBe(emojis["1f97d"]);
 });
+
+
+it("should convert hex to hsl css vars correctly", ()=>{
+  const hsl = hexToHslVariable("#ffffff");
+  expect(hsl).toBe("0 0% 100%");
+  expect(!hsl.includes(","));
+})

@@ -31,3 +31,5 @@ coverage
 !.yarn/releases
 !.yarn/plugins
 .pnp.*
+
+*.tsbuildinfo

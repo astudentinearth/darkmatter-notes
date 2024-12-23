@@ -1,43 +1,46 @@
 name: vitest workflow
 on:
-    push:
-        branches:
-            - dev
-        paths:
-            - "packages/*/src/**/*"
-            - "yarn.lock"
-            - "package.json"
-            - "packages/*/package.json"
-            - "!*.md"
-            - "!./**/*.md"
+  push:
+    branches:
+      - dev
+    paths:
+      - "packages/*/src/**/*"
+      - "yarn.lock"
+      - "package.json"
+      - "packages/*/package.json"
+      - "!*.md"
+      - "!./**/*.md"
 
 env:
-    CI: false
-    ELECTRON_SKIP_BINARY_DOWNLOAD: 1
+  CI: false
+  ELECTRON_SKIP_BINARY_DOWNLOAD: 1
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
-        name: unit tests
-        steps:
-            - name: Install node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-            - name: Checkout
-              uses: actions/checkout@v4
+  test:
+    runs-on: ubuntu-latest
+    name: unit tests and type checking
+    steps:
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Checkout
+        uses: actions/checkout@v4
 
-            - name: Enable corepack
-              run: corepack enable
+      - name: Enable corepack
+        run: corepack enable
 
-            - name: Install dependencies
-              run: yarn
+      - name: Install dependencies
+        run: yarn
 
-            - name: Build @darkwrite/common
-              run: yarn build:common
+      - name: Build @darkwrite/common
+        run: yarn build:common
 
-            - name: Build @darkwrite/ui
-              run: yarn build:ui
+      - name: Build @darkwrite/ui
+        run: yarn build:ui
 
-            - name: Run tests
-              run: yarn test:all
+      - name: Run tests
+        run: yarn test:all
+
+      - name: Check types
+        run: yarn tscheck:all

@@ -1,5 +1,6 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
+  "files": ["src/electron/preload/types.d.ts", "src/electron/channels.ts"],
   "include": [
     "src/env.d.ts",
     "src/**/*",
@@ -9,7 +10,7 @@
     "src/global.d.ts",
     "src/electron/preload/types.d.ts"
   ],
-  "exclude": ["src/electron/**/*", "!src/electron/preload/*"],
+  "exclude": ["src/electron/**/*"],
   "compilerOptions": {
     "composite": true,
     "jsx": "react-jsx",
@@ -18,6 +19,7 @@
       "@renderer/*": ["src/*"]
     },
     "types": ["vitest/globals"],
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "strict": true
   }
 }

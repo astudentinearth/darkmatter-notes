@@ -1,6 +1,6 @@
 {
   "name": "@darkwrite/common",
-  "version": "0.3.1-alpha.3",
+  "version": "0.4.0-alpha.1",
   "types": "./dist/index.d.ts",
   "main": "./dist/index.js",
   "scripts": {
@@ -9,7 +9,8 @@
     "test:coverage": "vitest run --coverage",
     "build": "tsup src/index.ts --dts --format esm,cjs",
     "watch": "tsup src/index.ts --dts --format esm,cjs --watch",
-    "format": "prettier . --write"
+    "format": "prettier . --write",
+    "tscheck": "tsc --noEmit --project tsconfig.json"
   },
   "devDependencies": {
     "@types/showdown": "^2.0.6",

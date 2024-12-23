@@ -12,7 +12,8 @@
     "build": "run-s build:tsc build:vite",
     "build:vite": "vite build",
     "build:tsc": "tsc -b ./tsconfig.lib.json",
-    "dev": "vite build --watch"
+    "dev": "vite build --watch",
+    "tscheck": "tsc --noEmit --project tsconfig.lib.json"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",

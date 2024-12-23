@@ -10,7 +10,11 @@
     "strictPropertyInitialization": false,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@electron/*": ["src/electron/*"]
+    }
   },
   "ts-node": {
     "esm": true

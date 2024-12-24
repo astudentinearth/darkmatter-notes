@@ -33,3 +33,5 @@ coverage
 .pnp.*
 
 *.tsbuildinfo
+
+vite.config.ts.timestamp-*

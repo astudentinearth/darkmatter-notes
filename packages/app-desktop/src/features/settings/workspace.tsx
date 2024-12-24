@@ -4,9 +4,9 @@ import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
 import { Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
 //import { StartupBehvaiourSelect } from "./startup-behaviour-select";
-import { updateUserSettings, useSettingsStore } from "@renderer/context/settings-store";
-import { produce } from "immer";
-import { StartupBehavior } from "@darkwrite/common";
+// import { updateUserSettings, useSettingsStore } from "@renderer/context/settings-store";
+// import { produce } from "immer";
+// import { StartupBehavior } from "@darkwrite/common";
 
 export function WorkspaceSettings() {
   const workspaceExport = useWorkspaceExport();

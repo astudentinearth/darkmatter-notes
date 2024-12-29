@@ -9,6 +9,7 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "skipLibCheck": true,
-    "declaration": true
+    "declaration": true,
+    "moduleResolution": "bundler"
   }
 }

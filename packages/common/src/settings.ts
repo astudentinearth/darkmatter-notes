@@ -45,6 +45,12 @@ export interface UserSettings {
      */
     ui: string;
   };
+  editor: {
+    /** Number of spaces to insert when the TAB key is pressed in a code block.
+     * @default 4
+     */
+    codeBlockIndentSize: number
+  }
   startup: {
     /** The startup behavior of the app. */
     behavior: StartupBehavior;
@@ -70,6 +76,9 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
     serif: "Times New Roman, serif",
     code: "Cascadia Code, Noto Mono, monospace",
     ui: "",
+  },
+  editor: {
+    codeBlockIndentSize: 2
   },
   startup: {
     behavior: "HOME_PAGE",

@@ -153,3 +153,9 @@ export const darkwriteAPI = {
 
 contextBridge.exposeInMainWorld("api", darkwriteAPI);
 contextBridge.exposeInMainWorld("webUtils", webUtils);
+contextBridge.exposeInMainWorld("newApi", {
+  note: {
+    create: (title: string, parent?: string) =>
+      invoke<Note | null>(ChannelNames.CREATE_NOTE, title, parent),
+  }
+})

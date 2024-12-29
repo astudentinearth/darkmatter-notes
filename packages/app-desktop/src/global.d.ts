@@ -2,6 +2,7 @@
 /// <reference types="vitest/globals" />
 /// <reference types="./electron/preload/types.d.ts"/>
 
+import { DarkwritePreloadAPI } from "./electron/ipc/api";
 import { type DarkrwiteElectronAPI as DarkwriteAPI } from "./electron/preload/types";
 import { type WebUtils } from "electron";
 
@@ -22,6 +23,7 @@ declare global {
 
   interface Window {
     api: DarkwriteAPI;
+    newApi: DarkwritePreloadAPI
     webUtils: WebUtils;
   }
 

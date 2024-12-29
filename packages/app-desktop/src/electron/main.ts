@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 import { readUserPrefs } from "./api/settings";
 import { Paths } from "./lib/paths";
 import { constructWindow } from "./window";
+import "./ipc/api"
 
 log.initialize();
 /*const require = createRequire(import.meta.url);*/

@@ -32,7 +32,7 @@ export class NotesModel implements INotesModel {
 
   async create(title: string, parent?: string): Promise<Result<Note, Error>> {
     try {
-      const res = await this.API.create(title, parent);
+      const res = await window.newApi.note.create(title, parent);
       if (res == null) {
         return { error: new Error("Failed to create note") };
       }

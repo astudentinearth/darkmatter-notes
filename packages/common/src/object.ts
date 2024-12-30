@@ -41,3 +41,30 @@ export function recursiveKeys(obj: Object, predicate?: Predicate) {
   }
   return result;
 }
+
+export type AnyObject = {[key: string]: any};
+//TODO: make type safe later
+export function deepAssign<DestType extends Object, ValueType>(
+  dest: DestType,
+  keyPath: string[],
+  value: ValueType
+) {
+  let step:AnyObject = dest;
+  for (let keyIndex = 0; keyIndex < keyPath.length; keyIndex++) {
+      const key = keyPath[keyIndex];
+      if (step[key] === undefined && keyIndex === keyPath.length - 1) {
+          console.log("Key not defined and this is the final key")
+          Object.defineProperty<AnyObject>(step, key, { value, configurable: true, enumerable: true, writable: true });
+          // step[key] = value;
+          break
+      }
+      else if(step[key] === undefined || Object.keys(step[key]).length === 0){
+          console.log("Key is not defined")
+          Object.defineProperty<AnyObject>(step, key, {value: {}, configurable: true, enumerable: true, writable: true});
+          // step[key] = {};
+          step = step[key];
+      }
+      console.log(step)
+  }
+  return dest;
+}

@@ -8,3 +8,4 @@ export * from "./markdown";
 export * from "./types";
 export * from "./error";
 export * from "./ts-util"
+export * from "./object"

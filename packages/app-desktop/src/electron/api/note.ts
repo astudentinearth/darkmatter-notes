@@ -14,6 +14,7 @@ import { rmIfExists } from "@main/lib/fs";
  */
 export async function createNote(title: string, parent?: string) {
   try {
+    console.log("Creating note")
     const note = await DB.note.create(title, parent);
     const filename = getNotePath(note.id);
     await fse.ensureFile(filename);

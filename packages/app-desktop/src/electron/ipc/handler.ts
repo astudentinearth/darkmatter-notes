@@ -2,16 +2,16 @@ import {
   IPCListener,
   IPCMainListener,
   IPCMainListenerWithoutEvent,
-  IPCPreloadHandler
+  IPCPreloadHandler,
 } from "@main/types";
-import {ipcMain} from "electron";
+import { ipcMain } from "electron";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export class IPCHandler<
   WithEvent extends boolean,
   Listener extends IPCListener<WithEvent> = IPCListener<WithEvent>,
 > {
-  private withEvent: WithEvent;
+  public readonly withEvent: WithEvent;
   public listener: Listener;
 
   constructor(withEvent: WithEvent, listener: Listener) {
@@ -19,17 +19,19 @@ export class IPCHandler<
     this.listener = listener;
   }
 
-  public register = (
-    channel: string,
-    _ipcMain = ipcMain,
-  ) => {
-    const listener = this.listener;
-    if (this.isListenerWithEvent(listener)) {
-      _ipcMain.handle(channel, listener);
-    } else {
-      _ipcMain.handle(channel, (_event, ...args) => {
-        listener(...args);
-      });
+  public register = (channel: string, _ipcMain = ipcMain) => {
+    try {
+      const listener = this.listener;
+      if (this.isListenerWithEvent(listener)) {
+        _ipcMain.handle(channel, listener);
+      } else {
+        _ipcMain.handle(channel, (_event, ...args) => {
+          return listener(...args);
+        });
+      }
+      console.log("Registered ", channel);
+    } catch {
+      console.log("Failed to register ", channel);
     }
     // if (this.isWithEvent()) {
     //   ipcMain.handle(channel, this.listener);

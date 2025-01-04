@@ -1,6 +1,7 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.node.json",
   "include": ["src/electron/**/*", "src/electron/**/*.d.ts"],
+  "files": ["src/electron/ipc/api.ts"],
   "compilerOptions": {
     "types": ["vitest/globals"],
     "target": "ESNext",

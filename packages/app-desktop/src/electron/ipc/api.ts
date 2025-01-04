@@ -1,43 +1,64 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-ignore
 import { createNote } from "@main/api/note";
-import { DarkwriteAPI, InferPreloadAPI, IPCHandler } from "./handler";
-import { deepAssign, find, recursiveKeys } from "@darkwrite/common"
+import { deepAssign, find, recursiveKeys } from "@darkwrite/common";
 import { ipcMain } from "electron";
+import { IPCMainListenerUnion, IPCMainListenerWithoutEvent, DarkwriteAPI, InferPreloadAPI, IPCHandler } from "@main/types";
 
-const create = new IPCHandler(false, async (title: string, parent?: string)=>{
-  console.log("Create handler was called with ", title, " ", parent);
-  const val = await createNote(title, parent);
-  console.log(val)
-  return val;
-});
 export const DarkwriteElectronAPI = {
   note: {
-    create
-  }
+    create: new IPCHandler(false, createNote),
+  },
 } satisfies DarkwriteAPI;
 export type DarkwritePreloadAPI = InferPreloadAPI<typeof DarkwriteElectronAPI>;
 
-const registerAPI = (channelPrefix: string, api: DarkwriteAPI = DarkwriteElectronAPI) => {
-  const handlerKeys = recursiveKeys(api, (val)=>val instanceof IPCHandler);
-  for(const keyPath of handlerKeys){
+const register = (
+  channel: string,
+  withEvent: boolean,
+  listener: IPCMainListenerUnion,
+  _ipcMain = ipcMain,
+) => {
+  try {
+    if (withEvent) {
+      _ipcMain.handle(channel, listener);
+    } else {
+      _ipcMain.handle(channel, (_event, ...args) => {
+        return (<IPCMainListenerWithoutEvent>listener)(...args);
+      });
+    }
+    console.log("Registered ", channel);
+  } catch {
+    console.log("Failed to register ", channel);
+  }
+};
+
+const registerAPI = (
+  channelPrefix: string,
+  api: DarkwriteAPI = DarkwriteElectronAPI,
+) => {
+  const handlerKeys = recursiveKeys(api, (val) => val instanceof IPCHandler);
+  for (const keyPath of handlerKeys) {
     const handler = find(api, keyPath) as IPCHandler<boolean>;
     const channel = channelPrefix.concat(".").concat(keyPath.join("."));
-    handler.register(channel);
+    register(channel, handler.withEvent, handler.listener);
   }
-}
+};
 
-export const buildPreloadObject = (channelPrefix: string, api: DarkwriteAPI = DarkwriteElectronAPI) => {
-  const handlerKeys = recursiveKeys(api, (val)=>val instanceof IPCHandler);
+export const buildPreloadObject = (
+  api: DarkwriteAPI = DarkwriteElectronAPI,
+) => {
+  const handlerKeys = recursiveKeys(api, (val) => val instanceof IPCHandler);
   const obj = {};
   // strip everything with true to replace in the prelaod script later
-  for(const keyPath of handlerKeys){
+  for (const keyPath of handlerKeys) {
     deepAssign(obj, keyPath, true);
   }
-  console.log("Built preload object: ",obj)
+  console.log("Built preload object: ", obj);
   return obj;
-}
+};
 
-ipcMain.handle("$darkwrite.build-preload-api-object", async ()=>{
-  return buildPreloadObject("api");
-})
+ipcMain.handle("$darkwrite.build-preload-api-object", async () => {
+  return buildPreloadObject();
+});
 
 registerAPI("api");

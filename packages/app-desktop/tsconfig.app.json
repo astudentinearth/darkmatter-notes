@@ -1,6 +1,11 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
-  "files": ["src/electron/preload/types.d.ts", "src/electron/channels.ts"],
+  "files": [
+    "src/electron/preload/types.d.ts", 
+    "src/electron/channels.ts", 
+    "src/electron/types/ipc-handler.ts", 
+    "src/electron/ipc/api.ts",
+    "src/electron/types/index.ts"],
   "include": [
     "src/env.d.ts",
     "src/**/*",
@@ -16,7 +21,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@renderer/*": ["src/*"]
+      "@renderer/*": ["src/*"],
+      "@main/*": ["src/electron/*"]
     },
     "types": ["vitest/globals"],
     "moduleResolution": "bundler",

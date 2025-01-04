@@ -1,11 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { type ipcMain } from "electron";
+import { type IpcMainInvokeEvent } from "electron";
 import { Promisfy, type OmitFirstParameter } from "@darkwrite/common";
 
-export type IPCMainListener =
-  Parameters<typeof ipcMain.handle> extends [string, infer Listener]
-    ? Listener
-    : never;
+export type IPCMainListener = (event: IpcMainInvokeEvent, ...args: any[]) => (Promise<any>) | (any);
 
 export type IPCMainListenerWithoutEvent = OmitFirstParameter<IPCMainListener>;
 
@@ -27,3 +24,29 @@ export type IPCPreloadHandler<Handler extends IPCMainListenerUnion> = (
   ...args: GetMainHandlerParams<Handler>
 ) => GetPreloadReturnType<Handler>;
 
+export class IPCHandler<
+  WithEvent extends boolean,
+  Listener extends IPCListener<WithEvent> = IPCListener<WithEvent>,
+> {
+  public readonly withEvent: WithEvent;
+  public listener: Listener;
+
+  constructor(withEvent: WithEvent, listener: Listener) {
+    this.withEvent = withEvent;
+    this.listener = listener;
+  }
+}
+
+export interface DarkwriteAPI {
+  [Key: string]: IPCHandler<boolean> | DarkwriteAPI;
+}
+export type InferHandler<Listener extends IPCHandler<boolean>> =
+  IPCPreloadHandler<Listener["listener"]>;
+
+export type InferPreloadAPI<API> = {
+  [Key in keyof API]: API[Key] extends IPCHandler<boolean>
+    ? InferHandler<API[Key]>
+    : API[Key] extends object
+      ? InferPreloadAPI<API[Key]>
+      : API[Key];
+};

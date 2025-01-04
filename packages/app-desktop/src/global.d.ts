@@ -2,9 +2,10 @@
 /// <reference types="vitest/globals" />
 /// <reference types="./electron/preload/types.d.ts"/>
 
-import { DarkwritePreloadAPI } from "./electron/ipc/api";
 import { type DarkrwiteElectronAPI as DarkwriteAPI } from "./electron/preload/types";
 import { type WebUtils } from "electron";
+import type { DarkwriteElectronAPI as NewAPI } from "./electron/ipc/api"
+import { type InferPreloadAPI } from "./electron/types/ipc-handler";
 
 /**
  * Type definition for WindowControlsOverlay API
@@ -16,6 +17,8 @@ interface WindowControlsOverlay extends EventTarget {
   ongeometrychange: ((this: WindowControlsOverlay, e: Event) => unknown) | null;
 }
 
+type APIType = InferPreloadAPI<typeof NewAPI>
+
 declare global {
   type Result<T, E> =
     | { value: T; error?: undefined }
@@ -23,7 +26,7 @@ declare global {
 
   interface Window {
     api: DarkwriteAPI;
-    newApi: DarkwritePreloadAPI
+    newApi: APIType
     webUtils: WebUtils;
   }
 

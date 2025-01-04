@@ -28,6 +28,7 @@ declare global {
     api: DarkwriteAPI;
     newApi: APIType
     webUtils: WebUtils;
+    initPreload: PreloadInitFunction
   }
 
   interface Navigator {

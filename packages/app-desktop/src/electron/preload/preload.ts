@@ -27,23 +27,6 @@ import { webUtils } from "electron";
 const invoke = <T = void>(channel: string, ...args): Promise<T> =>
   <Promise<T>>ipcRenderer.invoke(channel, ...args);
 
-ipcRenderer.invoke("$darkwrite.build-preload-api-object").then((apiObject)=>{
-  const handlerKeys = recursiveKeys(apiObject, (val)=>val===true);
-  const obj = {};
-  for(const keyPath of handlerKeys){
-    const channel = "api".concat(".").concat(keyPath.join("."));
-    const handlerFunc = async (...args) => {
-      console.log(channel, " was called");
-      const result = await invoke<unknown>(channel, ...args);
-      console.log("Invoke result: ",result);
-      return result;
-    }
-    deepAssign(obj, keyPath, handlerFunc);
-  }
-  console.log(obj);
-  contextBridge.exposeInMainWorld("newApi", obj);
-})
-
 export const darkwriteAPI = {
   /**
    * Displays the app menu
@@ -93,9 +76,9 @@ export const darkwriteAPI = {
      * @returns an array of notes.
      */
     getAll: async () => {
-      const val = await invoke<Note[]>(ChannelNames.GET_ALL_NOTES)
-      console.log("Get all length", val.length)
-      return val
+      const val = await invoke<Note[]>(ChannelNames.GET_ALL_NOTES);
+      console.log("Get all length", val.length);
+      return val;
     },
     /**
      * Moves a note in or out of trash.
@@ -176,21 +159,26 @@ export const darkwriteAPI = {
   },
 };
 
+export const initalizeAPI = async () => {
+  const apiObject = await ipcRenderer.invoke(
+    "$darkwrite.build-preload-api-object",
+  );
+  const handlerKeys = recursiveKeys(apiObject, (val) => val === true);
+  const obj = {};
+  for (const keyPath of handlerKeys) {
+    const channel = "api".concat(".").concat(keyPath.join("."));
+    const handlerFunc = async (...args) => {
+      console.log(channel, " was called");
+      const result = await invoke<unknown>(channel, ...args);
+      console.log("Invoke result: ", result);
+      return result;
+    };
+    deepAssign(obj, keyPath, handlerFunc);
+  }
+  console.log(obj);
+  contextBridge.exposeInMainWorld("newApi", obj);
+};
+
 contextBridge.exposeInMainWorld("api", darkwriteAPI);
 contextBridge.exposeInMainWorld("webUtils", webUtils);
-
-
-// const buildPreloadObject = (channelPrefix: string, api: DarkwriteAPI = DarkwriteElectronAPI) => {
-//   const handlerKeys = recursiveKeys(api, (val)=>val instanceof IPCHandler);
-//   const obj = {};
-//   for(const keyPath of handlerKeys){
-//     const channel = channelPrefix.concat(".").concat(keyPath.join("."));
-//     const handlerFunc = (...args) => ipcRenderer.invoke(channel, ...args);
-//     deepAssign(obj, keyPath, handlerFunc);
-//   }
-//   return obj;
-// }
-
-// const obj = buildPreloadObject("api");
-// console.log(obj);
-
+contextBridge.exposeInMainWorld("initPreload", initalizeAPI);

@@ -1,4 +1,4 @@
-import { Note, NotePartial } from "@darkwrite/common";
+import { Note, NoteExportType, NotePartial } from "@darkwrite/common";
 import fse from "fs-extra";
 import { AppDataSource, DB } from "@main/db";
 import { NoteEntity } from "@main/db/entity/note";
@@ -6,6 +6,7 @@ import { getNotePath } from "@main/lib/paths";
 import { isNodeError } from "@main/util";
 import { logError } from "@main/lib/log";
 import { rmIfExists } from "@main/lib/fs";
+import { saveFile } from "./dialog";
 
 /**
  * Creates a new note by creating a database entry and a JSON file. A randomly generated UUID is assigned.
@@ -14,7 +15,7 @@ import { rmIfExists } from "@main/lib/fs";
  */
 export async function createNote(title: string, parent?: string) {
   try {
-    console.log("Creating note")
+    console.log("Creating note");
     const note = await DB.note.create(title, parent);
     const filename = getNotePath(note.id);
     await fse.ensureFile(filename);
@@ -179,4 +180,18 @@ export async function saveNotes(notes: Note[]) {
   } catch (error) {
     logError(error);
   }
+}
+
+export async function exportNote(
+  title: string,
+  content: string,
+  exportType: NoteExportType,
+) {
+  const { canceled, path } = await saveFile({
+    title: "Export note",
+    buttonLabel: "Export",
+    defaultPath: `${title}.${exportType}`,
+  });
+  if (canceled || !path) return;
+  await fse.writeFile(path, content);
 }

@@ -52,19 +52,19 @@ export function deepAssign<DestType extends Object, ValueType>(
   let step:AnyObject = dest;
   for (let keyIndex = 0; keyIndex < keyPath.length; keyIndex++) {
       const key = keyPath[keyIndex];
-      if (step[key] === undefined && keyIndex === keyPath.length - 1) {
-          console.log("Key not defined and this is the final key")
+      if (keyIndex === keyPath.length - 1) {
           Object.defineProperty<AnyObject>(step, key, { value, configurable: true, enumerable: true, writable: true });
           // step[key] = value;
           break
       }
       else if(step[key] === undefined || Object.keys(step[key]).length === 0){
-          console.log("Key is not defined")
           Object.defineProperty<AnyObject>(step, key, {value: {}, configurable: true, enumerable: true, writable: true});
           // step[key] = {};
           step = step[key];
       }
-      console.log(step)
+      else {
+        step = step[key]
+      }
   }
   return dest;
 }

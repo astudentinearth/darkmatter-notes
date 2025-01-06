@@ -159,7 +159,10 @@ export const darkwriteAPI = {
   },
 };
 
+let initialized = false;
+
 export const initalizeAPI = async () => {
+  if(initialized) return;
   const apiObject = await ipcRenderer.invoke(
     "$darkwrite.build-preload-api-object",
   );
@@ -177,6 +180,7 @@ export const initalizeAPI = async () => {
   }
   console.log(obj);
   contextBridge.exposeInMainWorld("newApi", obj);
+  initialized = true;
 };
 
 contextBridge.exposeInMainWorld("api", darkwriteAPI);

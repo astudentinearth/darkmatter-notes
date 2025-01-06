@@ -1,13 +1,25 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
-import { createNote } from "@main/api/note";
+import * as NoteAPI from "@main/api/note";
+// @ts-ignore
+import {ImportAPI as FileImportAPI} from "@main/api/import"
 import { deepAssign, find, recursiveKeys } from "@darkwrite/common";
 import { ipcMain } from "electron";
 import { IPCMainListenerUnion, IPCMainListenerWithoutEvent, DarkwriteAPI, InferPreloadAPI, IPCHandler } from "@main/types";
 
 export const DarkwriteElectronAPI = {
   note: {
-    create: new IPCHandler(false, createNote),
+    create: new IPCHandler(false, NoteAPI.createNote),
+    setContents: new IPCHandler(false, NoteAPI.setNoteContents),
+    getContents: new IPCHandler(false, NoteAPI.getNoteContents),
+    update: new IPCHandler(false, NoteAPI.updateNote),
+    delete: new IPCHandler(false, NoteAPI.deleteNote),
+    move: new IPCHandler(false, NoteAPI.moveNote),
+    getAll: new IPCHandler(false, NoteAPI.getAllNotes),
+    getNote: new IPCHandler(false, NoteAPI.getNote),
+    saveAll : new IPCHandler(false, NoteAPI.saveNotes),
+    export: new IPCHandler(false, NoteAPI.exportNote),
+    import: new IPCHandler(false, FileImportAPI.importFile),
   },
 } satisfies DarkwriteAPI;
 export type DarkwritePreloadAPI = InferPreloadAPI<typeof DarkwriteElectronAPI>;

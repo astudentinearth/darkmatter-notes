@@ -16,7 +16,7 @@ export type GetMainHandlerParams<Handler extends IPCMainListenerUnion> =
   Parameters<Handler> extends [infer First, ...args: infer Args] ?
     (First extends Electron.IpcMainInvokeEvent ?
       Args : Parameters<Handler>
-    ) : never
+    ) : []
 
 export type GetPreloadReturnType<Handler extends IPCMainListenerUnion> = Promisfy<ReturnType<Handler>>;
 

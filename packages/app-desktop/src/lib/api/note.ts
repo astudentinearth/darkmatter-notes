@@ -13,14 +13,13 @@ export interface INotesModel {
   getNote: (id: string) => Promise<Result<Note, Error>>;
   saveAll: (notes: Note[]) => Promise<void>;
   exportHTML: (note: Note, content: string) => Promise<{ error?: Error }>;
-  importHTML: () => Promise<Result<string, Error>>;
   importFile: () => Promise<FileImportResult | null>;
   duplicate: (id: string) => Promise<Result<Note, Error>>;
 }
 
 export class NotesModel implements INotesModel {
   private static instance: NotesModel;
-  private API = window.api.note;
+  private API = window.newApi.note;
 
   private constructor() {}
   public static get Instance(): NotesModel {
@@ -32,7 +31,7 @@ export class NotesModel implements INotesModel {
 
   async create(title: string, parent?: string): Promise<Result<Note, Error>> {
     try {
-      const res = await window.newApi.note.create(title, parent);
+      const res = await this.API.create(title, parent);
       if (res == null) {
         return { error: new Error("Failed to create note") };
       }
@@ -56,6 +55,7 @@ export class NotesModel implements INotesModel {
   async getContents(id: string) {
     try {
       const res = await this.API.getContents(id);
+      if(res == null) throw "";
       return { value: res };
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -89,7 +89,8 @@ export class NotesModel implements INotesModel {
 
   async getNotes() {
     try {
-      const res = await this.API.getAll();
+      const res = await window.api.note.getAll();
+      if(res == null) throw "";
       return { value: res };
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -98,11 +99,11 @@ export class NotesModel implements INotesModel {
   }
 
   async trash(id: string) {
-    await this.API.setTrashStatus(id, true);
+    await this.API.update({id, isTrashed: true});
   }
 
   async restore(id: string) {
-    await this.API.setTrashStatus(id, false);
+    await this.API.update({id, isTrashed: false});
   }
 
   async getNote(id: string) {
@@ -130,19 +131,9 @@ export class NotesModel implements INotesModel {
     }
   }
 
-  async importHTML() {
-    try {
-      const res = await this.API.importHTML();
-      return { value: res };
-    } catch (error) {
-      if (error instanceof Error) return { error };
-      else return { error: new Error("Failed to create note") };
-    }
-  }
-
   async importFile() {
     try {
-      const res = await this.API.importFile();
+      const res = await this.API.import();
       return res;
     } catch {
       return null;

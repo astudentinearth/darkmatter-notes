@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
-import * as NoteAPI from "@main/api/note";
+import * as NoteAPI from "@main/api/note.electron";
 // @ts-ignore
 import {ImportAPI as FileImportAPI} from "@main/api/import"
 import { deepAssign, find, recursiveKeys } from "@darkwrite/common";

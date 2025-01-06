@@ -89,7 +89,7 @@ export class NotesModel implements INotesModel {
 
   async getNotes() {
     try {
-      const res = await window.api.note.getAll();
+      const res = await this.API.getAll();
       if(res == null) throw "";
       return { value: res };
     } catch (error) {

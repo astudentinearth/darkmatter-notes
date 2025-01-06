@@ -1,3 +1,4 @@
+/** @deprecated Use new IPC system instead */
 import { ipcMain } from "electron";
 import {
   createNote,
@@ -10,7 +11,7 @@ import {
   setNoteContents,
   setTrashStatus,
   updateNote,
-} from "../api/note";
+} from "../api/note.electron";
 import { ChannelNames } from "../channels";
 import { Note, NoteExportType, NotePartial } from "@darkwrite/common";
 import { openFile, saveFile } from "../api/dialog";

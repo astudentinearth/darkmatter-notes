@@ -1,6 +1,7 @@
+/** @deprecated */
 import { DarkwriteDesktopClientInfo, UserSettings } from "@darkwrite/common";
 import { app, ipcMain } from "electron";
-import { readUserPrefs, writeUserPrefs } from "../api/settings";
+import { readUserPrefs, writeUserPrefs } from "../api/settings.electron";
 import { ChannelNames } from "../channels";
 import os from "os";
 

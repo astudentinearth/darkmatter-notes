@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-ignore
 import * as NoteAPI from "@main/api/note.electron";
+import * as SettingsAPI from "@main/api/settings.electron"
 // @ts-ignore
 import {ImportAPI as FileImportAPI} from "@main/api/import"
 import { deepAssign, find, recursiveKeys } from "@darkwrite/common";
@@ -21,6 +22,11 @@ export const DarkwriteElectronAPI = {
     export: new IPCHandler(false, NoteAPI.exportNote),
     import: new IPCHandler(false, FileImportAPI.importFile),
   },
+  settings: {
+    load: new IPCHandler(false, SettingsAPI.readUserPrefs),
+    save: new IPCHandler(false, SettingsAPI.writeUserPrefs),
+    getClientInfo: new IPCHandler(false, SettingsAPI.getAppInfo)
+  }
 } satisfies DarkwriteAPI;
 export type DarkwritePreloadAPI = InferPreloadAPI<typeof DarkwriteElectronAPI>;
 

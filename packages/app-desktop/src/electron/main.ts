@@ -11,7 +11,7 @@ import { initAppMenu } from "./menu";
 } from "electron-devtools-installer";*/
 import { DEFAULT_USER_SETTINGS } from "@darkwrite/common";
 import { fileURLToPath } from "node:url";
-import { readUserPrefs } from "./api/settings";
+import { readUserPrefs } from "./api/settings.electron";
 import { Paths } from "./lib/paths";
 import { constructWindow } from "./window";
 import "./ipc/api"

@@ -1,5 +1,6 @@
 import {
   DEFAULT_USER_SETTINGS,
+  DarkwriteDesktopClientInfo,
   UserSettings,
   buildUserSettings,
 } from "@darkwrite/common";
@@ -7,6 +8,8 @@ import log from "electron-log/main.js";
 import { FileHandle, open, writeFile } from "fs/promises";
 import { SETTINGS_PATH } from "../lib/paths";
 import { isNodeError, isValidJSON } from "../util";
+import { app } from "electron";
+import os from "os";
 
 const filename = SETTINGS_PATH;
 
@@ -61,4 +64,14 @@ export async function writeUserPrefs(prefs: UserSettings) {
     log.error("Something bad happened while saving user settings.");
     if (isNodeError(err)) log.error(err.message);
   }
+}
+
+export function getAppInfo(): DarkwriteDesktopClientInfo {
+  return {
+    isPackaged: app.isPackaged,
+    version: app.getVersion(),
+    os: `${os.type()} ${os.release()}`,
+    nodeVersion: process.versions.node,
+    electronVersion: process.versions.electron,
+  };
 }

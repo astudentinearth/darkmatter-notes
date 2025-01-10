@@ -1,6 +1,7 @@
 import { Theme } from "@darkwrite/common";
 
-const API = window.newApi.theme;
+// TODO: use a class
+//const API = window.newApi.theme;
 
 export interface IThemesModel {
   getUserThemes: () => Promise<Theme[]>;
@@ -9,7 +10,7 @@ export interface IThemesModel {
 }
 
 export const ThemesModel: IThemesModel = {
-  getUserThemes: () => API.load(),
-  importTheme: () => API.import(),
-  getSystemAccentColor: () => API.getAccentColor(),
+  getUserThemes: () => window.newApi.theme.load(),
+  importTheme: () => window.newApi.theme.import(),
+  getSystemAccentColor: () => window.newApi.theme.getAccentColor(),
 };

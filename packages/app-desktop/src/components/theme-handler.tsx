@@ -60,7 +60,7 @@ export function ThemeHandler() {
     setGlobalStyle("--border", theme.border);
     setGlobalStyle("--ring", theme.focusRing);
     setGlobalStyle("--star", theme.star);
-    if (window.api != null && window.api.setTitlebarSymbolColor != null) {
+    if (window.newApi != null && window.api.setTitlebarSymbolColor != null) {
       const fgHSLStr = theme.foreground.replace("%", "").split(" ");
       if (fgHSLStr.length !== 3) return;
       const fgHSL: [number, number, number] = [
@@ -70,7 +70,7 @@ export function ThemeHandler() {
       ];
       const fgHEX = hsl.hex(fgHSL);
       //console.log(fgHEX);
-      window.api.setTitlebarSymbolColor(`#${fgHEX}`, theme.mode);
+      window.newApi.theme.setTitlebarSymbolColor(`#${fgHEX}`, theme.mode);
     }
   }, [fonts, theme, accentColor, useSystemAccentColor]);
   return <></>;

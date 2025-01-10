@@ -1,5 +1,6 @@
+/** @deprecated */
 import { ipcMain, BrowserWindow, nativeTheme } from "electron";
-import { ThemeAPI } from "../api/theme";
+import { ThemeAPI } from "../api/theme.electron";
 import { ChannelNames } from "../channels";
 import _ from "lodash";
 

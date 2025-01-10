@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-ignore
 import * as NoteAPI from "@main/api/note.electron";
 import * as SettingsAPI from "@main/api/settings.electron"
-// @ts-ignore
 import {ImportAPI as FileImportAPI} from "@main/api/import"
+import { ThemeAPI } from "@main/api/theme.electron";
 import { deepAssign, find, recursiveKeys } from "@darkwrite/common";
 import { ipcMain } from "electron";
 import { IPCMainListenerUnion, IPCMainListenerWithoutEvent, DarkwriteAPI, InferPreloadAPI, IPCHandler } from "@main/types";
@@ -26,6 +25,12 @@ export const DarkwriteElectronAPI = {
     load: new IPCHandler(false, SettingsAPI.readUserPrefs),
     save: new IPCHandler(false, SettingsAPI.writeUserPrefs),
     getClientInfo: new IPCHandler(false, SettingsAPI.getAppInfo)
+  },
+  theme: {
+    import: new IPCHandler(false, ThemeAPI.import),
+    load: new IPCHandler(false, ThemeAPI.load),
+    getAccentColor: new IPCHandler(false, ThemeAPI.getSystemAccentColor),
+    setTitlebarSymbolColor: new IPCHandler(false, ThemeAPI.setTitlebarSymbolColor)
   }
 } satisfies DarkwriteAPI;
 export type DarkwritePreloadAPI = InferPreloadAPI<typeof DarkwriteElectronAPI>;

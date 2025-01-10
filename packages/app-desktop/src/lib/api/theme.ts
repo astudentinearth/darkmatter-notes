@@ -1,6 +1,6 @@
 import { Theme } from "@darkwrite/common";
 
-const API = window.api.theme;
+const API = window.newApi.theme;
 
 export interface IThemesModel {
   getUserThemes: () => Promise<Theme[]>;

@@ -6,8 +6,9 @@ import { THEME_DIR } from "../lib/paths";
 import log from "electron-log";
 import _ from "lodash";
 import { logError } from "../lib/log";
-import { systemPreferences } from "electron";
+import { BrowserWindow, nativeTheme, systemPreferences } from "electron";
 import os from "os";
+import { ThemeMode } from "@main/types";
 
 export const ThemeAPI = {
   import: async () => {
@@ -51,9 +52,19 @@ export const ThemeAPI = {
     }
     return themes;
   },
-  getSystemAccentColor: ()=>{
-    if(os.platform() !== "win32" || os.platform() !== "darwin") return "000000";
+  getSystemAccentColor: () => {
+    if (os.platform() !== "win32" || os.platform() !== "darwin")
+      return "000000";
     const color = systemPreferences.getAccentColor();
-    return color.substring(0,6);
-  }
+    return color.substring(0, 6);
+  },
+  setTitlebarSymbolColor: (symbolColor: string, themeMode: ThemeMode) => {
+    const windows = BrowserWindow.getAllWindows();
+    windows.forEach((window) => {
+      _.attempt(() => {
+        window.setTitleBarOverlay({ symbolColor });
+      });
+    });
+    nativeTheme.themeSource = themeMode;
+  },
 };

@@ -134,7 +134,6 @@ export const darkwriteAPI = {
   },
   theme: {
     /** Prompts the user to choose a theme file and imports it if the theme is valid. */
-
     import: () => invoke(ChannelNames.IMPORT_THEME),
     /** Reads the contents of themes folder and loads all of them.
      * @returns all themes installed in current profile.
@@ -161,28 +160,34 @@ export const darkwriteAPI = {
 
 let initialized = false;
 
+/**
+ * Requests a list of API handlers from the main process, then builds a wrapper object around them.
+ * This function should be awaited before the frontend is rendered.
+ */
 export const initalizeAPI = async () => {
   if(initialized) return;
+  // get a nested object in which all handler functions are equal to `true`
   const apiObject = await ipcRenderer.invoke(
     "$darkwrite.build-preload-api-object",
   );
+  // et the list of IPC channels, which are derived from the object's keys
   const handlerKeys = recursiveKeys(apiObject, (val) => val === true);
   const obj = {};
   for (const keyPath of handlerKeys) {
     const channel = "api".concat(".").concat(keyPath.join("."));
     const handlerFunc = async (...args) => {
-      console.log(channel, " was called");
       const result = await invoke<unknown>(channel, ...args);
-      console.log("Invoke result: ", result);
       return result;
     };
+    // replace each `true` with a wrapper to ipcRenderer.invoke
     deepAssign(obj, keyPath, handlerFunc);
   }
-  console.log(obj);
+  // expose the API
   contextBridge.exposeInMainWorld("newApi", obj);
   initialized = true;
 };
 
+// TODO: Once we are done migrating, move newApi back to api.
 contextBridge.exposeInMainWorld("api", darkwriteAPI);
 contextBridge.exposeInMainWorld("webUtils", webUtils);
 contextBridge.exposeInMainWorld("initPreload", initalizeAPI);

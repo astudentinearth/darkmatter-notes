@@ -15,6 +15,7 @@ import { EditorCover } from "./cover";
 import { TextEditor } from "./text-editor";
 import { CoverImage } from "./cover-image";
 import "./css/editor.css";
+import { WordCounter } from "./word-count";
 
 export function EditorRoot() {
   const { note, isFetching, isError, content, customizations, spellcheck } =
@@ -113,12 +114,15 @@ export function EditorRoot() {
         ""
       )}
       {content != null && !isError && !isFetching && note?.value && (
-        <TextEditor
-          key={`editor-${note.value.id}`}
-          customizations={_customizations ?? {}}
-          initialValue={content}
-          onChange={handleContentChange}
-        />
+        <>
+          <TextEditor
+            key={`editor-${note.value.id}`}
+            customizations={_customizations ?? {}}
+            initialValue={content}
+            onChange={handleContentChange}
+          />
+          <WordCounter />
+        </>
       )}
     </div>
   );

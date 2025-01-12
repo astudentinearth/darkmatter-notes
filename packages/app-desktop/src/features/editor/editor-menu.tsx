@@ -1,3 +1,4 @@
+import { countWords } from "@darkwrite/common";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -35,10 +36,7 @@ export function EditorMenu() {
   // we don't want to cause issues if the document is very long
   const updateWordCount = async () => {
     if (!editor || !content) return;
-    const text = editor.getText();
-    const words = text.match(/\b\w+\b/g)?.length ?? 0;
-    const characters = text.length;
-    console.log(words, ",", characters);
+    const words = countWords(editor.getText());
     setCount({ words });
   };
 

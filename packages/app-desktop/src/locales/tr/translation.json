@@ -127,6 +127,14 @@
       "h4": "Başlık 4",
       "removeLink": "Bağlantıyı kaldır",
       "saveLink": "Bağlantıyı kaydet"
+    },
+    "customizations": {
+      "sansText": "Normal",
+      "serifText": "Çentikli",
+      "monoText": "Kod",
+      "customText": "Özel",
+      "backgroundColorText": "Arka plan rengi",
+      "foregroundColorText": "Varsayılan metin rengi"
     }
   }
 }

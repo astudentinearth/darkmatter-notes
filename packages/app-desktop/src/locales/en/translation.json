@@ -127,6 +127,14 @@
       "h4": "Heading 4",
       "removeLink": "Remove link",
       "saveLink": "Save link"
+    },
+    "customizations": {
+      "sansText": "Sans",
+      "serifText": "Serif",
+      "monoText": "Mono",
+      "customText": "Custom",
+      "backgroundColorText": "Background color",
+      "foregroundColorText": "Default text color"
     }
   }
 }

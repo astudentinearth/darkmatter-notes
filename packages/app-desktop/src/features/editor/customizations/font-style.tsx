@@ -6,6 +6,7 @@ import {
 } from "@renderer/context/editor-state";
 import { cn } from "@renderer/lib/utils";
 import _ from "lodash";
+import { useTranslation } from "react-i18next";
 
 const setCustomFont = _.debounce((fontName: string) => {
   const style = useEditorState.getState().customizations;
@@ -16,6 +17,7 @@ export default function FontStyleView() {
   const style = useEditorState((state) => state.customizations);
   const setStyle = setEditorCustomizations;
   const customFont = useEditorState((state) => state.customizations.customFont);
+  const {t} = useTranslation(undefined, {keyPrefix: "editor.customizations"});
   // const setCustomFont = (fontName: string) =>
   //     setStyle({ ...style, customFont: fontName });
 
@@ -32,7 +34,7 @@ export default function FontStyleView() {
         >
           <div className="[&>span]:block">
             <span className="darkwrite-sans text-3xl">Aa</span>
-            <span>Sans</span>
+            <span>{t("sansText")}</span>
           </div>
         </Button>
         <Button
@@ -44,7 +46,7 @@ export default function FontStyleView() {
         >
           <div className="[&>span]:block">
             <span className="darkwrite-serif text-3xl">Aa</span>
-            <span>Serif</span>
+            <span>{t("serifText")}</span>
           </div>
         </Button>
         <Button
@@ -56,7 +58,7 @@ export default function FontStyleView() {
         >
           <div className="[&>span]:block">
             <span className="darkwrite-mono text-3xl">Aa</span>
-            <span>Mono</span>
+            <span>{t("monoText")}</span>
           </div>
         </Button>
         <Button
@@ -68,7 +70,7 @@ export default function FontStyleView() {
         >
           <div className="[&>span]:block">
             <span className="font-sans text-3xl">A?</span>
-            <span>Custom</span>
+            <span>{t("customText")}</span>
           </div>
         </Button>
       </div>
@@ -86,7 +88,7 @@ export default function FontStyleView() {
             }}
             className="bg-secondary rounded-xl"
             id="customFont"
-            placeholder="Custom font name"
+            placeholder={t("customFontNamePlaceholer")}
           />
         </div>
       </div>

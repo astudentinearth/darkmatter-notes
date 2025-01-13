@@ -135,7 +135,8 @@
       "monoText": "Mono",
       "customText": "Custom",
       "backgroundColorText": "Background color",
-      "foregroundColorText": "Default text color"
+      "foregroundColorText": "Default text color",
+      "customFontNamePlaceholer": "Custom font name"
     }
   }
 }

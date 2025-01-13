@@ -1,12 +1,12 @@
+import { ColorPicker } from "@renderer/components/color-picker";
 import { Button } from "@renderer/components/ui/button";
-import { Input } from "@renderer/components/ui/input";
-import { RotateCcw } from "lucide-react";
-import _ from "lodash";
 import {
   setEditorCustomizations,
   useEditorState,
 } from "@renderer/context/editor-state";
-import { ColorPicker } from "@renderer/components/color-picker";
+import _ from "lodash";
+import { RotateCcw } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 const setBackground = _.debounce((bg: string) => {
   const style = useEditorState.getState().customizations;
@@ -20,11 +20,11 @@ const setText = _.debounce((fg: string) => {
 
 export default function ColorsView() {
   const colors = useEditorState((s) => s.customizations);
-
+  const {t} = useTranslation(undefined, {keyPrefix: "editor.customizations"});
   return (
     <div className="rounded-2xl p-2 flex flex-col gap-2">
       <div className="flex items-center gap-1">
-        <span className="flex-shrink-0 font-medium">Background color</span>
+        <span className="flex-shrink-0 font-medium">{t("backgroundColorText")}</span>
         <div className="w-full"></div>
         <ColorPicker
           value={colors.backgroundColor}
@@ -41,7 +41,7 @@ export default function ColorsView() {
         </Button>
       </div>
       <div className="flex items-center gap-1">
-        <span className="flex-shrink-0 font-medium">Default text color</span>
+        <span className="flex-shrink-0 font-medium">{t("foregroundColorText")}</span>
         <div className="w-full"></div>
         <ColorPicker
           value={colors.textColor}

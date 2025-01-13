@@ -135,7 +135,8 @@
       "monoText": "Kod",
       "customText": "Özel",
       "backgroundColorText": "Arka plan rengi",
-      "foregroundColorText": "Varsayılan metin rengi"
+      "foregroundColorText": "Varsayılan metin rengi",
+      "customFontNamePlaceholer": "Özel yazı tipi"
     }
   }
 }

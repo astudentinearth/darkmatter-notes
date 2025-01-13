@@ -1,3 +1,2 @@
-import { darkwriteAPI, initalizeAPI } from "./preload";
-export type DarkrwiteElectronAPI = typeof darkwriteAPI;
+import { initalizeAPI } from "./preload";
 export type PreloadInitFunction = typeof initalizeAPI;

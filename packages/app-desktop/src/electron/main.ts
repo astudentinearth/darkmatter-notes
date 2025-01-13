@@ -4,7 +4,6 @@ import log from "electron-log/main.js";
 import path, { join } from "node:path";
 import "reflect-metadata";
 import { AppDataSource } from "./db";
-import "./ipc";
 import { initAppMenu } from "./menu";
 /*import installExtension, {
     REACT_DEVELOPER_TOOLS,

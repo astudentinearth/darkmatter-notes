@@ -53,8 +53,8 @@ export const ThemeAPI = {
     return themes;
   },
   getSystemAccentColor: () => {
-    if (os.platform() !== "win32" || os.platform() !== "darwin")
-      return "000000";
+    if (os.platform() !== "win32" && os.platform() !== "darwin")
+      return "0000ff";
     const color = systemPreferences.getAccentColor();
     return color.substring(0, 6);
   },

@@ -3,8 +3,9 @@
 - Word count can now be always shown in the bottom-right corner of the window. (You can enable or disable it in settings)
 
 ## ✨ Improvements and fixes
-- Fix 7 places where notes without icons were handled incorrectly
+- Fixed 7 places where notes without icons were handled incorrectly
 - Added translations for note customization menu
+- Fixed issue causing system accent color to be always black
 
 ## 🛠️ Technical changes
 - We developed tools around IPC to accelerate API development and ensure type-safety.

@@ -1,5 +1,5 @@
 import { ThemesModel } from "@renderer/lib/api/theme";
-import { DEFAULT_THEMES } from "@renderer/lib/themes";
+import { DEFAULT_THEMES } from "@darkwrite/common";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useTheme = () => {

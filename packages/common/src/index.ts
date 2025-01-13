@@ -9,3 +9,4 @@ export * from "./types";
 export * from "./error";
 export * from "./ts-util"
 export * from "./object"
+export * from "./themes"

@@ -10,6 +10,7 @@
 
 ## 🛠️ Technical changes
 - We developed tools around IPC to accelerate API development and ensure type-safety.
+- Moved built-in themes to `@darkwrite/common`
 
 # 0.3.1-alpha.3
 ## 🌟 Features

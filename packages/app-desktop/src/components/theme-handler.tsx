@@ -1,6 +1,6 @@
 import { useSettingsStore } from "@renderer/context/settings-store";
 import { useTheme } from "@renderer/hooks/query";
-import { DarkwriteDefault } from "@renderer/lib/themes/darkwrite-default";
+import { DarkwriteDefault } from "@darkwrite/common";
 import { hexToHslVariable, setGlobalStyle } from "@renderer/lib/utils";
 import { useEffect } from "react";
 import { hsl } from "color-convert";

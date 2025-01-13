@@ -1,4 +1,4 @@
-import { Theme } from "@darkwrite/common";
+import { Theme } from "../theme";
 export const DarkwriteDim: Theme = {
   id: "darkwrite-dim",
   name: "Darkwrite Dim",

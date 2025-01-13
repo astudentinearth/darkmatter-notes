@@ -1,5 +1,5 @@
 import { Theme } from "@darkwrite/common";
-import { DEFAULT_THEMES } from "../themes";
+import { DEFAULT_THEMES } from "@darkwrite/common";
 
 export interface ThemeAPI {
   load: () => Promise<Theme[]>;

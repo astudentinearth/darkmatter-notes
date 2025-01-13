@@ -1,4 +1,4 @@
-import { Theme } from "@darkwrite/common";
+import { Theme } from "../theme";
 export const DarkwriteDefault: Theme = {
   id: "darkwrite-default",
   name: "Darkwrite Default",

@@ -15,3 +15,5 @@ export const DEFAULT_THEMES = [
   CatppuccinFrappe,
   CatppuccinLatte,
 ];
+
+export { DarkwriteDefault } from "./darkwrite-default";

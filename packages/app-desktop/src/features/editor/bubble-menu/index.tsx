@@ -3,9 +3,11 @@ import { useState } from "react";
 import { FormattingButtons } from "./formatting";
 import { HeadingSelector } from "./heading";
 import { BubbleLink } from "./link";
+import { ListSelector } from "./list";
 
 export default function Bubble() {
   const [headingOpen, setHeadingOpen] = useState(false);
+  const [listOpen, setListOpen] = useState(false);
   return (
     <EditorBubble
       tippyOptions={{
@@ -19,6 +21,7 @@ export default function Bubble() {
       <BubbleLink/>
       <div className="w-[1px] bg-border"></div>
       <HeadingSelector open={headingOpen} setOpen={setHeadingOpen} />
+      <ListSelector open={listOpen} setOpen={setListOpen}/>
     </EditorBubble>
   );
 }

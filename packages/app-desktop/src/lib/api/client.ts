@@ -2,7 +2,7 @@ import { DarkwriteDesktopClientInfo } from "@darkwrite/common";
 
 export const ClientAPI = {
   getClientInfo: async (): Promise<DarkwriteDesktopClientInfo> => {
-    if (window.api) {
+    if (window.newApi) {
       return await window.newApi.settings.getClientInfo();
     }
     return {

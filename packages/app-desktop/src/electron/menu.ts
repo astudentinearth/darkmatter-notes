@@ -1,11 +1,9 @@
 import {
   app,
-  ipcMain,
   Menu,
   MenuItemConstructorOptions,
-  shell,
+  shell
 } from "electron";
-import { ChannelNames } from "./channels";
 
 const template: Array<MenuItemConstructorOptions> = [
   {
@@ -39,6 +37,7 @@ export function initAppMenu() {
   Menu.setApplicationMenu(menu);
 }
 
-ipcMain.handle(ChannelNames.SHOW_APP_MENU, () => {
+export function showAppMenu() {
   Menu.getApplicationMenu()?.popup();
-});
+
+}

@@ -16,7 +16,7 @@ import { ChannelNames } from "../channels";
 import { Note, NoteExportType, NotePartial } from "@darkwrite/common";
 import { openFile, saveFile } from "../api/dialog";
 import { writeFile, readFile } from "fs/promises";
-import { ImportAPI } from "../api/import";
+import { ImportAPI } from "../api/import.electron";
 
 // notes
 ipcMain.handle(

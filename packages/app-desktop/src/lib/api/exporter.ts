@@ -5,7 +5,7 @@ import { defaultExtensions } from "@renderer/features/editor/extensions/extensio
 
 export class ExporterModel {
   async exportAllAsHTML() {
-    const API = window.api.exporter;
+    const API = window.newApi.exporter;
     const notesOpt = await NotesModel.Instance.getNotes();
     if (notesOpt.error || notesOpt.value.length == 0) return;
     const notes = notesOpt.value;

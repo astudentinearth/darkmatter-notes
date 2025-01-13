@@ -1,5 +1,5 @@
 import { ipcMain } from "electron";
-import { EmbedAPI } from "../api/embed";
+import { EmbedAPI } from "../api/embed.electron";
 import { ChannelNames } from "../channels";
 
 ipcMain.handle(ChannelNames.RESOLVE_EMBED, (_event, id: string) =>

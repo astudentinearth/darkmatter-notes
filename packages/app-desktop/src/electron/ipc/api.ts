@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as NoteAPI from "@main/api/note.electron";
 import * as SettingsAPI from "@main/api/settings.electron";
-import { ImportAPI as FileImportAPI } from "@main/api/import";
+import { ImportAPI as FileImportAPI } from "@main/api/import.electron";
 import { ThemeAPI } from "@main/api/theme.electron";
 import { deepAssign, find, recursiveKeys } from "@darkwrite/common";
 import { ipcMain } from "electron";
@@ -12,7 +12,9 @@ import {
   InferPreloadAPI,
   IPCHandler,
 } from "@main/types";
-import { BackupAPI } from "@main/api/backup.electron";
+import { BackupAPI, HTMLExporterAPI } from "@main/api/backup.electron";
+import { EmbedAPI } from "@main/api/embed.electron";
+import { showAppMenu } from "@main/menu";
 
 export const DarkwriteElectronAPI = {
   note: {
@@ -101,8 +103,19 @@ export const DarkwriteElectronAPI = {
   backup: {
     backupUserData: new IPCHandler(false, BackupAPI.backup),
     restore: new IPCHandler(false, BackupAPI.restore),
-    openBackup: new IPCHandler(false, BackupAPI.openArchive)
-  }
+    openBackup: new IPCHandler(false, BackupAPI.openArchive),
+  },
+  embed: {
+    create: new IPCHandler(false, EmbedAPI.create),
+    resolve: new IPCHandler(false, EmbedAPI.resolve),
+    createFromBuffer: new IPCHandler(false, EmbedAPI.createFromArrayBuffer),
+  },
+  exporter: {
+    init: new IPCHandler(false, HTMLExporterAPI.initializeExporterCache),
+    push: new IPCHandler(false, HTMLExporterAPI.pushToExporterCache),
+    finish: new IPCHandler(false, HTMLExporterAPI.finishExport),
+  },
+  showAppMenu: new IPCHandler(false, showAppMenu)
 } satisfies DarkwriteAPI;
 export type DarkwritePreloadAPI = InferPreloadAPI<typeof DarkwriteElectronAPI>;
 

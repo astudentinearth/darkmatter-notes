@@ -19,7 +19,7 @@ export interface INotesModel {
 
 export class NotesModel implements INotesModel {
   private static instance: NotesModel;
-  private API = window.newApi.note;
+  private API = window.api.note;
 
   private constructor() {}
   public static get Instance(): NotesModel {

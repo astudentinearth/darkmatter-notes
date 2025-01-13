@@ -1,3 +1,3 @@
 export function showAppMenu() {
-  window.newApi.showAppMenu();
+  window.api.showAppMenu();
 }

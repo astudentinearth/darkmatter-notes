@@ -9,7 +9,7 @@ import { init } from "emoji-mart";
 
 const renderApp = ()=>{
   console.log("Creating root")
-  console.log(window.newApi);
+  console.log(window.api);
   init({ data });
   ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>

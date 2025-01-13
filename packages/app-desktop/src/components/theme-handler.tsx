@@ -61,7 +61,7 @@ export function ThemeHandler() {
     setGlobalStyle("--border", theme.border);
     setGlobalStyle("--ring", theme.focusRing);
     setGlobalStyle("--star", theme.star);
-    if (window.newApi != null && window.newApi.theme.setTitlebarSymbolColor != null) {
+    if (window.api != null && window.api.theme.setTitlebarSymbolColor != null) {
       const fgHSLStr = theme.foreground.replace("%", "").split(" ");
       if (fgHSLStr.length !== 3) return;
       const fgHSL: [number, number, number] = [
@@ -71,7 +71,7 @@ export function ThemeHandler() {
       ];
       const fgHEX = hsl.hex(fgHSL);
       //console.log(fgHEX);
-      window.newApi.theme.setTitlebarSymbolColor(`#${fgHEX}`, theme.mode);
+      window.api.theme.setTitlebarSymbolColor(`#${fgHEX}`, theme.mode);
     }
   }, [fonts, theme, accentColor, useSystemAccentColor]);
   return <></>;

@@ -42,10 +42,9 @@ export const initalizeAPI = async () => {
     deepAssign(obj, keyPath, handlerFunc);
   }
   // expose the API
-  contextBridge.exposeInMainWorld("newApi", obj);
+  contextBridge.exposeInMainWorld("api", obj);
   initialized = true;
 };
 
-// TODO: Once we are done migrating, move newApi back to api.
 contextBridge.exposeInMainWorld("webUtils", webUtils);
 contextBridge.exposeInMainWorld("initPreload", initalizeAPI);

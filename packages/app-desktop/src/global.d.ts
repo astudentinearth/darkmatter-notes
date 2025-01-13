@@ -24,7 +24,7 @@ declare global {
     | { value?: undefined; error: E };
 
   interface Window {
-    newApi: APIType
+    api: APIType
     webUtils: WebUtils;
     initPreload: PreloadInitFunction
   }

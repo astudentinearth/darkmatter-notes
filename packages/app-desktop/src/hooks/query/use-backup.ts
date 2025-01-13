@@ -4,13 +4,13 @@ import { useMutation } from "@tanstack/react-query";
 export const useBackup = () => {
   return useMutation({
     mutationKey: ["darkwrite-backup-mutation"],
-    mutationFn: BackupModel.backupData,
+    mutationFn: new BackupModel().backupData,
   });
 };
 
 export const useRestore = () => {
   return useMutation({
     mutationKey: ["darkwrite-restore"],
-    mutationFn: (path: string) => BackupModel.restoreData(path),
+    mutationFn: (path: string) => new BackupModel().restoreData(path),
   });
 };

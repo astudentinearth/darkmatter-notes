@@ -21,7 +21,7 @@ export function RestoreDataDialog() {
   const { t } = useTranslation(undefined, { keyPrefix: "settings.workspace" });
   const restore = useRestore();
   const chooseFile = async () => {
-    const filename = await BackupModel.chooseArchive();
+    const filename = await new BackupModel().chooseArchive();
     setPath(filename);
   };
   return (

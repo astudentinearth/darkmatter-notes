@@ -14,7 +14,7 @@ import {
   EXPORTER_CACHE_DIR,
   RESTORE_CACHE_DIR,
 } from "../lib/paths";
-import { saveFile } from "./dialog";
+import { openFile, saveFile } from "./dialog";
 import { logError } from "../lib/log";
 import { InvalidFileFormatError } from "@darkwrite/common";
 
@@ -139,4 +139,13 @@ export const BackupAPI = {
       });
     }
   },
+  async openArchive(){
+    const result = await openFile({
+        title: "Choose a backup",
+        filters: [{ extensions: ["zip"], name: "Zip archive" }],
+        properties: ["openFile", "dontAddToRecent"],
+      });
+      if (result.canceled) return null;
+      else return result.filePaths[0];
+  }
 };

@@ -3,7 +3,7 @@ import { Paths } from "@main/lib/paths";
 import fse from "fs-extra";
 import { fs, vol } from "memfs";
 import path from "node:path";
-import { HTMLExporterAPI } from "./backup";
+import { HTMLExporterAPI } from "./backup.electron";
 import * as log from "@main/lib/log"
 
 //FIXME: we can't reliably mock fs-extra

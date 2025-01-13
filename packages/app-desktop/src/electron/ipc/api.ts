@@ -12,6 +12,7 @@ import {
   InferPreloadAPI,
   IPCHandler,
 } from "@main/types";
+import { BackupAPI } from "@main/api/backup.electron";
 
 export const DarkwriteElectronAPI = {
   note: {
@@ -97,6 +98,11 @@ export const DarkwriteElectronAPI = {
       ThemeAPI.setTitlebarSymbolColor,
     ),
   },
+  backup: {
+    backupUserData: new IPCHandler(false, BackupAPI.backup),
+    restore: new IPCHandler(false, BackupAPI.restore),
+    openBackup: new IPCHandler(false, BackupAPI.openArchive)
+  }
 } satisfies DarkwriteAPI;
 export type DarkwritePreloadAPI = InferPreloadAPI<typeof DarkwriteElectronAPI>;
 

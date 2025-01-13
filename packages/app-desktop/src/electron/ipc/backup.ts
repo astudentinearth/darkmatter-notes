@@ -1,5 +1,5 @@
 import { ipcMain } from "electron";
-import { BackupAPI } from "../api/backup";
+import { BackupAPI } from "../api/backup.electron";
 import { openFile } from "../api/dialog";
 import { ChannelNames } from "../channels";
 

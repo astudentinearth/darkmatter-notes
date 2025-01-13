@@ -61,7 +61,8 @@
         "openHome": "Always open home page",
         "openLastPage": "Continue where I left off",
         "openSpecificPage": "Open a specific page"
-      }
+      },
+      "alwaysShowWordCount": "Always show word count"
     },
     "appearance": {
       "title": "Appearance",

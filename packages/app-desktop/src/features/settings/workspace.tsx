@@ -1,5 +1,7 @@
 import { RestoreDataDialog } from "@renderer/components/restore-data-dialog";
 import { Button } from "@renderer/components/ui/button";
+import { Switch } from "@renderer/components/ui/switch";
+import { useLocalStore } from "@renderer/context/local-state";
 import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
 import { Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -14,6 +16,8 @@ export function WorkspaceSettings() {
     keyPrefix: "settings.workspace",
   });
   const dataBackup = useBackup();
+  const alwaysShowWordCount = useLocalStore((s)=>s.alwaysShowWordCount);
+  const setAlwaysShowWordCount = useLocalStore((s)=>s.setAlwaysShowWordCount);
   // const startup = useSettingsStore(s=>s.settings.startup.behavior);
   // const startupChange = (val: string) => {
   //   updateUserSettings((old) => produce(old, draft => {
@@ -68,6 +72,8 @@ export function WorkspaceSettings() {
       </div>
       {/* <span>{t("startupBehaviourText")}</span>
       <StartupBehvaiourSelect value={startup} onValueCahnge={startupChange}/> */}
+      <span>{t("alwaysShowWordCount")}</span>
+      <Switch checked={alwaysShowWordCount} onCheckedChange={setAlwaysShowWordCount} className="place-self-end"/>
     </div>
   );
 }

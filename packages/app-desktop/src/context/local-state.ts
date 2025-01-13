@@ -18,6 +18,7 @@ type localStore = {
   useSpellcheck: boolean;
   allNotesCollapsed: boolean;
   favoritesCollapsed: boolean;
+  alwaysShowWordCount: boolean;
 };
 
 type localStoreAction = {
@@ -28,6 +29,7 @@ type localStoreAction = {
   setSpellcheck: (val: boolean) => void;
   setAllNotesCollapsed: (val: boolean) => void;
   setFavoritesCollapsed: (val: boolean) => void;
+  setAlwaysShowWordCount: (val: boolean) => void;
 };
 
 export const useLocalStore = create<localStore & localStoreAction>()(
@@ -39,6 +41,7 @@ export const useLocalStore = create<localStore & localStoreAction>()(
       useSpellcheck: true,
       allNotesCollapsed: false,
       favoritesCollapsed: false,
+      alwaysShowWordCount: false,
       setFavoritesCollapsed: (val) => set({ favoritesCollapsed: val }),
       setAllNotesCollapsed: (val) => set({ allNotesCollapsed: val }),
       setSidebarCollapsed: (collapsed: boolean) =>
@@ -50,6 +53,7 @@ export const useLocalStore = create<localStore & localStoreAction>()(
           sidebarWidth: calculateWidth(state.sidebarWidth, change),
         })),
       setSpellcheck: (useSpellcheck) => set({ useSpellcheck }),
+      setAlwaysShowWordCount: (val)=>set({alwaysShowWordCount: val})
     }),
     {
       name: "local-state",

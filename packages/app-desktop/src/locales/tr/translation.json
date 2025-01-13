@@ -61,7 +61,8 @@
         "openHome": "Her zaman giriş sayfasını aç",
         "openLastPage": "Kaldığım yerden devam et",
         "openSpecificPage": "Belirli bir sayfayı aç"
-      }
+      },
+      "alwaysShowWordCount": "Kelime sayısını her zaman göster"
     },
     "appearance": {
       "title": "Görünüm",

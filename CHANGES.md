@@ -1,6 +1,10 @@
 # 0.4.0-alpha.1
 ## ✨ Improvements and fixes
 - Fix 7 places where notes without icons were handled incorrectly
+- Word count can now be always shown in the bottom-right corner of the window. (You can enable or disable it in settings)
+
+## 🛠️ Technical changes
+- We developed tools around IPC to accelerate API development and ensure type-safety.
 
 # 0.3.1-alpha.3
 ## 🌟 Features

@@ -16,6 +16,7 @@ import { TextEditor } from "./text-editor";
 import { CoverImage } from "./cover-image";
 import "./css/editor.css";
 import { WordCounter } from "./word-count";
+import { useLocalStore } from "@renderer/context/local-state";
 
 export function EditorRoot() {
   const { note, isFetching, isError, content, customizations, spellcheck } =
@@ -28,7 +29,7 @@ export function EditorRoot() {
   const [debouncedValue] = useDebounce(value, 200);
   const rootContainerRef = useRef<HTMLDivElement>(null);
   const editorWidth = useCenteredLayout(984);
-
+  const wordCountEnabled = useLocalStore(s=>s.alwaysShowWordCount);
   useEffect(() => {
     if (content && customizations) {
       setEditorContent(content);
@@ -121,7 +122,7 @@ export function EditorRoot() {
             initialValue={content}
             onChange={handleContentChange}
           />
-          <WordCounter />
+          {wordCountEnabled && <WordCounter />}
         </>
       )}
     </div>

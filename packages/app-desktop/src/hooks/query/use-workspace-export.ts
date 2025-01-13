@@ -4,6 +4,6 @@ import { useMutation } from "@tanstack/react-query";
 export const useWorkspaceExport = () => {
   return useMutation({
     mutationKey: ["workspace-export"],
-    mutationFn: ExporterModel.exportAllAsHTML,
+    mutationFn: new ExporterModel().exportAllAsHTML,
   });
 };

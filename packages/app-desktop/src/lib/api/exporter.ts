@@ -3,10 +3,9 @@ import { NotesModel } from "./note";
 import { attempt } from "lodash";
 import { defaultExtensions } from "@renderer/features/editor/extensions/extensions";
 
-const API = window.api.exporter;
-
-export const ExporterModel = {
+export class ExporterModel {
   async exportAllAsHTML() {
+    const API = window.api.exporter;
     const notesOpt = await NotesModel.Instance.getNotes();
     if (notesOpt.error || notesOpt.value.length == 0) return;
     const notes = notesOpt.value;
@@ -35,5 +34,5 @@ export const ExporterModel = {
       }
     }
     await API.finish();
-  },
+  }
 };

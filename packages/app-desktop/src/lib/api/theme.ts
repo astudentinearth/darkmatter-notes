@@ -1,16 +1,24 @@
 import { Theme } from "@darkwrite/common";
+import { DEFAULT_THEMES } from "../themes";
 
-// TODO: use a class
-//const API = window.newApi.theme;
-
-export interface IThemesModel {
-  getUserThemes: () => Promise<Theme[]>;
-  importTheme: () => Promise<void>;
-  getSystemAccentColor: () => Promise<string>;
+export interface ThemeAPI {
+  load: () => Promise<Theme[]>;
+  import: () => Promise<void>;
+  getAccentColor: () => Promise<string>;
 }
 
-export const ThemesModel: IThemesModel = {
-  getUserThemes: () => window.newApi.theme.load(),
-  importTheme: () => window.newApi.theme.import(),
-  getSystemAccentColor: () => window.newApi.theme.getAccentColor(),
+const WebThemeAPI: ThemeAPI = {
+  load: async () => DEFAULT_THEMES,
+  import: async () => {},
+  getAccentColor: async () => "#ffffff",
 };
+
+export class ThemesModel {
+  private API: ThemeAPI = window.newApi.theme;
+  constructor(api: ThemeAPI = window.newApi.theme ?? WebThemeAPI) {
+    this.API = api;
+  }
+  public getUserThemes = () => this.API.load();
+  public importTheme = () => this.API.import();
+  public getSystemAccentColor = () => this.API.getAccentColor();
+}

@@ -20,6 +20,7 @@ export function ThemeHandler() {
   );
   useEffect(() => {
     //console.log("Applying themes");
+    const api = new ThemesModel();
     setGlobalStyle("font-family", fonts.ui);
     setGlobalStyle("--font-ui", fonts.ui);
     setGlobalStyle("--darkwrite-sans", fonts.sans);
@@ -27,7 +28,7 @@ export function ThemeHandler() {
     setGlobalStyle("--darkwrite-serif", fonts.serif);
     console.log(useSystemAccentColor);
     if (useSystemAccentColor) {
-      ThemesModel.getSystemAccentColor().then((color) => {
+      api.getSystemAccentColor().then((color) => {
         console.log(color);
         const accent = hexToHslVariable(color);
         setGlobalStyle("--primary", accent);

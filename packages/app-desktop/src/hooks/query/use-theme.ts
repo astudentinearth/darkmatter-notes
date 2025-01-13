@@ -3,9 +3,10 @@ import { DEFAULT_THEMES } from "@renderer/lib/themes";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useTheme = () => {
+  const api = new ThemesModel();
   const query = useQuery({
     queryKey: ["themes-query"],
-    queryFn: ThemesModel.getUserThemes,
+    queryFn: api.getUserThemes,
     refetchOnWindowFocus: false,
   });
   const themes = DEFAULT_THEMES.concat(query.data ?? []);
@@ -14,9 +15,10 @@ export const useTheme = () => {
 
 export const useImportThemeMutation = () => {
   const qc = useQueryClient();
+  const api = new ThemesModel();
   return useMutation({
     mutationKey: ["import-theme-mutation"],
-    mutationFn: ThemesModel.importTheme,
+    mutationFn: api.importTheme,
     onSuccess: () => {
       qc.refetchQueries({ queryKey: ["themes-query"] });
     },

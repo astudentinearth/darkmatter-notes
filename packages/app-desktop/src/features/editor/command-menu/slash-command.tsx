@@ -132,7 +132,7 @@ export const suggestionItems = createSuggestionItems([
   },
   {
     title: "Link to page",
-    description: "",
+    description: "Add a clickable link to other pages.",
     searchTerms: ["link"],
     icon: <Link size={18} />,
     command({ editor, range }) {

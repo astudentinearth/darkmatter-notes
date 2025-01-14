@@ -80,8 +80,11 @@ export const DarkwriteElectronAPI = {
     import: new IPCHandler(false, FileImportAPI.importFile),
   },
   settings: {
+    /** Reads saved user preferences from data directory */
     load: new IPCHandler(false, SettingsAPI.readUserPrefs),
+    /** Saves user preferences to data directory */
     save: new IPCHandler(false, SettingsAPI.writeUserPrefs),
+    /** @returns client specific information such as app and nodejs version.  */
     getClientInfo: new IPCHandler(false, SettingsAPI.getAppInfo),
   },
   theme: {
@@ -95,6 +98,10 @@ export const DarkwriteElectronAPI = {
      *  @platform win32,darwin
      */
     getAccentColor: new IPCHandler(false, ThemeAPI.getSystemAccentColor),
+    /**
+     * Updates colors on titlebar buttons
+     * @platform win32
+     */
     setTitlebarSymbolColor: new IPCHandler(
       false,
       ThemeAPI.setTitlebarSymbolColor,

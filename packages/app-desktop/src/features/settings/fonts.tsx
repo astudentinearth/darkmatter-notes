@@ -3,10 +3,9 @@ import { Button } from "@renderer/components/ui/button";
 import { Input } from "@renderer/components/ui/input";
 import { Label } from "@renderer/components/ui/label";
 import {
-  updateUserSettings,
-  useSettingsStore,
+  produceUserSettings,
+  useSettingsStore
 } from "@renderer/context/settings-store";
-import { produce } from "immer";
 import { ChangeEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -18,22 +17,20 @@ export default function FontSettings() {
   const serifRef = useRef<HTMLInputElement>(null);
   const codeRef = useRef<HTMLInputElement>(null);
   const submit = () => {
-    updateUserSettings((old) =>
-      produce(old, (draft) => {
-        if (
-          !uiRef.current ||
-          !sansRef.current ||
-          !serifRef.current ||
-          !codeRef.current
-        )
-          return;
+    produceUserSettings((draft) => {
+      if (
+        !uiRef.current ||
+        !sansRef.current ||
+        !serifRef.current ||
+        !codeRef.current
+      )
+        return;
 
-        draft.fonts.ui = uiRef.current.value;
-        draft.fonts.sans = sansRef.current.value;
-        draft.fonts.serif = serifRef.current.value;
-        draft.fonts.code = codeRef.current.value;
-      }),
-    );
+      draft.fonts.ui = uiRef.current.value;
+      draft.fonts.sans = sansRef.current.value;
+      draft.fonts.serif = serifRef.current.value;
+      draft.fonts.code = codeRef.current.value;
+    })
   };
 
   const handlePreview = (

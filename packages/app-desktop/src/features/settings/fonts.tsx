@@ -50,9 +50,8 @@ export default function FontSettings() {
         if (e.key == "Enter") submit();
       }}
     >
-      <h1 className="text-lg font-semibold text-foreground/75">{t("title")}</h1>
-      <hr className="border-foreground/25" />
-      {/* TODO: Switch this with a grid layout. */}
+      <h1 className="text-lg font-semibold text-foreground">{t("title")}</h1>
+      <hr className="border-border col-span-2 mx-[-1rem] border-0 border-t" />
       <div className="flex flex-row gap-2 justify-items-center">
         <Label
           htmlFor="ui-font-input"

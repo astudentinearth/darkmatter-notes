@@ -7,6 +7,7 @@
 - Fixed 7 places where notes without icons were handled incorrectly
 - Added translations for note customization menu
 - Fixed issue causing system accent color to be always black
+- Updated settings UI style
 
 ## 🛠️ Technical changes
 - We developed tools around IPC to accelerate API development and ensure type-safety.

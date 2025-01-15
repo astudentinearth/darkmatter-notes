@@ -47,8 +47,8 @@ export function ThemeSettings() {
   const { t } = useTranslation(undefined, { keyPrefix: "settings.appearance" });
   return (
     <div className="p-4 bg-card/80 rounded-2xl flex flex-col gap-4">
-      <h1 className="text-lg font-semibold text-foreground/75">{t("title")}</h1>
-      <hr className="border-foreground/25" />
+      <h1 className="text-lg font-semibold text-foreground">{t("title")}</h1>
+      <hr className="border-border col-span-2 mx-[-1rem] border-0 border-t" />
       <div className="flex items-center">
         <Label>{t("colorThemeText")}</Label>
         <FlexibleSpacer />

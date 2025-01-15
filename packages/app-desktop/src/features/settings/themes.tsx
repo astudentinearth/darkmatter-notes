@@ -1,17 +1,17 @@
 import { ColorPicker } from "@renderer/components/color-picker";
 import { FlexibleSpacer } from "@renderer/components/spacer";
+import { Button } from "@renderer/components/ui/button";
 import { Label } from "@renderer/components/ui/label";
 import { Switch } from "@renderer/components/ui/switch";
 import {
   updateUserSettings,
   useSettingsStore,
 } from "@renderer/context/settings-store";
-import { produce } from "immer";
-import { ThemeMenu } from "./theme-menu";
-import { Button } from "@renderer/components/ui/button";
-import { Download } from "lucide-react";
 import { useClientInfo, useImportThemeMutation } from "@renderer/hooks/query";
+import { produce } from "immer";
+import { FolderClosed } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { ThemeMenu } from "./theme-menu";
 
 export function ThemeSettings() {
   const accentColor = useSettingsStore(
@@ -53,15 +53,16 @@ export function ThemeSettings() {
         <Label>{t("colorThemeText")}</Label>
         <FlexibleSpacer />
         <div className="flex items-center gap-2">
+          <ThemeMenu />
+
           <Button
             title={t("importTooltip")}
             variant={"secondary"}
-            className="w-10 h-10 p-0"
+            className="w-10 h-10 p-0 flex-shrink-0 border border-border"
             onClick={() => importMutation.mutateAsync()}
           >
-            <Download size={18} />
+            <FolderClosed size={18} />
           </Button>
-          <ThemeMenu />
         </div>
       </div>
       <div className="flex flex-row items-center">
@@ -87,7 +88,9 @@ export function ThemeSettings() {
           checked={useSystemAccentColor}
           onCheckedChange={setSystemAccentColor}
           id="use-system-accent-color"
-          disabled={!(info?.os.includes("Windows") || info?.os.includes("Darwin"))}
+          disabled={
+            !(info?.os.includes("Windows") || info?.os.includes("Darwin"))
+          }
         />
       </div>
       <div className="flex flex-row items-center">

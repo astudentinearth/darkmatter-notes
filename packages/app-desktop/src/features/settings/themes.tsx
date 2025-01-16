@@ -4,6 +4,7 @@ import { Button } from "@renderer/components/ui/button";
 import { Label } from "@renderer/components/ui/label";
 import { Switch } from "@renderer/components/ui/switch";
 import {
+  produceUserSettings,
   updateUserSettings,
   useSettingsStore,
 } from "@renderer/context/settings-store";
@@ -30,17 +31,13 @@ export function ThemeSettings() {
       }),
     );
   const setSystemAccentColor = (val: boolean) =>
-    updateUserSettings((state) =>
-      produce(state, (draft) => {
-        draft.appearance.useSystemAccentColor = val;
-      }),
-    );
+    produceUserSettings((draft) => {
+      draft.appearance.useSystemAccentColor = val;
+    });
   const setAccentColor = (val: string) => {
-    updateUserSettings((state) =>
-      produce(state, (draft) => {
-        draft.appearance.accentColor = val;
-      }),
-    );
+    produceUserSettings((draft) => {
+      draft.appearance.accentColor = val;
+    });
   };
   const info = useClientInfo();
   const importMutation = useImportThemeMutation();

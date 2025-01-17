@@ -11,7 +11,7 @@ import {
 } from "./ui/alert-dialog";
 import { Button } from "./ui/button";
 import { cn } from "@renderer/lib/utils";
-import { FileArchive } from "lucide-react";
+import { ArchiveRestore, FileArchive } from "lucide-react";
 import { useRestore } from "@renderer/hooks/query";
 import { BackupModel } from "@renderer/lib/api/backup";
 import { useTranslation } from "react-i18next";
@@ -31,8 +31,11 @@ export function RestoreDataDialog() {
       }}
     >
       <AlertDialogTrigger asChild>
-        <Button variant={"secondary"} className="flex-shrink-0 w-fit">
-          {t("restoreButton")}
+        <Button variant={"secondary"} className="flex-shrink-0 w-fit border border-border">
+        <span className="flex gap-2 items-center">
+            <ArchiveRestore size={18} className="inline" />
+            {t("restoreButton")}
+          </span>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className={cn("p-4")}>

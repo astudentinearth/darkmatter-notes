@@ -3,7 +3,7 @@ import { Button } from "@renderer/components/ui/button";
 import { Switch } from "@renderer/components/ui/switch";
 import { useLocalStore } from "@renderer/context/local-state";
 import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
-import { Languages } from "lucide-react";
+import { Archive, FolderDown, Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "./language-select";
 import { Language } from "@renderer/types/lang";
@@ -18,8 +18,8 @@ export function WorkspaceSettings() {
     keyPrefix: "settings.workspace",
   });
   const dataBackup = useBackup();
-  const alwaysShowWordCount = useLocalStore((s)=>s.alwaysShowWordCount);
-  const setAlwaysShowWordCount = useLocalStore((s)=>s.setAlwaysShowWordCount);
+  const alwaysShowWordCount = useLocalStore((s) => s.alwaysShowWordCount);
+  const setAlwaysShowWordCount = useLocalStore((s) => s.setAlwaysShowWordCount);
   // const startup = useSettingsStore(s=>s.settings.startup.behavior);
   // const startupChange = (val: string) => {
   //   updateUserSettings((old) => produce(old, draft => {
@@ -37,9 +37,12 @@ export function WorkspaceSettings() {
         onClick={() => workspaceExport.mutateAsync()}
         disabled={workspaceExport.isPending}
         variant={"secondary"}
-        className="flex-shrink-0 w-fit place-self-end"
+        className="flex-shrink-0 w-fit place-self-end border border-border"
       >
-        {workspaceExport.isPending ? t("exporting") : t("exportAllButton")}
+        <span className="flex gap-2 items-center">
+          <FolderDown size={18} className="inline" />
+          {workspaceExport.isPending ? t("exporting") : t("exportAllButton")}
+        </span>
       </Button>
       <span>{t("backupAndRestoreText")}</span>
       <div className="flex gap-2 place-self-end">
@@ -47,9 +50,12 @@ export function WorkspaceSettings() {
           disabled={dataBackup.isPending}
           onClick={() => dataBackup.mutateAsync()}
           variant={"secondary"}
-          className="flex-shrink-0 w-fit"
+          className="flex-shrink-0 w-fit border border-border"
         >
-          {t("backupButton")}
+          <span className="flex gap-2 items-center">
+            <Archive size={18} className="inline" />
+            {t("backupButton")}
+          </span>
         </Button>
         <RestoreDataDialog />
       </div>
@@ -57,12 +63,19 @@ export function WorkspaceSettings() {
         <Languages size={18} className="inline" /> {t("languageText")}
       </span>
       <div className="flex gap-2 place-self-end">
-        <LanguageSelect lang={i18n.resolvedLanguage as Language ?? "en"} onValueChange={(lang)=>i18n.changeLanguage(lang)}/>
+        <LanguageSelect
+          lang={(i18n.resolvedLanguage as Language) ?? "en"}
+          onValueChange={(lang) => i18n.changeLanguage(lang)}
+        />
       </div>
       {/* <span>{t("startupBehaviourText")}</span>
       <StartupBehvaiourSelect value={startup} onValueCahnge={startupChange}/> */}
       <span>{t("alwaysShowWordCount")}</span>
-      <Switch checked={alwaysShowWordCount} onCheckedChange={setAlwaysShowWordCount} className="place-self-end"/>
+      <Switch
+        checked={alwaysShowWordCount}
+        onCheckedChange={setAlwaysShowWordCount}
+        className="place-self-end"
+      />
     </div>
   );
 }

@@ -5,6 +5,8 @@ import { useLocalStore } from "@renderer/context/local-state";
 import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
 import { Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import LanguageSelect from "./language-select";
+import { Language } from "@renderer/types/lang";
 //import { StartupBehvaiourSelect } from "./startup-behaviour-select";
 // import { updateUserSettings, useSettingsStore } from "@renderer/context/settings-store";
 // import { produce } from "immer";
@@ -55,20 +57,7 @@ export function WorkspaceSettings() {
         <Languages size={18} className="inline" /> {t("languageText")}
       </span>
       <div className="flex gap-2 place-self-end">
-        <Button
-          onClick={() => i18n.changeLanguage("tr")}
-          variant={i18n.resolvedLanguage == "tr" ? "default" : "secondary"}
-          className="flex-shrink-0 w-fit"
-        >
-          Türkçe
-        </Button>
-        <Button
-          onClick={() => i18n.changeLanguage("en")}
-          variant={i18n.resolvedLanguage == "en" ? "default" : "secondary"}
-          className="flex-shrink-0 w-fit"
-        >
-          English
-        </Button>
+        <LanguageSelect lang={i18n.resolvedLanguage as Language ?? "en"} onValueChange={(lang)=>i18n.changeLanguage(lang)}/>
       </div>
       {/* <span>{t("startupBehaviourText")}</span>
       <StartupBehvaiourSelect value={startup} onValueCahnge={startupChange}/> */}

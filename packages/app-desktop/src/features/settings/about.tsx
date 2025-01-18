@@ -5,7 +5,7 @@ export function AboutCard() {
   const data = useClientInfo();
   const { t } = useTranslation(undefined, { keyPrefix: "settings.about" });
   return (
-    <div className="p-4 bg-card/80 rounded-2xl gap-4">
+    <div className="p-4 rounded-2xl bg-view-2 flex flex-col gap-4 border border-border/50">
       <div className="grid grid-cols-[64px_1fr] grid-rows-[auto] gap-4">
         <img src="icon64.png" />
         <div>

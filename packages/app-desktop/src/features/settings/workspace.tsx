@@ -27,11 +27,10 @@ export function WorkspaceSettings() {
   //   }))
   // }
   return (
-    <div className="p-4 bg-card/80 rounded-2xl grid grid-cols-[1fr_auto] items-center auto-rows-auto gap-4">
+    <div className="p-4 bg-view-2 rounded-2xl grid grid-cols-[1fr_auto] items-center auto-rows-auto gap-4 border border-border/50">
       <h1 className="text-lg font-semibold text-foreground col-span-2">
         {t("title")}
       </h1>
-      <hr className="border-border col-span-2 mx-[-1rem] border-0 border-t" />
       <span>{t("exportAllText")}</span>
       <Button
         onClick={() => workspaceExport.mutateAsync()}

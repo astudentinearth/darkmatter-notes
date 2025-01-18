@@ -24,9 +24,8 @@ export default function ExperimentalFeatures() {
     );
   const info = useClientInfo();
   return (
-    <div className="p-4 bg-card/80 rounded-2xl flex flex-col gap-4">
+    <div className="p-4 bg-view-2 rounded-2xl flex flex-col gap-4 border border-border/50">
       <h1 className="text-lg font-semibold text-foreground">{t("title")}</h1>
-      <hr className="border-border col-span-2 mx-[-1rem] border-0 border-t" />
       <div className="flex flex-row items-center">
         <Label htmlFor="enable-titlebar-on-macos">
           {t("enableCustomTitlebarOnMac")}

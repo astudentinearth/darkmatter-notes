@@ -1,5 +1,5 @@
 import { useEditor } from "novel";
-import { Bold, Code, Italic, Strikethrough, Underline } from "lucide-react";
+import { Bold, Code, Italic, Quote, Strikethrough, Underline } from "lucide-react";
 import { BubbleButton } from "./bubble-button";
 
 export function FormattingButtons() {
@@ -50,6 +50,15 @@ export function FormattingButtons() {
         editor={{ editor }}
         command={(editor) => {
           editor.chain().focus().toggleCode().run();
+        }}
+      />
+      <BubbleButton
+        isActive={(e) => e.editor?.isActive("blockquote") ?? false}
+        name="blockquote"
+        icon={Quote}
+        editor={{ editor }}
+        command={(editor) => {
+          editor.chain().focus().toggleBlockquote().run();
         }}
       />
     </div>

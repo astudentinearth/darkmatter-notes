@@ -1,6 +1,7 @@
 # 0.4.0-alpha.1
 ## 🌟 Features
 - You can now toggle todo, bullet and numbered lists directly from the floating menu
+- Added block quote button to floating menu
 - Word count can now be always shown in the bottom-right corner of the window. (You can enable or disable it in settings)
 
 ## ✨ Improvements and fixes

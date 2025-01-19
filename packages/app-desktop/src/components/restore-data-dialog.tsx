@@ -46,9 +46,9 @@ export function RestoreDataDialog() {
         </AlertDialogDescription>
         <Button
           onClick={chooseFile}
-          variant={"outline"}
+          variant={"secondary"}
           className={cn(
-            "overflow-hidden",
+            "overflow-hidden border border-border",
             path && "grid grid-cols-[18px_auto] gap-2 text-start justify-start",
           )}
         >

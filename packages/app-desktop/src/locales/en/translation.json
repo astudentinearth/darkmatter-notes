@@ -62,7 +62,9 @@
         "openLastPage": "Continue where I left off",
         "openSpecificPage": "Open a specific page"
       },
-      "alwaysShowWordCount": "Always show word count"
+      "alwaysShowWordCount": "Always show word count",
+      "codeBlockIndentSize": "Indent size in code blocks",
+      "codeBlockIndentSizeDescription": "Number of spaces to be inserted when you hit the tab key."
     },
     "appearance": {
       "title": "Appearance",

@@ -3,6 +3,10 @@
 - You can now toggle todo, bullet and numbered lists directly from the floating menu
 - Added block quote button to floating menu
 - Word count can now be always shown in the bottom-right corner of the window. (You can enable or disable it in settings)
+- Upgraded code blocks
+  - Hitting `⇥Tab` inserts a desired number of spaces for indentation
+  - Hitting `⬇️Down Arrow` at the last line exits the code block
+  - Hitting `Ctrl/Cmd` + `⬇️Down Arrow` exits the code block immediately, even if you are on the first line
 
 ## ✨ Improvements and fixes
 - Fixed 7 places where notes without icons were handled incorrectly

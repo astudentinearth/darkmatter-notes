@@ -81,7 +81,10 @@ export function WorkspaceSettings() {
         className="place-self-end"
         id="always-show-word-count-switch"
       />
-      <Label>Code block indent size</Label>
+      <div className="flex flex-col gap-1">
+        <Label>{t("codeBlockIndentSize")}</Label>
+        <span className="text-foreground/70 text-sm">{t("codeBlockIndentSizeDescription")}</span>
+      </div>
       <Input type="number" defaultValue={indentSize} className="w-12 place-self-end hide-number-arrows" onChange={(inp)=>{
         if(inp.target.value && !Number.isNaN(parseInt(inp.target.value))) setIndentSize(parseInt(inp.target.value)) 
       }} id="code-block-indent-size-input"/>

@@ -62,7 +62,9 @@
         "openLastPage": "Kaldığım yerden devam et",
         "openSpecificPage": "Belirli bir sayfayı aç"
       },
-      "alwaysShowWordCount": "Kelime sayısını her zaman göster"
+      "alwaysShowWordCount": "Kelime sayısını her zaman göster",
+      "codeBlockIndentSize": "Kod bloklarındaki girinti genişliği",
+      "codeBlockIndentSizeDescription": "Tab tuşuna basıldığında kod bloklarına eklenecek boşluk sayısını belirleyin."
     },
     "appearance": {
       "title": "Görünüm",

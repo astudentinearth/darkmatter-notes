@@ -7,6 +7,9 @@ import { Archive, FolderDown, Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "./language-select";
 import { Language } from "@renderer/types/lang";
+import { Label } from "@renderer/components/ui/label";
+import { Input } from "@renderer/components/ui/input";
+import { produceUserSettings, useSettingsStore } from "@renderer/context/settings-store";
 //import { StartupBehvaiourSelect } from "./startup-behaviour-select";
 // import { updateUserSettings, useSettingsStore } from "@renderer/context/settings-store";
 // import { produce } from "immer";
@@ -20,6 +23,8 @@ export function WorkspaceSettings() {
   const dataBackup = useBackup();
   const alwaysShowWordCount = useLocalStore((s) => s.alwaysShowWordCount);
   const setAlwaysShowWordCount = useLocalStore((s) => s.setAlwaysShowWordCount);
+  const indentSize = useSettingsStore(s=>s.settings.editor.codeBlockIndentSize);
+  const setIndentSize = (val: number) => produceUserSettings(d=>{d.editor.codeBlockIndentSize=val})
   // const startup = useSettingsStore(s=>s.settings.startup.behavior);
   // const startupChange = (val: string) => {
   //   updateUserSettings((old) => produce(old, draft => {
@@ -69,12 +74,17 @@ export function WorkspaceSettings() {
       </div>
       {/* <span>{t("startupBehaviourText")}</span>
       <StartupBehvaiourSelect value={startup} onValueCahnge={startupChange}/> */}
-      <span>{t("alwaysShowWordCount")}</span>
+      <Label htmlFor="always-show-word-count-switch">{t("alwaysShowWordCount")}</Label>
       <Switch
         checked={alwaysShowWordCount}
         onCheckedChange={setAlwaysShowWordCount}
         className="place-self-end"
+        id="always-show-word-count-switch"
       />
+      <Label>Code block indent size</Label>
+      <Input type="number" className="w-12 place-self-end hide-number-arrows" value={indentSize} onChange={(val)=>{
+        if(val.target.value) setIndentSize(parseInt(val.target.value))
+      }} id="code-block-indent-size-input"/>
     </div>
   );
 }

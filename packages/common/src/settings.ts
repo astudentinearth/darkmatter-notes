@@ -47,7 +47,7 @@ export interface UserSettings {
   };
   editor: {
     /** Number of spaces to insert when the TAB key is pressed in a code block.
-     * @default 4
+     * @default 2
      */
     codeBlockIndentSize: number
   }

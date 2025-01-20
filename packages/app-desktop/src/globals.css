@@ -186,3 +186,16 @@ body,
 .main-wiew::-webkit-scrollbar-thumb:hover {
   background-color: hsl(var(--secondary) / 1);
 }
+
+.hide-number-arrows {
+  -moz-appearance: textfield !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+.hide-number-arrows::-webkit-inner-spin-button,
+.hide-number-arrows::-webkit-outer-spin-button {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  margin: 0 !important;
+}

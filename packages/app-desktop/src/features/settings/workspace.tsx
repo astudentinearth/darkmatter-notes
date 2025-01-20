@@ -1,15 +1,15 @@
 import { RestoreDataDialog } from "@renderer/components/restore-data-dialog";
 import { Button } from "@renderer/components/ui/button";
+import { Input } from "@renderer/components/ui/input";
+import { Label } from "@renderer/components/ui/label";
 import { Switch } from "@renderer/components/ui/switch";
 import { useLocalStore } from "@renderer/context/local-state";
+import { produceUserSettings, useSettingsStore } from "@renderer/context/settings-store";
 import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
+import { Language } from "@renderer/types/lang";
 import { Archive, FolderDown, Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import LanguageSelect from "./language-select";
-import { Language } from "@renderer/types/lang";
-import { Label } from "@renderer/components/ui/label";
-import { Input } from "@renderer/components/ui/input";
-import { produceUserSettings, useSettingsStore } from "@renderer/context/settings-store";
 //import { StartupBehvaiourSelect } from "./startup-behaviour-select";
 // import { updateUserSettings, useSettingsStore } from "@renderer/context/settings-store";
 // import { produce } from "immer";
@@ -82,8 +82,8 @@ export function WorkspaceSettings() {
         id="always-show-word-count-switch"
       />
       <Label>Code block indent size</Label>
-      <Input type="number" className="w-12 place-self-end hide-number-arrows" value={indentSize} onChange={(val)=>{
-        if(val.target.value) setIndentSize(parseInt(val.target.value))
+      <Input type="number" defaultValue={indentSize} className="w-12 place-self-end hide-number-arrows" onChange={(inp)=>{
+        if(inp.target.value && !Number.isNaN(parseInt(inp.target.value))) setIndentSize(parseInt(inp.target.value)) 
       }} id="code-block-indent-size-input"/>
     </div>
   );

@@ -1,3 +1,6 @@
+# 0.4.0-alpha.2
+## 🚨 This update fixes the image upload issues in v0.4.0-alpha.1
+
 # 0.4.0-alpha.1
 ## 🌟 Features
 - You can now toggle todo, bullet and numbered lists directly from the floating menu

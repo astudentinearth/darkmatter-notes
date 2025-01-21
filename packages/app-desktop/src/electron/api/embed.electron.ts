@@ -1,12 +1,11 @@
+import { Embed, ResolvedEmbed } from "@darkwrite/common";
+import { app, net, protocol } from "electron";
+import fse from "fs-extra";
+import { randomUUID } from "node:crypto";
 import path, { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { Paths } from "../lib/paths";
-import { randomUUID } from "node:crypto";
-import fse from "fs-extra";
-import { Embed, ResolvedEmbed } from "@darkwrite/common";
 import { DB } from "../db";
-import { app, protocol, net } from "electron";
-import { EmbedEntity } from "../db/entity/embed";
+import { Paths } from "../lib/paths";
 
 export const EmbedAPI = {
   create: async (filePath: string) => {

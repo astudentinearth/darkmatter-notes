@@ -41,9 +41,6 @@ export const DarkwriteImage = TiptapImage.extend({
     };
   },
   renderHTML({ HTMLAttributes }) {
-    const embedId = HTMLAttributes["data-embed-id"];
-    //console.log("Our embedId is ", embedId);
-    const src = embedId ? `embed://${embedId}` : "";
     return [
       "div",
       mergeAttributes(HTMLAttributes, { "data-type": "darkwrite-image" }),
@@ -69,7 +66,7 @@ export const DarkwriteImage = TiptapImage.extend({
                 const file = item.getAsFile();
                 if (!file) return;
                 file.arrayBuffer().then(async (buf) => {
-                  const embed = await EmbedAPI.createFromArrayBuffer(
+                  const embed = await new EmbedAPI().createFromArrayBuffer(
                     buf,
                     filetype,
                   );
@@ -108,7 +105,7 @@ export const DarkwriteImage = TiptapImage.extend({
     ];
   },
   addNodeView() {
-    //@ts-ignore
+    //@ts-expect-error Node view props are loosely compatible.
     return ReactNodeViewRenderer(DarkwriteImageView);
   },
 }).configure({

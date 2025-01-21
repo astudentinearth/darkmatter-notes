@@ -71,12 +71,16 @@ export function EditorCover(props: {
 
   const addCover = async () => {
     try {
+      console.log(">>> Adding cover image")
       const embed = await uploadImage();
+      console.log(">>> Added cover image: here's what we got")
+      console.table(embed)
       setEditorCustomizations({
         ...customizations,
         coverEmbedId: embed.id,
       });
     } catch (error) {
+      console.error(error)
       /**empty */
     }
   };
@@ -163,9 +167,11 @@ export function EditorCover(props: {
         <Button
           onClick={addCover}
           variant={"secondary"}
+          disabled={props.hasCover}
           className={cn(
             "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",
             mouseOver && !props.hasCover && "opacity-100",
+            props.hasCover && "hidden"
           )}
         >
           <ImagePlus size={18} />

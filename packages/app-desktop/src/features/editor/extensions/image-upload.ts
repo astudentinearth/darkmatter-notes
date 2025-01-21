@@ -3,8 +3,9 @@ import { type EditorView } from "prosemirror-view";
 
 const uploadEmbed = async (file: File) => {
   const path = window.webUtils.getPathForFile(file);
-  const embed = await EmbedAPI.create(path);
-  const resolved = await EmbedAPI.resolve(embed.id);
+  const api = new EmbedAPI();
+  const embed = await api.create(path);
+  const resolved = await api.resolve(embed.id);
   return resolved;
 };
 
@@ -26,13 +27,10 @@ export const createImageNode = (file: File, view: EditorView, pos: number) => {
   dispatch(transaction);
 
   uploadEmbed(file).then((embed) => {
-    //console.log("Uploaded: ", embed.uri);
     const tr = view.state.tr;
+    if(!embed) return;
     tr.doc.descendants((node, pos) => {
-      //console.log("Checking node", node.type.name, node.attrs.pendingId);
       if (node.type.name === "dwimage" && node.attrs.pendingId === id) {
-        //console.log("Found the image");
-        //console.log(`embed://${embed.id}`);
         tr.setNodeAttribute(pos, "src", `embed://${embed.id}`);
         tr.setNodeAttribute(pos, "embedId", embed.id);
         //return false;

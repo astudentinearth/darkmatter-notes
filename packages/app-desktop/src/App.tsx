@@ -34,10 +34,7 @@ function App() {
               <Route index element={<HomePage />}></Route>
               <Route
                 path="/page/:pageId"
-                loader={({ params }) => {
-                  //console.log(params.pageId);
-                  return null; // Return a value of type DataFunctionReturnValue
-                }}
+                loader={() => null}
                 element={<EditorRootWrapper />}
               ></Route>
               <Route path="settings" element={<SettingsPage />}></Route>

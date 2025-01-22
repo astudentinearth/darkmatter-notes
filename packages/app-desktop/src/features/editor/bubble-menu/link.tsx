@@ -9,7 +9,7 @@ import {
 import { cn } from "@renderer/lib/utils";
 import { useCurrentEditor } from "@tiptap/react";
 import { Link } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function BubbleLink() {

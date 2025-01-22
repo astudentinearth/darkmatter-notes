@@ -49,7 +49,7 @@ export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
                 //if (event.dataTransfer?.types.includes("note_id"))
                 //console.log("Linking to note");
               },
-              handlePaste(view, event, slice) {},
+              handlePaste() {},
             }}
             onUpdate={({ editor }) => {
               onChange?.call(null, editor.getJSON());

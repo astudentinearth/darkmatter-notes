@@ -7,7 +7,7 @@
   "description": "The eye candy note-taking app for all desktops.",
   "productName": "Darkwrite",
   "private": true,
-  "version": "0.4.0-alpha.2",
+  "version": "0.5.0-alpha.1",
   "type": "module",
   "license": "AGPL-3.0-or-later",
   "main": "dist-electron/main.js",
@@ -112,7 +112,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/plugin-proposal-decorators": "^7.25.9",
     "@babel/preset-env": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
@@ -158,7 +157,6 @@
     "vite": "^5.3.1",
     "vite-plugin-electron": "^0.28.7",
     "vite-plugin-electron-renderer": "^0.14.5",
-    "vite-plugin-external": "^4.3.1",
     "vitest": "^2.1.4"
   }
 }

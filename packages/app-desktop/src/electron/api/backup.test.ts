@@ -11,7 +11,7 @@ import * as log from "@main/lib/log"
 
 vi.spyOn(is, "dev", "get").mockReturnValue(false);
 
-const errorLogFn = vi.fn((error: unknown, fallbackMessage?: string)=>{});
+const errorLogFn = vi.fn((error: unknown, fallbackMessage?: string)=>{console.log(error instanceof Error ? error.message : fallbackMessage)});
 vi.spyOn(log, "logError").mockImplementation(errorLogFn);
 
 beforeEach(() => {

@@ -1,4 +1,4 @@
-# 0.4.0-alpha.2
+# 0.4.0-alpha.3
 ## ✨ Improvements and fixes
 - Fixed the bug which prevented you from creating child items in lists (sinking list items) by hitting Tab
 - Fix links to pages being unreadable inside blockquotes

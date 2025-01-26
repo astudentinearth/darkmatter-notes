@@ -1,6 +1,7 @@
 # 0.4.0-alpha.2
 ## ✨ Improvements and fixes
 - Fixed the bug which prevented you from creating child items in lists (sinking list items) by hitting Tab
+- Fix links to pages being unreadable inside blockquotes
 
 # 0.4.0-alpha.2
 ## 🚨 This update fixes the image upload issues in v0.4.0-alpha.1

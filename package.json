@@ -1,6 +1,6 @@
 {
   "name": "darkwrite",
-  "version": "0.4.0-alpha.2",
+  "version": "0.4.0-alpha.3",
   "description": "",
   "scripts": {
     "test:all": "yarn workspaces foreach -A run test",

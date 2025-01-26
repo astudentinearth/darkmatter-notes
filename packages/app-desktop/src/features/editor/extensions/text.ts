@@ -18,7 +18,13 @@ const horizontalRule = HorizontalRule.configure({
 const codeBlock = CodeBlock.extend({
   addKeyboardShortcuts() {
     return {
-      "Tab": ()=>this.editor.commands.insertContent(new Array<string>(useSettingsStore.getState().settings.editor.codeBlockIndentSize).fill(" ").join("")),
+      "Tab": ()=>{
+        if(this.editor.isActive("codeBlock")){
+          return this.editor.commands.insertContent(new Array<string>(useSettingsStore.getState().settings.editor.codeBlockIndentSize).fill(" ").join(""))
+        }
+        else return false
+        
+      },
       "ArrowDown": ()=>{
         if (this.editor.state.selection.$head.parentOffset === this.editor.state.selection.$head.parent.content.size) {
           return this.editor.commands.exitCode();

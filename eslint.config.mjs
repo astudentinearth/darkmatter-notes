@@ -17,7 +17,7 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ["**/dist", "**/.eslintrc.cjs"],
+    ignores: ["**/dist", "**/.eslintrc.cjs", "**/tailwind.config.cjs"],
   },
   ...fixupConfigRules(
     compat.extends(

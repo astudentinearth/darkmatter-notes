@@ -157,6 +157,6 @@
     "vite": "^5.3.1",
     "vite-plugin-electron": "^0.28.7",
     "vite-plugin-electron-renderer": "^0.14.5",
-    "vitest": "^2.1.4"
+    "vitest": "^3.0.4"
   }
 }

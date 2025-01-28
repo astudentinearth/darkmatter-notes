@@ -18,7 +18,7 @@
     "prettier": "^3.4.1",
     "tsup": "^8.2.4",
     "typescript": "^5.2.2",
-    "vitest": "^2.1.4"
+    "vitest": "^3.0.4"
   },
   "type": "module",
   "dependencies": {

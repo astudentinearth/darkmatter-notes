@@ -44,3 +44,6 @@ jobs:
 
       - name: Check types
         run: yarn tscheck:all
+
+      - name: Lint
+        run: yarn lint

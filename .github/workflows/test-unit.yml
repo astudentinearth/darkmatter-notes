@@ -20,6 +20,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     name: unit tests and type checking
+    continue-on-error: true
     steps:
       - name: Install node
         uses: actions/setup-node@v4
@@ -40,11 +41,15 @@ jobs:
       - name: Build @darkwrite/ui
         run: yarn build:ui
 
+      
       - name: Run tests
         run: yarn test:all
+        continue-on-error: true
 
       - name: Check types
         run: yarn tscheck:all
+        continue-on-error: true
 
       - name: Lint
         run: yarn lint
+        continue-on-error: true

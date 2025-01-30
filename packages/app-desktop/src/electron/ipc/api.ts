@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 import * as NoteAPI from "@main/api/note.electron";
 import * as SettingsAPI from "@main/api/settings.electron";
 import { ImportAPI as FileImportAPI } from "@main/api/import.electron";

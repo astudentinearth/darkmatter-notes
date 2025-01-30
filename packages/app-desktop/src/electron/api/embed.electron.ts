@@ -71,7 +71,7 @@ export const EmbedAPI = {
             // we already have this file
             return e;
           }
-        } catch (error) {
+        } catch {
           continue;
         }
       }

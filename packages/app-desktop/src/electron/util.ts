@@ -13,7 +13,7 @@ export const isNodeError = (error: unknown): error is NodeJS.ErrnoException =>
 export const isValidJSON = (str: string): boolean => {
   try {
     JSON.parse(str);
-  } catch (error) {
+  } catch {
     return false;
   }
   return true;

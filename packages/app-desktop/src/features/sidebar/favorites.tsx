@@ -31,7 +31,7 @@ export function FavortiesWidget() {
     if (favorites == null) return [];
     for (let i = 0; i < favorites.length; i++) {
       if (favorites[i].favoriteIndex == null) {
-        favorites[i].favoriteIndex == favorites.length;
+        favorites[i].favoriteIndex = favorites.length;
       }
     }
     favorites.sort((a, b) => (a.favoriteIndex ?? 0) - (b.favoriteIndex ?? 0));

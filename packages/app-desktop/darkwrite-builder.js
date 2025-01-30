@@ -37,7 +37,7 @@ if (artifactExists) {
     console.log("Killing all Darkwrite.exe processes");
     try {
       proc.execSync("taskkill /f /im Darkwrite.exe");
-    } catch (e) {
+    } catch {
       /*empty*/
     }
   }
@@ -56,7 +56,7 @@ const process = proc.spawn(`yarn`, [scripts[os.type()]], {
 
 process.on("error", (err) => {
   console.error("\u001b[31;1m✘ Build failed: \u001b[0m" + err.message);
-  err.stack && console.error(err.stack);
+  if(err.stack) console.error(err.stack);
 });
 
 process.on("exit", () => {

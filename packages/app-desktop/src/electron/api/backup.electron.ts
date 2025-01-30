@@ -106,7 +106,7 @@ export const BackupAPI = {
         await fse.move(DATA_DIR, DATA_SNAPSHOT_DIR, {
           overwrite: true,
         });
-      } catch (error) {
+      } catch {
         /*empty*/
       }
       didRename = true;

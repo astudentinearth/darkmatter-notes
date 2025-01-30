@@ -17,7 +17,15 @@ const compat = new FlatCompat({
 
 export default [
   {
-    ignores: ["**/dist", "**/.eslintrc.cjs", "**/tailwind.config.cjs"],
+    ignores: [
+      "**/dist/**",
+      "**/node_modules/**",
+      "**/release/**",
+      "**/out/**",
+      "**/.next/**",
+      "**/coverage/**",
+      "**/dist-electron/**"
+    ],
   },
   ...fixupConfigRules(
     compat.extends(
@@ -30,12 +38,8 @@ export default [
     plugins: {
       "react-refresh": reactRefresh,
     },
-
+    files: ["**/*.{ts,tsx}"],
     languageOptions: {
-      globals: {
-        ...globals.browser,
-      },
-
       parser: tsParser,
     },
 
@@ -48,4 +52,18 @@ export default [
       ],
     },
   },
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node
+      },
+    }
+  },
+  {
+    files: ["**/*.cjs"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off"
+    }
+  }
 ];

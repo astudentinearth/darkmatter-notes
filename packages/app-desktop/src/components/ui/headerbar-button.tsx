@@ -1,8 +1,8 @@
 import { cn } from "@renderer/lib/utils";
 import React from "react";
 
-export interface HeaderbarButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+export type HeaderbarButtonProps =
+  React.ButtonHTMLAttributes<HTMLButtonElement>;
 
 export const HeaderbarButton = React.forwardRef<
   HTMLButtonElement,

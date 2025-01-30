@@ -19,7 +19,7 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
         ...customizations,
         coverEmbedId: embed.id,
       });
-    } catch (error) {
+    } catch {
       /**empty */
     }
   };

@@ -6,7 +6,7 @@ import { Predicate } from "./ts-util";
  * @param keys key names sorted from the top to bottom
  * @returns the value of the key. Value may be a reference and is not copied.
  */
-export function find(obj: Object, keys: string[]): unknown {
+export function find(obj: object, keys: string[]): unknown {
   let value = obj;
   for (const k of keys) {
       value = value[k as keyof typeof value];
@@ -20,7 +20,7 @@ export function find(obj: Object, keys: string[]): unknown {
  * @param predicate function to filter values.
  * @returns A 2-dimensional array containing key paths.
  */
-export function recursiveKeys(obj: Object, predicate?: Predicate) {
+export function recursiveKeys(obj: object, predicate?: Predicate) {
   const result: string[][] = [];
   const search = (keys: string[]) => {
       if(predicate == undefined){
@@ -42,9 +42,11 @@ export function recursiveKeys(obj: Object, predicate?: Predicate) {
   return result;
 }
 
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type AnyObject = {[key: string]: any};
 //TODO: make type safe later
-export function deepAssign<DestType extends Object, ValueType>(
+export function deepAssign<DestType extends object, ValueType>(
   dest: DestType,
   keyPath: string[],
   value: ValueType

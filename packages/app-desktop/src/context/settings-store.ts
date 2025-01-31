@@ -30,9 +30,10 @@ export function updateUserSettings(
   saveWithDebounce(newState);
 }
 
-
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function produceUserSettings(callback: (draft: WritableDraft<UserSettings>)=>any){
+export function produceUserSettings(
+  callback: (draft: WritableDraft<UserSettings>) => any,
+) {
   const newState = produce(useSettingsStore.getState().settings, callback);
   useSettingsStore.setState({ settings: newState });
   saveWithDebounce(newState);

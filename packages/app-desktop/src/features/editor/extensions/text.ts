@@ -6,7 +6,7 @@ import {
   TextStyle,
   TiptapLink,
 } from "novel/extensions";
-import { CodeBlock } from "@tiptap/extension-code-block"
+import { CodeBlock } from "@tiptap/extension-code-block";
 import { useSettingsStore } from "@renderer/context/settings-store";
 
 const horizontalRule = HorizontalRule.configure({
@@ -18,21 +18,27 @@ const horizontalRule = HorizontalRule.configure({
 const codeBlock = CodeBlock.extend({
   addKeyboardShortcuts() {
     return {
-      "Tab": ()=>{
-        if(this.editor.isActive("codeBlock")){
-          return this.editor.commands.insertContent(new Array<string>(useSettingsStore.getState().settings.editor.codeBlockIndentSize).fill(" ").join(""))
-        }
-        else return false
-        
+      Tab: () => {
+        if (this.editor.isActive("codeBlock")) {
+          return this.editor.commands.insertContent(
+            new Array<string>(
+              useSettingsStore.getState().settings.editor.codeBlockIndentSize,
+            )
+              .fill(" ")
+              .join(""),
+          );
+        } else return false;
       },
-      "ArrowDown": ()=>{
-        if (this.editor.state.selection.$head.parentOffset === this.editor.state.selection.$head.parent.content.size) {
+      ArrowDown: () => {
+        if (
+          this.editor.state.selection.$head.parentOffset ===
+          this.editor.state.selection.$head.parent.content.size
+        ) {
           return this.editor.commands.exitCode();
-        }
-        else return false;
+        } else return false;
       },
-      "Mod-ArrowDown": ()=>this.editor.commands.exitCode()
-    }
+      "Mod-ArrowDown": () => this.editor.commands.exitCode(),
+    };
   },
 }).configure({
   HTMLAttributes: {
@@ -40,8 +46,8 @@ const codeBlock = CodeBlock.extend({
       "rounded-xl bg-secondary/50 text-muted-foreground border-none p-4 darkwrite-mono font-medium",
     ),
   },
-  exitOnTripleEnter: true
-})
+  exitOnTripleEnter: true,
+});
 
 const starterKit = StarterKit.configure({
   bulletList: {
@@ -100,5 +106,5 @@ export const TextExtensions = [
   underline,
   TextStyle,
   tiptapLink,
-  codeBlock
+  codeBlock,
 ];

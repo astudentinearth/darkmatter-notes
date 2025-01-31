@@ -31,7 +31,11 @@ export function SearchDialog(props: {
   }, [setOpen]);
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} className="!rounded-xl bg-background/70 backdrop-blur-lg">
+    <CommandDialog
+      open={open}
+      onOpenChange={setOpen}
+      className="!rounded-xl bg-background/70 backdrop-blur-lg"
+    >
       <CommandInput
         value={search}
         onValueChange={setSearch}

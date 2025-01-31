@@ -1,7 +1,4 @@
-import {
-  deepAssign,
-  recursiveKeys
-} from "@darkwrite/common";
+import { deepAssign, recursiveKeys } from "@darkwrite/common";
 import { contextBridge, ipcRenderer, webUtils } from "electron";
 // import { DarkwriteElectronAPI } from "../ipc/api";
 // import { DarkwriteAPI, IPCHandler } from "../ipc/handler";
@@ -23,7 +20,7 @@ let initialized = false;
  * This function should be awaited before the frontend is rendered.
  */
 export const initalizeAPI = async () => {
-  if(initialized) return;
+  if (initialized) return;
   // get a nested object in which all handler functions are equal to `true`
   const apiObject = await ipcRenderer.invoke(
     "$darkwrite.build-preload-api-object",

@@ -77,4 +77,5 @@ export function findSubnotes(parentId: string, notes: Note[]) {
   return subnotes;
 }
 
-export const countWords = (text: string): number => text.match(/\b\w+\b/g)?.length ?? 0;
+export const countWords = (text: string): number =>
+  text.match(/\b\w+\b/g)?.length ?? 0;

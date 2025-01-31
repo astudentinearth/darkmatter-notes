@@ -21,7 +21,7 @@ export function HeadingSelector(props: {
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const { editor } = useEditor();
-  const {t} = useTranslation(undefined, {keyPrefix: "editor.bubble"});
+  const { t } = useTranslation(undefined, { keyPrefix: "editor.bubble" });
   const h1Active = editor?.isActive("heading", { level: 1 });
   const h2Active = editor?.isActive("heading", { level: 2 });
   const h3Active = editor?.isActive("heading", { level: 3 });
@@ -58,7 +58,10 @@ export function HeadingSelector(props: {
         <Button
           variant="ghost"
           size={"bubble"}
-          className={cn("rounded-none w-fit gap-1 px-2 text-foreground", props.open && "bg-secondary/80")}
+          className={cn(
+            "rounded-none w-fit gap-1 px-2 text-foreground",
+            props.open && "bg-secondary/80",
+          )}
         >
           {icon}
           <ChevronDown size={16} />

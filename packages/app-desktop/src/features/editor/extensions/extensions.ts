@@ -38,5 +38,5 @@ export const defaultExtensions = [
   HighlightExtension,
   LinkToPage,
   ...TextExtensions,
-  KeymapFixer
+  KeymapFixer,
 ];

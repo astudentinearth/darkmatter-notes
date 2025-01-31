@@ -1,4 +1,4 @@
-const { fs } = require('memfs')
+const { fs } = require("memfs");
 
-console.log("Mocking node:fs")
-module.exports = fs
+console.log("Mocking node:fs");
+module.exports = fs;

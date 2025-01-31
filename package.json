@@ -10,7 +10,8 @@
     "build:desktop": "yarn workspace @darkwrite/app-desktop build",
     "build:common": "yarn workspace @darkwrite/common build",
     "build:ui": "yarn workspace @darkwrite/ui build",
-    "lint": "eslint -c eslint.config.mjs . --max-warnings 0"
+    "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
+    "format": "prettier . --write"
   },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",

@@ -4,7 +4,7 @@ import { Input } from "@renderer/components/ui/input";
 import { Label } from "@renderer/components/ui/label";
 import {
   produceUserSettings,
-  useSettingsStore
+  useSettingsStore,
 } from "@renderer/context/settings-store";
 import { ChangeEvent, useRef } from "react";
 import { useTranslation } from "react-i18next";
@@ -30,7 +30,7 @@ export default function FontSettings() {
       draft.fonts.sans = sansRef.current.value;
       draft.fonts.serif = serifRef.current.value;
       draft.fonts.code = codeRef.current.value;
-    })
+    });
   };
 
   const handlePreview = (

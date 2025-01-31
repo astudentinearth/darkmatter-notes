@@ -4,7 +4,7 @@ export type Result<T, E> =
 
 export type FileImportResult = {
   /** Type of `content` field */
-  type: "json" | "text" | "html",
+  type: "json" | "text" | "html";
   /** Contents to be imported */
-  content: string
-}
+  content: string;
+};

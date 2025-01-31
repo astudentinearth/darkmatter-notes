@@ -58,7 +58,10 @@ export const ThemeAPI = {
     const color = systemPreferences.getAccentColor();
     return color.substring(0, 6);
   },
-  setTitlebarSymbolColor: (symbolColor: string, themeMode: ThemeMode = "system") => {
+  setTitlebarSymbolColor: (
+    symbolColor: string,
+    themeMode: ThemeMode = "system",
+  ) => {
     const windows = BrowserWindow.getAllWindows();
     windows.forEach((window) => {
       _.attempt(() => {

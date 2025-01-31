@@ -17,7 +17,9 @@ export default function FontStyleView() {
   const style = useEditorState((state) => state.customizations);
   const setStyle = setEditorCustomizations;
   const customFont = useEditorState((state) => state.customizations.customFont);
-  const {t} = useTranslation(undefined, {keyPrefix: "editor.customizations"});
+  const { t } = useTranslation(undefined, {
+    keyPrefix: "editor.customizations",
+  });
   // const setCustomFont = (fontName: string) =>
   //     setStyle({ ...style, customFont: fontName });
 

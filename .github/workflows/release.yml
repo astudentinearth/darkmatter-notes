@@ -1,42 +1,42 @@
 name: "release"
 on:
-    push:
-        tags:
-            - "v*"
-    workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
 
 env:
-    CI: false
+  CI: false
 
 jobs:
-    build:
-        name: "Build desktop"
-        strategy:
-            fail-fast: false
-            matrix:
-                platform: [macos-latest, ubuntu-20.04, windows-latest]
-        runs-on: ${{matrix.platform}}
-        steps:
-            - uses: actions/checkout@v4
-            - name: Install node
-              uses: actions/setup-node@v4
-              with:
-                  node-version: 20
-            - run: corepack enable
-            - name: Install dependencies
-              run: yarn
+  build:
+    name: "Build desktop"
+    strategy:
+      fail-fast: false
+      matrix:
+        platform: [macos-latest, ubuntu-20.04, windows-latest]
+    runs-on: ${{matrix.platform}}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: corepack enable
+      - name: Install dependencies
+        run: yarn
 
-            - name: Linter check
-              run: yarn lint
+      - name: Linter check
+        run: yarn lint
 
-            - name: Build
-              run: yarn build:desktop
-            - name: Release
-              uses: softprops/action-gh-release@v2
-              if: startsWith(github.ref, 'refs/tags/')
-              with:
-                  files: |
-                      packages/app-desktop/release/*/Darkwrite-*.exe
-                      packages/app-desktop/release/*/Darkwrite-*.dmg
-                      packages/app-desktop/release/*/Darkwrite-*.AppImage
-                  draft: true
+      - name: Build
+        run: yarn build:desktop
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            packages/app-desktop/release/*/Darkwrite-*.exe
+            packages/app-desktop/release/*/Darkwrite-*.dmg
+            packages/app-desktop/release/*/Darkwrite-*.AppImage
+          draft: true

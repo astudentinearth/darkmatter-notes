@@ -7,8 +7,8 @@ import "./prose.css";
 import data from "@emoji-mart/data";
 import { init } from "emoji-mart";
 
-const renderApp = ()=>{
-  console.log("Creating root")
+const renderApp = () => {
+  console.log("Creating root");
   console.log(window.api);
   init({ data });
   ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -16,12 +16,11 @@ const renderApp = ()=>{
       <App />
     </React.StrictMode>,
   );
-  
-}
+};
 
-const waitAPI = async ()=>{
+const waitAPI = async () => {
   await window.initPreload();
   renderApp();
-}
+};
 
 waitAPI();

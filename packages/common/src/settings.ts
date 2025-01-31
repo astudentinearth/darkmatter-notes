@@ -49,8 +49,8 @@ export interface UserSettings {
     /** Number of spaces to insert when the TAB key is pressed in a code block.
      * @default 2
      */
-    codeBlockIndentSize: number
-  }
+    codeBlockIndentSize: number;
+  };
   startup: {
     /** The startup behavior of the app. */
     behavior: StartupBehavior;
@@ -78,7 +78,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
     ui: "",
   },
   editor: {
-    codeBlockIndentSize: 2
+    codeBlockIndentSize: 2,
   },
   startup: {
     behavior: "HOME_PAGE",

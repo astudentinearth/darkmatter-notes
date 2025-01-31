@@ -4,7 +4,10 @@ import { Input } from "@renderer/components/ui/input";
 import { Label } from "@renderer/components/ui/label";
 import { Switch } from "@renderer/components/ui/switch";
 import { useLocalStore } from "@renderer/context/local-state";
-import { produceUserSettings, useSettingsStore } from "@renderer/context/settings-store";
+import {
+  produceUserSettings,
+  useSettingsStore,
+} from "@renderer/context/settings-store";
 import { useBackup, useWorkspaceExport } from "@renderer/hooks/query";
 import { Language } from "@renderer/types/lang";
 import { Archive, FolderDown, Languages } from "lucide-react";
@@ -23,8 +26,13 @@ export function WorkspaceSettings() {
   const dataBackup = useBackup();
   const alwaysShowWordCount = useLocalStore((s) => s.alwaysShowWordCount);
   const setAlwaysShowWordCount = useLocalStore((s) => s.setAlwaysShowWordCount);
-  const indentSize = useSettingsStore(s=>s.settings.editor.codeBlockIndentSize);
-  const setIndentSize = (val: number) => produceUserSettings(d=>{d.editor.codeBlockIndentSize=val})
+  const indentSize = useSettingsStore(
+    (s) => s.settings.editor.codeBlockIndentSize,
+  );
+  const setIndentSize = (val: number) =>
+    produceUserSettings((d) => {
+      d.editor.codeBlockIndentSize = val;
+    });
   // const startup = useSettingsStore(s=>s.settings.startup.behavior);
   // const startupChange = (val: string) => {
   //   updateUserSettings((old) => produce(old, draft => {
@@ -74,7 +82,9 @@ export function WorkspaceSettings() {
       </div>
       {/* <span>{t("startupBehaviourText")}</span>
       <StartupBehvaiourSelect value={startup} onValueCahnge={startupChange}/> */}
-      <Label htmlFor="always-show-word-count-switch">{t("alwaysShowWordCount")}</Label>
+      <Label htmlFor="always-show-word-count-switch">
+        {t("alwaysShowWordCount")}
+      </Label>
       <Switch
         checked={alwaysShowWordCount}
         onCheckedChange={setAlwaysShowWordCount}
@@ -83,11 +93,20 @@ export function WorkspaceSettings() {
       />
       <div className="flex flex-col gap-1">
         <Label>{t("codeBlockIndentSize")}</Label>
-        <span className="text-foreground/70 text-sm">{t("codeBlockIndentSizeDescription")}</span>
+        <span className="text-foreground/70 text-sm">
+          {t("codeBlockIndentSizeDescription")}
+        </span>
       </div>
-      <Input type="number" defaultValue={indentSize} className="w-12 place-self-end hide-number-arrows" onChange={(inp)=>{
-        if(inp.target.value && !Number.isNaN(parseInt(inp.target.value))) setIndentSize(parseInt(inp.target.value)) 
-      }} id="code-block-indent-size-input"/>
+      <Input
+        type="number"
+        defaultValue={indentSize}
+        className="w-12 place-self-end hide-number-arrows"
+        onChange={(inp) => {
+          if (inp.target.value && !Number.isNaN(parseInt(inp.target.value)))
+            setIndentSize(parseInt(inp.target.value));
+        }}
+        id="code-block-indent-size-input"
+      />
     </div>
   );
 }

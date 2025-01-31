@@ -10,9 +10,9 @@ const uploadEmbed = async (file: File) => {
 };
 
 export const isImageFile = (file: File) => {
-  if(file.type.startsWith("image/")) return true;
+  if (file.type.startsWith("image/")) return true;
   return false;
-}
+};
 
 export const createImageNode = (file: File, view: EditorView, pos: number) => {
   // create placeholder node
@@ -28,7 +28,7 @@ export const createImageNode = (file: File, view: EditorView, pos: number) => {
 
   uploadEmbed(file).then((embed) => {
     const tr = view.state.tr;
-    if(!embed) return;
+    if (!embed) return;
     tr.doc.descendants((node, pos) => {
       if (node.type.name === "dwimage" && node.attrs.pendingId === id) {
         tr.setNodeAttribute(pos, "src", `embed://${embed.id}`);

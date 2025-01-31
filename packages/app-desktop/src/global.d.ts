@@ -3,7 +3,7 @@
 /// <reference types="./electron/preload/types.d.ts"/>
 
 import { type WebUtils } from "electron";
-import type { DarkwriteElectronAPI as NewAPI } from "./electron/ipc/api"
+import type { DarkwriteElectronAPI as NewAPI } from "./electron/ipc/api";
 import { type InferPreloadAPI } from "./electron/types/ipc-handler";
 
 /**
@@ -16,7 +16,7 @@ interface WindowControlsOverlay extends EventTarget {
   ongeometrychange: ((this: WindowControlsOverlay, e: Event) => unknown) | null;
 }
 
-type APIType = InferPreloadAPI<typeof NewAPI>
+type APIType = InferPreloadAPI<typeof NewAPI>;
 
 declare global {
   type Result<T, E> =
@@ -24,9 +24,9 @@ declare global {
     | { value?: undefined; error: E };
 
   interface Window {
-    api: APIType
+    api: APIType;
     webUtils: WebUtils;
-    initPreload: PreloadInitFunction
+    initPreload: PreloadInitFunction;
   }
 
   interface Navigator {

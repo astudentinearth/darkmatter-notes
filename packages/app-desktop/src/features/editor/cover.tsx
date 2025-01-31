@@ -71,28 +71,27 @@ export function EditorCover(props: {
 
   const addCover = async () => {
     try {
-      console.log(">>> Adding cover image")
+      console.log(">>> Adding cover image");
       const embed = await uploadImage();
-      console.log(">>> Added cover image: here's what we got")
-      console.table(embed)
+      console.log(">>> Added cover image: here's what we got");
+      console.table(embed);
       setEditorCustomizations({
         ...customizations,
         coverEmbedId: embed.id,
       });
     } catch (error) {
-      console.error(error)
+      console.error(error);
       /**empty */
     }
   };
 
-  const addIcon = ()=>{
+  const addIcon = () => {
     update({ id, icon: "1f4c4" });
-  }
+  };
 
-  const removeIcon = ()=>{
+  const removeIcon = () => {
     update({ id, icon: "" });
-    
-  }
+  };
 
   return (
     <div
@@ -101,7 +100,7 @@ export function EditorCover(props: {
       className={cn(
         "flex-shrink-0 flex flex-col max-w-[984px] w-full p-4 pb-2 px-20 gap-2",
         !note.isTrashed && note.icon !== "" && props.hasCover && "mt-[-50px]",
-        !note.isTrashed && note.icon !== "" && !props.hasCover && "pt-16"
+        !note.isTrashed && note.icon !== "" && !props.hasCover && "pt-16",
       )}
     >
       {note.isTrashed && (
@@ -171,7 +170,7 @@ export function EditorCover(props: {
           className={cn(
             "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",
             mouseOver && !props.hasCover && "opacity-100",
-            props.hasCover && "hidden"
+            props.hasCover && "hidden",
           )}
         >
           <ImagePlus size={18} />

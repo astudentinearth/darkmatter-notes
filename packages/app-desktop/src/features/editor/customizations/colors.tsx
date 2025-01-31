@@ -20,11 +20,15 @@ const setText = _.debounce((fg: string) => {
 
 export default function ColorsView() {
   const colors = useEditorState((s) => s.customizations);
-  const {t} = useTranslation(undefined, {keyPrefix: "editor.customizations"});
+  const { t } = useTranslation(undefined, {
+    keyPrefix: "editor.customizations",
+  });
   return (
     <div className="rounded-2xl p-2 flex flex-col gap-2">
       <div className="flex items-center gap-1">
-        <span className="flex-shrink-0 font-medium">{t("backgroundColorText")}</span>
+        <span className="flex-shrink-0 font-medium">
+          {t("backgroundColorText")}
+        </span>
         <div className="w-full"></div>
         <ColorPicker
           value={colors.backgroundColor}
@@ -41,7 +45,9 @@ export default function ColorsView() {
         </Button>
       </div>
       <div className="flex items-center gap-1">
-        <span className="flex-shrink-0 font-medium">{t("foregroundColorText")}</span>
+        <span className="flex-shrink-0 font-medium">
+          {t("foregroundColorText")}
+        </span>
         <div className="w-full"></div>
         <ColorPicker
           value={colors.textColor}

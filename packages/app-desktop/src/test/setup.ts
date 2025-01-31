@@ -4,23 +4,22 @@ import { afterEach } from "vitest";
 
 vi.mock("zustand");
 
-vi.mock("node:fs")
-vi.mock("node:fs/promises")
+vi.mock("node:fs");
+vi.mock("node:fs/promises");
 
-vi.mock("@electron-toolkit/utils", ()=>({
+vi.mock("@electron-toolkit/utils", () => ({
   is: {
-    dev: true
-  }
-}))
+    dev: true,
+  },
+}));
 
-
-vi.mock("electron", ()=>({
+vi.mock("electron", () => ({
   app: {
-    getPath: (pathType: string)=>{
+    getPath: (pathType: string) => {
       return `/${pathType}/`;
-    }
-  }
-}))
+    },
+  },
+}));
 
 vi.mock("@renderer/lib/api/note", () => ({
   createNote: vi.fn(),
@@ -52,11 +51,9 @@ vi.mock("@renderer/lib/api/backup.ts", () => ({
   },
 }));
 
-vi.mock("@renderer/lib/api/theme.ts", () => ({
-}));
+vi.mock("@renderer/lib/api/theme.ts", () => ({}));
 
-vi.mock("@renderer/lib/api/embed.ts", () => ({
-}));
+vi.mock("@renderer/lib/api/embed.ts", () => ({}));
 
 afterEach(() => {
   cleanup();

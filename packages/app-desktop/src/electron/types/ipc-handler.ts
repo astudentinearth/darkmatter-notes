@@ -2,23 +2,30 @@
 import { type IpcMainInvokeEvent } from "electron";
 import { Promisfy, type OmitFirstParameter } from "@darkwrite/common";
 
-export type IPCMainListener = (event: IpcMainInvokeEvent, ...args: any[]) => (Promise<any>) | (any);
+export type IPCMainListener = (
+  event: IpcMainInvokeEvent,
+  ...args: any[]
+) => Promise<any> | any;
 
 export type IPCMainListenerWithoutEvent = OmitFirstParameter<IPCMainListener>;
 
-export type IPCMainListenerUnion = IPCMainListener | IPCMainListenerWithoutEvent;
+export type IPCMainListenerUnion =
+  | IPCMainListener
+  | IPCMainListenerWithoutEvent;
 
 export type IPCListener<WithEvent extends boolean> = WithEvent extends true
   ? IPCMainListener
   : IPCMainListenerWithoutEvent;
 
 export type GetMainHandlerParams<Handler extends IPCMainListenerUnion> =
-  Parameters<Handler> extends [infer First, ...args: infer Args] ?
-    (First extends Electron.IpcMainInvokeEvent ?
-      Args : Parameters<Handler>
-    ) : []
+  Parameters<Handler> extends [infer First, ...args: infer Args]
+    ? First extends Electron.IpcMainInvokeEvent
+      ? Args
+      : Parameters<Handler>
+    : [];
 
-export type GetPreloadReturnType<Handler extends IPCMainListenerUnion> = Promisfy<ReturnType<Handler>>;
+export type GetPreloadReturnType<Handler extends IPCMainListenerUnion> =
+  Promisfy<ReturnType<Handler>>;
 
 export type IPCPreloadHandler<Handler extends IPCMainListenerUnion> = (
   ...args: GetMainHandlerParams<Handler>

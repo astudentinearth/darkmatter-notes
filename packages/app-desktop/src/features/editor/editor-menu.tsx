@@ -89,7 +89,7 @@ export function EditorMenu() {
           <DropdownMenuItem
             onSelect={async () => {
               const html = await NotesModel.Instance.importFile();
-              if(!html) {
+              if (!html) {
                 console.error("Failed to import note");
                 return;
               }
@@ -109,26 +109,30 @@ export function EditorMenu() {
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
-          className="gap-2 rounded-lg"
-          onSelect={(e)=>{
-            e.preventDefault();
-            editor?.commands.undo();
-          }}>
-            <Undo size={18}/>
+            className="gap-2 rounded-lg"
+            onSelect={(e) => {
+              e.preventDefault();
+              editor?.commands.undo();
+            }}
+          >
+            <Undo size={18} />
             {t("undo")}
           </DropdownMenuItem>
           <DropdownMenuItem
-          className="gap-2 rounded-lg"
-          onSelect={(e)=>{
-            e.preventDefault();
-            editor?.commands.redo();
-          }}>
-            <Redo size={18}/>
+            className="gap-2 rounded-lg"
+            onSelect={(e) => {
+              e.preventDefault();
+              editor?.commands.redo();
+            }}
+          >
+            <Redo size={18} />
             {t("redo")}
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <div className="px-2 text-sm text-foreground/75">
-            <span className="block">{t("wordCount", { count: count.words })}</span>
+            <span className="block">
+              {t("wordCount", { count: count.words })}
+            </span>
           </div>
         </DropdownMenuContent>
       </DropdownMenu>

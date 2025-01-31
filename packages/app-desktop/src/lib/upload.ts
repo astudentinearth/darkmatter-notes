@@ -14,12 +14,12 @@ export function uploadImage(): Promise<ResolvedEmbed> {
       try {
         const embed = await api.create(path);
         const resolved = await api.resolve(embed.id);
-        if(resolved) resolve(resolved);
-        else throw new Error("Could not resolve embed.")
+        if (resolved) resolve(resolved);
+        else throw new Error("Could not resolve embed.");
       } catch (error) {
         reject(error);
       }
-    };  
+    };
     inp.onchange = change;
     inp.click();
   });

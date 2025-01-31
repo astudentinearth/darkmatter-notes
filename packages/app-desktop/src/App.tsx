@@ -17,7 +17,7 @@ const EditorRootWrapper = () => {
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
-  
+
   useEffect(() => {
     window.api.settings.load().then((prefs) => {
       if (prefs == null) throw new Error("Could not load user settings");

@@ -1,4 +1,9 @@
-import { Select, SelectContent, SelectItem, SelectTrigger } from "@renderer/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+} from "@renderer/components/ui/select";
 import {
   updateUserSettings,
   useSettingsStore,
@@ -18,10 +23,8 @@ export function ThemeMenu() {
       }),
     );
   return (
-    <Select value={themeId} onValueChange={val=>setTheme(val)}>
-      <SelectTrigger>
-          {theme?.name ?? "Choose theme"}
-      </SelectTrigger>
+    <Select value={themeId} onValueChange={(val) => setTheme(val)}>
+      <SelectTrigger>{theme?.name ?? "Choose theme"}</SelectTrigger>
       <SelectContent className="rounded-lg bg-view-2/70 p-1 max-h-[60vh] overflow-y-auto main-view">
         {themes.map((theme) => (
           <SelectItem

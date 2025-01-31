@@ -41,7 +41,6 @@ jobs:
       - name: Build @darkwrite/ui
         run: yarn build:ui
 
-      
       - name: Run tests
         run: yarn test:all
         continue-on-error: true

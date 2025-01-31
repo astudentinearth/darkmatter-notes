@@ -35,4 +35,4 @@ export class ExporterModel {
     }
     await API.finish();
   }
-};
+}

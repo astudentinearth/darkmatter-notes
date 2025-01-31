@@ -12,13 +12,13 @@
 
 ## Requirements
 
--   yarn
--   git
--   Visual C++ Build Tools
--   node-gyp
--   Node 20
--   Windows 10 or later (no testing was done for older versions)
--   a good internet connection to download dependencies
+- yarn
+- git
+- Visual C++ Build Tools
+- node-gyp
+- Node 20
+- Windows 10 or later (no testing was done for older versions)
+- a good internet connection to download dependencies
 
 ## Building
 
@@ -57,9 +57,9 @@ Clone the repository to the root of your `C:\` drive and run the build commands 
 
 ## Requirements
 
--   yarn
--   Node 20 (using nvm is recommended)
--   git
+- yarn
+- Node 20 (using nvm is recommended)
+- git
 
 ## Building
 
@@ -82,9 +82,9 @@ You can find your AppImage in `packages/app-desktop/release/<version>/`
 
 ## Requirements
 
--   yarn
--   Node 20
--   git (install whatever XCode provides)
+- yarn
+- Node 20
+- git (install whatever XCode provides)
 
 ## Building
 

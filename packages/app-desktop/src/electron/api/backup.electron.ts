@@ -37,13 +37,13 @@ export const HTMLExporterAPI = {
   async pushToExporterCache(filename: string, content: string) {
     try {
       if (!(await fse.pathExists(EXPORTER_CACHE_DIR))) {
-        console.log("no cache")
+        console.log("no cache");
         throw new Error("Export cache was not initialized.");
       }
-      console.log("writing")
+      console.log("writing");
       await fse.writeFile(join(EXPORTER_CACHE_DIR, filename), content);
     } catch (error) {
-      console.log("something went wrong")
+      console.log("something went wrong");
       logError(error);
     }
   },
@@ -99,7 +99,9 @@ export const BackupAPI = {
         (await fse.exists(join(RESTORE_CACHE_DIR, "data.db"))) &&
         (await fse.exists(join(RESTORE_CACHE_DIR, "settings.json")));
       if (!isValidBackup)
-        throw new InvalidFileFormatError("This does not seem to be a Darkwrite backup archive.");
+        throw new InvalidFileFormatError(
+          "This does not seem to be a Darkwrite backup archive.",
+        );
 
       // before we do anything else, we will rename the old directory so we can rollback if something goes wrong.
       try {
@@ -139,13 +141,13 @@ export const BackupAPI = {
       });
     }
   },
-  async openArchive(){
+  async openArchive() {
     const result = await openFile({
-        title: "Choose a backup",
-        filters: [{ extensions: ["zip"], name: "Zip archive" }],
-        properties: ["openFile", "dontAddToRecent"],
-      });
-      if (result.canceled) return null;
-      else return result.filePaths[0];
-  }
+      title: "Choose a backup",
+      filters: [{ extensions: ["zip"], name: "Zip archive" }],
+      properties: ["openFile", "dontAddToRecent"],
+    });
+    if (result.canceled) return null;
+    else return result.filePaths[0];
+  },
 };

@@ -19,7 +19,7 @@ const extensions = [...defaultExtensions, slashCommand];
 
 export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
   const fontStyle = useEditorState((state) => state.customizations.font);
-  const {mutate: createNew} = useCreateNoteMutation();
+  const { mutate: createNew } = useCreateNoteMutation();
 
   return (
     <EditorContent
@@ -35,14 +35,14 @@ export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
       editorProps={{
         handleDOMEvents: {
           keydown: (_view, event) => {
-            console.log("handling keydown")
+            console.log("handling keydown");
             if (event.key === "n" && (event.metaKey || event.ctrlKey)) {
-              console.log("first")
+              console.log("first");
               createNew(undefined);
               event.preventDefault();
               return true;
             }
-            return handleCommandNavigation(event)
+            return handleCommandNavigation(event);
           },
         },
         attributes: {

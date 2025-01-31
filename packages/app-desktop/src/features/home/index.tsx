@@ -64,12 +64,17 @@ export function HomePage() {
                   {note.title}
                 </span>
                 <span className="text-foreground/50">
-                  {note.modified.toLocaleString(i18n.resolvedLanguage != null ? [i18n.resolvedLanguage] : undefined, {
-                    day: "2-digit",
-                    month: "short",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
+                  {note.modified.toLocaleString(
+                    i18n.resolvedLanguage != null
+                      ? [i18n.resolvedLanguage]
+                      : undefined,
+                    {
+                      day: "2-digit",
+                      month: "short",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    },
+                  )}
                 </span>
               </Button>
             ))

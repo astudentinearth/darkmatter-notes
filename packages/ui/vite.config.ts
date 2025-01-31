@@ -15,10 +15,10 @@ export default defineConfig({
     },
     copyPublicDir: false,
   },
-  plugins: [react(), dts({tsconfigPath: "./tsconfig.lib.json"})],
+  plugins: [react(), dts({ tsconfigPath: "./tsconfig.lib.json" })],
   resolve: {
     alias: {
       "@lib": resolve("lib/"),
     },
-  }
+  },
 });

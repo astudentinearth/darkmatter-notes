@@ -1,9 +1,4 @@
-import {
-  app,
-  Menu,
-  MenuItemConstructorOptions,
-  shell
-} from "electron";
+import { app, Menu, MenuItemConstructorOptions, shell } from "electron";
 
 const template: Array<MenuItemConstructorOptions> = [
   {
@@ -39,5 +34,4 @@ export function initAppMenu() {
 
 export function showAppMenu() {
   Menu.getApplicationMenu()?.popup();
-
 }

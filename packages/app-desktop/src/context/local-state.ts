@@ -53,7 +53,7 @@ export const useLocalStore = create<localStore & localStoreAction>()(
           sidebarWidth: calculateWidth(state.sidebarWidth, change),
         })),
       setSpellcheck: (useSpellcheck) => set({ useSpellcheck }),
-      setAlwaysShowWordCount: (val)=>set({alwaysShowWordCount: val})
+      setAlwaysShowWordCount: (val) => set({ alwaysShowWordCount: val }),
     }),
     {
       name: "local-state",

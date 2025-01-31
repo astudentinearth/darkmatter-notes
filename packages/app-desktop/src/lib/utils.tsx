@@ -13,8 +13,8 @@ export function fromUnicode(unicode: string) {
   return String.fromCodePoint(...points.filter((p) => !isNaN(p)));
 }
 
-export function getNoteIcon(icon?: string, className?: string){
-  if(!icon) return <FileText size={18} className={className}/>;
+export function getNoteIcon(icon?: string, className?: string) {
+  if (!icon) return <FileText size={18} className={className} />;
   return fromUnicode(icon);
 }
 
@@ -31,5 +31,3 @@ export function hexToHslVariable(hexstr: string) {
   const hsl = hex.hsl(sanitized);
   return `${hsl[0]} ${hsl[1]}% ${hsl[2]}%`;
 }
-
-

@@ -56,7 +56,7 @@ const process = proc.spawn(`yarn`, [scripts[os.type()]], {
 
 process.on("error", (err) => {
   console.error("\u001b[31;1m✘ Build failed: \u001b[0m" + err.message);
-  if(err.stack) console.error(err.stack);
+  if (err.stack) console.error(err.stack);
 });
 
 process.on("exit", () => {

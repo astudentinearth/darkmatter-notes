@@ -24,7 +24,7 @@ export default [
       "**/out/**",
       "**/.next/**",
       "**/coverage/**",
-      "**/dist-electron/**"
+      "**/dist-electron/**",
     ],
   },
   ...fixupConfigRules(
@@ -56,14 +56,14 @@ export default [
     languageOptions: {
       globals: {
         ...globals.browser,
-        ...globals.node
+        ...globals.node,
       },
-    }
+    },
   },
   {
     files: ["**/*.cjs"],
     rules: {
-      "@typescript-eslint/no-require-imports": "off"
-    }
-  }
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ];

@@ -55,7 +55,7 @@ export class NotesModel implements INotesModel {
   async getContents(id: string) {
     try {
       const res = await this.API.getContents(id);
-      if(res == null) throw "";
+      if (res == null) throw "";
       return { value: res };
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -90,7 +90,7 @@ export class NotesModel implements INotesModel {
   async getNotes() {
     try {
       const res = await this.API.getAll();
-      if(res == null) throw "";
+      if (res == null) throw "";
       return { value: res };
     } catch (error) {
       if (error instanceof Error) return { error };
@@ -99,11 +99,11 @@ export class NotesModel implements INotesModel {
   }
 
   async trash(id: string) {
-    await this.API.update({id, isTrashed: true});
+    await this.API.update({ id, isTrashed: true });
   }
 
   async restore(id: string) {
-    await this.API.update({id, isTrashed: false});
+    await this.API.update({ id, isTrashed: false });
   }
 
   async getNote(id: string) {

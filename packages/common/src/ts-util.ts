@@ -21,11 +21,14 @@ export type Predicate<ValueType = unknown, ArgsType extends any[] = []> = (
   ...args: ArgsType
 ) => boolean;
 
-export type IndexedPredicate<
-  ValueType = unknown,
-> = Predicate<ValueType, [index: number]>;
+export type IndexedPredicate<ValueType = unknown> = Predicate<
+  ValueType,
+  [index: number]
+>;
 
-export type Promisfy<Type> = Type extends Promise<Awaited<Type>> ? Type : Promise<Type>;
+export type Promisfy<Type> =
+  Type extends Promise<Awaited<Type>> ? Type : Promise<Type>;
 
-export type PromisfyFunction<Func extends (...args: any[]) => any> = 
-  (...args: Parameters<Func>) => Promisfy<ReturnType<Func>>;
+export type PromisfyFunction<Func extends (...args: any[]) => any> = (
+  ...args: Parameters<Func>
+) => Promisfy<ReturnType<Func>>;

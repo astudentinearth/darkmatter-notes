@@ -1,13 +1,18 @@
 # 0.4.0-alpha.3
+
 ## ✨ Improvements and fixes
+
 - Fixed the bug which prevented you from creating child items in lists (sinking list items) by hitting Tab
 - Fix links to pages being unreadable inside blockquotes
 
 # 0.4.0-alpha.2
+
 ## 🚨 This update fixes the image upload issues in v0.4.0-alpha.1
 
 # 0.4.0-alpha.1
+
 ## 🌟 Features
+
 - You can now toggle todo, bullet and numbered lists directly from the floating menu
 - Added block quote button to floating menu
 - Word count can now be always shown in the bottom-right corner of the window. (You can enable or disable it in settings)
@@ -17,26 +22,33 @@
   - Hitting `Ctrl/Cmd` + `⬇️Down Arrow` exits the code block immediately, even if you are on the first line
 
 ## ✨ Improvements and fixes
+
 - Fixed 7 places where notes without icons were handled incorrectly
 - Added translations for note customization menu
 - Fixed issue causing system accent color to be always black
 - Updated settings UI style
 
 ## 🛠️ Technical changes
+
 - We developed tools around IPC to accelerate API development and ensure type-safety.
 - Moved built-in themes to `@darkwrite/common`
 
 # 0.3.1-alpha.3
+
 ## 🌟 Features
+
 - Added markdown import
 
 ## ✨ Improvements and fixes
+
 - Notes no longer have an icon by default, you can add or remove it as you wish
 
 # 0.3.0-alpha.2
+
 > Quality of life release before moving onto 1.0.0-alpha
 
 ## 🌟 Features
+
 - Added `Ctrl+n` (or `Cmd+n` on macOS) shortcut to create new notes
 - Changed icon for development builds
 
@@ -55,7 +67,8 @@
 - Added option to follow system accent color on Windows and macOS
 
 ## ✨ Improvements and fixes
-- Removed the empty space to the right side of color pickers 
+
+- Removed the empty space to the right side of color pickers
 - Displaying dates in the recent notes view now follows correct locale
 - Added background blur to context menus, dropdowns, popovers and search
 - Disabled dropping into the title box, which should prevent you from accidentally dropping nodes there

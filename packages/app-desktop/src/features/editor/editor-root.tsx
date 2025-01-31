@@ -29,7 +29,7 @@ export function EditorRoot() {
   const [debouncedValue] = useDebounce(value, 200);
   const rootContainerRef = useRef<HTMLDivElement>(null);
   const editorWidth = useCenteredLayout(984);
-  const wordCountEnabled = useLocalStore(s=>s.alwaysShowWordCount);
+  const wordCountEnabled = useLocalStore((s) => s.alwaysShowWordCount);
   useEffect(() => {
     if (content && customizations) {
       setEditorContent(content);

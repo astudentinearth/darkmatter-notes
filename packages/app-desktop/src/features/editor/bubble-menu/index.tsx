@@ -18,10 +18,10 @@ export default function Bubble() {
     >
       <FormattingButtons />
       <div className="w-[1px] bg-border"></div>
-      <BubbleLink/>
+      <BubbleLink />
       <div className="w-[1px] bg-border"></div>
       <HeadingSelector open={headingOpen} setOpen={setHeadingOpen} />
-      <ListSelector open={listOpen} setOpen={setListOpen}/>
+      <ListSelector open={listOpen} setOpen={setListOpen} />
     </EditorBubble>
   );
 }

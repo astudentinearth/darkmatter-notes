@@ -11,9 +11,12 @@
   "type": "module",
   "license": "AGPL-3.0-or-later",
   "main": "dist-electron/main.js",
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "node ./darkwrite-builder.js",
+    "build": "bun ./darkwrite-builder.js",
     "build:pre": "npm-run-all --serial licenses build:common build:vite",
     "build:common": "yarn workspace @darkwrite/common build",
     "build:vite": "vite build",
@@ -21,7 +24,7 @@
     "format": "prettier . --write",
     "test": "vitest run",
     "test:watch": "vitest watch",
-    "test:coverage": "vitest run --coverage",
+    "coverage": "vitest run --coverage",
     "licenses": "generate-license-file --input package.json --output THIRDPARTY.txt --overwrite",
     "_postinstall": "electron-builder install-app-deps",
     "install_app_deps": "electron-builder install-app-deps",
@@ -33,11 +36,11 @@
     "rebuild": "electron-rebuild -f -w better-sqlite3",
     "tscheck:app": "tsc --noEmit --project tsconfig.app.json",
     "tscheck:main": "tsc --noEmit --project tsconfig.node.json",
-    "tscheck": "npm-run-all --serial tscheck:app tscheck:main"
+    "typecheck": "npm-run-all --serial tscheck:app tscheck:main"
   },
   "dependencies": {
-    "@darkwrite/common": "workspace:^",
-    "@darkwrite/ui": "workspace:^",
+    "@darkwrite/common": "*",
+    "@darkwrite/ui": "*",
     "@electron-toolkit/preload": "^3.0.1",
     "@electron-toolkit/utils": "^3.0.0",
     "@emoji-mart/data": "^1.2.1",

@@ -1,7 +1,7 @@
 {
   "name": "@darkwrite/ui",
   "private": true,
-  "version": "1.0.0-alpha.1",
+  "version": "0.0.0",
   "type": "module",
   "main": "./dist/ui.js",
   "types": "./dist/index.d.ts",
@@ -13,7 +13,7 @@
     "build:vite": "vite build",
     "build:tsc": "tsc -b ./tsconfig.lib.json",
     "dev": "vite build --watch",
-    "tscheck": "tsc --noEmit --project tsconfig.lib.json"
+    "typecheck": "tsc --noEmit --project tsconfig.lib.json"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",

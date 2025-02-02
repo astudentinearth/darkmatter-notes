@@ -10,6 +10,7 @@ on:
       - "packages/*/package.json"
       - "!*.md"
       - "!./**/*.md"
+      - ".github/workflows/test-unit.yml"
   workflow_dispatch:
 
 env:
@@ -29,26 +30,30 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Enable corepack
         run: corepack enable
 
       - name: Install dependencies
-        run: yarn
+        run: bun install
 
       - name: Build @darkwrite/common
-        run: yarn build:common
+        run: bun run --filter "@darkwrite/common" build
 
       - name: Build @darkwrite/ui
-        run: yarn build:ui
+        run: bun run --filter "@darkwrite/ui" build
 
       - name: Run tests
-        run: yarn test:all
+        run: bun run test
         continue-on-error: true
 
       - name: Check types
-        run: yarn tscheck:all
+        run: bun typecheck
         continue-on-error: true
 
       - name: Lint
-        run: yarn lint
+        run: bun lint
         continue-on-error: true

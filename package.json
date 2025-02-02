@@ -2,14 +2,13 @@
   "name": "darkwrite",
   "version": "0.4.0-alpha.3",
   "description": "",
+  "private": true,
   "scripts": {
-    "test:all": "yarn workspaces foreach -A run test",
-    "tscheck:all": "yarn workspaces foreach -A run tscheck",
-    "coverage:all": "yarn workspaces foreach -A run test:coverage",
-    "dev": "concurrently \" yarn workspace @darkwrite/common watch \"  \" yarn workspace @darkwrite/app-desktop dev  \"",
+    "test": "bun run --filter '*' test",
+    "typecheck": "yarn workspaces foreach -A run tscheck",
+    "coverage": "yarn workspaces foreach -A run test:coverage",
+    "dev": "bun run --filter '@darkwrite/common' --filter '@darkwrite/app-desktop' dev",
     "build:desktop": "yarn workspace @darkwrite/app-desktop build",
-    "build:common": "yarn workspace @darkwrite/common build",
-    "build:ui": "yarn workspace @darkwrite/ui build",
     "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
     "format": "prettier . --write"
   },
@@ -34,5 +33,6 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "packageManager": "yarn@4.6.0"
 }

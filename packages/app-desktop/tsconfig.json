@@ -1,19 +1,23 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.node.json"
-    }
-  ],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
       "@renderer/*": ["src/*"],
       "@main/*": ["src/electron/*"]
     },
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
+    "strict": true,
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "target": "ESNext",
+    "module": "ESNext",
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "emitDecoratorMetadata": true
+  },
+  "ts-node": {
+    "esm": true
   }
 }

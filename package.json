@@ -5,10 +5,10 @@
   "private": true,
   "scripts": {
     "test": "bun run --filter '*' test",
-    "typecheck": "yarn workspaces foreach -A run tscheck",
-    "coverage": "yarn workspaces foreach -A run test:coverage",
+    "typecheck": "bun run --filter '*' typecheck",
+    "coverage": "bun run --filter '*' coverage",
     "dev": "bun run --filter '@darkwrite/common' --filter '@darkwrite/app-desktop' dev",
-    "build:desktop": "yarn workspace @darkwrite/app-desktop build",
+    "build:desktop": "bun run --filter '@darkwrite/app-desktop' build",
     "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
     "format": "prettier . --write"
   },

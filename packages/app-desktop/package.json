@@ -34,9 +34,7 @@
     "build:mac": "yarn run build:pre && electron-builder --mac",
     "build:linux": "yarn run build:pre && electron-builder --linux",
     "rebuild": "electron-rebuild -f -w better-sqlite3",
-    "tscheck:app": "tsc --noEmit --project tsconfig.app.json",
-    "tscheck:main": "tsc --noEmit --project tsconfig.node.json",
-    "typecheck": "npm-run-all --serial tscheck:app tscheck:main"
+    "typecheck": "tsc --noEmit --project tsconfig.json"
   },
   "dependencies": {
     "@darkwrite/common": "*",

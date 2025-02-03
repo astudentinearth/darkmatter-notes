@@ -10,6 +10,10 @@
     "outDir": "./dist",
     "skipLibCheck": true,
     "declaration": true,
-    "moduleResolution": "bundler"
+    "moduleResolution": "bundler",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }

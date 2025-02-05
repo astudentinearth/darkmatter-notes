@@ -53,6 +53,13 @@ module.exports = {
         },
         disabled: "hsl(var(--disabled))",
         star: "hsl(var(--star))",
+        theme: {
+          1: "hsl(var(--theme-1))",
+          2: "hsl(var(--theme-2))",
+          3: "hsl(var(--theme-3))",
+          4: "hsl(var(--theme-4))",
+        },
+        alternate: "hsl(var(--bg-alternate))"
       },
       borderRadius: {
         lg: "var(--radius)",

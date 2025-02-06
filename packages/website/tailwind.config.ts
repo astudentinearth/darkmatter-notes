@@ -49,7 +49,15 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
+  			},
+        theme: {
+          1: "hsl(var(--theme-1))",
+          2: "hsl(var(--theme-2))",
+          3: "hsl(var(--theme-3))",
+          4: "hsl(var(--theme-4))",
+        },
+        alternate: "hsl(var(--bg-alternate))",
+        nav: "hsl(var(--bg-nav))"
   		},
   		borderRadius: {
   			lg: 'var(--radius)',

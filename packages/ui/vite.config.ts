@@ -16,7 +16,11 @@ export default defineConfig({
     },
     copyPublicDir: false,
   },
-  plugins: [react(), dts({ tsconfigPath: "./tsconfig.lib.json" }), tailwindcss()],
+  plugins: [
+    react(),
+    dts({ tsconfigPath: "./tsconfig.lib.json" }),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
       "@lib": resolve("lib/"),

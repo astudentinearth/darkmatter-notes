@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,7 +16,7 @@ export default defineConfig({
     },
     copyPublicDir: false,
   },
-  plugins: [react(), dts({ tsconfigPath: "./tsconfig.lib.json" })],
+  plugins: [react(), dts({ tsconfigPath: "./tsconfig.lib.json" }), tailwindcss()],
   resolve: {
     alias: {
       "@lib": resolve("lib/"),

@@ -1,17 +1,6 @@
 {
   "name": "darkwrite",
   "version": "0.4.0-alpha.3",
-  "description": "",
-  "private": true,
-  "scripts": {
-    "test": "bun run --filter '*' test",
-    "typecheck": "bun run --filter '*' typecheck",
-    "coverage": "bun run --filter '*' coverage",
-    "dev": "bun run --filter '@darkwrite/common' --filter '@darkwrite/app-desktop' dev",
-    "build:desktop": "bun run --filter '@darkwrite/app-desktop' build",
-    "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
-    "format": "prettier . --write"
-  },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
     "@eslint/eslintrc": "^3.2.0",
@@ -31,18 +20,24 @@
     "vite-tsconfig-paths": "^5.1.0",
     "vitest": "^3.0.5"
   },
-  "workspaces": [
-    "packages/*"
-  ],
-  "packageManager": "yarn@4.6.0",
-  "dependencies": {
-    "nanoid": "3.3.8",
-    "vite": "^5.4.12"
-  },
+  "description": "",
   "overrides": {
-    "vite": "^5.4.12",
     "nanoid": "^3.3.8",
     "katex": "^0.16.21",
     "vitest": "^3.0.5"
-  }
+  },
+  "packageManager": "yarn@4.6.0",
+  "private": true,
+  "scripts": {
+    "test": "bun run --filter '*' test",
+    "typecheck": "bun run --filter '*' typecheck",
+    "coverage": "bun run --filter '*' coverage",
+    "dev": "bun run --filter '@darkwrite/common' --filter '@darkwrite/app-desktop' dev",
+    "build:desktop": "bun run --filter '@darkwrite/app-desktop' build",
+    "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
+    "format": "prettier . --write"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

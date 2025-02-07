@@ -14,7 +14,7 @@ import { useDebounce } from "use-debounce";
 import { EditorCover } from "./cover";
 import { TextEditor } from "./text-editor";
 import { CoverImage } from "./cover-image";
-import "./css/editor.css";
+//import "./css/editor.css";
 import { WordCounter } from "./word-count";
 import { useLocalStore } from "@renderer/context/local-state";
 

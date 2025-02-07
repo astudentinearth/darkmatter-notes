@@ -3,11 +3,8 @@
 @import url("./drag-handle.css");
 @import url("./text.css");
 @import url("./command.css");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@config "../../../../tailwind.config.cjs"
+@import "tailwindcss";
+@reference "../../../globals.css";
 .ProseMirror {
   @apply px-4 pt-0 pb-16 min-h-96 text-foreground;
   .react-renderer {

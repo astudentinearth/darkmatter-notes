@@ -3,7 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./i18n";
 import "./globals.css";
-import "./prose.css";
 import data from "@emoji-mart/data";
 import { init } from "emoji-mart";
 

@@ -2,44 +2,89 @@
 
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
-@plugin 'postcss-import';
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+:root {
+  --background: hsl(0 0% 7%);
+  --foreground: hsl(0 0% 100%);
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-  --color-primary-text: hsl(var(--primary-text));
+  --view-1: hsl(0 0% 10%);
+  --view-2: hsl(0 0% 15%);
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --card: hsl(0 0% 13%);
+  --card-foreground: hsl(0 0% 94%);
 
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --popover: hsl(0 0% 9%);
+  --popover-foreground: hsl(0 0% 94%);
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
+  --primary: hsl(242 42% 31%);
+  --primary-foreground: hsl(0 0% 100%);
+  --primary-text: hsl(242 58% 62%);
 
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
+  --secondary: hsl(0 0% 20%);
+  --secondary-foreground: hsl(0 0% 100%);
 
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
+  --muted: hsl(0 0% 17%);
+  --muted-foreground: hsl(0 0% 89%);
 
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
+  --accent: hsl(217.2 32.6% 17.5%);
+  --accent-foreground: hsl(210 40% 98%);
 
-  --color-view-1: hsl(var(--view-1));
-  --color-view-2: hsl(var(--view-2));
+  --destructive: hsl(0 51% 55%);
+  --destructive-foreground: hsl(210 40% 98%);
 
-  --color-disabled: hsl(var(--disabled));
-  --color-star: hsl(var(--star));
+  --disabled: hsl(0 0% 22%);
+
+  --border: hsl(0 0% 26%);
+  --input: hsl(217.2 32.6% 17.5%);
+
+  --radius: 0.5rem;
+
+  --star: 50 97% 63%;
+
+  /* generic fonts until its loaded from settings */
+  --darkwrite-sans: "Segoe UI", "Noto Sans", "Roboto", sans-serif;
+  --darkwrite-serif: "Times New Roman", "Noto Serif", "Liberation Serif",
+    serif;
+  --darkwrite-mono: "Cascadia Code", "Courier New", "Liberation Mono",
+    monospace;
+  --font-ui: "";
+}
+
+@theme inline {
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-text: var(--primary-text);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-view-1: var(--view-1);
+  --color-view-2: var(--view-2);
+
+  --color-disabled: var(--disabled);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -95,54 +140,9 @@
   }
 }
 
+
+
 @layer base {
-  :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 100%;
-
-    --view-1: 0 0% 10%;
-    --view-2: 0 0% 15%;
-
-    --card: 0 0% 13%;
-    --card-foreground: 0 0% 94%;
-
-    --popover: 0 0% 9%;
-    --popover-foreground: 0 0% 94%;
-
-    --primary: 242 42% 31%;
-    --primary-foreground: 0 0% 100%;
-    --primary-text: 242 58% 62%;
-
-    --secondary: 0 0% 20%;
-    --secondary-foreground: 0 0% 100%;
-
-    --muted: 0 0% 17%;
-    --muted-foreground: 0 0% 89%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 51% 55%;
-    --destructive-foreground: 210 40% 98%;
-
-    --disabled: 0 0% 22%;
-
-    --border: 0 0% 26%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 50%;
-
-    --radius: 0.5rem;
-
-    --star: 50 97% 63%;
-
-    /* generic fonts until its loaded from settings */
-    --darkwrite-sans: "Segoe UI", "Noto Sans", "Roboto", sans-serif;
-    --darkwrite-serif: "Times New Roman", "Noto Serif", "Liberation Serif",
-      serif;
-    --darkwrite-mono: "Cascadia Code", "Courier New", "Liberation Mono",
-      monospace;
-    --font-ui: "";
-  }
 
   :root .dark {
     --border: 0 0% 26%;

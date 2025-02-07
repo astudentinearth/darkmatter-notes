@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@reference "../../../globals.css";
+
 .drag-handle {
   position: fixed;
   opacity: 1;

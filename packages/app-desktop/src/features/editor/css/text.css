@@ -1,3 +1,6 @@
+@import "tailwindcss";
+@reference "../../../globals.css";
+
 strong {
   color: inherit !important;
 }

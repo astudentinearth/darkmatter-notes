@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import electron from "vite-plugin-electron/simple";
 import { swcPlugin, externalizeDepsPlugin } from "electron-vite";
+import tailwind from "@tailwindcss/vite"
 
 export default defineConfig({
   plugins: [
@@ -28,6 +29,7 @@ export default defineConfig({
         input: path.resolve("src/electron/preload/preload.ts"),
       },
     }),
+    tailwind()
   ],
   resolve: {
     alias: {

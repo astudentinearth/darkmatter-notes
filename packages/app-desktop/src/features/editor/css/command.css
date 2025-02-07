@@ -10,7 +10,7 @@
 }
 
 #slash-command::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--secondary));
+  background-color: var(--secondary);
   border-radius: 0.3em;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .scrollbar::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--secondary));
+  background-color: var(--secondary);
   border-radius: 0.3em;
 }
 

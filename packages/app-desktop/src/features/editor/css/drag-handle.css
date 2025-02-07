@@ -16,12 +16,12 @@
   cursor: grab;
 
   &:hover {
-    background-color: hsl(var(--secondary) / 50);
+    @apply bg-secondary/50;
     transition: background-color 0.2s;
   }
 
   &:active {
-    background-color: hsl(var(--secondary) / 75);
+    @apply bg-secondary/75;
     transition: background-color 0.2s;
     cursor: grabbing;
   }

@@ -42,7 +42,7 @@
 
 .ProseMirror:not(.dragging) .ProseMirror-selectednode {
   outline: none !important;
-  background: hsl(var(--primary) / 0.1);
+  @apply bg-primary/10;
   transition: background-color 0.2s;
   box-shadow: none;
   border-radius: 8px;

@@ -18,7 +18,7 @@ export function ColorPicker(props: ColorPickerProps) {
       <PopoverTrigger asChild>
         <Button
           style={{
-            background: `${props.value || "hsl(var(--secondary))"}`,
+            background: `${props.value || "var(--secondary)"}`,
           }}
           disabled={props.disabled}
           className={cn(

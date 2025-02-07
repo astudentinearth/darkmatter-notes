@@ -220,7 +220,7 @@
     -webkit-app-region: drag !important;
   }
   .border-default {
-    border: 1px solid hsl(var(--border));
+    border: 1px solid var(--border);
   }
   .dw-border {
     @apply border-border;
@@ -272,12 +272,12 @@ body,
 }
 
 .main-view::-webkit-scrollbar-thumb {
-  background-color: hsl(var(--secondary) / 0.75);
+  @apply bg-secondary/75;
   border-radius: 0.3em;
 }
 
 .main-wiew::-webkit-scrollbar-thumb:hover {
-  background-color: hsl(var(--secondary) / 1);
+  @apply bg-secondary;
 }
 
 .hide-number-arrows {

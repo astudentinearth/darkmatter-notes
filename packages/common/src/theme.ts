@@ -22,6 +22,7 @@ export type Theme = {
   star: string;
 };
 
+
 export function isTheme(maybeTheme: unknown): maybeTheme is Theme {
   if (typeof maybeTheme !== "object") return false;
   if (!("id" in maybeTheme && "name" in maybeTheme)) return false;

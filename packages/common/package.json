@@ -9,7 +9,7 @@
     "test:watch": "vitest watch",
     "coverage": "vitest run --coverage",
     "build": "tsup src/index.ts --dts --format esm,cjs",
-    "watch": "tsup src/index.ts --dts --format esm,cjs --watch",
+    "dev": "tsup src/index.ts --dts --format esm,cjs --watch",
     "format": "prettier . --write",
     "tscheck": "tsc --noEmit --project tsconfig.json"
   },

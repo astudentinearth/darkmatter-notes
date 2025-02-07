@@ -1,8 +1,3 @@
-@import url("./image.css");
-@import url("./lists.css");
-@import url("./drag-handle.css");
-@import url("./text.css");
-@import url("./command.css");
 @import "tailwindcss";
 @reference "../../../globals.css";
 .ProseMirror {

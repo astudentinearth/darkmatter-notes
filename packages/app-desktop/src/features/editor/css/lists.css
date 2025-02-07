@@ -19,7 +19,7 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
   place-content: center;
 
   &:hover {
-    background-color: hsl(var(--secondary));
+    background-color: var(--secondary);
   }
 
   &::before {
@@ -34,8 +34,8 @@ ul[data-type="taskList"] li > label input[type="checkbox"] {
   }
 
   &:checked {
-    background: hsl(var(--primary));
-    border-color: hsl(var(--primary));
+    background: var(--primary);
+    border-color: var(--primary);
   }
 
   &:checked::before {

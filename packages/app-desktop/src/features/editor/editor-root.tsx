@@ -14,9 +14,14 @@ import { useDebounce } from "use-debounce";
 import { EditorCover } from "./cover";
 import { TextEditor } from "./text-editor";
 import { CoverImage } from "./cover-image";
-//import "./css/editor.css";
 import { WordCounter } from "./word-count";
 import { useLocalStore } from "@renderer/context/local-state";
+import "./css/editor.css";
+import "./css/image.css";
+import "./css/drag-handle.css";
+import "./css/command.css";
+import "./css/lists.css";
+import "./css/text.css"
 
 export function EditorRoot() {
   const { note, isFetching, isError, content, customizations, spellcheck } =
@@ -62,7 +67,7 @@ export function EditorRoot() {
     );
     rootContainerRef.current.style.setProperty(
       "--dw-editor-foreground",
-      _customizations.textColor || "hsl(var(--foreground))",
+      _customizations.textColor || "var(--foreground)",
     );
   }, [_customizations]);
 

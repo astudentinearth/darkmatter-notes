@@ -31,15 +31,15 @@ export function ThemeHandler() {
       api.getSystemAccentColor().then((color) => {
         console.log(color);
         const accent = hexToHslVariable(color);
-        setGlobalStyle("--primary", accent);
-        setGlobalStyle("--accent", accent);
-        setGlobalStyle("--primary-text", accent);
+        setGlobalStyle("--primary", `hsl(${accent})`);
+        setGlobalStyle("--accent", `hsl(${accent})`);
+        setGlobalStyle("--primary-text", `hsl(${accent})`);
       });
     } else {
       const accent = hexToHslVariable(accentColor);
-      setGlobalStyle("--primary", accent);
-      setGlobalStyle("--accent", accent);
-      setGlobalStyle("--primary-text", accent);
+      setGlobalStyle("--primary", `hsl(${accent})`);
+      setGlobalStyle("--accent", `hsl(${accent})`);
+      setGlobalStyle("--primary-text", `hsl(${accent})`);
     }
 
     if (!theme) return;

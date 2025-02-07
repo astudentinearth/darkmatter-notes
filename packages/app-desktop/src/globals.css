@@ -41,7 +41,7 @@
 
   --radius: 0.5rem;
 
-  --star: 50 97% 63%;
+  --star: hsl(50 97% 63%);
 
   /* generic fonts until its loaded from settings */
   --darkwrite-sans: "Segoe UI", "Noto Sans", "Roboto", sans-serif;
@@ -85,6 +85,7 @@
   --color-view-2: var(--view-2);
 
   --color-disabled: var(--disabled);
+  --color-star: var(--star);
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);

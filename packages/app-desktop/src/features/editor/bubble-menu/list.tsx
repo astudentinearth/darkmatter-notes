@@ -48,7 +48,7 @@ export function ListSelector(props: {
           <ChevronDown size={16} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground data-[state=closed]:!animate-none">
+      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground data-[state=closed]:animate-none!">
         {item(<List />, "Bulleted list", () =>
           editor?.chain().focus().toggleBulletList().run(),
         )}

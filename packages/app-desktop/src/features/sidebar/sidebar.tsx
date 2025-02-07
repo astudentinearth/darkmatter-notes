@@ -27,7 +27,7 @@ export function Sidebar(props: SidebarProps) {
       className={cn("bg-background h-full flex flex-col", props.className)}
       style={{ width: `${width}px` }}
     >
-      <div className="titlebar w-full h-12 bg-background flex-shrink-0 flex [&>button]:flex-shrink-0 p-2 items-center gap-1">
+      <div className="titlebar w-full h-12 bg-background shrink-0 flex [&>button]:shrink-0 p-2 items-center gap-1">
         <HeaderbarButton
           onClick={() => {
             showAppMenu();
@@ -35,14 +35,14 @@ export function Sidebar(props: SidebarProps) {
           data-testid="button-darkwrite"
           title="Menu"
         >
-          <img src="icon64.png" className="flex-shrink-0 w-5 h-5"></img>
+          <img src="icon64.png" className="shrink-0 w-5 h-5"></img>
         </HeaderbarButton>
-        <div className="flex-grow titlebar spacer"></div>
+        <div className="grow titlebar spacer"></div>
         <Button
           data-testid="button-edit-widgets"
           size={"icon32"}
           variant={"ghost"}
-          className="flex-shrink-0 hidden"
+          className="shrink-0 hidden"
           title="Edit sidebar"
           disabled
         >

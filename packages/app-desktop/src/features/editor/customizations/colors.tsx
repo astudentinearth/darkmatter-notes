@@ -26,17 +26,17 @@ export default function ColorsView() {
   return (
     <div className="rounded-2xl p-2 flex flex-col gap-2">
       <div className="flex items-center gap-1">
-        <span className="flex-shrink-0 font-medium">
+        <span className="shrink-0 font-medium">
           {t("backgroundColorText")}
         </span>
         <div className="w-full"></div>
         <ColorPicker
           value={colors.backgroundColor}
           onChange={setBackground}
-          className="flex-shrink-0"
+          className="shrink-0"
         />
         <Button
-          className="flex-shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg"
+          className="shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg"
           size={"icon32"}
           variant={"outline"}
           onClick={() => setBackground("")}
@@ -45,17 +45,17 @@ export default function ColorsView() {
         </Button>
       </div>
       <div className="flex items-center gap-1">
-        <span className="flex-shrink-0 font-medium">
+        <span className="shrink-0 font-medium">
           {t("foregroundColorText")}
         </span>
         <div className="w-full"></div>
         <ColorPicker
           value={colors.textColor}
-          className="w-8 flex-shrink-0"
+          className="w-8 shrink-0"
           onChange={setText}
         />
         <Button
-          className="flex-shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg"
+          className="shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg"
           size={"icon32"}
           variant={"outline"}
           onClick={() => setText("")}

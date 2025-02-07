@@ -45,7 +45,7 @@ const LinkComponent = ({ node, updateAttributes }: any) => {
               if (note) navToNote(id);
               else setOpen(true);
             }}
-            className="link-to-page hover:bg-secondary/75 cursor-pointer select-none rounded-md p-1 py-0.5 transition-colors flex items-center gap-2 my-1 text-[--dw-editor-foreground]"
+            className="link-to-page hover:bg-secondary/75 cursor-pointer select-none rounded-md p-1 py-0.5 transition-colors flex items-center gap-2 my-1 text-(--dw-editor-foreground)"
           >
             {!note ? (
               <File size={18} className="opacity-75" />

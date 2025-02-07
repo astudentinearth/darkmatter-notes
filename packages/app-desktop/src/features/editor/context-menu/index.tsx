@@ -23,7 +23,7 @@ export function EditorContextMenuContent() {
     editor?.commands.deleteSelection();
   };
   return (
-    <ContextMenuContent className="bg-view-2/80 [&>*]:gap-2">
+    <ContextMenuContent className="bg-view-2/80 *:gap-2">
       <ContextMenuItem onSelect={copy}>
         <Copy size={18} /> {t("copy")}
       </ContextMenuItem>

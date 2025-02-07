@@ -54,7 +54,7 @@ export function ThemeSettings() {
           <Button
             title={t("importTooltip")}
             variant={"secondary"}
-            className="w-10 h-10 p-0 flex-shrink-0 border border-border"
+            className="w-10 h-10 p-0 shrink-0 border border-border"
             onClick={() => importMutation.mutateAsync()}
           >
             <FolderClosed size={18} />

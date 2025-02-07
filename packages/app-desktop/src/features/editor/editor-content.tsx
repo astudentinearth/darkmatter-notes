@@ -24,7 +24,7 @@ export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
   return (
     <EditorContent
       className={cn(
-        "p-0 rounded-xl w-full flex-grow dark break-words transition-transform",
+        "p-0 rounded-xl w-full grow dark break-words transition-transform",
         (fontStyle == "sans" || fontStyle == null) && "darkwrite-sans",
         fontStyle == "serif" && "darkwrite-serif",
         fontStyle == "mono" && "darkwrite-mono",
@@ -47,7 +47,7 @@ export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
         },
         attributes: {
           class: cn(
-            `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full`,
+            `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-hidden max-w-full`,
           ),
         },
         // TODO: Come back here later

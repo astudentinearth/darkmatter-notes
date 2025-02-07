@@ -82,7 +82,7 @@ export function Layout() {
   };
 
   return (
-    <div className="flex [&>div]:flex-shrink-0 w-full h-full bg-background overflow-hidden">
+    <div className="flex [&>div]:shrink-0 w-full h-full bg-background overflow-hidden">
       <Sidebar
         collapseCallback={() => {
           setSidebarCollapsed(true);
@@ -99,7 +99,7 @@ export function Layout() {
           isSidebarCollapsed && "hidden",
         )}
       ></div>
-      <div className="h-full flex flex-col flex-grow overflow-hidden">
+      <div className="h-full flex flex-col grow overflow-hidden">
         <Titlebar
           refObject={headerRef}
           expandCallback={() => {

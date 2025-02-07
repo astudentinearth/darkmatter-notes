@@ -51,7 +51,7 @@ export default function FontSettings() {
       <div className="flex flex-row gap-2 justify-items-center">
         <Label
           htmlFor="ui-font-input"
-          className="flex-shrink-0 align-middle flex items-center"
+          className="shrink-0 align-middle flex items-center"
         >
           {t("uiText")}
         </Label>
@@ -69,7 +69,7 @@ export default function FontSettings() {
       <div className="flex flex-row gap-2">
         <Label
           htmlFor="sans-font-input"
-          className="flex-shrink-0 flex items-center"
+          className="shrink-0 flex items-center"
         >
           {t("sansText")}
         </Label>
@@ -86,7 +86,7 @@ export default function FontSettings() {
       <div className="flex flex-row gap-2">
         <Label
           htmlFor="serif-font-input"
-          className="flex-shrink-0 flex items-center"
+          className="shrink-0 flex items-center"
         >
           {t("serifText")}
         </Label>
@@ -103,7 +103,7 @@ export default function FontSettings() {
       <div className="flex flex-row gap-2">
         <Label
           htmlFor="mono-font-input"
-          className="flex-shrink-0 flex items-center"
+          className="shrink-0 flex items-center"
         >
           {t("monoText")}
         </Label>

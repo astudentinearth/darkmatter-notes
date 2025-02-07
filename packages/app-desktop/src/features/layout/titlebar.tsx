@@ -16,7 +16,7 @@ export function Titlebar(props: TitlebarProps) {
   return (
     <div
       ref={props.refObject}
-      className="titlebar h-12 bg-background flex-shrink-0 flex [&>div]:flex-shrink-0 p-2 justify-start gap-1"
+      className="titlebar h-12 bg-background shrink-0 flex [&>div]:shrink-0 p-2 justify-start gap-1"
     >
       <HeaderbarButton
         data-testid="button-expand-sidebar"

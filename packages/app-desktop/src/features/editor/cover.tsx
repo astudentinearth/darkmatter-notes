@@ -98,7 +98,7 @@ export function EditorCover(props: {
       onMouseOver={() => setMouseOver(true)}
       onMouseOut={() => setMouseOver(false)}
       className={cn(
-        "flex-shrink-0 flex flex-col max-w-[984px] w-full p-4 pb-2 px-20 gap-2",
+        "shrink-0 flex flex-col max-w-[984px] w-full p-4 pb-2 px-20 gap-2",
         !note.isTrashed && note.icon !== "" && props.hasCover && "mt-[-50px]",
         !note.isTrashed && note.icon !== "" && !props.hasCover && "pt-16",
       )}
@@ -178,7 +178,7 @@ export function EditorCover(props: {
         </Button>
       </div>
       <DynamicTextarea
-        className="text-4xl px-0 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto flex-grow resize-none outline-none font-semibold block"
+        className="text-4xl px-0 box-border border-b border-muted/50 bg-transparent p-2 overflow-hidden h-auto grow resize-none outline-hidden font-semibold block"
         value={inputValue}
         onValueChange={handleChange}
         onKeyDown={handleKeyDown}

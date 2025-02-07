@@ -27,7 +27,7 @@ export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
       <ContextMenu>
         <ContextMenuTrigger
           className={cn(
-            "p-0 px-16 rounded-xl w-full max-w-[--editor-max-width] flex-grow",
+            "p-0 px-16 rounded-xl w-full max-w-(--editor-max-width) grow",
           )}
         >
           <EditorContent
@@ -40,7 +40,7 @@ export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
               },
               attributes: {
                 class: cn(
-                  `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-none max-w-full text-[--dw-editor-foreground]`,
+                  `prose prose-lg dark:prose-invert prose-headings:font-title font-default focus:outline-hidden max-w-full text-(--dw-editor-foreground)`,
                 ),
               },
               // TODO: Come back here later

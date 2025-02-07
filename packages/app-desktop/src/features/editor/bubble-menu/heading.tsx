@@ -67,7 +67,7 @@ export function HeadingSelector(props: {
           <ChevronDown size={16} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground data-[state=closed]:!animate-none">
+      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground data-[state=closed]:animate-none!">
         {item(<Heading1 />, t("h1"), () => {
           editor?.chain().toggleHeading({ level: 1 }).run();
         })}

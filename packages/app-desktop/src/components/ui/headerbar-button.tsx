@@ -13,8 +13,8 @@ export const HeaderbarButton = React.forwardRef<
       ref={ref}
       {...props}
       className={cn(
-        "inline-flex items-center cursor-default justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-        "flex-shrink-0 p-0",
+        "inline-flex items-center cursor-default justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        "shrink-0 p-0",
         "hover:bg-secondary hover:text-secondary-foreground active:bg-secondary/80",
         "opacity-60 hover:opacity-100 transition-[background,opacity]",
         "h-8 w-8",

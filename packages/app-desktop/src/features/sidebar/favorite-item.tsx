@@ -40,7 +40,7 @@ export function FavoriteItem({ note, index }: { note: Note; index: number }) {
                 navToNote(note.id);
               }}
               className={cn(
-                "rounded-[8px] !cursor-default note-item hover:bg-secondary/50 hover:text-foreground font-medium active:bg-secondary/25 transition-colors grid grid-cols-[20px_24px_1fr] select-none p-1 h-8 overflow-hidden",
+                "rounded-[8px] cursor-default! note-item hover:bg-secondary/50 hover:text-foreground font-medium active:bg-secondary/25 transition-colors grid grid-cols-[20px_24px_1fr] select-none p-1 h-8 overflow-hidden",
                 active
                   ? "text-foreground bg-secondary/80"
                   : "text-foreground/60",

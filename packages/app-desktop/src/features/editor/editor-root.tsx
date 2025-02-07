@@ -84,7 +84,7 @@ export function EditorRoot() {
       spellCheck={spellcheck}
       ref={rootContainerRef}
       className={cn(
-        "h-full w-full overflow-y-auto overflow-x-auto main-view flex bg-[--dw-editor-background] text-[--dw-editor-foreground] flex-col items-center",
+        "h-full w-full overflow-y-auto overflow-x-auto main-view flex bg-(--dw-editor-background) text-(--dw-editor-foreground) flex-col items-center",
         (_customizations.font == "sans" || _customizations.font == null) &&
           "darkwrite-sans",
         _customizations.font == "serif" && "darkwrite-serif",

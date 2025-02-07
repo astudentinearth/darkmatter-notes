@@ -25,14 +25,14 @@ export function BubbleLink() {
           variant="ghost"
           size={"bubble"}
           className={cn(
-            "rounded-none gap-1 px-2 text-foreground flex-shrink-0 w-10",
+            "rounded-none gap-1 px-2 text-foreground shrink-0 w-10",
             open && "bg-secondary/80",
           )}
         >
           <Link size={18} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="bg-view-2/80 backdrop-blur-lg rounded-2xl p-2 flex flex-col gap-2 data-[state=closed]:!animate-none w-fit">
+      <PopoverContent className="bg-view-2/80 backdrop-blur-lg rounded-2xl p-2 flex flex-col gap-2 data-[state=closed]:animate-none! w-fit">
         <div className="flex items-center gap-2">
           <Label>URL</Label>
           <Input defaultValue={url} ref={urlRef} />

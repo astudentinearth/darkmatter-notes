@@ -68,7 +68,7 @@ const starterKit = StarterKit.configure({
   blockquote: {
     HTMLAttributes: {
       class: cn(
-        "border-l-4 border-secondary/50 not-italic [&>p]:before:content-none [&>p]:after:content-none [&>p]:text-[--dw-editor-foreground] opacity-80",
+        "border-l-4 border-secondary/50 not-italic [&>p]:before:content-none [&>p]:after:content-none [&>p]:text-(--dw-editor-foreground) opacity-80",
       ),
     },
   },

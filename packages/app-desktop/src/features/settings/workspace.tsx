@@ -49,7 +49,7 @@ export function WorkspaceSettings() {
         onClick={() => workspaceExport.mutateAsync()}
         disabled={workspaceExport.isPending}
         variant={"secondary"}
-        className="flex-shrink-0 w-fit place-self-end border border-border"
+        className="shrink-0 w-fit place-self-end border border-border"
       >
         <span className="flex gap-2 items-center">
           <FolderDown size={18} className="inline" />
@@ -62,7 +62,7 @@ export function WorkspaceSettings() {
           disabled={dataBackup.isPending}
           onClick={() => dataBackup.mutateAsync()}
           variant={"secondary"}
-          className="flex-shrink-0 w-fit border border-border"
+          className="shrink-0 w-fit border border-border"
         >
           <span className="flex gap-2 items-center">
             <Archive size={18} className="inline" />

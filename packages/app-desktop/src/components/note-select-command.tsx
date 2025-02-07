@@ -67,7 +67,7 @@ export function NoteSelectCommandDialog({
   const [search, setSearch] = useState("");
   const notes = useNotesQuery().data?.value.filter((n) => !n.isTrashed);
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} className="!rounded-xl">
+    <CommandDialog open={open} onOpenChange={setOpen} className="rounded-xl!">
       <CommandInput
         value={search}
         onValueChange={setSearch}

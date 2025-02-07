@@ -34,7 +34,7 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
       onMouseOver={() => setMouseOver(true)}
       onMouseOut={() => setMouseOver(false)}
       className={cn(
-        "w-full flex-shrink-0 flex items-end justify-end p-2 gap-2",
+        "w-full shrink-0 flex items-end justify-end p-2 gap-2",
         embedId && "z-40 h-40 ",
       )}
       style={
@@ -51,7 +51,7 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
         <>
           <Button
             variant={"ghost"}
-            className="rounded-xl bg-secondary/80 hover:!bg-primary/80 hover:text-primary-foreground backdrop-blur-lg z-20 font-ui text-foreground"
+            className="rounded-xl bg-secondary/80 hover:bg-primary/80! hover:text-primary-foreground backdrop-blur-lg z-20 font-ui text-foreground"
             onClick={changeCover}
           >
             Change cover
@@ -59,7 +59,7 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
           <Button
             onClick={removeCover}
             variant={"ghost"}
-            className="rounded-xl bg-secondary/80 hover:!bg-primary/80 hover:text-primary-foreground backdrop-blur-lg z-20 gap-2 font-ui text-foreground"
+            className="rounded-xl bg-secondary/80 hover:bg-primary/80! hover:text-primary-foreground backdrop-blur-lg z-20 gap-2 font-ui text-foreground"
           >
             <ImageOff size={18} />
             Remove

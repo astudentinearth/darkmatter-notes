@@ -2,7 +2,6 @@
 
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
-@plugin 'postcss-import';
 
 @custom-variant dark (&:is(.dark *));
 

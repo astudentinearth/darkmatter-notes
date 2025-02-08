@@ -5,7 +5,8 @@
       "@renderer/*": ["src/*"],
       "@main/*": ["src/electron/*"]
     },
-    "types": ["vitest/globals"],
+    "types": ["vitest/globals", "node"],
+    "lib": ["DOM", "DOM.Iterable"],
     "strict": true,
     "moduleResolution": "bundler",
     "jsx": "react-jsx",

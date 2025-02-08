@@ -18,7 +18,7 @@
   --popover: hsl(0 0% 9%);
   --popover-foreground: hsl(0 0% 94%);
 
-  --primary: hsl(242 42% 31%);
+  --primary: hsl(214 100% 45%);
   --primary-foreground: hsl(0 0% 100%);
   --primary-text: hsl(242 58% 62%);
 
@@ -150,4 +150,9 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
 }

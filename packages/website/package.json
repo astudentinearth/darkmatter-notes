@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit --project tsconfig.json"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

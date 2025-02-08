@@ -27,7 +27,7 @@ export function NotesWidget() {
   const render = useCallback(() => {
     const target = notes?.filter((n) => n.parentID == null && !n.isTrashed);
     if (target == null) return <></>;
-    const elements: JSX.Element[] = [];
+    const elements: React.JSX.Element[] = [];
     if (target.length === 0) return elements;
     for (let i = 0; i < target.length; i++) {
       elements.push(

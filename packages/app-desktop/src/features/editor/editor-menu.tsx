@@ -68,7 +68,7 @@ export function EditorMenu() {
           >
             <Switch
               checked={checker}
-              className="cursor-default data-[state=unchecked]:bg-view-2 outline-border outline-1 outline outline-offset-0"
+              className="cursor-default data-[state=unchecked]:bg-view-2 outline-border outline outline-offset-0"
             />
             {t("checkSpelling")}
           </DropdownMenuItem>

@@ -2,7 +2,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import electron from "vite-plugin-electron/simple";
-import { swcPlugin, externalizeDepsPlugin } from "electron-vite";
 import tailwind from "@tailwindcss/vite"
 
 export default defineConfig({
@@ -17,7 +16,6 @@ export default defineConfig({
               external: ["typeorm", "dotenv"],
             },
           },
-          plugins: [swcPlugin(), externalizeDepsPlugin()],
           resolve: {
             alias: {
               "@main": path.resolve("src/electron/"),

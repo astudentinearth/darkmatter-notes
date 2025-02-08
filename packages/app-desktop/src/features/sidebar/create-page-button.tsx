@@ -1,4 +1,4 @@
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mutation";
 import { cn } from "@renderer/lib/utils";
 import { SquarePen } from "lucide-react";
@@ -14,7 +14,7 @@ export default function CreatePageButton() {
       onClick={create}
       variant={"ghost"}
       className={cn(
-        "rounded-[8px] hover:bg-secondary/50 text-foreground/60 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
+        "rounded-[8px] gap-0 hover:bg-secondary/50 text-foreground/60 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
       )}
     >
       <SquarePen size={16}></SquarePen>

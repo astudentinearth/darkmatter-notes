@@ -2,7 +2,7 @@ import { Note, NotePartial } from "@darkwrite/common";
 import DynamicTextarea from "@renderer/components/dynamic-textarea";
 import { EmojiPicker } from "@renderer/components/emoji-picker";
 import { FlexibleSpacer } from "@renderer/components/spacer";
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import {
   setEditorCustomizations,
   useEditorState,
@@ -139,7 +139,7 @@ export function EditorCover(props: {
 
         {note.icon === "" && (
           <Button
-            variant={"secondary"}
+            variant={"ghost"}
             onClick={addIcon}
             className={cn(
               "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",
@@ -152,7 +152,7 @@ export function EditorCover(props: {
         )}
         {note.icon !== "" && (
           <Button
-            variant={"secondary"}
+            variant={"ghost"}
             onClick={removeIcon}
             className={cn(
               "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",
@@ -165,7 +165,7 @@ export function EditorCover(props: {
         )}
         <Button
           onClick={addCover}
-          variant={"secondary"}
+          variant={"ghost"}
           disabled={props.hasCover}
           className={cn(
             "z-50 bg-secondary/0 gap-2 text-foreground/80 hover:text-foreground font-ui opacity-0",

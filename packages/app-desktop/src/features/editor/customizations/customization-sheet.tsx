@@ -3,7 +3,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@renderer/components/ui/popover";
+} from "@darkwrite/ui";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { Brush } from "lucide-react";
 import ColorsView from "./colors";
@@ -12,7 +12,7 @@ import { cn } from "@renderer/lib/utils";
 
 export function CustimzationSheet(props: {
   open: boolean;
-  onOpenChange: (boolean) => void;
+  onOpenChange: (val: boolean) => void;
 }) {
   const activeNoteId = useNoteFromURL();
   if (!activeNoteId) return <></>;

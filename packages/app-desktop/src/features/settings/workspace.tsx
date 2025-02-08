@@ -1,8 +1,7 @@
 import { RestoreDataDialog } from "@renderer/components/restore-data-dialog";
-import { Button } from "@renderer/components/ui/button";
+import { Button, Switch } from "@darkwrite/ui";
 import { Input } from "@renderer/components/ui/input";
 import { Label } from "@renderer/components/ui/label";
-import { Switch } from "@renderer/components/ui/switch";
 import { useLocalStore } from "@renderer/context/local-state";
 import {
   produceUserSettings,
@@ -48,8 +47,8 @@ export function WorkspaceSettings() {
       <Button
         onClick={() => workspaceExport.mutateAsync()}
         disabled={workspaceExport.isPending}
-        variant={"secondary"}
-        className="shrink-0 w-fit place-self-end border border-border"
+        variant={"outline"}
+        className="shrink-0 w-fit place-self-end"
       >
         <span className="flex gap-2 items-center">
           <FolderDown size={18} className="inline" />
@@ -61,8 +60,8 @@ export function WorkspaceSettings() {
         <Button
           disabled={dataBackup.isPending}
           onClick={() => dataBackup.mutateAsync()}
-          variant={"secondary"}
-          className="shrink-0 w-fit border border-border"
+          variant={"outline"}
+          className="shrink-0 w-fit"
         >
           <span className="flex gap-2 items-center">
             <Archive size={18} className="inline" />

@@ -1,10 +1,10 @@
-import { Button } from "@renderer/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@renderer/components/ui/dropdown-menu";
+  Button
+} from "@darkwrite/ui";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { useTitleDropdown } from "@renderer/hooks/use-title-dropdown";
 import { getNoteIcon } from "@renderer/lib/utils";
@@ -23,7 +23,7 @@ export function NoteDropdown() {
           {title}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="max-w-64">
+      <DropdownMenuContent className="max-w-64 duration-0">
         {parentNodes.map((n) => (
           <DropdownMenuItem
             key={n.id}

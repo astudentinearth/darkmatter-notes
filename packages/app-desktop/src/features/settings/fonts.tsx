@@ -1,5 +1,5 @@
 import { FlexibleSpacer } from "@renderer/components/spacer";
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import { Input } from "@renderer/components/ui/input";
 import { Label } from "@renderer/components/ui/label";
 import {

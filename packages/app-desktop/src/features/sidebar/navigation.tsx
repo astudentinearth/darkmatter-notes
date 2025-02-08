@@ -1,4 +1,4 @@
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import { House, Settings } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ export function NavigationWidget() {
         onClick={() => navigate("/")}
         variant={"ghost"}
         className={cn(
-          "rounded-[8px] hover:bg-secondary/50 text-foreground/75 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
+          "rounded-[8px] gap-0 hover:bg-secondary/50 text-foreground/75 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
           location.pathname === "/"
             ? "text-foreground bg-secondary/80"
             : "text-foreground/60",
@@ -27,7 +27,7 @@ export function NavigationWidget() {
         onClick={() => navigate("/settings")}
         variant={"ghost"}
         className={cn(
-          "rounded-[8px] hover:bg-secondary/50 text-foreground/75 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
+          "rounded-[8px] hover:bg-secondary/50 gap-0 text-foreground/75 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
           location.pathname === "/settings"
             ? "text-foreground bg-secondary/80"
             : "text-foreground/60",

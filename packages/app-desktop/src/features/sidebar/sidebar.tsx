@@ -1,4 +1,4 @@
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import { LayoutDashboard, PanelRightOpen, Search } from "lucide-react";
 import { NotesWidget } from "./notes";
@@ -40,9 +40,8 @@ export function Sidebar(props: SidebarProps) {
         <div className="grow titlebar spacer"></div>
         <Button
           data-testid="button-edit-widgets"
-          size={"icon32"}
           variant={"ghost"}
-          className="shrink-0 hidden"
+          className="shrink-0 hidden size-8"
           title="Edit sidebar"
           disabled
         >

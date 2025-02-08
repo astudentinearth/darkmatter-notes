@@ -1,11 +1,6 @@
-import { Button } from "@renderer/components/ui/button";
+import { Button, Popover, PopoverContent, PopoverTrigger } from "@darkwrite/ui";
 import { Input } from "@renderer/components/ui/input";
 import { Label } from "@renderer/components/ui/label";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@renderer/components/ui/popover";
 import { cn } from "@renderer/lib/utils";
 import { useCurrentEditor } from "@tiptap/react";
 import { Link } from "lucide-react";
@@ -23,9 +18,8 @@ export function BubbleLink() {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          size={"bubble"}
           className={cn(
-            "rounded-none gap-1 px-2 text-foreground shrink-0 w-10",
+            "rounded-none gap-1 px-2 text-foreground shrink-0 size-10",
             open && "bg-secondary/80",
           )}
         >

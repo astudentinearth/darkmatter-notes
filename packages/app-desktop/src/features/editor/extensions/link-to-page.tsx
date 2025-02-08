@@ -9,7 +9,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@renderer/components/ui/popover";
+} from "@darkwrite/ui";
 import { useNoteByIdQuery, useNotesQuery } from "@renderer/hooks/query";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { getNoteIcon } from "@renderer/lib/utils";

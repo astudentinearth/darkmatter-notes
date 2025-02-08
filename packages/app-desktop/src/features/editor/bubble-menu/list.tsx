@@ -3,7 +3,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@renderer/components/ui/popover";
+} from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import { ChevronDown, List, ListOrdered, ListTodo } from "lucide-react";
 import { useEditor } from "novel";

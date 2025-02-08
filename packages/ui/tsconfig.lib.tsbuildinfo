@@ -1,1 +1,1 @@
-{"root":["./lib/index.ts","./lib/components/ui/button.tsx","./lib/components/ui/dropdown-menu.tsx","./lib/components/ui/popover.tsx","./lib/lib/utils.ts"],"version":"5.7.3"}
+{"root":["./lib/index.ts","./lib/components/ui/button.tsx","./lib/components/ui/dropdown-menu.tsx","./lib/components/ui/popover.tsx","./lib/components/ui/switch.tsx","./lib/lib/utils.ts"],"version":"5.7.3"}

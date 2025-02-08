@@ -1,8 +1,7 @@
 import { ColorPicker } from "@renderer/components/color-picker";
 import { FlexibleSpacer } from "@renderer/components/spacer";
-import { Button } from "@renderer/components/ui/button";
 import { Label } from "@renderer/components/ui/label";
-import { Switch } from "@renderer/components/ui/switch";
+import { Switch, Button } from "@darkwrite/ui";
 import {
   produceUserSettings,
   updateUserSettings,

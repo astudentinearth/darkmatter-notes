@@ -1,6 +1,6 @@
 import { FlexibleSpacer } from "@renderer/components/spacer";
 import { Label } from "@renderer/components/ui/label";
-import { Switch } from "@renderer/components/ui/switch";
+import { Switch } from "@darkwrite/ui";
 import {
   updateUserSettings,
   useSettingsStore,

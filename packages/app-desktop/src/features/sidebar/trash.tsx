@@ -1,9 +1,8 @@
-import { Button } from "@renderer/components/ui/button";
-import {
+import { Button,
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@renderer/components/ui/popover";
+ } from "@darkwrite/ui";
 import { ScrollArea } from "@renderer/components/ui/scroll-area";
 import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useDeleteNoteMutation } from "@renderer/hooks/query/use-delete-note-mutation";
@@ -26,7 +25,7 @@ export function TrashWidget() {
         <Button
           variant={"ghost"}
           className={cn(
-            "rounded-[8px] hover:bg-secondary/50 text-foreground/60 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
+            "rounded-[8px] gap-0 hover:bg-secondary/50 text-foreground/60 hover:text-foreground active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr] select-none p-1 pl-2 h-8 overflow-hidden",
           )}
         >
           <Trash size={16} />
@@ -67,8 +66,7 @@ export function TrashWidget() {
                   </span>
                   <Button
                     title={t("sidebar.trash.restore")}
-                    size="icon24"
-                    className="justify-self-end btn-add text-foreground/75 hover:text-foreground/100"
+                    className="justify-self-end btn-add text-foreground/75 hover:text-foreground/100 size-6 p-0"
                     variant={"ghost"}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -79,8 +77,7 @@ export function TrashWidget() {
                   </Button>
                   <Button
                     title={t("sidebar.trash.delete")}
-                    size="icon24"
-                    className="justify-self-end btn-add text-destructive/75 hover:text-destructive/100"
+                    className="justify-self-end btn-add text-destructive/75 hover:text-destructive/100 size-6 p-0"
                     variant={"ghost"}
                     onClick={(e) => {
                       e.stopPropagation();

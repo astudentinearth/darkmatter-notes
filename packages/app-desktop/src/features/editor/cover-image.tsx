@@ -1,5 +1,5 @@
 import { Note } from "@darkwrite/common";
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import {
   setEditorCustomizations,
   useEditorState,

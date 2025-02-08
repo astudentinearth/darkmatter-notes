@@ -1,6 +1,6 @@
 import { findSubnotes, Note } from "@darkwrite/common";
 import { NoteSelectCommandDialog } from "@renderer/components/note-select-command";
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import {
   Collapsible,
   CollapsibleContent,
@@ -35,6 +35,7 @@ import {
 import { DragEvent, useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NoteDropZone } from "./note-drop-zone";
+import React from "react";
 
 export function NoteItem({
   note,
@@ -78,7 +79,7 @@ export function NoteItem({
   const render = useCallback(() => {
     let target = [...subnotes];
     target = target.filter((n) => !n.isTrashed);
-    const elements: JSX.Element[] = [];
+    const elements: React.JSX.Element[] = [];
     if (target.length === 0)
       return (
         <span className="text-sm text-foreground/50 px-2">
@@ -206,8 +207,7 @@ export function NoteItem({
               {note.title}
             </span>
             <Button
-              size="icon24"
-              className="justify-self-end btn-add"
+              className="justify-self-end btn-add size-6 p-0"
               variant={"ghost"}
               onClick={(e) => {
                 e.stopPropagation();

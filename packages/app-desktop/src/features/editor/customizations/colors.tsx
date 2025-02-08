@@ -1,5 +1,5 @@
 import { ColorPicker } from "@renderer/components/color-picker";
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import {
   setEditorCustomizations,
   useEditorState,
@@ -36,8 +36,7 @@ export default function ColorsView() {
           className="shrink-0"
         />
         <Button
-          className="shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg"
-          size={"icon32"}
+          className="shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg size-8"
           variant={"outline"}
           onClick={() => setBackground("")}
         >
@@ -55,8 +54,7 @@ export default function ColorsView() {
           onChange={setText}
         />
         <Button
-          className="shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg"
-          size={"icon32"}
+          className="shrink-0 bg-secondary hover:bg-secondary/50 rounded-lg size-8"
           variant={"outline"}
           onClick={() => setText("")}
         >

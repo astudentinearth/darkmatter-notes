@@ -1,4 +1,5 @@
-import { Button } from "@renderer/components/ui/button";
+import { Note } from "@darkwrite/common";
+import { Button } from "@darkwrite/ui";
 import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mutation";
 import { useCenteredLayout } from "@renderer/hooks/use-centered-layout";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
@@ -48,7 +49,7 @@ export function HomePage() {
               </Button>
             </>
           ) : (
-            recents.map((note) => (
+            recents.map((note: Note) => (
               <Button
                 key={note.id}
                 onClick={() => {

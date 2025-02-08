@@ -4,10 +4,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
+  DropdownMenuSwitchItem,
   DropdownMenuTrigger,
-} from "@renderer/components/ui/dropdown-menu";
+} from "@darkwrite/ui";
 import { HeaderbarButton } from "@renderer/components/ui/headerbar-button";
-import { Switch } from "@renderer/components/ui/switch";
 import { useEditorState } from "@renderer/context/editor-state";
 import { useLocalStore } from "@renderer/context/local-state";
 import { useNoteByIdQuery } from "@renderer/hooks/query";
@@ -59,19 +59,12 @@ export function EditorMenu() {
 
         {/* TODO: Unify dropdown menu item style */}
         <DropdownMenuContent className="mr-3 mt-1 rounded-xl bg-card/70">
-          <DropdownMenuItem
-            onSelect={(e) => {
-              e.preventDefault();
-              setCheck(!checker);
-            }}
-            className="gap-2 rounded-lg"
+          <DropdownMenuSwitchItem
+            checked={checker}
+            onCheckedChange={(val) => setCheck(val)}
           >
-            <Switch
-              checked={checker}
-              className="cursor-default data-[state=unchecked]:bg-view-2 outline-border outline outline-offset-0"
-            />
             {t("checkSpelling")}
-          </DropdownMenuItem>
+          </DropdownMenuSwitchItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onSelect={() => {

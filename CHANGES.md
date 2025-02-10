@@ -4,6 +4,11 @@
 
 ## ✨ Improvements and fixes
 - Input focus rings now follow accent color
+- Fixed tab order in sidebar
+- Reduced transparency in menus to improve readability
+
+## 🛠️ Technical changes
+- shadcn-ui components now live in a separate package.
 
 # 0.4.0-alpha.3
 

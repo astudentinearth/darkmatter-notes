@@ -80,7 +80,7 @@
   :root {
     --background: hsl(0 0% 3%);
     --foreground: hsl(0 0% 98%);
-    --card: hsl(0 0% 3.9%);
+    --card: hsl(0 0% 12%);
     --card-foreground: hsl(0 0% 98%);
     --popover: hsl(0 0% 3.9%);
     --popover-foreground: hsl(0 0% 98%);
@@ -118,5 +118,21 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.section-container {
+  @apply flex w-full px-4 md:px-12 max-w-360;
+}
+
+.section {
+  @apply flex rounded-4xl flex-col lg:flex-row w-full p-7 sm:p-16 gap-8 items-center;
+}
+
+.section-heading {
+  @apply text-3xl lg:text-5xl font-bold;
+}
+
+.section-body {
+  @apply text-lg lg:text-2xl mt-3;
 }
 

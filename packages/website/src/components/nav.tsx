@@ -15,13 +15,13 @@ export async function Nav() {
         </Link>
         <Link
           href={"https://github.com/astudentinearth/darkwrite"}
-          className="h-10 flex shrink-0 cursor-default justify-center items-center p-3 select-none hover:bg-white/10 transition-colors rounded-[6px]"
+          className="h-10 flex shrink-0 justify-center items-center p-3 select-none hover:bg-white/10 transition-colors rounded-[6px]"
         >
           Source code
         </Link>
         <Link
-          href={"/download"}
-          className="bg-primary shrink-0 h-10 p-3 flex items-center cursor-default justify-center rounded-[6px] hover:brightness-125 transition-[filter]"
+          href={"https://github.com/astudentinearth/darkwrite/releases"}
+          className="bg-primary shrink-0 h-10 p-3 flex items-center justify-center rounded-[6px] hover:brightness-125 transition-[filter]"
         >
           Download
         </Link>

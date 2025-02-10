@@ -3,7 +3,7 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-} from "@renderer/components/ui/select";
+} from "@darkwrite/ui";
 import { useTranslation } from "react-i18next";
 
 export const StartupBehvaiourSelect = (props: {

@@ -6,7 +6,7 @@ import {
   ContextMenuItem,
   ContextMenuSeparator,
   ContextMenuTrigger,
-} from "@renderer/components/ui/context-menu";
+} from "@darkwrite/ui";
 import { useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useExport } from "@renderer/hooks/use-export";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
@@ -61,7 +61,7 @@ export function FavoriteItem({ note, index }: { note: Note; index: number }) {
           )}
         </Draggable>
       </ContextMenuTrigger>
-      <ContextMenuContent>
+      <ContextMenuContent className="w-fit">
         <ContextMenuItem
           onClick={() => {
             update({
@@ -95,9 +95,9 @@ export function FavoriteItem({ note, index }: { note: Note; index: number }) {
           onClick={() => {
             trash(note.id);
           }}
-          className="text-destructive focus:bg-destructive/50 focus:text-destructive-foreground"
+          className="focus:text-destructive focus:*:text-destructive group"
         >
-          <Trash className="opacity-75" size={20}></Trash>&nbsp; Move to trash
+          <Trash className="opacity-75 group-focus:text-destructive" size={20}></Trash>&nbsp; Move to trash
         </ContextMenuItem>
         <ContextMenuSeparator></ContextMenuSeparator>
         <span className="text-foreground/50 text-sm p-2">

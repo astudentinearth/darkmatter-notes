@@ -8,8 +8,8 @@ import {
   AlertDialogFooter,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "./ui/alert-dialog";
-import { Button } from "./ui/button";
+  Button
+} from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import { ArchiveRestore, FileArchive } from "lucide-react";
 import { useRestore } from "@renderer/hooks/query";
@@ -41,7 +41,7 @@ export function RestoreDataDialog() {
           </span>
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent className={cn("p-4")}>
+      <AlertDialogContent className={cn("p-4 max-w-120")}>
         <AlertDialogTitle>{t("restoreDialog.title")}</AlertDialogTitle>
         <AlertDialogDescription>
           {t("restoreDialog.description")}
@@ -66,7 +66,7 @@ export function RestoreDataDialog() {
             t("restoreDialog.chooseFile")
           )}
         </Button>
-        <AlertDialogFooter>
+        <AlertDialogFooter className="flex flex-row">
           <AlertDialogCancel disabled={restore.isPending}>
             {t("restoreDialog.cancel")}
           </AlertDialogCancel>

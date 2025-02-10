@@ -1,5 +1,4 @@
-import { Button } from "@darkwrite/ui";
-import { Input } from "@renderer/components/ui/input";
+import { Button, Input } from "@darkwrite/ui";
 import {
   setEditorCustomizations,
   useEditorState,
@@ -88,7 +87,7 @@ export default function FontStyleView() {
             onChange={(e) => {
               setCustomFont(e.target.value);
             }}
-            className="bg-secondary rounded-xl"
+            className="bg-view-2"
             id="customFont"
             placeholder={t("customFontNamePlaceholer")}
           />

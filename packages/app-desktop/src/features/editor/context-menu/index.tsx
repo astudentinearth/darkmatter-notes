@@ -1,7 +1,7 @@
 import {
   ContextMenuContent,
   ContextMenuItem,
-} from "@renderer/components/ui/context-menu";
+} from "@darkwrite/ui";
 import { useEditorState } from "@renderer/context/editor-state";
 import { Clipboard, Copy, Delete, Scissors } from "lucide-react";
 import { useTranslation } from "react-i18next";

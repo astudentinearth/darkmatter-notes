@@ -1,7 +1,5 @@
 import { FlexibleSpacer } from "@renderer/components/spacer";
-import { Button } from "@darkwrite/ui";
-import { Input } from "@renderer/components/ui/input";
-import { Label } from "@renderer/components/ui/label";
+import { Button, Input, Label } from "@darkwrite/ui";
 import {
   produceUserSettings,
   useSettingsStore,

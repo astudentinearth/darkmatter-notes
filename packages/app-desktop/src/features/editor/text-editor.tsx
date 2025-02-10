@@ -10,7 +10,7 @@ import InstanceHandler from "./instance-handler";
 import {
   ContextMenu,
   ContextMenuTrigger,
-} from "@renderer/components/ui/context-menu";
+} from "@darkwrite/ui";
 import { EditorContextMenuContent } from "./context-menu";
 
 interface TextEditorProps {

@@ -1,7 +1,5 @@
 import { RestoreDataDialog } from "@renderer/components/restore-data-dialog";
-import { Button, Switch } from "@darkwrite/ui";
-import { Input } from "@renderer/components/ui/input";
-import { Label } from "@renderer/components/ui/label";
+import { Button, Switch, Input, Label } from "@darkwrite/ui";
 import { useLocalStore } from "@renderer/context/local-state";
 import {
   produceUserSettings,

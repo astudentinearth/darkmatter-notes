@@ -1,9 +1,13 @@
-import { Button, Popover, PopoverContent, PopoverTrigger } from "@darkwrite/ui";
-import { Input } from "@renderer/components/ui/input";
-import { Label } from "@renderer/components/ui/label";
+import {
+  Button,
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+  Input,
+} from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import { useCurrentEditor } from "@tiptap/react";
-import { Link } from "lucide-react";
+import { Check, Link, Trash } from "lucide-react";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -26,23 +30,13 @@ export function BubbleLink() {
           <Link size={18} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="bg-view-2/80 backdrop-blur-lg rounded-2xl p-2 flex flex-col gap-2 data-[state=closed]:animate-none! w-fit">
-        <div className="flex items-center gap-2">
-          <Label>URL</Label>
-          <Input defaultValue={url} ref={urlRef} />
-        </div>
-        <div className="flex items-center gap-2 justify-end">
+      <PopoverContent className="bg-popover/80 backdrop-blur-lg rounded-2xl flex flex-col gap-2 p-2 data-[state=closed]:animate-none! w-fit">
+        <Input defaultValue={url} ref={urlRef} className="bg-view-2" placeholder="URL"/>
+
+        <div className="flex flex-col items-center gap-1 w-full [&>button]:w-full [&>button]:justify-start [&>button]:pl-2">
+          
           <Button
             variant={"ghost"}
-            onClick={() => {
-              editor?.chain().focus().unsetLink().run();
-              setOpen(false);
-            }}
-          >
-            {t("removeLink")}
-          </Button>
-          <Button
-            variant={"secondary"}
             onClick={() => {
               if (!urlRef.current) return;
               editor
@@ -53,7 +47,18 @@ export function BubbleLink() {
               setOpen(false);
             }}
           >
+            <Check/>
             {t("saveLink")}
+          </Button>
+          <Button
+            variant={"ghost"}
+            onClick={() => {
+              editor?.chain().focus().unsetLink().run();
+              setOpen(false);
+            }}
+          >
+            <Trash/>
+            {t("removeLink")}
           </Button>
         </div>
       </PopoverContent>

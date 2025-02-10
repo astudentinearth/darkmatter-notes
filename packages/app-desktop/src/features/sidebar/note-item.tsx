@@ -1,18 +1,15 @@
 import { findSubnotes, Note } from "@darkwrite/common";
 import { NoteSelectCommandDialog } from "@renderer/components/note-select-command";
-import { Button } from "@darkwrite/ui";
+import { Button,   ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuSeparator,
+  ContextMenuTrigger, } from "@darkwrite/ui";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@renderer/components/ui/collapsible";
-import {
-  ContextMenu,
-  ContextMenuContent,
-  ContextMenuItem,
-  ContextMenuSeparator,
-  ContextMenuTrigger,
-} from "@renderer/components/ui/context-menu";
 import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useCreateNoteMutation } from "@renderer/hooks/query/use-create-note-mutation";
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
@@ -270,16 +267,15 @@ export function NoteItem({
           onClick={() => {
             trash(note.id);
           }}
-          className="text-destructive focus:bg-destructive/20 focus:text-destructive-foreground"
+          className="focus:text-destructive focus:*:text-destructive group"
         >
-          <Trash className="opacity-75" size={20}></Trash>&nbsp;{" "}
-          {t("sidebar.notes.contextmenu.trash")}
+          <Trash className="opacity-75 group-focus:text-destructive" size={20}></Trash>&nbsp; Move to trash
         </ContextMenuItem>
         <ContextMenuSeparator></ContextMenuSeparator>
-        <span className="text-foreground/50 text-sm p-2">
+        <div className="text-foreground/50 text-sm p-1.5">
           {t("sidebar.notes.contextmenu.lastModified")}{" "}
           {note.modified.toLocaleString()}
-        </span>
+        </div>
       </ContextMenuContent>
     </ContextMenu>
   );

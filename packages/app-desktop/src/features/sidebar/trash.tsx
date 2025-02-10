@@ -3,19 +3,26 @@ import { Button,
   PopoverContent,
   PopoverTrigger,
  } from "@darkwrite/ui";
+import { Input } from "@renderer/components/ui/input";
 import { ScrollArea } from "@renderer/components/ui/scroll-area";
 import { useNotesQuery, useUpdateNoteMutation } from "@renderer/hooks/query";
 import { useDeleteNoteMutation } from "@renderer/hooks/query/use-delete-note-mutation";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { cn, getNoteIcon } from "@renderer/lib/utils";
 import { Trash, Undo } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
+
 export function TrashWidget() {
   const notes = useNotesQuery().data?.value;
   const update = useUpdateNoteMutation().mutate;
   const restore = (id: string) => update({ id, isTrashed: false });
   const del = useDeleteNoteMutation().mutate;
-  const trashed = notes?.filter((n) => n.isTrashed);
+  const [query, setQuery] = useState<string>("");
+  let trashed = notes?.filter((n) => n.isTrashed);
+  if(query && trashed){
+    trashed = trashed.filter((n)=>n.title.includes(query));
+  }
   const nav = useNavigateToNote();
   const { t } = useTranslation();
 
@@ -36,13 +43,13 @@ export function TrashWidget() {
       </PopoverTrigger>
       <PopoverContent
         side={"right"}
-        className={cn("p-0 rounded-xl h-[70vh] flex flex-col mb-4")}
+        className={cn("rounded-xl h-[70vh] flex flex-col mb-4 p-0")}
         sticky="always"
       >
-        <h1 className="font-semibold text-foreground/80 p-2">
-          {t("sidebar.trash.title")}
-        </h1>
-        <ScrollArea className="overflow-y-auto p-1">
+        <div className="w-full p-2">
+          <Input value={query} onChange={(e)=>setQuery(e.target.value)} className="rounded-lg placeholder:text-foreground/60 text-sm p-2 h-fit" placeholder="Search in trash"/>
+        </div>
+        <ScrollArea className="overflow-y-auto p-2 grow">
           <div className="">
             {trashed?.map((note) => (
               <div key={note.id}>
@@ -51,10 +58,10 @@ export function TrashWidget() {
                     nav(note.id);
                   }}
                   className={cn(
-                    "rounded-[8px] note-item hover:bg-secondary/50 hover:text-foreground font-medium active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr_24px_24px] select-none p-1 h-8 overflow-hidden",
+                    "rounded-[8px] note-item hover:bg-secondary/50 hover:text-foreground font-medium active:bg-secondary/25 transition-colors grid grid-cols-[24px_1fr_32px_32px] select-none p-1 overflow-hidden",
                   )}
                 >
-                  <div className="flex w-6 h-6 items-center justify-center text-[18px] translate-y-[-5%]">
+                  <div className="flex w-6 items-center justify-center text-[18px] translate-y-[-5%]">
                     {getNoteIcon(note.icon)}
                   </div>
                   <span
@@ -66,7 +73,7 @@ export function TrashWidget() {
                   </span>
                   <Button
                     title={t("sidebar.trash.restore")}
-                    className="justify-self-end btn-add text-foreground/75 hover:text-foreground/100 size-6 p-0"
+                    className="justify-self-end btn-add text-foreground/75 hover:text-foreground/100 size-8 p-0"
                     variant={"ghost"}
                     onClick={(e) => {
                       e.stopPropagation();
@@ -77,7 +84,7 @@ export function TrashWidget() {
                   </Button>
                   <Button
                     title={t("sidebar.trash.delete")}
-                    className="justify-self-end btn-add text-destructive/75 hover:text-destructive/100 size-6 p-0"
+                    className="justify-self-end btn-add text-destructive/75 hover:text-destructive/100 size-8 p-0"
                     variant={"ghost"}
                     onClick={(e) => {
                       e.stopPropagation();

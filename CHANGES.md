@@ -1,3 +1,10 @@
+# next
+## 🌟 Features
+- Added trash search
+
+## ✨ Improvements and fixes
+- Input focus rings now follow accent color
+
 # 0.4.0-alpha.3
 
 ## ✨ Improvements and fixes

@@ -1,5 +1,6 @@
 import { Card } from "@/components/card";
 import { Nav } from "@/components/nav";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -13,9 +14,9 @@ export default function Home() {
         alt="glow"
       ></Image>
       <Nav />
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start z-20">
+      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
         <div className="w-full flex flex-col items-center mt-40">
-          <h1 className="text-center text-7xl font-bold">
+          <h1 className="text-center text-5xl sm:text-7xl font-bold mx-4">
             A notebook
             <br />
             that is
@@ -24,19 +25,22 @@ export default function Home() {
               truly yours.
             </span>
           </h1>
-          <span className="text-center text-2xl mt-6">
-            Take notes the way you want, without all the distractions.
-          </span>
-          <span className="text-center text-2xl">
-            <span className="text-theme-2">Feature packed, </span>
-            <span className="text-theme-4">customizable, </span>
-            and <span className="text-theme-3">open source.</span>
+          <span className="mt-6 mx-4 text-center text-lg sm:text-xl">
+            <span>
+              Take notes the way you want, without all the distractions.{" "}
+            </span>
+            <br className="hidden sm:inline" />
+            <span>
+              <span className="text-theme-2">Feature packed, </span>
+              <span className="text-theme-4">customizable, </span>
+              and <span className="text-theme-3">open source.</span>
+            </span>
           </span>
           <Link
             href={"/download"}
-            className="bg-primary h-10 p-3 mt-4 flex items-center w-fit justify-center rounded-[6px] hover:brightness-125 transition-[filter]"
+            className="bg-primary h-10 p-7 mt-8 flex items-center w-fit gap-2 justify-center rounded-xl hover:brightness-125 transition-[filter]"
           >
-            Download for free
+            Download for free <ArrowRight size={18} />
           </Link>
           <Image
             className="object-contain static"
@@ -46,26 +50,28 @@ export default function Home() {
             src="/landing_image.png"
           />
         </div>
-        <div className="flex flex-col bg-alternate w-full items-center pt-16 pb-16 px-6">
-          <h1 className="text-center text-5xl font-bold">
-            Type it out with <span className="text-theme-3">ease.</span>
-          </h1>
-          <span className="text-center text-2xl mt-3">
-            Write down anything with an editor full of features.
-          </span>
-          <span className="text-center text-2xl">
-            Make your notes fancy with{" "}
-            <span className="text-theme-2">lists, </span>
-            <span className="text-theme-4">text formatting, </span>
-            and <span className="text-theme-3">images.</span>
-          </span>
-          <Image
-            className="rounded-[8px] max-w-[1000px] w-full border border-[#434343] drop-shadow-lg mt-5"
-            src="/img2.png"
-            alt="editor"
-            width={1000}
-            height={992}
-          />
+        <div className="flex w-full p-12">
+          <div className="bg-alternate flex  rounded-4xl flex-col lg:flex-row w-full p-16 gap-8 items-center">
+            <div>
+              <h1 className="text-3xl lg:text-5xl font-bold">
+                Type it out with <span className="text-theme-3">ease.</span>
+              </h1>
+              <br />
+              <span className="text-lg lg:text-2xl mt-3">
+                Write down anything with an editor full of features. Make your
+                notes fancy with <span className="text-theme-2">lists, </span>
+                <span className="text-theme-4">text formatting, </span>
+                and <span className="text-theme-3">images.</span>
+              </span>
+            </div>
+            <Image
+              className="rounded-[8px] max-w-[1000px] lg:w-[50%] w-full border border-[#434343] drop-shadow-lg shrink-0 aspect-auto"
+              src="/img2.png"
+              alt="editor"
+              width={1000}
+              height={992}
+            />
+          </div>
         </div>
         <div className="flex flex-col w-full items-center pt-16 pb-16 px-6">
           <h1 className="text-center text-5xl font-bold">
@@ -105,7 +111,7 @@ export default function Home() {
             <Card className="flex flex-col gap-2 w-full">
               <span className="font-semibold text-3xl">Open source.</span>
               <span className="text-xl opacity-80">
-              You get to know what you run on your device.
+                You get to know what you run on your device.
               </span>
             </Card>
           </div>

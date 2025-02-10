@@ -1,4 +1,4 @@
-import { Button } from "@renderer/components/ui/button";
+import { Button } from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import { Editor } from "@tiptap/core";
 import { LucideIcon } from "lucide-react";
@@ -16,7 +16,7 @@ export function BubbleButton(props: BubbleButtonProps) {
   const { editor } = props;
   return (
     <EditorBubbleItem onSelect={(editor) => props.command(editor)}>
-      <Button variant="ghost" size={"bubble"} className="rounded-none">
+      <Button variant="ghost" className="rounded-lg size-9 p-0 m-0 flex justify-center items-center *:shrink-0">
         <props.icon
           size={20}
           className={cn(

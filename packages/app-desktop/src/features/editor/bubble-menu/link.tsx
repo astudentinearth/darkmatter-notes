@@ -23,7 +23,7 @@ export function BubbleLink() {
         <Button
           variant="ghost"
           className={cn(
-            "rounded-none gap-1 px-2 text-foreground shrink-0 size-10",
+            "rounded-lg gap-1 px-2 text-foreground shrink-0 size-9",
             open && "bg-secondary/80",
           )}
         >

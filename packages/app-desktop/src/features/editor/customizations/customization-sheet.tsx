@@ -25,7 +25,7 @@ export function CustimzationSheet(props: {
           <Brush size={20} />
         </HeaderbarButton>
       </PopoverTrigger>
-      <PopoverContent className="flex flex-col gap-1 w-fit p-1 rounded-xl bg-popover/80 backdrop-blur-lg">
+      <PopoverContent className="flex flex-col gap-1 w-fit p-1 rounded-xl bg-popover/90 backdrop-blur-lg">
         <FontStyleView />
         <ColorsView />
       </PopoverContent>

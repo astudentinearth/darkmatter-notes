@@ -13,7 +13,7 @@ export function FormattingButtons() {
   const { editor } = useEditor();
   if (!editor) return null;
   return (
-    <div className="flex h-10">
+    <div className="flex h-9">
       <BubbleButton
         isActive={(e) => e.editor?.isActive("bold") ?? false}
         name="bold"

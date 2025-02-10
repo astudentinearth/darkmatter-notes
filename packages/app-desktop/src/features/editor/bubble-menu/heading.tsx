@@ -1,8 +1,8 @@
-import { Button } from "@renderer/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Button
 } from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import {
@@ -57,9 +57,8 @@ export function HeadingSelector(props: {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          size={"bubble"}
           className={cn(
-            "rounded-none w-fit gap-1 px-2 text-foreground",
+            "rounded-lg w-fit gap-1 px-2 text-foreground h-9",
             props.open && "bg-secondary/80",
           )}
         >

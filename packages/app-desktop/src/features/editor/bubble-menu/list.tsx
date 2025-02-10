@@ -1,8 +1,8 @@
-import { Button } from "@renderer/components/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
+  Button
 } from "@darkwrite/ui";
 import { cn } from "@renderer/lib/utils";
 import { ChevronDown, List, ListOrdered, ListTodo } from "lucide-react";
@@ -38,9 +38,8 @@ export function ListSelector(props: {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
-          size={"bubble"}
           className={cn(
-            "rounded-none w-fit gap-1 px-2 text-foreground",
+            "rounded-lg w-fit h-9 gap-1 px-2 text-foreground",
             props.open && "bg-secondary/80",
           )}
         >

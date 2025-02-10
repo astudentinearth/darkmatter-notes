@@ -165,9 +165,11 @@
     font-family: var(--dw-custom-font-name);
   }
 
-  .font-ui {
-    font-family: var(--font-ui);
-  }
+
+}
+
+.font-ui {
+  font-family: var(--font-ui);
 }
 
 @layer base {

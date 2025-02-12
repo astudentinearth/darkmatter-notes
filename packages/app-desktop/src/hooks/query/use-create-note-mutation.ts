@@ -1,4 +1,4 @@
-import { NotesModel } from "@renderer/lib/api/note";
+import { NoteAPI } from "@renderer/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigateToNote } from "../use-navigate-to-note";
 
@@ -7,13 +7,13 @@ export const useCreateNoteMutation = (navigateAfter: boolean = false) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: async (parentId?: string) => {
-      const note = await NotesModel.Instance.create("Untitled", parentId);
-      if (note.error) throw note.error;
+      const note = await NoteAPI().create("Untitled", parentId);
+      if (!note) throw new Error("Failed to create note");
       return note;
     },
     onSuccess: async (note) => {
       await queryClient.refetchQueries({ queryKey: ["notes"] });
-      if (navigateAfter) nav(note.value.id);
+      if (navigateAfter) nav(note.id);
     },
   });
 };

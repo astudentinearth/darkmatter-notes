@@ -1,1 +1,0 @@
-export const BrowserAdapter = "Soon to be localStorage adapter";

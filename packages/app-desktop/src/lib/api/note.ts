@@ -21,7 +21,9 @@ export class NotesModel implements INotesModel {
   private static instance: NotesModel;
   private API = window.api.note;
 
-  private constructor() {}
+  private constructor() {
+
+  }
   public static get Instance(): NotesModel {
     if (!NotesModel.instance) {
       NotesModel.instance = new NotesModel();

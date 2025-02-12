@@ -1,5 +1,5 @@
 import { DEFAULT_USER_SETTINGS, UserSettings } from "@darkwrite/common";
-import { SettingsModel } from "@renderer/lib/api/settings";
+import { SettingsAPI } from "@renderer/api";
 import { produce, WritableDraft } from "immer";
 import { debounce } from "lodash";
 import { create } from "zustand";
@@ -15,7 +15,7 @@ export const useSettingsStore = create<SettingsAction>()(() => ({
 }));
 
 const saveWithDebounce = debounce((data: UserSettings) => {
-  SettingsModel.save(data);
+  SettingsAPI().save(data);
 }, 300);
 
 export function initializeUserSettings(data: UserSettings) {

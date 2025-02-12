@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 export const useBackup = () => {
   return useMutation({
     mutationKey: ["darkwrite-backup-mutation"],
-    mutationFn: new BackupModel().backupData,
+    mutationFn: window.isElectron ? new BackupModel().backupData : async ()=>{},
   });
 };
 

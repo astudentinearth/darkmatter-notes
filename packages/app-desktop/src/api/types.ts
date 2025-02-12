@@ -32,3 +32,11 @@ export interface IEmbedAPI {
   create: (path: string) => Promise<Embed>;
   createFromArrayBuffer: (buffer: ArrayBuffer, fileExt: string) => Promise<Embed>;
 }
+
+export interface IThemeAPI {
+
+}
+
+export interface IBackupAPI {
+  backupData: () => Promise<void>
+}

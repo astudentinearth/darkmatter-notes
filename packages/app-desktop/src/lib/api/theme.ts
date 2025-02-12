@@ -1,5 +1,4 @@
 import { Theme } from "@darkwrite/common";
-import { DEFAULT_THEMES } from "@darkwrite/common";
 
 export interface ThemeAPI {
   load: () => Promise<Theme[]>;
@@ -8,7 +7,7 @@ export interface ThemeAPI {
 }
 
 const WebThemeAPI: ThemeAPI = {
-  load: async () => DEFAULT_THEMES,
+  load: async () => [],
   import: async () => {},
   getAccentColor: async () => "#ffffff",
 };

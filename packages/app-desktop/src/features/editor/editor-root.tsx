@@ -4,7 +4,10 @@ import {
   useEditorState,
 } from "@renderer/context/editor-state";
 import { useUpdateNoteMutation } from "@renderer/hooks/query";
-import { useNoteContentsMutation } from "@renderer/hooks/query/use-note-contents-mutation";
+import {
+  debouncedSave,
+  useNoteContentsMutation,
+} from "@renderer/hooks/query/use-note-contents-mutation";
 import { useCenteredLayout } from "@renderer/hooks/use-centered-layout";
 import { useNoteEditor } from "@renderer/hooks/use-note-editor";
 import { cn } from "@renderer/lib/utils";
@@ -21,13 +24,13 @@ import "./css/image.css";
 import "./css/drag-handle.css";
 import "./css/command.css";
 import "./css/lists.css";
-import "./css/text.css"
+import "./css/text.css";
 
 export function EditorRoot() {
   const { note, isFetching, isError, content, customizations, spellcheck } =
     useNoteEditor();
   const update = useUpdateNoteMutation().mutate;
-  const updateContent = useNoteContentsMutation(note?.value?.id ?? "").mutate;
+  const updateContent = useNoteContentsMutation(note?.id ?? "").mutate;
   const value = useEditorState((s) => s.content);
   const setValue = useEditorState((s) => s.setContent);
   const _customizations = useEditorState((s) => s.customizations);
@@ -43,17 +46,18 @@ export function EditorRoot() {
   }, [content, customizations]);
 
   useEffect(() => {
-    if (!isFetching) {
-      updateContent({
-        contents: value,
-        customizations: _customizations ?? {},
-      });
-      //if (note?.value?.id)
-      //    upd({ id: note?.value?.id, modified: new Date() });
+    if (!isFetching && note != null && note.id !== "") {
+      debouncedSave(
+        note.id,
+        JSON.stringify({
+          contents: value,
+          customizations: _customizations ?? {},
+        }),
+      );
     }
     // Adding mutations will create a black hole
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [_customizations, debouncedValue, isFetching, note?.value?.id, value]);
+  }, [_customizations, isFetching, note?.id, value]);
 
   useEffect(() => {
     if (!rootContainerRef.current) return;
@@ -72,7 +76,7 @@ export function EditorRoot() {
   }, [_customizations]);
 
   // Something must have failed if we are not fetching and there is no note to be seen
-  if (isError || note?.error || (!note && !isFetching))
+  if (isError || (!note && !isFetching))
     return (
       <div className="bg-destructive text-destructive-foreground">
         Something went wrong loading note.
@@ -102,16 +106,16 @@ export function EditorRoot() {
         } as React.CSSProperties
       }
     >
-      {note?.value != null && !isFetching ? (
+      {note != null && !isFetching ? (
         <>
           <CoverImage
-            key={`coverimg-${note.value.id}`}
-            note={note.value}
+            key={`coverimg-${note.id}`}
+            note={note}
             embedId={_customizations?.coverEmbedId}
           />
           <EditorCover
-            key={`cover-${note.value.id}`}
-            note={note.value}
+            key={`cover-${note.id}`}
+            note={note}
             update={update}
             hasCover={!!_customizations.coverEmbedId}
           />
@@ -119,10 +123,10 @@ export function EditorRoot() {
       ) : (
         ""
       )}
-      {content != null && !isError && !isFetching && note?.value && (
+      {content != null && !isError && !isFetching && note && (
         <>
           <TextEditor
-            key={`editor-${note.value.id}`}
+            key={`editor-${note.id}`}
             customizations={_customizations ?? {}}
             initialValue={content}
             onChange={handleContentChange}

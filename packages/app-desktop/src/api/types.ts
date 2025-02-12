@@ -11,7 +11,7 @@ export interface INoteAPI {
   updateContents: (id: string, content: string) => Promise<void>;
   getContents: (id: string) => Promise<string | null>;
   delete: (id: string) => Promise<void>;
-  move: (sourceId: string, destinationId: string) => Promise<void>;
+  move: (sourceId: string, destinationId?: string) => Promise<void>;
   update: (data: NotePartial) => Promise<void>;
   getNotes: () => Promise<Note[] | null>;
   trash: (id: string) => Promise<void>;

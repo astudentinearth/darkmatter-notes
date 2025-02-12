@@ -1,4 +1,4 @@
-import { NotesModel } from "@renderer/lib/api/note";
+import { NoteAPI } from "@renderer/api";
 import { useQuery } from "@tanstack/react-query";
 
 export const useNoteByIdQuery = (id: string) => {
@@ -6,7 +6,7 @@ export const useNoteByIdQuery = (id: string) => {
     queryKey: ["note", id],
     queryFn: async () => {
       console.log(`Fetching note with id: ${id}`);
-      const note = await NotesModel.Instance.getNote(id);
+      const note = await NoteAPI().getNote(id);
       //console.log(`Fetched note:`, note);
       return note;
     },

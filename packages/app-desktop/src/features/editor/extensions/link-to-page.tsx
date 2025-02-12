@@ -23,7 +23,7 @@ import { MouseEvent, useState } from "react";
 const LinkComponent = ({ node, updateAttributes }: any) => {
   const id = node.attrs.noteID;
   const notes = useNotesQuery().data?.value.filter((n) => !n.isTrashed);
-  const note = useNoteByIdQuery(id).data?.value;
+  const note = useNoteByIdQuery(id).data;
   const navToNote = useNavigateToNote();
 
   const [open, setOpen] = useState(false);

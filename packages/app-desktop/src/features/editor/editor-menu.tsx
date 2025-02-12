@@ -68,8 +68,8 @@ export function EditorMenu() {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onSelect={() => {
-              if (!activeNote.data?.value) return;
-              _export(activeNote.data.value);
+              if (!activeNote.data) return;
+              _export(activeNote.data);
               //const content = getSerializable().content;
               //const html = generateHTML(content, [...defaultExtensions]);
               //NotesModel.Instance.exportHTML(activeNote.data?.value, html);

@@ -1,4 +1,4 @@
-import { NotesModel } from "@renderer/lib/api/note";
+import { NoteAPI } from "@renderer/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useMoveNoteMutation = () => {
@@ -8,7 +8,7 @@ export const useMoveNoteMutation = () => {
       sourceId: string;
       destinationId: string | undefined;
     }) => {
-      await NotesModel.Instance.move(args.sourceId, args.destinationId);
+      await NoteAPI().move(args.sourceId, args.destinationId);
     },
 
     onSuccess: (_data, variables) => {

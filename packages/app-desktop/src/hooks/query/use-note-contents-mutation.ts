@@ -5,14 +5,22 @@ import _ from "lodash";
 import { JSONContent } from "novel";
 import { useUpdateNoteMutation } from "./use-update-note-mutation";
 
-const debouncedSave = _.debounce(
+export const debouncedSave = _.debounce(
   async (id: string, content: string, callback?: () => void) => {
-    console.log("Saving note to disk...");
+    console.log("Saving note to disk...", id,content);
     await NotesModel.Instance.updateContents(id, content);
     callback?.call(null);
   },
   200,
 );
+
+export type NoteContentsMutationData = {
+  noteData: {
+    contents: JSONContent,
+    customizations: NoteCustomizations
+  },
+  noDebounce?: boolean
+}
 
 export const useNoteContentsMutation = (id: string) => {
   //const queryClient = useQueryClient();
@@ -20,20 +28,11 @@ export const useNoteContentsMutation = (id: string) => {
   return useMutation({
     mutationKey: ["update-contents", id],
     mutationFn: async (
-      data: {
-        contents: JSONContent;
-        customizations: NoteCustomizations;
-      },
-      debounce = true,
+      opts: NoteContentsMutationData
     ) => {
       if (!id) return;
-      const str = JSON.stringify(data);
-      //const { contents, customizations } = data;
-      /*queryClient.setQueryData(["note-content", id], () => ({
-                contents,
-                customizations,
-            }));*/
-      if (debounce)
+      const str = JSON.stringify(opts.noteData);
+      if (!opts.noDebounce)
         debouncedSave(id, str, () => {
           update({ id, modified: new Date() });
         });

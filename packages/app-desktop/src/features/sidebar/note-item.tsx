@@ -139,7 +139,7 @@ export function NoteItem({
   };
 
   const newSubnote = async () => {
-    const sub = (await createNote(note.id)).value;
+    const sub = await createNote(note.id);
     if (sub) {
       navToNote(sub.id);
       setOpen(true);

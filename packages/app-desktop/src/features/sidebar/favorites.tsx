@@ -16,6 +16,7 @@ import { useCallback, useEffect, useState } from "react";
 import { FavoriteItem } from "./favorite-item";
 import { useLocalStore } from "@renderer/context/local-state";
 import { useTranslation } from "react-i18next";
+import React from "react";
 
 export function FavortiesWidget() {
   const notes = useNotesQuery().data?.value;
@@ -45,7 +46,7 @@ export function FavortiesWidget() {
   }, [notes]);
 
   const render = useCallback(() => {
-    const elements: JSX.Element[] = [];
+    const elements: React.JSX.Element[] = [];
     const arr = [...target];
     arr.sort((a, b) => (a.favoriteIndex ?? 0) - (b.favoriteIndex ?? 0));
     if (arr.length === 0) return elements;

@@ -27,7 +27,7 @@ export function NoteSelectCommand({
   onSelect,
 }: NoteSelectCommandProps) {
   const [search, setSearch] = useState("");
-  const notes = useNotesQuery().data?.value.filter((n) => !n.isTrashed);
+  const notes = useNotesQuery().data?.filter((n) => !n.isTrashed);
   return (
     <Command className={cn("h-full", className)}>
       <CommandInput
@@ -65,7 +65,7 @@ export function NoteSelectCommandDialog({
   setOpen,
 }: NoteSelectCommandDialogProps) {
   const [search, setSearch] = useState("");
-  const notes = useNotesQuery().data?.value.filter((n) => !n.isTrashed);
+  const notes = useNotesQuery().data?.filter((n) => !n.isTrashed);
   return (
     <CommandDialog open={open} onOpenChange={setOpen} className="rounded-xl!">
       <CommandInput

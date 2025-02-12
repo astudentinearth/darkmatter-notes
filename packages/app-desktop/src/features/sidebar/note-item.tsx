@@ -44,7 +44,7 @@ export function NoteItem({
   noDrag?: boolean;
 }) {
   // global state
-  const notes = useNotesQuery().data?.value;
+  const notes = useNotesQuery().data;
   const activeNoteId = useNoteFromURL();
 
   // global actions

@@ -14,7 +14,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 export function TrashWidget() {
-  const notes = useNotesQuery().data?.value;
+  const notes = useNotesQuery().data;
   const update = useUpdateNoteMutation().mutate;
   const restore = (id: string) => update({ id, isTrashed: false });
   const del = useDeleteNoteMutation().mutate;

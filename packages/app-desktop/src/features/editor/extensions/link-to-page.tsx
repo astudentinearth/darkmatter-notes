@@ -22,7 +22,7 @@ import { MouseEvent, useState } from "react";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LinkComponent = ({ node, updateAttributes }: any) => {
   const id = node.attrs.noteID;
-  const notes = useNotesQuery().data?.value.filter((n) => !n.isTrashed);
+  const notes = useNotesQuery().data?.filter((n) => !n.isTrashed);
   const note = useNoteByIdQuery(id).data;
   const navToNote = useNavigateToNote();
 

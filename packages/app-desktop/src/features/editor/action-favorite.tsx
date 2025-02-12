@@ -6,7 +6,7 @@ import { Star } from "lucide-react";
 
 export function FavoriteActionButton() {
   const id = useNoteFromURL();
-  const notes = useNotesQuery().data?.value;
+  const notes = useNotesQuery().data;
   const targetNote = notes?.find((n) => n.id === id);
   const update = useUpdateNoteMutation().mutate;
 

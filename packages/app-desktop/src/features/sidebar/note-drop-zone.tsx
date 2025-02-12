@@ -17,7 +17,7 @@ export function NoteDropZone({
   const [dragOver, setDragOver] = useState(false);
   const saveAllMutation = useUpdateMultipleNotesMutation();
   const notesQuery = useNotesQuery();
-  const notes = notesQuery.data?.value;
+  const notes = notesQuery.data;
   const handleDrop = async (event: DragEvent<HTMLElement>) => {
     if (!notes) return;
     event.preventDefault();

@@ -19,7 +19,7 @@ import { useTranslation } from "react-i18next";
 import React from "react";
 
 export function FavortiesWidget() {
-  const notes = useNotesQuery().data?.value;
+  const notes = useNotesQuery().data;
   const updateMany = useUpdateMultipleNotesMutation().mutate;
   const open = !useLocalStore((s) => s.favoritesCollapsed);
   const setCollapsed = useLocalStore((s) => s.setFavoritesCollapsed);

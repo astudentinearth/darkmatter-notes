@@ -1,4 +1,4 @@
-import { NotesModel } from "@renderer/lib/api/note";
+import { NoteAPI } from "@renderer/api";
 import { useQuery } from "@tanstack/react-query";
 
 export const useNotesQuery = () => {
@@ -6,10 +6,7 @@ export const useNotesQuery = () => {
     queryKey: ["notes"],
     queryFn: async () => {
       console.log("Fetching notes");
-      const data = await NotesModel.Instance.getNotes();
-      if (data.error) {
-        throw data.error;
-      }
+      const data = await NoteAPI().getNotes();
       return data;
     },
     staleTime: 1000 * 60 * 5, // 5 minutes,

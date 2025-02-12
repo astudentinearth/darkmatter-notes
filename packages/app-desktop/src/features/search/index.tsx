@@ -14,7 +14,7 @@ export function SearchDialog(props: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) {
-  const notes = useNotesQuery().data?.value.filter((n) => !n.isTrashed);
+  const notes = useNotesQuery().data?.filter((n) => !n.isTrashed);
   const { open, setOpen } = props;
   const [search, setSearch] = useState("");
   const nav = useNavigateToNote();

@@ -16,7 +16,7 @@ import { useTranslation } from "react-i18next";
 export function NotesWidget() {
   const notesQuery = useNotesQuery();
   const moveMutation = useMoveNoteMutation();
-  const notes = notesQuery.data?.value;
+  const notes = notesQuery.data;
   const move = moveMutation.mutate;
   const open = !useLocalStore((s) => s.allNotesCollapsed);
   const setCollapsed = useLocalStore((s) => s.setAllNotesCollapsed);

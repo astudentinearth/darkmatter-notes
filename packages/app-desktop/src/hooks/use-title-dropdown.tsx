@@ -63,14 +63,14 @@ export const useTitleDropdown = () => {
   const id = useNoteFromURL();
   const location = useLocation();
   const { data: notesQuery, isLoading } = useNotesQuery();
-  const notes = notesQuery?.value;
+  const notes = notesQuery;
 
   const [parentNodes, setParentNodes] = useState<Note[]>([]);
   const [title, setTitle] = useState<ReactNode>("Darkwrite");
 
   useEffect(() => {
     const path = location.pathname;
-    const title = getTitle(notes, isLoading, path, id);
+    const title = getTitle(notes ?? undefined, isLoading, path, id);
     setTitle(title);
   }, [id, isLoading, location.pathname, notes]);
 

@@ -10,7 +10,7 @@ import { contextBridge, ipcRenderer, webUtils } from "electron";
  * @param args Every other parameter which will be passed into ipcRenderer.invoke()
  * @returns
  */
-const invoke = <T = void>(channel: string, ...args): Promise<T> =>
+const invoke = <T = void>(channel: string, ...args: unknown[]): Promise<T> =>
   <Promise<T>>ipcRenderer.invoke(channel, ...args);
 
 let initialized = false;
@@ -30,7 +30,7 @@ export const initalizeAPI = async () => {
   const obj = {};
   for (const keyPath of handlerKeys) {
     const channel = "api".concat(".").concat(keyPath.join("."));
-    const handlerFunc = async (...args) => {
+    const handlerFunc = async (...args: unknown[]) => {
       const result = await invoke<unknown>(channel, ...args);
       return result;
     };
@@ -44,3 +44,4 @@ export const initalizeAPI = async () => {
 
 contextBridge.exposeInMainWorld("webUtils", webUtils);
 contextBridge.exposeInMainWorld("initPreload", initalizeAPI);
+contextBridge.exposeInMainWorld("isElectron", true);

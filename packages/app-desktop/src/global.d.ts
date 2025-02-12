@@ -27,6 +27,7 @@ declare global {
     api: APIType;
     webUtils: WebUtils;
     initPreload: PreloadInitFunction;
+    isElectron: true | undefined;
   }
 
   interface Navigator {

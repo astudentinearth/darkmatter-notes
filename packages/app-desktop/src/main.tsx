@@ -18,7 +18,9 @@ const renderApp = () => {
 };
 
 const waitAPI = async () => {
-  await window.initPreload();
+  if(window.isElectron){
+    await window.initPreload();
+  }
   renderApp();
 };
 

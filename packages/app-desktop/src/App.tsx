@@ -8,6 +8,7 @@ import { EditorRoot } from "./features/editor";
 import { HomePage } from "./features/home";
 import { SettingsPage } from "./features/settings";
 import { useNoteFromURL } from "./hooks/use-note-from-url";
+import { SettingsAPI } from "./api";
 
 const EditorRootWrapper = () => {
   const note = useNoteFromURL();
@@ -19,7 +20,7 @@ function App() {
   const [queryClient] = useState(() => new QueryClient());
 
   useEffect(() => {
-    window.api.settings.load().then((prefs) => {
+    SettingsAPI().load().then((prefs) => {
       if (prefs == null) throw new Error("Could not load user settings");
       else initializeUserSettings(prefs);
     });

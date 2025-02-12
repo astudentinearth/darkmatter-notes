@@ -14,8 +14,8 @@ const WebThemeAPI: ThemeAPI = {
 };
 
 export class ThemesModel {
-  private API: ThemeAPI = window.api.theme;
-  constructor(api: ThemeAPI = window.api.theme ?? WebThemeAPI) {
+  private API: ThemeAPI = WebThemeAPI;
+  constructor(api: ThemeAPI = window.isElectron ? window.api.theme : WebThemeAPI) {
     this.API = api;
   }
   public getUserThemes = () => this.API.load();

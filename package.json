@@ -16,6 +16,7 @@
     "globals": "^15.14.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.4.2",
+    "tsx": "^4.19.2",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.22.0",
     "vite-tsconfig-paths": "^5.1.0",
@@ -27,18 +28,21 @@
     "katex": "^0.16.21",
     "vitest": "^3.0.5"
   },
+  "resolutions": {
+    "prosemirror-view": "1.37.2"
+  },
   "private": true,
   "scripts": {
-    "test": "pnpm --filter \"@darkwrite/*\" test",
-    "typecheck": "pnpm --filter \"@darkwrite/*\" typecheck",
-    "coverage": "pnpm --filter \"@darkwrite/*\" coverage",
-    "dev": "concurrently \"pnpm --filter @darkwrite/common dev\"   \"pnpm --filter @darkwrite/app-desktop dev\"",
-    "build:desktop": "pnpm --filter \"@darkwrite/app-desktop\" build",
+    "test": "yarn workspaces foreach -A test",
+    "typecheck": "yarn workspaces foreach -A typecheck",
+    "coverage": "yarn workspaces foreach -A coverage",
+    "dev": "concurrently \"yarn workspace @darkwrite/app-desktop dev\"   \"yarn workspace @darkwrite/common dev\"",
+    "build:desktop": "yarn workspace @darkwrite/app-desktop build",
     "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
     "format": "prettier . --write"
   },
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "pnpm@9.12.3+sha512.cce0f9de9c5a7c95bef944169cc5dfe8741abfb145078c0d508b868056848a87c81e626246cb60967cbd7fd29a6c062ef73ff840d96b3c86c40ac92cf4a813ee"
+  "packageManager": "yarn@4.6.0"
 }

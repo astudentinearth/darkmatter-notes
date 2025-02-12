@@ -1,5 +1,5 @@
 import { Note, NotePartial } from "@darkwrite/common";
-import { NotesModel } from "@renderer/lib/api/note";
+import { NoteAPI } from "@renderer/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useUpdateNoteMutation = () => {
@@ -10,7 +10,7 @@ export const useUpdateNoteMutation = () => {
         ...updatedNote,
         modified: updatedNote.modified ?? new Date(),
       };
-      NotesModel.Instance.update({ ...updated });
+      NoteAPI().update({ ...updated });
       return updated;
     },
 
@@ -38,7 +38,7 @@ export const useUpdateMultipleNotesMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (updatedNotes: Note[]) =>
-      NotesModel.Instance.saveAll(updatedNotes),
+      NoteAPI().saveAll(updatedNotes),
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({ queryKey: ["notes"] });

@@ -1,5 +1,5 @@
 import { NoteCustomizations } from "@darkwrite/common";
-import { NotesModel } from "@renderer/lib/api/note";
+import { NoteAPI } from "@renderer/api";
 import { useMutation } from "@tanstack/react-query";
 import _ from "lodash";
 import { JSONContent } from "novel";
@@ -8,7 +8,7 @@ import { useUpdateNoteMutation } from "./use-update-note-mutation";
 export const debouncedSave = _.debounce(
   async (id: string, content: string, callback?: () => void) => {
     console.log("Saving note to disk...", id,content);
-    await NotesModel.Instance.updateContents(id, content);
+    await NoteAPI().updateContents(id, content);
     callback?.call(null);
   },
   200,
@@ -36,7 +36,7 @@ export const useNoteContentsMutation = (id: string) => {
         debouncedSave(id, str, () => {
           update({ id, modified: new Date() });
         });
-      else await NotesModel.Instance.updateContents(id, str);
+      else await NoteAPI().updateContents(id, str);
     },
   });
 };

@@ -1,23 +1,23 @@
-import { generateHTML } from "@tiptap/html";
-import { NotesModel } from "./note";
-import { attempt } from "lodash";
+import { NoteAPI } from "@renderer/api";
 import { defaultExtensions } from "@renderer/features/editor/extensions/extensions";
+import { generateHTML } from "@tiptap/html";
+import { attempt } from "lodash";
 
 export class ExporterModel {
   async exportAllAsHTML() {
     const API = window.api.exporter;
-    const notesOpt = await NotesModel.Instance.getNotes();
-    if (notesOpt.error || notesOpt.value.length == 0) return;
-    const notes = notesOpt.value;
+    const notesOpt = await NoteAPI().getNotes();
+    if (!notesOpt || notesOpt.length == 0) return;
+    const notes = notesOpt;
     await API.init();
     for (const note of notes) {
       console.log(`Exporting ${note.id}`);
-      const contentsOpt = await NotesModel.Instance.getContents(note.id);
-      if (contentsOpt.error) continue;
+      const contentsOpt = await NoteAPI().getContents(note.id);
+      if (!contentsOpt) continue;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let json: any;
-      if (contentsOpt.value != "") {
-        json = attempt(() => JSON.parse(contentsOpt.value));
+      if (contentsOpt != "") {
+        json = attempt(() => JSON.parse(contentsOpt));
       } else json = { contents: {}, customizations: {} };
       if (json instanceof Error) {
         console.error(json);

@@ -1,5 +1,8 @@
 import { FileImportResult, Note, NotePartial } from "@darkwrite/common";
 
+/**
+ * @deprecated use `INoteAPI` instead
+ */
 export interface INotesModel {
   create: (title: string, parent?: string) => Promise<Result<Note, Error>>;
   updateContents: (id: string, content: string) => Promise<{ error?: Error }>;
@@ -17,6 +20,9 @@ export interface INotesModel {
   duplicate: (id: string) => Promise<Result<Note, Error>>;
 }
 
+/**
+ * @deprecated use `NoteAPI()` instead
+ */
 export class NotesModel implements INotesModel {
   private static instance: NotesModel;
   private API = window.api.note;

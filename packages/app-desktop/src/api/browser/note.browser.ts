@@ -1,16 +1,20 @@
 import { Note } from "@darkwrite/common";
 import { INoteAPI } from "../types";
 
+const InMemoryDB: Note[] = [];
+
 export const BrowserNoteAPI: INoteAPI = {
   async create(title, parent) {
     //TODO
-    return {
+    const note = {
       created: new Date(),
       icon: "",
-      id: Date.now().toString(),
+      id: `${Date.now().toString()}-${Math.random()}`,
       modified: new Date(),
       title: "New note"
     } satisfies Note;
+    InMemoryDB.push(note);
+    return note;
   },
   async delete(id) {
     //TODO
@@ -28,12 +32,12 @@ export const BrowserNoteAPI: INoteAPI = {
     return null;
   },
   async getNote(id) {
-    //TODO
-    return null;
+    const val = InMemoryDB.find(n=>n.id===id) ?? null;
+    if(val==null) return val;
+    return {...val};
   },
   async getNotes() {
-    //TODO
-    return []
+    return [...InMemoryDB]
   },
   async importFile() {
     //TODO

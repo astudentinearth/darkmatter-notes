@@ -7,6 +7,7 @@ import {
   DropdownMenuSwitchItem,
   DropdownMenuTrigger,
 } from "@darkwrite/ui";
+import { NoteAPI } from "@renderer/api";
 import { HeaderbarButton } from "@renderer/components/ui/headerbar-button";
 import { useEditorState } from "@renderer/context/editor-state";
 import { useLocalStore } from "@renderer/context/local-state";
@@ -14,7 +15,6 @@ import { useNoteByIdQuery } from "@renderer/hooks/query";
 import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-note-mutation";
 import { useExport } from "@renderer/hooks/use-export";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
-import { NotesModel } from "@renderer/lib/api/note";
 import { cn } from "@renderer/lib/utils";
 import { Copy, Download, Menu, Redo, Undo, Upload } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -70,9 +70,6 @@ export function EditorMenu() {
             onSelect={() => {
               if (!activeNote.data) return;
               _export(activeNote.data);
-              //const content = getSerializable().content;
-              //const html = generateHTML(content, [...defaultExtensions]);
-              //NotesModel.Instance.exportHTML(activeNote.data?.value, html);
             }}
             className="gap-2 rounded-lg"
           >
@@ -81,7 +78,7 @@ export function EditorMenu() {
           </DropdownMenuItem>
           <DropdownMenuItem
             onSelect={async () => {
-              const html = await NotesModel.Instance.importFile();
+              const html = await NoteAPI().importFile();
               if (!html) {
                 console.error("Failed to import note");
                 return;

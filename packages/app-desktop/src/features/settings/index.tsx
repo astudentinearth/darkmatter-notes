@@ -20,7 +20,7 @@ export function SettingsPage() {
           <WorkspaceSettings />
           <ThemeSettings />
           <FontSettings />
-          <ExperimentalFeatures />
+          {window.isElectron && <ExperimentalFeatures />}
           <AboutCard />
         </>
       )}

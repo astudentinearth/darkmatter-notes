@@ -1,19 +1,24 @@
 import { Note } from "@darkwrite/common";
 import { INoteAPI } from "../types";
-
-const InMemoryDB: Note[] = [];
+import { BrowserDB } from "./db.browser";
 
 export const BrowserNoteAPI: INoteAPI = {
   async create(title, parent) {
-    //TODO
+    const db = await BrowserDB;
     const note = {
       created: new Date(),
       icon: "",
-      id: `${Date.now().toString()}-${Math.random()}`,
+      id: self.crypto.randomUUID(),
       modified: new Date(),
-      title: "New note"
+      title,
+      parentID: parent
     } satisfies Note;
-    InMemoryDB.push(note);
+    const tx = await db.transaction(["note", "note-contents"], "readwrite");
+    const notesStore = tx.objectStore("note");
+    const contentStore = tx.objectStore("note-contents");
+    await notesStore.put(note);
+    await contentStore.put("{}", note.id);
+    await tx.done;
     return note;
   },
   async delete(id) {
@@ -28,16 +33,20 @@ export const BrowserNoteAPI: INoteAPI = {
     
   },
   async getContents(id) {
-    //TODO
-    return null;
+    const db = await BrowserDB;
+    const value = await db.get("note-contents", id);
+    return value ?? null;
   },
   async getNote(id) {
-    const val = InMemoryDB.find(n=>n.id===id) ?? null;
-    if(val==null) return val;
-    return {...val};
+    const db = await BrowserDB;
+    const value = await db.get("note", id);
+    if(value==null) return null;
+    return value;
   },
   async getNotes() {
-    return [...InMemoryDB]
+    const db = await BrowserDB;
+    const notes = await db.getAll("note");
+    return notes;
   },
   async importFile() {
     //TODO
@@ -60,11 +69,19 @@ export const BrowserNoteAPI: INoteAPI = {
     
   },
   async update(data) {
-    //TODO
-    
+    const db = await BrowserDB;
+    const tx = db.transaction("note", "readwrite");
+    const store = tx.objectStore("note");
+
+    const existing = await store.get(data.id);
+    if(!existing) throw new Error(`Failed to update ${data.id} because it does not exist.`);
+
+    const updated = {...existing, ...data};
+    await store.put(updated);
+    await tx.done;
+
   },
   async updateContents(id, content) {
-    //TODO
-    
+    await (await BrowserDB).put("note-contents", content, id);;
   }, 
 }

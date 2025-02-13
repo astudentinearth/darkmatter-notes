@@ -27,7 +27,8 @@ export const useUpdateNoteMutation = () => {
           };
         },
       );
-      queryClient.invalidateQueries({ queryKey: ["notes"] });
+      //queryClient.invalidateQueries({ queryKey: ["notes"] });
+      queryClient.refetchQueries({queryKey: ["notes"]})
     },
     onError(err) {
       console.error(err);

@@ -1,6 +1,8 @@
 import { NoteAPI } from "@renderer/api";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigateToNote } from "../use-navigate-to-note";
+import { toast } from "sonner";
+
 
 export const useCreateNoteMutation = (navigateAfter: boolean = false) => {
   const nav = useNavigateToNote();
@@ -14,6 +16,9 @@ export const useCreateNoteMutation = (navigateAfter: boolean = false) => {
     onSuccess: async (note) => {
       await queryClient.refetchQueries({ queryKey: ["notes"] });
       if (navigateAfter) nav(note.id);
+    },
+    onError(error) {
+      toast(error.message);
     },
   });
 };

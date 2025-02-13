@@ -1,25 +1,34 @@
 import { Note } from "@darkwrite/common";
 import { INoteAPI } from "../types";
 import { BrowserDB } from "./db.browser";
+import { generateNoteId } from "@renderer/lib/utils";
 
 export const BrowserNoteAPI: INoteAPI = {
   async create(title, parent) {
-    const db = await BrowserDB;
-    const note = {
-      created: new Date(),
-      icon: "",
-      id: self.crypto.randomUUID(),
-      modified: new Date(),
-      title,
-      parentID: parent
-    } satisfies Note;
-    const tx = await db.transaction(["note", "note-contents"], "readwrite");
-    const notesStore = tx.objectStore("note");
-    const contentStore = tx.objectStore("note-contents");
-    await notesStore.put(note);
-    await contentStore.put("{}", note.id);
-    await tx.done;
-    return note;
+    try {
+      console.log("Creating note")
+      const db = await BrowserDB;
+      const note = {
+        created: new Date(),
+        icon: "",
+        id: generateNoteId(),
+        modified: new Date(),
+        title,
+        parentID: parent
+      } satisfies Note;
+      const tx = await db.transaction(["note", "note-contents"], "readwrite");
+      console.log("Begin transaction")
+      const notesStore = tx.objectStore("note");
+      const contentStore = tx.objectStore("note-contents");
+      console.log("Add note")
+      await notesStore.put(note);
+      await contentStore.put("{}", note.id);
+      await tx.done;
+      return note;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   },
   async delete(id) {
     //TODO

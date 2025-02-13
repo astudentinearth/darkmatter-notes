@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { hex } from "color-convert";
 import { FileText } from "lucide-react";
+import { nanoid } from "nanoid";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -30,4 +31,9 @@ export function hexToHslVariable(hexstr: string) {
   const sanitized = hexstr.trim().replace("#", "");
   const hsl = hex.hsl(sanitized);
   return `${hsl[0]} ${hsl[1]}% ${hsl[2]}%`;
+}
+
+export function generateNoteId(){
+  if(self.crypto != null && typeof self.crypto.randomUUID === "function") return self.crypto.randomUUID();
+  else return nanoid();
 }

@@ -1417,6 +1417,7 @@ __metadata:
     lodash: "npm:^4.17.21"
     lucide-react: "npm:^0.475.0"
     memfs: "npm:^4.9.3"
+    nanoid: "npm:^5.0.9"
     next-themes: "npm:^0.3.0"
     novel: "npm:^0.5.0"
     npm-run-all: "npm:^4.1.5"
@@ -13328,6 +13329,15 @@ __metadata:
   bin:
     nanoid: bin/nanoid.cjs
   checksum: 10c0/4b1bb29f6cfebf3be3bc4ad1f1296fb0a10a3043a79f34fbffe75d1621b4318319211cd420549459018ea3592f0d2f159247a6f874911d6d26eaaadda2478120
+  languageName: node
+  linkType: hard
+
+"nanoid@npm:^5.0.9":
+  version: 5.0.9
+  resolution: "nanoid@npm:5.0.9"
+  bin:
+    nanoid: bin/nanoid.js
+  checksum: 10c0/a2d9710525d4998a8a1610bbe6eb9a92c254ebab7c567c1ab429046fe7eed9c4df3508b59fb44c58ffdc98edb28dd6f953715c14b64ea0a3a2ce37420cdfeefd
   languageName: node
   linkType: hard
 

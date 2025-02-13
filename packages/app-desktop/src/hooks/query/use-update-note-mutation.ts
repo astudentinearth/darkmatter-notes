@@ -19,10 +19,11 @@ export const useUpdateNoteMutation = () => {
         ["note", variables.id],
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         (oldData: any) => {
-          if (!oldData || !oldData.value) return;
+          if (!oldData) return;
+          console.log("Updating cache");
+          console.log(oldData);
           return {
-            ...oldData,
-            value: { ...oldData.value, ..._data },
+            ...oldData, ..._data
           };
         },
       );

@@ -1,96 +1,70 @@
-import { Note } from "@darkwrite/common";
+import { Note, NotePartial } from "@darkwrite/common";
 import { INoteAPI } from "../types";
-import { BrowserDB } from "./db.browser";
 import { generateNoteId } from "@renderer/lib/utils";
+import { BrowserDBContext, IBrowserDBContext } from "./db-actions.browser";
 
-export const BrowserNoteAPI: INoteAPI = {
-  async create(title, parent) {
+export class BrowserNoteAPI implements INoteAPI {
+  constructor(private _db: IBrowserDBContext = new BrowserDBContext()) {}
+
+  async create(title: string, parent: string | undefined) {
     try {
-      console.log("Creating note")
-      const db = await BrowserDB;
       const note = {
         created: new Date(),
         icon: "",
         id: generateNoteId(),
         modified: new Date(),
         title,
-        parentID: parent
+        parentID: parent,
       } satisfies Note;
-      const tx = await db.transaction(["note", "note-contents"], "readwrite");
-      console.log("Begin transaction")
-      const notesStore = tx.objectStore("note");
-      const contentStore = tx.objectStore("note-contents");
-      console.log("Add note")
-      await notesStore.put(note);
-      await contentStore.put("{}", note.id);
-      await tx.done;
+      
+      await this._db.addNote(note);
       return note;
     } catch (error) {
       console.error(error);
       return null;
     }
-  },
-  async delete(id) {
+  }
+  async delete(id: string) {
     //TODO
-  },
-  async duplicate(id) {
+  }
+  async duplicate(id: string) {
     //TODO
     return null;
-  },
-  async exportHTML(note, content) {
+  }
+  async exportHTML(note: Note, content: string) {
     //TODO
-    
-  },
-  async getContents(id) {
-    const db = await BrowserDB;
-    const value = await db.get("note-contents", id);
-    return value ?? null;
-  },
-  async getNote(id) {
-    const db = await BrowserDB;
-    const value = await db.get("note", id);
-    if(value==null) return null;
+  }
+  async getContents(id: string) {
+    return (await this._db.getDocument(id)) ?? null;
+  }
+  async getNote(id: string) {
+    const value = await this._db.getNote(id);
+    if (value == null) return null;
     return value;
-  },
+  }
   async getNotes() {
-    const db = await BrowserDB;
-    const notes = await db.getAll("note");
-    return notes;
-  },
+    return await this._db.getNotes();
+  }
   async importFile() {
     //TODO
     return null;
-  },
-  async move(sourceId, destinationId) {
+  }
+  async move(sourceId: string, destinationId: string | undefined) {
     //TODO
-    
-  },
-  async restore(id) {
+  }
+  async restore(id: string) {
     //TODO
-    
-  },
-  async saveAll(notes) {
+  }
+  async saveAll(notes: Note[]) {
+    await this._db.saveAllNotes(notes);
+  }
+  async trash(id: string) {
     //TODO
-    
-  },
-  async trash(id) {
-    //TODO
-    
-  },
-  async update(data) {
-    const db = await BrowserDB;
-    const tx = db.transaction("note", "readwrite");
-    const store = tx.objectStore("note");
-
-    const existing = await store.get(data.id);
-    if(!existing) throw new Error(`Failed to update ${data.id} because it does not exist.`);
-
-    const updated = {...existing, ...data};
-    await store.put(updated);
-    await tx.done;
-
-  },
-  async updateContents(id, content) {
-    await (await BrowserDB).put("note-contents", content, id);;
-  }, 
+  }
+  async update(data: NotePartial) {
+    await this._db.updateNote(data);
+  }
+  async updateContents(id: string, content: string) {
+    this._db.saveDocument(id, content);
+  }
 }

@@ -1,7 +1,7 @@
 import { Embed, Note } from "@darkwrite/common";
 import { DBSchema, IDBPDatabase, openDB } from "idb";
 
-interface DarkwriteBrowserDB extends DBSchema {
+interface BrowserDBSchema extends DBSchema {
   note: {
     key: string;
     value: Note;
@@ -17,11 +17,11 @@ interface DarkwriteBrowserDB extends DBSchema {
   "note-contents": {
     key: string;
     value: string;
-  }
+  };
 }
 
-export const BrowserDB: Promise<IDBPDatabase<DarkwriteBrowserDB>> =
-  openDB<DarkwriteBrowserDB>("darkwrite-data", 1, {
+export const BrowserDB: Promise<IDBPDatabase<BrowserDBSchema>> =
+  openDB<BrowserDBSchema>("darkwrite-data", 1, {
     upgrade(database) {
       database.createObjectStore("note", { keyPath: "id" });
       database.createObjectStore("embed", { keyPath: "id" });
@@ -29,3 +29,6 @@ export const BrowserDB: Promise<IDBPDatabase<DarkwriteBrowserDB>> =
       database.createObjectStore("note-contents");
     },
   });
+
+export type DarkwriteBrowserDB = typeof BrowserDB;
+

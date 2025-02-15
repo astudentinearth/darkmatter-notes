@@ -8,7 +8,7 @@ export function NoteAPI(): INoteAPI {
   if (window.isElectron) {
     return DesktopNoteAPI;
   }
-  return BrowserNoteAPI;
+  return new BrowserNoteAPI();
 }
 
 export function SettingsAPI(): ISettingsAPI {

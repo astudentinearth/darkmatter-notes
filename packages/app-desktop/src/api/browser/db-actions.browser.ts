@@ -43,7 +43,7 @@ export class BrowserDBContext {
   }
 
   public async saveDocument(id:string, content: string){
-    (await this._db).put("note-contents", content, id);
+    await (await this._db).put("note-contents", content, id);
   }
 
   public async saveAllNotes(notes: Note[]){
@@ -51,6 +51,10 @@ export class BrowserDBContext {
     const store = tx.objectStore("note");
     notes.forEach(n => store.put(n));
     await tx.done;
+  }
+
+  public async deleteNote(id: string){
+    await (await this._db).delete("note", id);
   }
 }
 

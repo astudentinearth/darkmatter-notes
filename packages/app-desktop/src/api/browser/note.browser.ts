@@ -25,11 +25,11 @@ export class BrowserNoteAPI implements INoteAPI {
     }
   }
   async delete(id: string) {
-    //TODO
+    await this._db.deleteNote(id);
   }
   async duplicate(id: string) {
-    //TODO
-    return null;
+    const duplicate = await this._db.duplicateNote(id);
+    return duplicate;
   }
   async exportHTML(note: Note, content: string) {
     //TODO
@@ -50,16 +50,19 @@ export class BrowserNoteAPI implements INoteAPI {
     return null;
   }
   async move(sourceId: string, destinationId: string | undefined) {
-    //TODO
+    await this._db.updateNote({
+      id: sourceId,
+      parentID: destinationId
+    });
   }
   async restore(id: string) {
-    //TODO
+    await this._db.updateNote({id, isTrashed: false})
   }
   async saveAll(notes: Note[]) {
     await this._db.saveAllNotes(notes);
   }
   async trash(id: string) {
-    //TODO
+    await this._db.updateNote({id, isTrashed: true})
   }
   async update(data: NotePartial) {
     await this._db.updateNote(data);

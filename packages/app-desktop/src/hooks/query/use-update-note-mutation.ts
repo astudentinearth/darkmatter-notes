@@ -43,7 +43,7 @@ export const useUpdateMultipleNotesMutation = () => {
       NoteAPI().saveAll(updatedNotes),
 
     onSuccess: async () => {
-      await queryClient.invalidateQueries({ queryKey: ["notes"] });
+      await queryClient.refetchQueries({ queryKey: ["notes"] });
     },
     onError(err) {
       console.error(err);

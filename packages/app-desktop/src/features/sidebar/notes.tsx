@@ -25,7 +25,10 @@ export function NotesWidget() {
   const { t } = useTranslation();
 
   const render = useCallback(() => {
-    const target = notes?.filter((n) => n.parentID == null && !n.isTrashed);
+    const target = notes?.filter((n) => n.parentID == null && !n.isTrashed).toSorted((a, b) => {
+      if(a.index !== undefined && b.index !== undefined) return a.index - b.index;
+      return 0;
+    });
     if (target == null) return <></>;
     const elements: React.JSX.Element[] = [];
     if (target.length === 0) return elements;

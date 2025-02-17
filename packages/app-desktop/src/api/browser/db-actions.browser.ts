@@ -18,7 +18,9 @@ export class BrowserDBContext {
   }
 
   public async getNotes() {
-    return (await this._db).getAll("note");
+    const notes = await (await this._db).getAll("note");
+    notes.sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+    return notes;
   }
 
   public async getNote(id: string) {

@@ -7,6 +7,7 @@ export const useNotesQuery = () => {
     queryFn: async () => {
       console.log("Fetching notes");
       const data = await NoteAPI().getNotes();
+      
       return data;
     },
     staleTime: 1000 * 60 * 5, // 5 minutes,

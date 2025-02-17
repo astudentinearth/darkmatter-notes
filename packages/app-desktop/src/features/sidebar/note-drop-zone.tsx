@@ -44,6 +44,7 @@ export function NoteDropZone({
       }
       // reindex
       for (let i = 0; i < arr.length; i++) {
+        console.log("Indexed", arr[i].title, "as", i);
         arr[i].index = i;
       }
     });

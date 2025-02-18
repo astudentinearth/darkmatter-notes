@@ -34,9 +34,9 @@
   },
   "private": true,
   "scripts": {
-    "test": "yarn workspaces foreach -A test",
-    "typecheck": "yarn workspaces foreach -A typecheck",
-    "coverage": "yarn workspaces foreach -A coverage",
+    "test": "yarn workspaces foreach -A run test",
+    "typecheck": "yarn workspaces foreach -A run typecheck",
+    "coverage": "yarn workspaces foreach -A run coverage",
     "dev": "concurrently \"yarn workspace @darkwrite/app-desktop dev\"   \"yarn workspace @darkwrite/common dev\"",
     "build:desktop": "yarn workspace @darkwrite/app-desktop build",
     "lint": "eslint -c eslint.config.mjs . --max-warnings 0",

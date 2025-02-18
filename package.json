@@ -29,7 +29,8 @@
     "vitest": "^3.0.5"
   },
   "resolutions": {
-    "prosemirror-view": "1.37.2"
+    "prosemirror-view": "1.37.2",
+    "esbuild": "^0.25.0"
   },
   "private": true,
   "scripts": {

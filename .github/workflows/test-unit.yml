@@ -27,33 +27,30 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+
       - name: Checkout
         uses: actions/checkout@v4
-
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
 
       - name: Enable corepack
         run: corepack enable
 
       - name: Install dependencies
-        run: bun install
+        run: yarn
 
       - name: Build @darkwrite/common
-        run: bun run --filter "@darkwrite/common" build
+        run: yarn workspace "@darkwrite/common" build
 
       - name: Build @darkwrite/ui
-        run: bun run --filter "@darkwrite/ui" build
+        run: yarn workspace "@darkwrite/ui" build
 
-      - name: Run tests
-        run: bun run test
+      - name: Lint
+        run: yarn lint
         continue-on-error: true
 
       - name: Check types
-        run: bun typecheck
-        continue-on-error: true
+        run: yarn typecheck
 
-      - name: Lint
-        run: bun lint
-        continue-on-error: true
+      - name: Run tests
+        run: yarn test
+
+

@@ -1,12 +1,13 @@
-import { defineConfig } from "vite";
+import { defineConfig, PluginOption } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
 import electron from "vite-plugin-electron/simple";
-import tailwind from "@tailwindcss/vite"
+import tailwind from "@tailwindcss/vite";
 
-export default defineConfig({
-  plugins: [
-    react(),
+const plugins: PluginOption[] = [react(), tailwind()];
+
+if (process.env["DW_WITHOUT_ELECTRON"] != "1")
+  plugins.push(
     electron({
       main: {
         entry: path.resolve("src/electron/main.ts"),
@@ -27,8 +28,10 @@ export default defineConfig({
         input: path.resolve("src/electron/preload/preload.ts"),
       },
     }),
-    tailwind()
-  ],
+  );
+
+export default defineConfig({
+  plugins,
   resolve: {
     alias: {
       "@renderer": path.resolve("src/"),

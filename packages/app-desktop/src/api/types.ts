@@ -29,8 +29,9 @@ export interface ISettingsAPI {
 }
 
 export interface IEmbedAPI {
-  create: (path: string) => Promise<Embed>;
+  create: (file: File) => Promise<Embed>;
   createFromArrayBuffer: (buffer: ArrayBuffer, fileExt: string) => Promise<Embed>;
+  resolveSourceURL: (id: string) => Promise<string>
 }
 
 export interface IThemeAPI {

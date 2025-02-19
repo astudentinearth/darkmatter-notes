@@ -1,4 +1,4 @@
-import { EmbedAPI } from "@renderer/lib/api/embed";
+import { EmbedAPI } from "@renderer/api";
 import { cn } from "@renderer/lib/utils";
 import { mergeAttributes } from "@tiptap/core";
 import { TiptapImage } from "novel/extensions";
@@ -6,6 +6,7 @@ import { Plugin } from "prosemirror-state";
 import { createImageNode, isImageFile } from "./image-upload";
 import { ReactNodeViewRenderer } from "@tiptap/react";
 import { DarkwriteImageView } from "./image-view";
+
 
 export const DarkwriteImage = TiptapImage.extend({
   name: "dwimage",
@@ -66,7 +67,7 @@ export const DarkwriteImage = TiptapImage.extend({
                 const file = item.getAsFile();
                 if (!file) return;
                 file.arrayBuffer().then(async (buf) => {
-                  const embed = await new EmbedAPI().createFromArrayBuffer(
+                  const embed = await EmbedAPI().createFromArrayBuffer(
                     buf,
                     filetype,
                   );

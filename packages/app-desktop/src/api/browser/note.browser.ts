@@ -1,6 +1,6 @@
 import { Note, NotePartial } from "@darkwrite/common";
 import { INoteAPI } from "../types";
-import { generateNoteId } from "@renderer/lib/utils";
+import { generateId } from "@renderer/lib/utils";
 import { BrowserDBContext, IBrowserDBContext } from "./db-actions.browser";
 
 export class BrowserNoteAPI implements INoteAPI {
@@ -11,7 +11,7 @@ export class BrowserNoteAPI implements INoteAPI {
       const note = {
         created: new Date(),
         icon: "",
-        id: generateNoteId(),
+        id: generateId(),
         modified: new Date(),
         title,
         parentID: parent,

@@ -33,7 +33,7 @@ export function hexToHslVariable(hexstr: string) {
   return `${hsl[0]} ${hsl[1]}% ${hsl[2]}%`;
 }
 
-export function generateNoteId(){
+export function generateId(){
   if(self.crypto != null && typeof self.crypto.randomUUID === "function") return self.crypto.randomUUID();
   else return nanoid();
 }

@@ -1,12 +1,11 @@
-import { EmbedAPI } from "@renderer/lib/api/embed";
+import { EmbedAPI } from "@renderer/api";
 import { type EditorView } from "prosemirror-view";
 
 const uploadEmbed = async (file: File) => {
-  const path = window.webUtils.getPathForFile(file);
-  const api = new EmbedAPI();
-  const embed = await api.create(path);
-  const resolved = await api.resolve(embed.id);
-  return resolved;
+  const api = EmbedAPI();
+  const embed = await api.create(file);
+  const uri = await api.resolveSourceURL(embed.id);
+  return {...embed, uri};
 };
 
 export const isImageFile = (file: File) => {

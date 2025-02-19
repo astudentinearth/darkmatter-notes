@@ -1,6 +1,6 @@
-import { Note, NotePartial } from "@darkwrite/common";
+import { Embed, Note, NotePartial } from "@darkwrite/common";
 import { BrowserDB, DarkwriteBrowserDB } from "./db.browser";
-import { generateNoteId } from "@renderer/lib/utils";
+import { generateId } from "@renderer/lib/utils";
 
 export class BrowserDBContext {
   constructor(private _db: DarkwriteBrowserDB = BrowserDB) {}
@@ -83,12 +83,32 @@ export class BrowserDBContext {
     if (!content) content = "{}";
     const duplicate = {
       ...existing,
-      id: generateNoteId(),
+      id: generateId(),
     } satisfies Note;
     await documentStore.put(content, duplicate.id);
     await noteStore.put(duplicate);
     await tx.done;
     return duplicate;
+  }
+
+  public async createEmbed(embed: Embed, data: Blob) {
+    const tx = (await this._db).transaction(
+      ["embed", "embed-files"],
+      "readwrite",
+    );
+    const embedStore = tx.objectStore("embed");
+    const fileStore = tx.objectStore("embed-files");
+    await embedStore.put(embed);
+    await fileStore.put(data, embed.id);
+    await tx.done;
+  }
+
+  public async getEmbed(id: string) {
+    return (await this._db).get("embed", id);
+  }
+
+  public async getEmbeddedFile(id: string) {
+    return (await this._db).get("embed-files", id);
   }
 }
 

@@ -1,8 +1,9 @@
 import { buildUserSettings, DEFAULT_USER_SETTINGS } from "@darkwrite/common";
 import { BrowserNoteAPI } from "./browser/note.browser";
 import { DesktopNoteAPI } from "./electron/note.desktop";
-import { INoteAPI, ISettingsAPI } from "./types";
+import { IEmbedAPI, INoteAPI, ISettingsAPI } from "./types";
 import _ from "lodash";
+import { BrowserEmbedAPI } from "./browser/embed.browser";
 
 export function NoteAPI(): INoteAPI {
   if (window.isElectron) {
@@ -37,4 +38,18 @@ export function SettingsAPI(): ISettingsAPI {
       localStorage.setItem("darkwrite-user-settings", JSON.stringify(data));
     },
   } satisfies ISettingsAPI;
+}
+
+export function EmbedAPI(): IEmbedAPI {
+  if(window.isElectron){
+    return {
+      create: (file) => {
+        const path = window.webUtils.getPathForFile(file);
+        return window.api.embed.create(path);
+      },
+      createFromArrayBuffer: (buffer, ext) => window.api.embed.createFromBuffer(buffer, ext),
+      resolveSourceURL: async (id) => `embed://${id}`
+    } satisfies IEmbedAPI;
+  }
+  return new BrowserEmbedAPI();
 }

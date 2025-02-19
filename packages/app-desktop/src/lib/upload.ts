@@ -1,5 +1,5 @@
 import { ResolvedEmbed } from "@darkwrite/common";
-import { EmbedAPI } from "./api/embed";
+import { EmbedAPI } from "@renderer/api";
 
 export function uploadImage(): Promise<ResolvedEmbed> {
   return new Promise<ResolvedEmbed>((resolve, reject) => {
@@ -8,13 +8,12 @@ export function uploadImage(): Promise<ResolvedEmbed> {
     inp.accept = "image/*";
     const change = async () => {
       if (!inp.files?.length) return;
-      const api = new EmbedAPI();
+      const api = EmbedAPI();
       const file = inp.files[0];
-      const path = window.webUtils.getPathForFile(file);
       try {
-        const embed = await api.create(path);
-        const resolved = await api.resolve(embed.id);
-        if (resolved) resolve(resolved);
+        const embed = await api.create(file);
+        const uri = await api.resolveSourceURL(embed.id);
+        if (uri) resolve({...embed, uri});
         else throw new Error("Could not resolve embed.");
       } catch (error) {
         reject(error);

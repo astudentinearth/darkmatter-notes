@@ -4,6 +4,7 @@ import {
   setEditorCustomizations,
   useEditorState,
 } from "@renderer/context/editor-state";
+import { useEmbedSource } from "@renderer/hooks/use-embed-source";
 import { uploadImage } from "@renderer/lib/upload";
 import { cn } from "@renderer/lib/utils";
 import { ImageOff } from "lucide-react";
@@ -12,6 +13,7 @@ import { useState } from "react";
 export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
   const [mouseOver, setMouseOver] = useState(false);
   const customizations = useEditorState((s) => s.customizations);
+  const imageSource = useEmbedSource(embedId ?? "");
   const changeCover = async () => {
     try {
       const embed = await uploadImage();
@@ -40,9 +42,9 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
       style={
         embedId
           ? {
-              backgroundImage: `url(embed://${embedId})`,
+              backgroundImage: `url(${imageSource})`,
               backgroundPosition: "center",
-              backgroundSize: "cover",
+              backgroundSize: "cover"
             }
           : {}
       }

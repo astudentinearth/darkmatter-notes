@@ -12,11 +12,17 @@ export function AboutCard() {
           <h2 className="font-semibold text-xl">
             Darkwrite <span className="opacity-75">{data?.version}</span>
           </h2>
-          <div className="opacity-50">
-            electron {data?.electronVersion} | node {data?.nodeVersion} |{" "}
-            {data?.os}
-          </div>
-          <div className="opacity-50">packaged: {String(data?.isPackaged)}</div>
+          {window.isElectron && (
+            <>
+              <div className="opacity-50">
+                electron {data?.electronVersion} | node {data?.nodeVersion} |{" "}
+                {data?.os}
+              </div>
+              <div className="opacity-50">
+                packaged: {String(data?.isPackaged)}
+              </div>
+            </>
+          )}
           <div>
             <a
               target="_blank"

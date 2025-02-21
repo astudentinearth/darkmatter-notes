@@ -32,3 +32,10 @@ export type Promisfy<Type> =
 export type PromisfyFunction<Func extends (...args: any[]) => any> = (
   ...args: Parameters<Func>
 ) => Promisfy<ReturnType<Func>>;
+
+export type ExcludeFunctions<Obj extends {[key: string]: any}> = {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+  [Key in keyof Obj]: Obj[Key] extends Function ? never : Key
+}
+
+export type KeysExceptFunctions<T> = ExcludeFunctions<T>[keyof T];

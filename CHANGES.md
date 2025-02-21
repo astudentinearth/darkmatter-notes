@@ -1,5 +1,6 @@
 # next
 ## 🌟 Features
+- Darkwrite now runs on your web browser (with the exception of a few features)
 - Added trash search
 
 ## ✨ Improvements and fixes

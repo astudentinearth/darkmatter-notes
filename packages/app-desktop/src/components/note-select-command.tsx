@@ -5,7 +5,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@renderer/components/ui/command";
+} from "@darkwrite/ui";
 import { useNotesQuery } from "@renderer/hooks/query";
 import { cn, getNoteIcon } from "@renderer/lib/utils";
 import { Command } from "lucide-react";

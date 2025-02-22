@@ -1,14 +1,12 @@
 import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
   Command,
   CommandEmpty,
   CommandInput,
   CommandItem,
   CommandList,
-} from "@renderer/components/ui/command";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
 } from "@darkwrite/ui";
 import { useNoteByIdQuery, useNotesQuery } from "@renderer/hooks/query";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";

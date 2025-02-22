@@ -4,7 +4,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@renderer/components/ui/command";
+} from "@darkwrite/ui";
 import { useNotesQuery } from "@renderer/hooks/query";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { getNoteIcon } from "@renderer/lib/utils";
@@ -34,7 +34,7 @@ export function SearchDialog(props: {
     <CommandDialog
       open={open}
       onOpenChange={setOpen}
-      className="rounded-xl! bg-background/70 backdrop-blur-lg"
+      className="rounded-xl! bg-background/70 backdrop-blur-lg max-w-[720px]"
     >
       <CommandInput
         value={search}

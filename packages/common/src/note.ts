@@ -19,6 +19,7 @@ export interface NoteCustomizations {
   backgroundColor?: string;
   textColor?: string;
   coverEmbedId?: string;
+  widePage?: boolean;
 }
 
 export type NotePartial = Partial<Note> & { id: string };

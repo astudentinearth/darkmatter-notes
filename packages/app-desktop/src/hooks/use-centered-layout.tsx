@@ -14,7 +14,8 @@ export const useCenteredLayout = (maxWidth: number = 960) => {
       const availableWidth =
         window.innerWidth - (isSidebarCollapsed ? 0 : sidebarWidth + 1) - 8;
       // if less than 960px is available, we give it all. if we have more than 960, we give 960
-      setWidth(availableWidth <= maxWidth ? availableWidth : maxWidth);
+      if(maxWidth === 0) setWidth(availableWidth);
+      else setWidth(availableWidth <= maxWidth ? availableWidth : maxWidth);
     };
     handleResize();
     window.addEventListener("resize", handleResize);

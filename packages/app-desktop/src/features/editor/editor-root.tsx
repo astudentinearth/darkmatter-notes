@@ -36,7 +36,7 @@ export function EditorRoot() {
   const _customizations = useEditorState((s) => s.customizations);
   const [debouncedValue] = useDebounce(value, 200);
   const rootContainerRef = useRef<HTMLDivElement>(null);
-  const editorWidth = useCenteredLayout(984);
+  const editorWidth = useCenteredLayout(_customizations.widePage ? 0 : 984);
   const wordCountEnabled = useLocalStore((s) => s.alwaysShowWordCount);
   useEffect(() => {
     if (content && customizations) {
@@ -118,6 +118,7 @@ export function EditorRoot() {
             note={note}
             update={update}
             hasCover={!!_customizations.coverEmbedId}
+            wide={_customizations.widePage}
           />
         </>
       ) : (

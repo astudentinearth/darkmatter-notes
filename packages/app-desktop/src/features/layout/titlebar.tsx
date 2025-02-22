@@ -5,6 +5,7 @@ import { PanelRightClose } from "lucide-react";
 import { RefObject } from "react";
 import { ActionBar } from "../editor/action-bar";
 import { NoteDropdown } from "./note-dropdown";
+import { HistoryNavigation } from "./navigation";
 
 export type TitlebarProps = React.HTMLAttributes<HTMLDivElement> & {
   refObject: RefObject<HTMLDivElement>;
@@ -26,6 +27,7 @@ export function Titlebar(props: TitlebarProps) {
       >
         <PanelRightClose width={20} height={20}></PanelRightClose>
       </HeaderbarButton>
+      {window.isElectron && <HistoryNavigation/>}
       <NoteDropdown></NoteDropdown>
       <FlexibleSpacer className="spacer" />
       <ActionBar />

@@ -1,0 +1,28 @@
+import { HeaderbarButton } from "@renderer/components/ui/headerbar-button";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
+
+export function HistoryNavigation(){
+  // check if we can go forward
+  const location = useLocation();
+  const [canGoForward, setCanGoForward] = useState(false);
+  const [canGoBack, setCanGoBack] = useState(false);
+  useEffect(()=>{
+    console.log("History length:", window.history.length);
+    console.log("History state:", window.history.state);
+    console.log("Can go forward?", window.history.length > window.history.state.idx + 1)
+    console.log("Can go back?", (0 < window.history.state.idx) && window.history.length > 0)
+    setCanGoForward(window.history.length > window.history.state.idx + 1);
+    setCanGoBack((0 < window.history.state.idx) && window.history.length > 0);
+  }, [location]);
+
+  return <>
+    {canGoBack && <HeaderbarButton title="Back" onClick={() => window.history.back()}>
+      <ChevronLeft size={20}/>
+    </HeaderbarButton>}
+    {canGoForward && <HeaderbarButton title="Forward" onClick={() => window.history.forward()}>
+      <ChevronRight size={20}/>
+    </HeaderbarButton>}
+  </>
+}

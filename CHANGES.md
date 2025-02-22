@@ -2,6 +2,7 @@
 ## 🌟 Features
 - Darkwrite now runs on your web browser (with the exception of a few features)
 - Added trash search
+- Added back and forward buttons
 
 ## ✨ Improvements and fixes
 - Input focus rings now follow accent color

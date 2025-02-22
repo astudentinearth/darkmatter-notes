@@ -1,6 +1,11 @@
 import "@testing-library/jest-dom/vitest";
 import { cleanup } from "@testing-library/react";
 import { afterEach } from "vitest";
+import * as apis from "@renderer/api";
+import { MockEmbedAPI, MockNoteAPI, MockSettingsAPI } from "./mock-api";
+import indexeddb from "fake-indexeddb"
+
+globalThis.indexedDB = indexeddb;
 
 vi.mock("zustand");
 
@@ -55,6 +60,15 @@ vi.mock("@renderer/lib/api/theme.ts", () => ({}));
 
 vi.mock("@renderer/lib/api/embed.ts", () => ({}));
 
+vi.spyOn(apis, "NoteAPI").mockReturnValue(MockNoteAPI);
+vi.spyOn(apis, "SettingsAPI").mockReturnValue(MockSettingsAPI);
+vi.spyOn(apis, "EmbedAPI").mockReturnValue(MockEmbedAPI);
+vi.mock("@renderer/api/browser/db-actions.browser.ts", ()=>({
+  BrowserDBContext: vi.fn(),
+}))
+
 afterEach(() => {
   cleanup();
 });
+
+

@@ -1403,6 +1403,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.6.2"
     eslint-plugin-react-refresh: "npm:^0.4.7"
     extract-zip: "npm:^2.0.1"
+    fake-indexeddb: "npm:^6.0.0"
     fs-extra: "npm:^11.2.0"
     fs-monkey: "npm:^1.0.6"
     generate-license-file: "npm:^3.5.0"
@@ -1513,6 +1514,7 @@ __metadata:
     globals: "npm:^15.9.0"
     lucide-react: "npm:^0.475.0"
     next-themes: "npm:^0.3.0"
+    npm-run-all: "npm:^4.1.5"
     react: "npm:^19"
     react-dom: "npm:^19"
     sonner: "npm:^1.5.0"
@@ -9796,6 +9798,13 @@ __metadata:
   version: 1.4.1
   resolution: "extsprintf@npm:1.4.1"
   checksum: 10c0/e10e2769985d0e9b6c7199b053a9957589d02e84de42832c295798cb422a025e6d4a92e0259c1fb4d07090f5bfde6b55fd9f880ac5855bd61d775f8ab75a7ab0
+  languageName: node
+  linkType: hard
+
+"fake-indexeddb@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "fake-indexeddb@npm:6.0.0"
+  checksum: 10c0/551ddada98f6d8b1c159698ff82570d06c8959f8e98616d872305dee3d857795dd62dd32094779e7b325397103364dcb0e24b6447992c0464ae13d19fbe57315
   languageName: node
   linkType: hard
 

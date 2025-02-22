@@ -1,6 +1,15 @@
 {
   "name": "darkwrite",
   "version": "0.4.0-alpha.3",
+  "scripts": {
+    "test": "yarn workspaces foreach -A run test",
+    "typecheck": "yarn workspaces foreach -A run typecheck",
+    "coverage": "yarn workspaces foreach -A run coverage",
+    "dev": "concurrently \"yarn workspace @darkwrite/app-desktop dev\"   \"yarn workspace @darkwrite/common dev\"",
+    "build:desktop": "yarn workspace @darkwrite/app-desktop build",
+    "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
+    "format": "prettier . --write"
+  },
   "devDependencies": {
     "@eslint/compat": "^1.2.5",
     "@eslint/eslintrc": "^3.2.0",
@@ -33,15 +42,6 @@
     "esbuild": "^0.25.0"
   },
   "private": true,
-  "scripts": {
-    "test": "yarn workspaces foreach -A run test",
-    "typecheck": "yarn workspaces foreach -A run typecheck",
-    "coverage": "yarn workspaces foreach -A run coverage",
-    "dev": "concurrently \"yarn workspace @darkwrite/app-desktop dev\"   \"yarn workspace @darkwrite/common dev\"",
-    "build:desktop": "yarn workspace @darkwrite/app-desktop build",
-    "lint": "eslint -c eslint.config.mjs . --max-warnings 0",
-    "format": "prettier . --write"
-  },
   "workspaces": [
     "packages/*"
   ],

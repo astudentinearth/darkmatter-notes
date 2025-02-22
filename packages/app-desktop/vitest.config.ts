@@ -9,13 +9,13 @@ export default defineProject({
     deps: {
       optimizer: {
         web: {
-          include: ["react-tweet", "katex"],
+          include: ["react-tweet", "katex", "lucide-react"],
         },
       },
     },
     server: {
       deps: {
-        inline: ["react-tweet", "katex"],
+        inline: ["react-tweet", "katex", "lucide-react"],
       },
     },
     pool: "vmThreads",

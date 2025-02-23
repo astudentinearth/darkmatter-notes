@@ -107,7 +107,7 @@ export function EditorCover(props: {
     >
       {note.isTrashed && (
         <>
-          <div className="bg-destructive/20 font-ui z-30 text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
+          <div className="bg-destructive/20 font-(family-name:--font-ui) z-30 text-foreground p-3 rounded-xl flex flex-col gap-1 border border-destructive drop-shadow-lg">
             <TriangleAlert />
             <div className="flex items-center">
               <span className="justify-self-start">

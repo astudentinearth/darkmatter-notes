@@ -9,6 +9,7 @@
 - Input focus rings now follow accent color
 - Fixed tab order in sidebar
 - Reduced transparency in menus to improve readability
+- Fix incorrect UI font issue in some elements when using system default
 
 ## 🛠️ Technical changes
 - shadcn-ui components now live in a separate package.

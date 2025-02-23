@@ -22,7 +22,7 @@ export function ThemeHandler() {
     //console.log("Applying themes");
     const api = new ThemesModel();
     setGlobalStyle("font-family", fonts.ui);
-    setGlobalStyle("--font-ui", fonts.ui);
+    setGlobalStyle("--font-ui", fonts.ui || "system-ui");
     setGlobalStyle("--darkwrite-sans", fonts.sans);
     setGlobalStyle("--darkwrite-mono", fonts.code);
     setGlobalStyle("--darkwrite-serif", fonts.serif);

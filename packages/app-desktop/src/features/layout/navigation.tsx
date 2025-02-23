@@ -18,9 +18,9 @@ export function HistoryNavigation(){
   }, [location]);
 
   return <>
-    {canGoBack && <HeaderbarButton title="Back" onClick={() => window.history.back()}>
+    <HeaderbarButton disabled={!canGoBack} className="disabled:opacity-20" title="Back" onClick={() => window.history.back()}>
       <ChevronLeft size={20}/>
-    </HeaderbarButton>}
+    </HeaderbarButton>
     {canGoForward && <HeaderbarButton title="Forward" onClick={() => window.history.forward()}>
       <ChevronRight size={20}/>
     </HeaderbarButton>}

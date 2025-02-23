@@ -7,6 +7,11 @@ const nextConfig: NextConfig = {
   pageExtensions: ["md", "mdx", "ts", "tsx"]
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    //@ts-expect-error documentation says so
+    rehypePlugins: [["rehype-slug", {}]]
+  }
+});
 
 export default withMDX(nextConfig);

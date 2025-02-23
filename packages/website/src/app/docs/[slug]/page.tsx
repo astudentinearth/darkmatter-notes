@@ -9,10 +9,12 @@ export default async function DocsPage({
   const slug = (await params).slug;
   const { default: Page } = await import(`@/docs/${slug}.mdx`);
   return (
-    <div className="absolute w-full h-full flex p-2 overflow-x-hidden">
+    <div className="absolute w-full h-full flex overflow-x-hidden">
       <DocsSidebar />
-      <div className="px-8 py-4 h-full overflow-auto">
-        <Page />
+      <div className="grow flex bg-muted/70 justify-center">
+        <div className="markdown-container px-8 h-full overflow-auto w-full max-w-240">
+          <Page />
+        </div>
       </div>
     </div>
   );

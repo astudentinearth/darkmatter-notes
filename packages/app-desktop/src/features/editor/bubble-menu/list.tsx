@@ -8,12 +8,14 @@ import { cn } from "@renderer/lib/utils";
 import { ChevronDown, List, ListOrdered, ListTodo } from "lucide-react";
 import { useEditor } from "novel";
 import { Dispatch, ReactNode, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 
 export function ListSelector(props: {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
 }) {
   const { editor } = useEditor();
+  const {t}  =useTranslation(undefined, {keyPrefix: "editor.bubble"});
   const item = (icon: ReactNode, text: string, callback: () => void) => {
     return (
       <Button
@@ -25,7 +27,7 @@ export function ListSelector(props: {
         }}
       >
         <div className="flex gap-2 items-center">
-          <div className="p-1 border-border border bg-background rounded-md">
+          <div className="p-1 border-border border bg-secondary/25 rounded-md">
             {icon}
           </div>
           <span>{text}</span>
@@ -47,14 +49,14 @@ export function ListSelector(props: {
           <ChevronDown size={16} />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="p-0 flex flex-col w-fit rounded-lg bg-view-2 text-foreground data-[state=closed]:animate-none!">
-        {item(<List />, "Bulleted list", () =>
+      <PopoverContent className="p-1 flex flex-col w-fit rounded-xl bg-view-2 text-foreground data-[state=closed]:animate-none!">
+        {item(<List />, t("bulletList"), () =>
           editor?.chain().focus().toggleBulletList().run(),
         )}
-        {item(<ListTodo />, "Todo list", () =>
+        {item(<ListTodo />, t("toDoList"), () =>
           editor?.chain().focus().toggleTaskList().run(),
         )}
-        {item(<ListOrdered />, "Numbered list", () =>
+        {item(<ListOrdered />, t("numberedList"), () =>
           editor?.chain().focus().toggleOrderedList().run(),
         )}
       </PopoverContent>

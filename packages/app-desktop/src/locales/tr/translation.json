@@ -111,16 +111,16 @@
     },
     "slashCommand": {
       "text": "Metin",
-      "toDoList": "Yapılacaklar Listesi",
+      "toDoList": "Yapılacaklar listesi",
       "heading1": "Başlık 1",
       "heading2": "Başlık 2",
       "heading3": "Başlık 3",
-      "bulletList": "Madde İşaretli Liste",
-      "numberedList": "Numaralı Liste",
+      "bulletList": "Madde işaretli liste",
+      "numberedList": "Numaralı liste",
       "quote": "Alıntı",
       "code": "Kod",
       "divider": "Bölücü",
-      "linkToPage": "Sayfaya Bağlantı",
+      "linkToPage": "Sayfaya bağlantı",
       "image": "Resim"
     },
     "bubble": {
@@ -129,7 +129,10 @@
       "h3": "Başlık 3",
       "h4": "Başlık 4",
       "removeLink": "Bağlantıyı kaldır",
-      "saveLink": "Bağlantıyı kaydet"
+      "saveLink": "Bağlantıyı kaydet",
+      "bulletList": "Madde işaretli liste",
+      "numberedList": "Numaralı liste",
+      "toDoList": "Yapılacaklar listesi"
     },
     "customizations": {
       "sansText": "Normal",
@@ -139,6 +142,16 @@
       "backgroundColorText": "Arka plan rengi",
       "foregroundColorText": "Varsayılan metin rengi",
       "customFontNamePlaceholer": "Özel yazı tipi"
+    },
+    "blocks": {
+      "linkToPage": {
+        "placeholder": "Bir not seçin"
+      }
     }
+  },
+  "search": {
+    "placeholder": "Notlarınızı arayın",
+    "chooserPlaceholder": "Bir not seçin",
+    "noResult": "Sonuç bulunamadı"
   }
 }

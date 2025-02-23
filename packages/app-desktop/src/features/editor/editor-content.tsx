@@ -4,7 +4,7 @@ import { EditorContent, type JSONContent } from "novel";
 import { handleCommandNavigation, ImageResizer } from "novel/extensions";
 import Bubble from "./bubble-menu";
 import SlashCommand from "./command-menu";
-import { slashCommand } from "./command-menu/slash-command";
+import { useSlashCommand } from "./command-menu/slash-command";
 import { ContentHandler } from "./content-handler";
 import { defaultExtensions } from "./extensions/extensions";
 import InstanceHandler from "./instance-handler";
@@ -15,12 +15,13 @@ export interface EditorProp {
   onChange: (value: JSONContent) => void;
 }
 
-const extensions = [...defaultExtensions, slashCommand];
+
 
 export function EditorContentWrapper({ initialValue, onChange }: EditorProp) {
   const fontStyle = useEditorState((state) => state.customizations.font);
   const { mutate: createNew } = useCreateNoteMutation();
-
+  const {slashCommand} = useSlashCommand();
+  const extensions = [...defaultExtensions, slashCommand];
   return (
     <EditorContent
       className={cn(

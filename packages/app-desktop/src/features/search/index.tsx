@@ -9,6 +9,7 @@ import { useNotesQuery } from "@renderer/hooks/query";
 import { useNavigateToNote } from "@renderer/hooks/use-navigate-to-note";
 import { getNoteIcon } from "@renderer/lib/utils";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export function SearchDialog(props: {
   open: boolean;
@@ -18,6 +19,7 @@ export function SearchDialog(props: {
   const { open, setOpen } = props;
   const [search, setSearch] = useState("");
   const nav = useNavigateToNote();
+  const {t} = useTranslation();
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -39,10 +41,10 @@ export function SearchDialog(props: {
       <CommandInput
         value={search}
         onValueChange={setSearch}
-        placeholder="Search your notes"
+        placeholder={t("search.placeholder")}
       />
       <CommandList className="scrollbar p-1 pb-1">
-        <CommandEmpty>No results</CommandEmpty>
+        <CommandEmpty>{t("search.noResult")}</CommandEmpty>
         {notes
           ?.filter((n) =>
             n.title.toLocaleLowerCase().includes(search.toLocaleLowerCase()),

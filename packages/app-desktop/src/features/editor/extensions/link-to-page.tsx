@@ -16,6 +16,7 @@ import { NodeViewWrapper, ReactNodeViewRenderer } from "@tiptap/react";
 import { File } from "lucide-react";
 import { Plugin } from "prosemirror-state";
 import { MouseEvent, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const LinkComponent = ({ node, updateAttributes }: any) => {
@@ -23,7 +24,7 @@ const LinkComponent = ({ node, updateAttributes }: any) => {
   const notes = useNotesQuery().data?.filter((n) => !n.isTrashed);
   const note = useNoteByIdQuery(id).data;
   const navToNote = useNavigateToNote();
-
+  const {t} = useTranslation();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
 
@@ -51,7 +52,7 @@ const LinkComponent = ({ node, updateAttributes }: any) => {
               getNoteIcon(note.icon)
             )}
             {!note ? (
-              "Select a note"
+              t("editor.blocks.linkToPage.placeholder")
             ) : (
               <span className="font-semibold">{note?.title}</span>
             )}
@@ -66,10 +67,10 @@ const LinkComponent = ({ node, updateAttributes }: any) => {
             <CommandInput
               value={search}
               onValueChange={setSearch}
-              placeholder="Choose a note"
+              placeholder={t("search.chooserPlaceholder")}
             />
             <CommandList className="scrollbar p-1 ">
-              <CommandEmpty>No results</CommandEmpty>
+              <CommandEmpty>{t("search.noResult")}</CommandEmpty>
               {notes
                 ?.filter((n) =>
                   n.title

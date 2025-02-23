@@ -5,7 +5,7 @@ import { EditorContent, EditorRoot, JSONContent } from "novel";
 import { handleCommandNavigation } from "novel/extensions";
 import Bubble from "./bubble-menu";
 import SlashCommand from "./command-menu";
-import { slashCommand } from "./command-menu/slash-command";
+import { useSlashCommand } from "./command-menu/slash-command";
 import InstanceHandler from "./instance-handler";
 import {
   ContextMenu,
@@ -19,9 +19,11 @@ interface TextEditorProps {
   customizations: NoteCustomizations;
 }
 
-const extensions = [...defaultExtensions, slashCommand];
+
 
 export const TextEditor = ({ initialValue, onChange }: TextEditorProps) => {
+  const {slashCommand} = useSlashCommand();
+  const extensions = [...defaultExtensions, slashCommand];
   return (
     <EditorRoot>
       <ContextMenu>

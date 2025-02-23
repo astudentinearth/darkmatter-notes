@@ -4,9 +4,10 @@ import {
   EditorCommandList,
   EditorCommandItem,
 } from "novel";
-import { suggestionItems } from "./slash-command";
+import { useSlashCommand } from "./slash-command";
 
 export default function SlashCommand() {
+  const {suggestionItems} = useSlashCommand();
   return (
     <EditorCommand className="z-50 h-auto max-h-[40vh] overflow-y-auto rounded-xl border border-muted bg-background px-1 py-1 shadow-md transition-all drop-shadow-xl">
       <EditorCommandEmpty className="px-2 text-muted-foreground">

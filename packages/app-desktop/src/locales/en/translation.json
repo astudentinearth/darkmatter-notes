@@ -111,12 +111,12 @@
     },
     "slashCommand": {
       "text": "Text",
-      "toDoList": "To-do List",
+      "toDoList": "To-do list",
       "heading1": "Heading 1",
       "heading2": "Heading 2",
       "heading3": "Heading 3",
-      "bulletList": "Bullet List",
-      "numberedList": "Numbered List",
+      "bulletList": "Bullet list",
+      "numberedList": "Numbered list",
       "quote": "Quote",
       "code": "Code",
       "divider": "Divider",
@@ -129,7 +129,10 @@
       "h3": "Heading 3",
       "h4": "Heading 4",
       "removeLink": "Remove link",
-      "saveLink": "Save link"
+      "saveLink": "Save link",
+      "bulletList": "Bullet list",
+      "numberedList": "Numbered list",
+      "toDoList": "To-do list"
     },
     "customizations": {
       "sansText": "Sans",
@@ -139,6 +142,16 @@
       "backgroundColorText": "Background color",
       "foregroundColorText": "Default text color",
       "customFontNamePlaceholer": "Custom font name"
+    },
+    "blocks": {
+      "linkToPage": {
+        "placeholder": "Select a note"
+      }
     }
+  },
+  "search": {
+    "placeholder": "Search your notes",
+    "chooserPlaceholder": "Choose a note",
+    "noResult": "No results"
   }
 }

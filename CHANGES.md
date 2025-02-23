@@ -10,6 +10,7 @@
 - Fixed tab order in sidebar
 - Reduced transparency in menus to improve readability
 - Fix incorrect UI font issue in some elements when using system default
+- Translated more UI elements, notably the slash command menu
 
 ## 🛠️ Technical changes
 - shadcn-ui components now live in a separate package.

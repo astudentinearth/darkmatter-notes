@@ -9,6 +9,9 @@
     "lint": "next lint",
     "typecheck": "tsc --noEmit --project tsconfig.json"
   },
+  "installConfig": {
+    "hoistingLimits": "workspaces"
+  },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

@@ -170,8 +170,9 @@ export const buildPreloadObject = (
   return obj;
 };
 
-ipcMain.handle("$darkwrite.build-preload-api-object", async () => {
-  return buildPreloadObject();
-});
-
-registerAPI("api");
+export const InitializeElectronAPI = () => {
+  ipcMain.handle("$darkwrite.build-preload-api-object", async () => {
+    return buildPreloadObject();
+  });
+  registerAPI("api");
+}

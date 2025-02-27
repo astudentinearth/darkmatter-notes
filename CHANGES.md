@@ -20,6 +20,8 @@
 ## 🛠️ Technical changes
 
 - shadcn-ui components now live in a separate package.
+- Added environment variable `DARKWRITE_ROOT_OVERRIDE` to use a different profile folder.
+  - I added this to share profiles in my dual boot setup. Actual workspace/profile switching will be added later as a feature.
 
 # 0.4.0-alpha.3
 

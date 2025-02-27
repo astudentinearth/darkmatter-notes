@@ -53,7 +53,7 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
         <>
           <Button
             variant={"ghost"}
-            className="rounded-xl bg-secondary/80 hover:bg-primary/80! hover:text-primary-foreground backdrop-blur-lg z-20 font-ui text-foreground"
+            className="rounded-lg bg-secondary/80 hover:bg-primary/80! hover:text-primary-foreground backdrop-blur-lg z-20 font-ui text-foreground"
             onClick={changeCover}
           >
             Change cover
@@ -61,7 +61,7 @@ export function CoverImage({ embedId }: { note: Note; embedId?: string }) {
           <Button
             onClick={removeCover}
             variant={"ghost"}
-            className="rounded-xl bg-secondary/80 hover:bg-primary/80! hover:text-primary-foreground backdrop-blur-lg z-20 gap-2 font-ui text-foreground"
+            className="rounded-lg bg-secondary/80 hover:bg-primary/80! hover:text-primary-foreground backdrop-blur-lg z-20 gap-2 font-ui text-foreground"
           >
             <ImageOff size={18} />
             Remove

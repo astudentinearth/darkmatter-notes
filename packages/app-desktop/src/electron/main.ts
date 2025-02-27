@@ -13,7 +13,7 @@ import { fileURLToPath } from "node:url";
 import { readUserPrefs } from "./api/settings.electron";
 import { Paths } from "./lib/paths";
 import { constructWindow } from "./window";
-import "./ipc/api";
+import { InitializeElectronAPI } from "./ipc/api";
 
 log.initialize();
 /*const require = createRequire(import.meta.url);*/
@@ -29,9 +29,11 @@ const DEV_SERVER_URL =
   process.env["ELECTRON_RENDERER_URL"] ?? "http://localhost:5173";
 
 async function createWindow() {
+  log.debug("creating main window");
+  log.debug("initializing paths");
   await Paths.initialize();
   const prefs = await readUserPrefs();
-  log.debug("creating main window");
+  InitializeElectronAPI();
   win = new BrowserWindow(constructWindow(prefs ?? DEFAULT_USER_SETTINGS));
   // Test active push message to Renderer-process.
   win.webContents.on("did-finish-load", () => {

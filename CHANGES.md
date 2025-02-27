@@ -1,18 +1,24 @@
 # next
+
 ## 🌟 Features
+
 - Darkwrite now runs on your web browser (with the exception of a few features)
 - Added trash search
 - Added back and forward buttons
 - Added wide pages
+- Heading 4 is now in slash command menu (it wasn't there even though it existed)
 
 ## ✨ Improvements and fixes
+
 - Input focus rings now follow accent color
 - Fixed tab order in sidebar
 - Reduced transparency in menus to improve readability
 - Fix incorrect UI font issue in some elements when using system default
 - Translated more UI elements, notably the slash command menu
+  - All command descriptions have been rewritten for both English and Turkish.
 
 ## 🛠️ Technical changes
+
 - shadcn-ui components now live in a separate package.
 
 # 0.4.0-alpha.3

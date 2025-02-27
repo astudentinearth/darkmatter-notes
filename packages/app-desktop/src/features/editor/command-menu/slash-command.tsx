@@ -4,6 +4,7 @@ import {
   Heading1,
   Heading2,
   Heading3,
+  Heading4,
   Image,
   Link,
   List,
@@ -21,7 +22,7 @@ export const useSlashCommand = ()=>{
   const suggestionItems = createSuggestionItems([
     {
       title: t("text"),
-      description: "Just start typing with plain text.",
+      description: t("textDescription"),
       searchTerms: ["p", "paragraph"],
       icon: <Text size={18} />,
       command: ({ editor, range }) => {
@@ -35,7 +36,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("toDoList"),
-      description: "Track tasks with a to-do list.",
+      description: t("toDoListDescription"),
       searchTerms: ["todo", "task", "list", "check", "checkbox"],
       icon: <CheckSquare size={18} />,
       command: ({ editor, range }) => {
@@ -44,7 +45,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("heading1"),
-      description: "Big section heading.",
+      description: t("heading1Description"),
       searchTerms: ["title", "big", "large"],
       icon: <Heading1 size={18} />,
       command: ({ editor, range }) => {
@@ -58,7 +59,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("heading2"),
-      description: "Medium section heading.",
+      description: t("heading2Description"),
       searchTerms: ["subtitle", "medium"],
       icon: <Heading2 size={18} />,
       command: ({ editor, range }) => {
@@ -72,7 +73,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("heading3"),
-      description: "Small section heading.",
+      description: t("heading3Description"),
       searchTerms: ["subtitle", "small"],
       icon: <Heading3 size={18} />,
       command: ({ editor, range }) => {
@@ -85,8 +86,22 @@ export const useSlashCommand = ()=>{
       },
     },
     {
+      title: t("heading4"),
+      description: t("heading4Description"),
+      searchTerms: ["subtitle", "small"],
+      icon: <Heading4 size={18} />,
+      command: ({ editor, range }) => {
+        editor
+          .chain()
+          .focus()
+          .deleteRange(range)
+          .setNode("heading", { level: 4 })
+          .run();
+      },
+    },
+    {
       title: t("bulletList"),
-      description: "Create a simple bullet list.",
+      description: t("bulletListDescription"),
       searchTerms: ["unordered", "point"],
       icon: <List size={18} />,
       command: ({ editor, range }) => {
@@ -95,7 +110,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("numberedList"),
-      description: "Create a list with numbering.",
+      description: t("numberedListDescription"),
       searchTerms: ["ordered"],
       icon: <ListOrdered size={18} />,
       command: ({ editor, range }) => {
@@ -104,7 +119,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("quote"),
-      description: "Capture a quote.",
+      description: t("quoteDescription"),
       searchTerms: ["blockquote"],
       icon: <TextQuote size={18} />,
       command: ({ editor, range }) =>
@@ -118,7 +133,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("code"),
-      description: "Capture a code snippet.",
+      description: t("codeDescription"),
       searchTerms: ["codeblock"],
       icon: <Code size={18} />,
       command: ({ editor, range }) =>
@@ -126,7 +141,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("divider"),
-      description: "Add a horizontal line to separate sections.",
+      description: t("dividerDescription"),
       searchTerms: ["divider", "hr", "separator", "horizontal rule"],
       icon: <SquareMinus size={18} />,
       command({ editor, range }) {
@@ -135,7 +150,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("linkToPage"),
-      description: "Add a clickable link to other pages.",
+      description: t("linkToPageDescription"),
       searchTerms: ["link"],
       icon: <Link size={18} />,
       command({ editor, range }) {
@@ -149,7 +164,7 @@ export const useSlashCommand = ()=>{
     },
     {
       title: t("image"),
-      description: "Add an image to your note",
+      description: t("imageDescription"),
       searchTerms: ["image", "img", "picture", "photo"],
       icon: <Image size={18} />,
       command({ editor, range }) {

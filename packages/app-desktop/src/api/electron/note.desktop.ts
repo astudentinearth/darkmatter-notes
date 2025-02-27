@@ -1,5 +1,6 @@
 import { Note, NotePartial } from "@darkwrite/common";
 import { INoteAPI } from "../types";
+import { DocumentUtil } from "@renderer/lib/document-util";
 
 export const DesktopNoteAPI: INoteAPI = {
   async create(title: string, parent?: string) {
@@ -10,7 +11,9 @@ export const DesktopNoteAPI: INoteAPI = {
       }
       return res;
     } catch (error) {
-      if (error instanceof Error) { console.error(error) }
+      if (error instanceof Error) {
+        console.error(error);
+      }
       return null;
     }
   },
@@ -96,6 +99,18 @@ export const DesktopNoteAPI: INoteAPI = {
     }
   },
 
+  async exportJSON(doc) {
+    await window.api.note.export(
+      doc.meta.title,
+      DocumentUtil.createStandaloneJSONFile(
+        doc.meta,
+        doc.content,
+        doc.customizations,
+      ),
+      "json",
+    );
+  },
+
   async importFile() {
     try {
       const res = await window.api.note.import();
@@ -107,25 +122,29 @@ export const DesktopNoteAPI: INoteAPI = {
 
   async duplicate(id: string) {
     const original = await DesktopNoteAPI.getNote(id);
-    if(!original) {
-      console.error(`Failed to duplicate ${id} - could not load the source note.`);
+    if (!original) {
+      console.error(
+        `Failed to duplicate ${id} - could not load the source note.`,
+      );
       return null;
     }
     const duplicate = await DesktopNoteAPI.create(
       `Copy of ${original.title}`,
       original.parentID ?? undefined,
     );
-    if (!duplicate) { 
-      console.error(`Failed to duplicate ${id} - could not create a copy.`)
+    if (!duplicate) {
+      console.error(`Failed to duplicate ${id} - could not create a copy.`);
       return null;
-     };
+    }
     await DesktopNoteAPI.update({ ...original, id: duplicate.id });
     const contents = await DesktopNoteAPI.getContents(original.id);
     if (!contents) {
-      console.error(`Failed to duplicate ${id} - could not copy contents to duplicate.`)
+      console.error(
+        `Failed to duplicate ${id} - could not copy contents to duplicate.`,
+      );
       return null;
     }
     await DesktopNoteAPI.updateContents(duplicate.id, contents);
     return duplicate;
-  }
-}
+  },
+};

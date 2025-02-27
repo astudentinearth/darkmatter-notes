@@ -2,6 +2,7 @@ import { Note, NotePartial } from "@darkwrite/common";
 import { INoteAPI } from "../types";
 import { generateId } from "@renderer/lib/utils";
 import { BrowserDBContext, IBrowserDBContext } from "./db-actions.browser";
+import { StandaloneDarkwriteDocument } from "@renderer/lib/document-util";
 
 export class BrowserNoteAPI implements INoteAPI {
   constructor(private _db: IBrowserDBContext = new BrowserDBContext()) {}
@@ -34,6 +35,11 @@ export class BrowserNoteAPI implements INoteAPI {
   async exportHTML(note: Note, content: string) {
     //TODO
   }
+
+  async exportJSON(doc: StandaloneDarkwriteDocument){
+    //TODO
+  }
+
   async getContents(id: string) {
     return (await this._db.getDocument(id)) ?? null;
   }

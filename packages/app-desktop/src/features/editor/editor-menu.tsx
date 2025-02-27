@@ -75,12 +75,16 @@ export function EditorMenu() {
               <Download size={18} />
               {t("export")}
             </DropdownMenuSubTrigger>
-            <DropdownMenuSubContent className="bg-card/90">
-              <DropdownMenuItem disabled><FileText size={18}/>Darkwrite document (JSON)</DropdownMenuItem>
+            <DropdownMenuSubContent className="bg-card">
+              <DropdownMenuItem onSelect={() => {
+              if (!activeNote.data) return;
+              _export(activeNote.data, "json");
+            }}><FileText size={18}/>{t("jsonExport")}</DropdownMenuItem>
               <DropdownMenuItem onSelect={() => {
               if (!activeNote.data) return;
               _export(activeNote.data);
-            }}><FileCode size={18}/>HTML (plain)</DropdownMenuItem>
+            }}><FileCode size={18}/>{t("htmlExport")}</DropdownMenuItem>
+            <span className="p-2 text-card-foreground/80 text-xs">{t("imageWarning")}</span>
             </DropdownMenuSubContent>
           </DropdownMenuSub>
           <DropdownMenuItem

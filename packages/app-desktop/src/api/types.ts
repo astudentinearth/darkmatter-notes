@@ -5,6 +5,7 @@ import {
   NotePartial,
   UserSettings
 } from "@darkwrite/common";
+import { StandaloneDarkwriteDocument } from "@renderer/lib/document-util";
 
 export interface INoteAPI {
   create: (title: string, parent?: string) => Promise<Note | null>;
@@ -19,6 +20,7 @@ export interface INoteAPI {
   getNote: (id: string) => Promise<Note | null>;
   saveAll: (notes: Note[]) => Promise<void>;
   exportHTML: (note: Note, content: string) => Promise<void>;
+  exportJSON: (doc: StandaloneDarkwriteDocument) => Promise<void>;
   importFile: () => Promise<FileImportResult | null>;
   duplicate: (id: string) => Promise<Note | null>;
 }

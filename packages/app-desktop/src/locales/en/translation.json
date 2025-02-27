@@ -101,7 +101,10 @@
       "duplicate": "Duplicate",
       "wordCount": "{{count}} words",
       "undo": "Undo",
-      "redo": "Redo"
+      "redo": "Redo",
+      "imageWarning": "We cannot include images for now.",
+      "jsonExport":"Darkwrite document (JSON)",
+      "htmlExport": "HTML (plain)"
     },
     "contextmenu": {
       "copy": "Copy",

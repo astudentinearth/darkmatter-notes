@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @plugin 'tailwindcss-animate';
 @plugin '@tailwindcss/typography';
@@ -45,10 +45,8 @@
 
   /* generic fonts until its loaded from settings */
   --darkwrite-sans: "Segoe UI", "Noto Sans", "Roboto", sans-serif;
-  --darkwrite-serif: "Times New Roman", "Noto Serif", "Liberation Serif",
-    serif;
-  --darkwrite-mono: "Cascadia Code", "Courier New", "Liberation Mono",
-    monospace;
+  --darkwrite-serif: "Times New Roman", "Noto Serif", "Liberation Serif", serif;
+  --darkwrite-mono: "Cascadia Code", "Courier New", "Liberation Mono", monospace;
   --font-ui: "";
 }
 
@@ -141,10 +139,7 @@
   }
 }
 
-
-
 @layer base {
-
   :root .dark {
     --border: 0 0% 26%;
   }
@@ -164,8 +159,6 @@
   .darkwrite-custom-font {
     font-family: var(--dw-custom-font-name);
   }
-
-
 }
 
 .font-ui {

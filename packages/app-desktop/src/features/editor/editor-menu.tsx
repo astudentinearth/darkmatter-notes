@@ -4,6 +4,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuSwitchItem,
   DropdownMenuTrigger,
 } from "@darkwrite/ui";
@@ -16,7 +19,7 @@ import { useDuplicateNoteMutation } from "@renderer/hooks/query/use-duplicate-no
 import { useExport } from "@renderer/hooks/use-export";
 import { useNoteFromURL } from "@renderer/hooks/use-note-from-url";
 import { cn } from "@renderer/lib/utils";
-import { Copy, Download, Menu, Redo, Undo, Upload } from "lucide-react";
+import { Copy, Download, FileCode, FileText, Menu, Redo, Undo, Upload } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -58,7 +61,7 @@ export function EditorMenu() {
         </DropdownMenuTrigger>
 
         {/* TODO: Unify dropdown menu item style */}
-        <DropdownMenuContent className="mr-3 mt-1 rounded-xl bg-card/90">
+        <DropdownMenuContent className="mr-3 mt-1 rounded-xl bg-card/90 !overflow-visible">
           <DropdownMenuSwitchItem
             checked={checker}
             onCheckedChange={(val) => setCheck(val)}
@@ -66,16 +69,20 @@ export function EditorMenu() {
             {t("checkSpelling")}
           </DropdownMenuSwitchItem>
           <DropdownMenuSeparator />
-          <DropdownMenuItem
-            onSelect={() => {
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger>
+              {" "}
+              <Download size={18} />
+              {t("export")}
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent className="bg-card/90">
+              <DropdownMenuItem disabled><FileText size={18}/>Darkwrite document (JSON)</DropdownMenuItem>
+              <DropdownMenuItem onSelect={() => {
               if (!activeNote.data) return;
               _export(activeNote.data);
-            }}
-            className="gap-2 rounded-lg"
-          >
-            <Download size={18} />
-            {t("export")}
-          </DropdownMenuItem>
+            }}><FileCode size={18}/>HTML (plain)</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
           <DropdownMenuItem
             onSelect={async () => {
               const html = await NoteAPI().importFile();
